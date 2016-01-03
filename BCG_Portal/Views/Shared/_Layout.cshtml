@@ -1,15 +1,52 @@
-﻿<!DOCTYPE html>
+﻿@using Mvc.RazorTools.FontAwesome
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+        
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Mvc.RazorTools.BundleManager.Styles.Render()
+    <link href="~/Content/custPortalCss.min.css" rel="stylesheet"/>
 
+
+   
+   
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+
+<div id="responsive-navbar">
+    <ul>
+        <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class='has-sub'>
+            <a href='#'><span>Products</span></a>
+            <ul>
+                <li><a href='#'><span>Product 1</span></a></li>
+                <li><a href='#'><span>Product 2</span></a></li>
+                <li class='last'><a href='#'><span>Product 3</span></a></li>
+            </ul>
+        </li>
+        <li class='has-sub'>
+            @Html.ActionLink("About", "About", "Home")
+            <ul>
+                <li><a href='#'><span>Company</span></a></li>
+                <li class='last'><a href='#'><span>Contact</span></a></li>
+            </ul>
+        </li>
+        <li class="last">@Html.ActionLink("testt", "test", "Home")</li>
+        <li class="last">@Html.ActionLink("Contact", "Contact", "Home")</li>
+        @Html.Partial("_LoginPartial")
+    </ul>
+</div>
+  
+
+    <div style="height: 50px;"></div>
+
+@*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -25,20 +62,64 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+              @Html.Partial("_LoginPartial")  
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </div>*@
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        <div id="dateTime" class="custFooter">
+            &copy; @DateTime.Now.Year
+        </div>
+
+        <div id="lastOne" class="custFooter"></div>
+
+        <!--
+        Html.FontAwesome(FontAwesomeIconSet.Star)
+
+        Html.FontAwesome(FontAwesomeIconSet.FacebookSquare.Spin().Large2x())
+        Html.FontAwesome(FontAwesomeIconSet.TwitterSquare.Large2x())
+        Html.FontAwesome(FontAwesomeIconSet.Google.Large2x())
+        Html.FontAwesome(FontAwesomeIconSet.Spinner, FontAwesomeStyles.Spin)
+        -->
+
+
+
+    </footer>
+    <div id="socialIcons" class="custFooter">
+        <!--facebook-->
+        <span>
+            <img class="custSocials" src="/images/facebook.ico" alt="" title="Facebook" />
+        </span>
+
+        <!--twitter-->
+        <span>
+            <img class="custSocials" src="/images/twitter.ico" alt="" title="Twitter" />
+        </span>
+
+        <!--google-->
+        <span>
+            <img class="custSocials" src="/images/google.ico" alt="" title="Google" />
+        </span>
+
+        <!--email-->
+        <span>
+            <img class="custSocials" src="/images/envelope.ico" alt="" title="Email" />
+        </span>
+
+        <!--skype-->
+        <span>
+            <img class="custSocials" src="/images/skype.ico" alt="" title="Skype" />
+        </span>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script src="~/Scripts/custPortalScripts.js"></script>
+@RenderSection("scripts", required: false)
 </body>
 </html>

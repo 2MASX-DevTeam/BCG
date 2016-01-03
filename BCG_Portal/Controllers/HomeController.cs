@@ -12,6 +12,10 @@ namespace BCG_Portal.Controllers
         {
             return View();
         }
+        public ActionResult test()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
