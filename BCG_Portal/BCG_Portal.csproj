@@ -306,7 +306,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\test.cshtml" />
     <Content Include="Views\Shared\lyIndex.cshtml" />
     <Content Include="Views\Home\Test2.cshtml" />
   </ItemGroup>
