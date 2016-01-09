@@ -54,9 +54,9 @@ namespace BCG_Manage
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+           app.UseFacebookAuthentication(
+              appId: "950489315016280",
+              appSecret: "a87895775166182eac409b76755278c2");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
