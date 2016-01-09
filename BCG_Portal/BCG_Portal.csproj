@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -224,28 +225,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\bg.jpg" />
-    <Content Include="images\bgSmall.jpg" />
     <Content Include="images\envelope.ico" />
     <Content Include="images\facebook.ico" />
     <Content Include="images\google.ico" />
-    <Content Include="images\line1.png" />
-    <Content Include="images\line2.png" />
-    <Content Include="images\product1.png" />
-    <Content Include="images\product2.png" />
-    <Content Include="images\product3.png" />
-    <Content Include="images\product4.png" />
-    <Content Include="images\product5.png" />
     <Content Include="images\resp-nav-top\caret.png" />
     <Content Include="images\resp-nav-top\menu.png" />
-    <Content Include="images\skype.ico" />
-    <Content Include="images\smallProduct1.png" />
-    <Content Include="images\smallProduct2.png" />
-    <Content Include="images\smallProduct3.png" />
-    <Content Include="images\smallProduct4.png" />
-    <Content Include="images\title1.png" />
-    <Content Include="images\title2.png" />
-    <Content Include="images\title3.png" />
     <Content Include="images\twitter.ico" />
     <Content Include="Scripts\Bebas_400.font.js" />
     <Content Include="Scripts\bootstrap.js" />
