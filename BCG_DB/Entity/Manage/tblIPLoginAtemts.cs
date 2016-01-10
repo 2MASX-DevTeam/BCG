@@ -17,6 +17,9 @@ namespace BCG_DB.Entity.Manage
         [StringLength(50)]
         public string IPAdress { get; set; }
 
+        [StringLength(500)]
+        public string UserAgend { get; set; }
+
         public DateTime? DateChanged { get; set; }
 
         public DateTime? DateCreated { get; set; }

@@ -62,9 +62,11 @@
         public ActionResult Index()
         {
           string ip =   IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
-
+            string browserVersion = Request.UserAgent;
+            
             var model = new tblIPLoginAtemts() {
                 IPAdress = ip,
+                UserAgend = browserVersion,
                 DateChanged= DateTime.Now,
                 DateCreated = DateTime.Now,
                 UserName = "SYSTEM"
