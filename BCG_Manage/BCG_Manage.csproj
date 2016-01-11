@@ -1055,6 +1055,9 @@
     <Content Include="plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
+    <Content Include="Index.cshtml" />
+    <None Include="Properties\PublishProfiles\manage.bc-vit.bg - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\manage.bc-vit.bg - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.4-vsdoc.js" />

@@ -101,6 +101,12 @@
   <ItemGroup>
     <Compile Include="Entity\Manage\LoginAtempts.cs" />
     <Compile Include="Entity\Manage\tblIPLoginAtemts.cs" />
+    <Compile Include="Entity\MultiLanguageEntity\MultiLanguageModel.cs" />
+    <Compile Include="Entity\MultiLanguageEntity\tblContext.cs" />
+    <Compile Include="Entity\MultiLanguageEntity\tblLanguages.cs" />
+    <Compile Include="Entity\MultiLanguageEntity\tblResources.cs" />
+    <Compile Include="Entity\MultiLanguageEntity\tblStaticResources.cs" />
+    <Compile Include="Entity\MultiLanguageEntity\tblStaticTexts.cs" />
     <Compile Include="Filters\CacheFilter.cs" />
     <Compile Include="Filters\CompressFilter.cs" />
     <Compile Include="Filters\GZipBundle.cs" />
