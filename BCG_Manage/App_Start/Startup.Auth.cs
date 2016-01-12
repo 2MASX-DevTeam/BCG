@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using BCG_Manage.Models;
+using System.Configuration;
 
 namespace BCG_Manage
 {
@@ -55,8 +56,8 @@ namespace BCG_Manage
             //   consumerSecret: "");
 
            app.UseFacebookAuthentication(
-              appId: "950489315016280",
-              appSecret: "a87895775166182eac409b76755278c2");
+              appId: ConfigurationManager.AppSettings["facebookAppID"].ToString(),
+              appSecret: ConfigurationManager.AppSettings["facebookAppSecret"].ToString());
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

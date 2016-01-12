@@ -59,6 +59,7 @@
         private LoginAtempts db = new LoginAtempts();
 
         [HttpGet]
+
         public ActionResult Index()
         {
           string ip =   IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);

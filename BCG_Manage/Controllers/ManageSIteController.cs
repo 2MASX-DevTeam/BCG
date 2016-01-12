@@ -13,6 +13,7 @@ namespace BCG_Manage.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.Title = "ADMIN-PANEL";
             return View();
         }
     }
