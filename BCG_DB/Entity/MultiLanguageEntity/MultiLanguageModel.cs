@@ -8,7 +8,7 @@ namespace BCG_DB.Entity.MultiLanguageEntity
     public partial class MultiLanguageModel : DbContext
     {
         public MultiLanguageModel()
-            : base("name=MultiLanguageModel")
+            : base("DefaultConnection")
         {
         }
 
