@@ -49,6 +49,14 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -161,9 +169,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManageSIteController.cs" />
+    <Compile Include="Controllers\MultiLanguageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +189,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
     <Content Include="dist\css\skins\skin-black-light.css" />
@@ -238,7 +250,13 @@
     <Content Include="dist\js\app.min.js" />
     <Content Include="dist\js\demo.js" />
     <Content Include="dist\js\pages\dashboard.js" />
-    <Content Include="dist\js\pages\dashboard2.js" />
+    <Content Include="Scripts\IndexChart.es5.js">
+      <DependentUpon>IndexChart.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\IndexChart.es5.min.js">
+      <DependentUpon>IndexChart.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\IndexChart.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1056,9 +1074,12 @@
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Index.cshtml" />
-    <None Include="Properties\PublishProfiles\manage.bc-vit.bg - Web Deploy %282%29.pubxml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Properties\PublishProfiles\LocalPublish.pubxml" />
     <None Include="Properties\PublishProfiles\manage.bc-vit.bg - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.4-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1105,6 +1126,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutStart.cshtml" />
     <Content Include="Views\ManageSIte\Index.cshtml" />
+    <Content Include="Views\Shared\_LogoutProfilePartial.cshtml" />
+    <Content Include="Views\Languages\Create.cshtml" />
+    <Content Include="Views\Languages\Delete.cshtml" />
+    <Content Include="Views\Languages\Details.cshtml" />
+    <Content Include="Views\Languages\Edit.cshtml" />
+    <Content Include="Views\Languages\Index.cshtml" />
+    <Content Include="Views\MultiLanguage\AddNewLanguage.cshtml" />
+    <Content Include="Views\MultiLanguage\ViewAllLanguages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

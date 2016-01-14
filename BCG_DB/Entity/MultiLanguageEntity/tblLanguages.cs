@@ -29,9 +29,9 @@ namespace BCG_DB.Entity.MultiLanguageEntity
         [Required]
         [StringLength(20)]
         public string Culture { get; set; }
+        
 
-        [StringLength(100)]
-        public string Picture { get; set; }
+        public byte[] Picture { get; set; }
 
         public bool IsActive { get; set; }
 

@@ -27,7 +27,7 @@ $(function () {
         pointStrokeColor: "#c1c7d1",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgb(220,220,220)",
-        data: [65, 59, 80, 81, 56, 55, 40]
+        data: [80, 59, 80, 81, 56, 55, 40]
       },
       {
         label: "Digital Goods",
@@ -37,7 +37,7 @@ $(function () {
         pointStrokeColor: "rgba(60,141,188,1)",
         pointHighlightFill: "#fff",
         pointHighlightStroke: "rgba(60,141,188,1)",
-        data: [28, 48, 40, 19, 86, 27, 90]
+        data: [28, 48, 40, 19, 55, 27, 90]
       }
     ]
   };
@@ -58,11 +58,11 @@ $(function () {
     //Boolean - Whether the line is curved between points
     bezierCurve: true,
     //Number - Tension of the bezier curve between points
-    bezierCurveTension: 0.3,
+    bezierCurveTension: 0.5,
     //Boolean - Whether to show a dot for each point
     pointDot: false,
     //Number - Radius of each point dot in pixels
-    pointDotRadius: 4,
+    pointDotRadius: 1,
     //Number - Pixel width of point dot stroke
     pointDotStrokeWidth: 1,
     //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
