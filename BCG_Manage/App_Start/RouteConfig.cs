@@ -26,11 +26,18 @@ namespace BCG_Manage
             #endregion
 
             #region Multilanguage
+
             routes.MapRoute(
            "AddLanguage",
            "Add Language",
            new { controller = "MultiLanguage", action = "AddNewLanguage"}
            );
+
+            routes.MapRoute(
+               "EditLanguage",
+               "Edit Language",
+               new { controller = "MultiLanguage", action = "EditLanguage" }
+               );
 
             routes.MapRoute(
          "ViewAllLanguages",
@@ -39,16 +46,7 @@ namespace BCG_Manage
          );
 
             #endregion
-            routes.MapRoute(
-               name: "Default2",
-               url: "{controller}/{action}/{id}",
-               defaults: new
-               {
-                   controller = "Languages",
-                   action = "Index",
-                   id = UrlParameter.Optional
-               }
-           );
+          
 
 
             routes.MapRoute(

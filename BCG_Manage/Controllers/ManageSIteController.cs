@@ -18,14 +18,11 @@ namespace BCG_Manage.Controllers
     {
         private MultiLanguageModel db = new MultiLanguageModel();
 
-
-        // GET: ManageSIte
-        [HttpGet]
-        public ActionResult ViewAllLanguages()
+        public ActionResult Index()
         {
-            ViewBag.Title = "ADMIN-PANEL";
             return View(db);
         }
+     
 
         protected override void Dispose(bool disposing)
         {

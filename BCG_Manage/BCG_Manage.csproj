@@ -1134,6 +1134,7 @@
     <Content Include="Views\Languages\Index.cshtml" />
     <Content Include="Views\MultiLanguage\AddNewLanguage.cshtml" />
     <Content Include="Views\MultiLanguage\ViewAllLanguages.cshtml" />
+    <Content Include="Views\MultiLanguage\EditLanguage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

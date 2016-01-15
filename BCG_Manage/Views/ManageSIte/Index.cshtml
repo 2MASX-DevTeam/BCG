@@ -53,10 +53,12 @@
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>Initials</th>
-                            <th>Picture</th>
-                            <th>Status</th>
                             <th>Language</th>
+                            <th>Culture</th>
+                            <th>Initials</th>
+                            <th>Status</th>
+                            <th>Picture</th>
+
                         </tr>
                         @{
                             var model = Model.tblLanguages.ToList();
@@ -66,8 +68,10 @@
                         {
                             <tr>
                                 <td>@row.IdLanguage</td>
+                                <td>@row.Language</td>
+                                <td>@row.Culture</td>
                                 <td>@row.Initials</td>
-                                <td>@row.Picture</td>
+
                                 @if (row.IsActive)
                                 {
                                     <td><span class="label label-success">Approved</span></td>
@@ -77,7 +81,9 @@
                                     <td><span class="label label-danger">Denied</span></td>
                                 }
 
-                                <td>Bacon ipsum dolor sit  .</td>
+                                <td> <img src="@Url.Action("Show", "MultiLanguage", new { id = row.IdLanguage } )" height="30" width="60" /> </td>
+                               
+
                             </tr>
                         }
                     </table>
