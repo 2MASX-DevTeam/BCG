@@ -1,4 +1,4 @@
-﻿@model BCG_DB.Entity.MultiLanguageEntity.tblLanguages
+﻿@model BCG_Manage.Models.LanguagesInModels
     @using BCG_Manage.Controllers;
 @{
     ViewBag.Title = "Add new language";
@@ -19,6 +19,10 @@
 
 <!-- Main content -->
 <section class="content">
+
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
 
     <!-- Default box -->
     <div class="row">
@@ -55,7 +59,8 @@
 
                         <div class="form-group">
                             <label>File input:</label>
-                            <input type="file" id="file" name="file">
+                            @Html.TextBoxFor(m => m.Picture, new { type = "file" })
+                            @Html.ValidationMessageFor(m => m.Picture)
                             <p class="help-block">Types: .jpg, .png, .gif. Resolution under 150px x 150px </p>
                         </div>
 

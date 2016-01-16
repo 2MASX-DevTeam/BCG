@@ -36,7 +36,8 @@
         }(document, 'script', 'facebook-jssdk'));
     </script>
 
-</head><body class="hold-transition skin-blue sidebar-mini">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
@@ -262,25 +263,14 @@
                                         <small>Member since @ViewBag.MemeberSince </small>
                                     </p>
                                 </li>
-                                <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
+
                                 <!-- Menu Footer-->
                                 @{
                                     Html.RenderPartial("_LogoutProfilePartial");
                                 }
                             </ul>
                         </li>
-                        
+
                     </ul>
                 </div>
             </nav>
@@ -424,10 +414,11 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Languages <i class="fa fa-angle-left pull-right"></i></a>
+                            <li>
+                                <a href="#"><i class="fa fa-circle-o"></i> Languages <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     <li>
-                                   
+
                                         @Html.ActionLink(" Add new language", "AddNewLanguage", "MultiLanguage", null, new { @class = "fa fa-circle-o" })
                                     </li>
                                     <li>
@@ -441,10 +432,11 @@
                                 <a href="#"><i class="fa fa-circle-o"></i>Resources<i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     <li>
-                                        <a href="#"><i class="fa fa-circle-o"></i> Add new recource</a>
+                                        @Html.ActionLink("Add new recource", "AddNewResource", "MultiLanguage", null, new { @class = "fa fa-circle-o" })
+
                                     </li>
                                     <li>
-                                        <a href="#"><i class="fa fa-circle-o"></i> View all resources </a>
+                                        @Html.ActionLink("View all resources", "ViewAllResources", "MultiLanguage", null, new { @class = "fa fa-circle-o" })
                                     </li>
 
                                 </ul>
@@ -465,7 +457,7 @@
                     </li>
                     <!--Multilanguage-->
 
-                      <li class="header">LABELS</li>
+                    <li class="header">LABELS</li>
                     <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
                     <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
                     <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
@@ -482,22 +474,21 @@
 
 
         </div><!-- /.content-wrapper -->
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.0
-                </div>
-                <strong>Copyright &copy; 2015 - @DateTime.Now.Year <a href="http://s2kdesign.com">Svetlin Krastanov</a>.</strong> All rights reserved.
-            </footer>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.0
+            </div>
+            <strong>Copyright &copy; 2015 - @DateTime.Now.Year <a href="http://s2kdesign.com">Svetlin Krastanov</a>.</strong> All rights reserved.
+        </footer>
 
-        
-        </div><!-- ./wrapper -->
-         
-           <!-- jQuery 2.1.4 -->
-           @Scripts.Render("~/bundles/jquery")
-           @Scripts.Render("~/bundles/bootstrap")
-   
-           <!-- AdminLTE for demo purposes -->
-           <script src="../dist/js/demo.js"></script>
+
+    </div><!-- ./wrapper -->
+    <!-- jQuery 2.1.4 -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
 
     @RenderSection("Scripts", false)
 

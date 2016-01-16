@@ -15,6 +15,8 @@ namespace BCG_Manage.Controllers
     [Authorize]
     public class BaseController : Controller
     {
+        private MultiLanguageModel db = new MultiLanguageModel();
+
         [ChildActionOnly]
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
@@ -31,6 +33,43 @@ namespace BCG_Manage.Controllers
             return returnImage;
         }
         
-        
+        public ActionResult ShowImageForLanguages(int id)
+        {
+            try
+            {
+                var img = db.tblLanguages.Find(id).Picture;
+                if (img == null)
+                {
+                    var dir = Server.MapPath("/Images");
+                    var path = Path.Combine(dir, "no-img" + ".jpg");
+                  
+                    return base.File(path, "image/jpeg");
+                }
+                else
+                {
+                    var imageData = img;
+                    return File(imageData, "image/jpeg");
+                }
+   
+            }
+            catch (Exception ex)
+            {
+
+                SendExceptionToAdmin(ex.ToString());
+
+                var dir = Server.MapPath("/Images");
+                var path = Path.Combine(dir, "no-img" + ".jpg");
+                return File(path, "image/jpeg");
+                
+            }
+
+
+
+        }
+
+        private void SendExceptionToAdmin(string ex)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

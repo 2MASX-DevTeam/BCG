@@ -1,4 +1,4 @@
-﻿@model BCG_DB.Entity.MultiLanguageEntity.tblLanguages
+﻿@model BCG_Manage.Models.LanguagesInModels
 @using BCG_Manage.Controllers;
 @{
     ViewBag.Title = "Edit language";
@@ -20,16 +20,21 @@
 <!-- Main content -->
 <section class="content">
 
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
     <!-- Default box -->
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title"> @ViewBag.Result  </h3>
+                    <h3 class="box-title">  Edit </h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
 
-                @using (Html.BeginForm("AddNewLanguage", "MultiLanguage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+
+                @using (Html.BeginForm("EditLanguage", "MultiLanguage", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(model => model.IdLanguage, new { htmlAttributes = new { @class = "form-control", name = "IdLanguage" } })
@@ -53,27 +58,34 @@
                             @Html.EditorFor(model => model.Culture, new { htmlAttributes = new { @class = "form-control", name = "Culture" } })
                             @Html.ValidationMessageFor(model => model.Culture, "", new { @class = "text-danger" })
                         </div>
+                        <div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>File input:</label>
+                                    @Html.TextBoxFor(m => m.Picture, new { type = "file" })
+                                    @Html.ValidationMessageFor(m => m.Picture)
+                                    <p class="help-block">Types: .jpg, .png, .gif. Resolution under 150px x 150px </p>
+                                </div>
 
-                        <div class="form-group">
-                            <label>File input:</label>
-                            <input type="file" id="file" name="file">
-                            <p class="help-block">Types: .jpg, .png, .gif. Resolution under 150px x 150px </p>
-                        </div>
+                                <div class="checkbox">
+                                    <label>
 
-                        <div class="checkbox">
-                            <label>
+                                        @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { name = "IsActive" } })
 
-                                @Html.EditorFor(model => model.IsActive, new { htmlAttributes = new { name = "IsActive" } })
-                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                        Is Active
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <img src="@Url.Action("ShowImageForLanguages", "Base", new { id = Model.IdLanguage } )" height="70" width="120" />
+                            </div>
 
-                                Is Active
-                            </label>
-                        </div>
-                    </div><!-- /.box-body -->
 
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </div><!-- /.box-body -->
                     </div>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                 }
             </div><!-- /.box -->
         </div>

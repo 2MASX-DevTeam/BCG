@@ -45,8 +45,28 @@ namespace BCG_Manage
          new { controller = "MultiLanguage", action = "ViewAllLanguages", id = UrlParameter.Optional }
          );
 
+
+
+            routes.MapRoute(
+           "AddResource",
+           "Add Resource",
+           new { controller = "MultiLanguage", action = "AddNewResource" }
+           );
+
+
+            routes.MapRoute(
+           "ViewAllResources",
+           "View All Resources",
+           new { controller = "MultiLanguage", action = "ViewAllResources" }
+           );
+
+            routes.MapRoute(
+          "Edit Resource",
+          "Edit Resource",
+          new { controller = "MultiLanguage", action = "EditResource" }
+          );
             #endregion
-          
+
 
 
             routes.MapRoute(

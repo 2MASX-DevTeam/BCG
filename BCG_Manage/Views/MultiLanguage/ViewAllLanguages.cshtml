@@ -22,7 +22,7 @@
 
     <!-- Default box -->
     <div class="row">
-\
+
 
         <div class="col-md-12">
             <div class="box">
@@ -68,12 +68,14 @@
                                     <td><span class="label label-danger">Denied</span></td>
                                 }
 
-                                <td> <img src="@Url.Action("Show", "MultiLanguage", new { id = row.IdLanguage } )" height="30" width="60" /> </td>
+                                <td> <img src="@Url.Action("ShowImageForLanguages", "Base", new { id = row.IdLanguage } )" height="30" width="60" /> </td>
 
                                 <td>
-
+                                    @Html.ActionLink("Change", "ChangeIsActiveLanguage","MultiLanguage", new  { id = row.IdLanguage }, new { @class = "btn btn-primary"})
                                 </td>
                                 <td>
+                                    @Html.ActionLink("Edit", "EditLanguage", "MultiLanguage", new { id = row.IdLanguage }, new { @class = "btn btn-success" })
+
 
                                 </td>
                             </tr>
