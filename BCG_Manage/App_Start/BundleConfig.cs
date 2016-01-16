@@ -28,7 +28,9 @@ namespace BCG_Manage
                       "~/plugins/slimScroll/jquery.slimscroll.min.js",
                       "~/plugins/chartjs/Chart.min.js",
                       "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
-                      "~/Scripts/IndexChart.es5.min.js"
+                         "~/plugins/datatables/jquery.dataTables.min.js",
+                      "~/plugins/datatables/dataTables.bootstrap.min.js"
+                   
                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -41,7 +43,8 @@ namespace BCG_Manage
                 "~/plugins/datepicker/datepicker3.css",
                 "~/plugins/daterangepicker/daterangepicker-bs3.css",
                 "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css",
-                "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css"
+                "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
+                "~/plugins/datatables/dataTables.bootstrap.css"
                      ));
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BCG_Manage.Models
 {
@@ -26,5 +27,16 @@ namespace BCG_Manage.Models
         public bool IsActive { get; set; }
         
         
+    }
+
+    public class Resources
+    {
+        public SelectList IdLanguages { get; set; }
+
+        [Required]
+        public string IdLanguage { get; set; }
+
+        [Required]
+        public string Context { get; set; }
     }
 }

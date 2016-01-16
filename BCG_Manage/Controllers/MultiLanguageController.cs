@@ -13,11 +13,12 @@ namespace BCG_Manage.Controllers
     using System.Drawing;
     using System.Data.Entity;
     using Models;
+    using System.Configuration;
 
     [Authorize]
     public class MultiLanguageController : BaseController
     {
-        public byte[] Content { get; set; }
+        private byte[] Content { get; set; }
 
         private MultiLanguageModel db = new MultiLanguageModel();
 
@@ -205,19 +206,113 @@ namespace BCG_Manage.Controllers
         #region Resources
 
         [HttpGet]
-        public ActionResult ViewAllResources()
+        public ActionResult ViewAllResources(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.tblResources);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IdResSortParm = String.IsNullOrEmpty(sortOrder) ? "IdResource" : "";
+            ViewBag.IdLangSortParm = sortOrder == "IdLanguage" ? "IdLanguageDesc" : "IdLanguage";
+            ViewBag.ContextSortParm = sortOrder == "Context" ? "ContextDesc" : "Context";
+            ViewBag.DateModifySortParm = sortOrder == "DateChanged" ? "DateChangedDesc" : "DateChanged";
+            ViewBag.DateCreatedSortParm = sortOrder == "DateCreated" ? "DateCreatedDesc" : "DateCreated";
+
+            if (searchString != null)
+                page = 1;
+            
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            var tblRes = db.tblResources.Include(t => t.tblContext).Include(t => t.tblLanguages);
+
+            if (!String.IsNullOrEmpty(searchString))
+                tblRes = tblRes.Where(s => s.tblContext.Context.Contains(searchString));
+
+            switch (sortOrder)
+            {
+                case "IdResource":
+                    tblRes = tblRes.OrderByDescending(s => s.IdResource); break;
+                case "IdLanguage":
+                    tblRes = tblRes.OrderBy(s => s.IdLanguage); break;
+                case "IdLanguageDesc":
+                    tblRes = tblRes.OrderByDescending(s => s.IdLanguage); break;
+                case "Context":
+                    tblRes = tblRes.OrderBy(s => s.tblContext.Context); break;
+                case "ContextDesc":
+                    tblRes = tblRes.OrderByDescending(s => s.tblContext.Context); break;
+                case "DateChanged":
+                    tblRes = tblRes.OrderBy(s => s.DateChanged); break;
+                case "DateChangedDesc":
+                    tblRes = tblRes.OrderByDescending(s => s.DateChanged); break;
+                case "DateCreated":
+                    tblRes = tblRes.OrderBy(s => s.DateCreated); break;
+                case "DateCreatedDesc":
+                    tblRes = tblRes.OrderByDescending(s => s.DateCreated); break;
+
+
+                default:
+                    tblRes = tblRes.OrderBy(s => s.IdResource);
+                    break;
+            }
+
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
+            int pageNumber = (page ?? 1);
+
+
+            return View(tblRes.ToPagedList(pageNumber, pageSize));
         }
 
+        #region Add
 
         [HttpGet]
         public ActionResult AddNewResource()
         {
-            return View();
+            var model = new Resources() {
+                IdLanguages = new SelectList(db.tblLanguages, "IdLanguage", "Language")
+            };
+  
+           
+            return View(model);
         }
 
-        
+
+        [HttpPost]
+        public ActionResult AddNewResource(Resources model)
+        {
+            ViewBag.IdLanguage = new SelectList(db.tblLanguages, "IdLanguage", "Language");
+
+            if (ModelState.IsValid)
+            {
+                TempData["ResultSuccess"] = "Succes in adding new resource!";
+                var tblRes = new tblResources()
+                {
+                    IdLanguage = Convert.ToInt32(model.IdLanguage),
+                    tblContext = new tblContext
+                    {
+                        Context = model.Context,
+                        UserName = User.Identity.Name,
+                        DateChanged = DateTime.Now,
+                        DateCreated = DateTime.Now
+                    },
+                    UserName = User.Identity.Name,
+                    DateChanged = DateTime.Now,
+                    DateCreated = DateTime.Now
+                    };
+
+                db.tblResources.Add(tblRes);
+                db.SaveChanges();
+
+                return RedirectToAction("AddNewResource");
+            }
+            else
+                TempData["ResultError"] = "Error in adding new resource!";
+            
+            return RedirectToAction("AddNewResource");
+        }
+
+        #endregion
+
+
         [HttpGet]
         public ActionResult EditResource()
         {

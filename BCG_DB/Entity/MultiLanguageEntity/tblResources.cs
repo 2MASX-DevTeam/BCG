@@ -19,9 +19,8 @@ namespace BCG_DB.Entity.MultiLanguageEntity
         public string UserName { get; set; }
 
         public DateTime? DateChanged { get; set; }
-
-        [StringLength(50)]
-        public string DateCreated { get; set; }
+        
+        public DateTime? DateCreated { get; set; }
 
         public virtual tblContext tblContext { get; set; }
 

@@ -56,8 +56,8 @@ namespace BCG_Manage
 
             routes.MapRoute(
            "ViewAllResources",
-           "View All Resources",
-           new { controller = "MultiLanguage", action = "ViewAllResources" }
+           "View All Resources/{id}",
+           new { controller = "MultiLanguage", action = "ViewAllResources", id = UrlParameter.Optional }
            );
 
             routes.MapRoute(

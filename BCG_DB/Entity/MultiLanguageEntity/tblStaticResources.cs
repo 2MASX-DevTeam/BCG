@@ -18,7 +18,8 @@ namespace BCG_DB.Entity.MultiLanguageEntity
         [StringLength(100)]
         public string StaticName { get; set; }
 
-        public DateTime? UserName { get; set; }
+        [StringLength(50)]
+        public string UserName { get; set; }
 
         public DateTime? DateChanged { get; set; }
 
