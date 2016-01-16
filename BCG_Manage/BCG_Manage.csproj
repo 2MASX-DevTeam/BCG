@@ -1167,6 +1167,7 @@
     <Content Include="Views\MultiLanguage\AddNewResource.cshtml" />
     <Content Include="Views\MultiLanguage\ViewAllResources.cshtml" />
     <Content Include="Views\MultiLanguage\EditResource.cshtml" />
+    <Content Include="Views\MultiLanguage\AddTranslationResource.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

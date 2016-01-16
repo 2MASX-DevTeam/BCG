@@ -9,10 +9,17 @@ namespace BCG_DB.Entity.MultiLanguageEntity
     public partial class tblStaticResources
     {
         [Key]
+        [Column(Order = 0)]
         public int IdStatic { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdLanguage { get; set; }
 
+        [Key]
+        [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdStaticText { get; set; }
 
         [StringLength(100)]

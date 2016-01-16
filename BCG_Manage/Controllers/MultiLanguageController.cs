@@ -14,6 +14,7 @@ namespace BCG_Manage.Controllers
     using System.Data.Entity;
     using Models;
     using System.Configuration;
+    using System.Data.SqlClient;
 
     [Authorize]
     public class MultiLanguageController : BaseController
@@ -130,6 +131,7 @@ namespace BCG_Manage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditLanguage(LanguagesInModels model)
         {
             if (ModelState.IsValid)
@@ -277,10 +279,10 @@ namespace BCG_Manage.Controllers
 
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddNewResource(Resources model)
         {
-            ViewBag.IdLanguage = new SelectList(db.tblLanguages, "IdLanguage", "Language");
-
+           
             if (ModelState.IsValid)
             {
                 TempData["ResultSuccess"] = "Succes in adding new resource!";
@@ -310,6 +312,86 @@ namespace BCG_Manage.Controllers
             return RedirectToAction("AddNewResource");
         }
 
+        [HttpGet]
+        [OutputCache(Duration = 0)]
+        public ActionResult AddTranslationResource(int id)
+        {
+            int IdRes = id;
+
+            var query = @"SELECT IdLanguage, Language FROM tblLanguages
+                       WHERE tblLanguages.IdLanguage NOT IN(
+                    SELECT  tblLanguages.IdLanguage FROM tblLanguages INNER JOIN
+                            tblResources ON tblLanguages.IdLanguage = tblResources.IdLanguage
+                    WHERE   tblResources.IdResource =" + IdRes + " )";
+            
+
+            var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
+
+            var model = new Resources();
+
+            var items = new List<string>();
+          
+            if (sequenceQueryResult.Count != 0)
+            {
+                model.IdResource = IdRes;
+                model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
+            }
+            else
+            {
+                TempData["ResultError"] = "Error in adding new translation to resource! There is no more languages.";
+                return RedirectToAction("AddNewResource");
+            }
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTranslationResource(Resources model)
+        {
+            if (ModelState.IsValid)
+            {
+                TempData["ResultSuccess"] = "Succes in adding new resource!";
+             
+                using (var dataContext = new MultiLanguageModel())
+                using (var transaction = dataContext.Database.BeginTransaction())
+                {
+                    var tblCon = new tblContext();
+                    tblCon.Context = model.Context;
+                    tblCon.UserName = User.Identity.Name;
+                    tblCon.DateChanged = DateTime.Now;
+                    tblCon.DateCreated = DateTime.Now;
+                    db.tblContext.Add(tblCon);
+                    db.SaveChanges();
+                    
+                    var IdCont = (from tblContext in db.tblContext
+                                orderby tblContext.DateCreated descending
+                                select tblContext).First();
+
+                    var tblRes = new tblResources()
+                    {
+                        IdResource = model.IdResource,
+                        IdLanguage = Convert.ToInt32(model.IdLanguage),
+                        IdContext = IdCont.IdContext,
+                        UserName = User.Identity.Name,
+                        DateChanged = DateTime.Now,
+                        DateCreated = DateTime.Now
+                    };
+
+                    dataContext.Set<tblResources>().Add(tblRes);
+                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
+                    dataContext.SaveChanges();
+                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+
+                    transaction.Commit();
+                }
+                return RedirectToAction("AddTranslationResource", new { id = model.IdResource});
+            }
+            else
+                TempData["ResultError"] = "Error in adding new translation!";
+            return RedirectToAction("AddTranslationResource");
+        }
         #endregion
 
 

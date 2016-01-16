@@ -31,10 +31,14 @@ namespace BCG_Manage.Models
 
     public class Resources
     {
+        public int IdResource { get; set; }
+
+        public string Language { get; set; }
+
         public SelectList IdLanguages { get; set; }
 
         [Required]
-        public string IdLanguage { get; set; }
+        public int IdLanguage { get; set; }
 
         [Required]
         public string Context { get; set; }

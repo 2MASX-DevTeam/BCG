@@ -1,19 +1,20 @@
 ﻿@model PagedList.IPagedList<BCG_DB.Entity.MultiLanguageEntity.tblResources>
 @using PagedList.Mvc;
 @{
+    ViewBag.Title = "Add new resource";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        View all language.
+        View all resources.
         <small>Multilanguage</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="~/Admin"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>MultiLanguage</li>
-        <li class="active">View all language</li>
+        <li class="active">View all resources</li>
     </ol>
 </section>
 
@@ -26,7 +27,7 @@
         <div class="col-md-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Actve languages: </h3>
+                    <h3 class="box-title">Resources: </h3>
 
                         <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
@@ -38,7 +39,7 @@
                 <div class="box-body table-responsive no-padding">
 
                  <div class="col-md-4 pull-left">
-                     @Html.ActionLink("Add new resource", "MultiLanguage", null, new { @class="btn btn-default" })
+                     @Html.ActionLink("Add new resource", "AddNewResource", null, new { @class="btn btn-default" })
                  </div>
 
                     @using (Html.BeginForm("ViewAllResources", "MultiLanguage", FormMethod.Get,  new { @class = "input-group pull-right col-md-4" } ))
@@ -113,6 +114,7 @@
                                     @Html.DisplayFor(modelITem => item.DateCreated)
                                 </td>
                                 <td>
+                                    @Html.ActionLink("Add translation", "AddTranslationResource", new { id = item.IdResource }, new { @class = "btn btn-info" })
                                     @Html.ActionLink("Edit", "EditResource", new { id = item.IdResource, idLang = item.IdLanguage }, new { @class = "btn btn-success" })
                                     @Html.ActionLink("Delete", "DeleteResource", new { id = item.IdResource, idLang = item.IdLanguage }, new { @class = "btn btn-danger" })
                                 </td>

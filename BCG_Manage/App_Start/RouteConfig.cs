@@ -65,6 +65,13 @@ namespace BCG_Manage
           "Edit Resource",
           new { controller = "MultiLanguage", action = "EditResource" }
           );
+
+            routes.MapRoute(
+       "AddTranslationResource",
+       "Add translation to resource",
+       new { controller = "MultiLanguage", action = "AddTranslationResource" }
+       );
+
             #endregion
 
 

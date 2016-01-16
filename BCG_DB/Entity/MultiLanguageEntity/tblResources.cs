@@ -9,17 +9,25 @@ namespace BCG_DB.Entity.MultiLanguageEntity
     public partial class tblResources
     {
         [Key]
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdResource { get; set; }
 
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdLanguage { get; set; }
 
+        [Key]
+        [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdContext { get; set; }
 
         [StringLength(50)]
         public string UserName { get; set; }
 
         public DateTime? DateChanged { get; set; }
-        
+
         public DateTime? DateCreated { get; set; }
 
         public virtual tblContext tblContext { get; set; }
