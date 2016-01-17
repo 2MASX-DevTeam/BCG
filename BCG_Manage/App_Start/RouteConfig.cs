@@ -56,8 +56,8 @@ namespace BCG_Manage
 
             routes.MapRoute(
            "ViewAllResources",
-           "View All Resources/{id}",
-           new { controller = "MultiLanguage", action = "ViewAllResources", id = UrlParameter.Optional }
+           "View All Resources",
+           new { controller = "MultiLanguage", action = "ViewAllResources" }
            );
 
             routes.MapRoute(
@@ -74,7 +74,34 @@ namespace BCG_Manage
 
             #endregion
 
+            #region Roles
 
+            routes.MapRoute(
+             "Roles",
+             "Create role",
+             new { controller = "Roles", action = "Create" }
+             );
+
+
+            routes.MapRoute(
+           "ManageRoles",
+           "Manage roles",
+           new { controller = "Roles", action = "ManageUserRoles" }
+           );
+
+
+            routes.MapRoute(
+                       "ViewRoles",
+                       "View roles",
+                       new { controller = "Roles", action = "ViewAllRoles" }
+                       );
+
+            routes.MapRoute(
+                  "EditRoles",
+                  "Edit role",
+                  new { controller = "Roles", action = "EditRole" }
+                  );
+            #endregion
 
             routes.MapRoute(
                 name: "Default",

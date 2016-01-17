@@ -17,5 +17,7 @@ namespace BCG_Manage
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+      
     }
 }

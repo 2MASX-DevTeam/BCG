@@ -71,5 +71,10 @@ namespace BCG_Manage.Controllers
         {
             throw new NotImplementedException();
         }
+
+        public int GetAdminCounts()
+        {
+            return 2;
+        }
     }
 }

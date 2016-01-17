@@ -18,6 +18,7 @@ namespace BCG_Manage.Models
         }
     }
 
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

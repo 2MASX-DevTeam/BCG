@@ -198,6 +198,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManageSIteController.cs" />
     <Compile Include="Controllers\MultiLanguageController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1097,8 +1098,8 @@
     <Content Include="plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
-    <Content Include="Index.cshtml" />
     <Content Include="App_Code\ResultHelper.cshtml" />
+    <Content Include="App_Code\LayoutHelper.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1168,13 +1169,16 @@
     <Content Include="Views\MultiLanguage\ViewAllResources.cshtml" />
     <Content Include="Views\MultiLanguage\EditResource.cshtml" />
     <Content Include="Views\MultiLanguage\AddTranslationResource.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\ViewAllRoles.cshtml" />
+    <Content Include="Views\Roles\ManageUserRoles.cshtml" />
+    <Content Include="Views\Roles\EditRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BCG_DB\BCG_DB.csproj">

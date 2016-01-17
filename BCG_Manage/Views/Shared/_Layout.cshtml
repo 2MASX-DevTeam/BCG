@@ -319,6 +319,51 @@
 
 
 
+                    <!--User -->
+
+
+                    <li class="header">USERS</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-group"></i>
+                            <span>Registered users</span>
+                          @LayoutHelper.UsersCount()
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-user-plus"></i>Create user</a></li>
+                            <li><a href="#"><i class="fa fa-user-times"></i>Delete User</a></li>
+                            <li><a href="#"><i class="fa fa-list"></i>View all users</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa  fa-male"></i>
+                            <span>Registered admins</span>
+                             @LayoutHelper.AdminCount()
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#"><i class="fa fa-user-plus"></i>Create admin</a></li>
+                            <li><a href="#"><i class="fa fa-user-times"></i>Delete admin</a></li>
+                            <li><a href="#"><i class="fa fa-list"></i>View all admins</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-unlock-alt"></i>
+                            <span>Created roles</span>
+                            @LayoutHelper.RolesCount()
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="@Url.Action("Create", "Roles", null)"><i class="fa fa-circle-o"></i> Create role</a>
+                            </li>
+                            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> View all roles</a></li>
+                        </ul>
+                    </li>
+                    <!--Users-->
+
 
 
 

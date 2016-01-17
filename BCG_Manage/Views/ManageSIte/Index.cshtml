@@ -61,7 +61,7 @@
 
                         </tr>
                         @{
-                            var model = Model.tblLanguages.ToList();
+                            var model = Model.tblLanguages.Where(m => m.IsActive == true);
                         }
 
                         @foreach (var row in model)
