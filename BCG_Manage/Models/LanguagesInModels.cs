@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -36,6 +37,8 @@ namespace BCG_Manage.Models
         public string Language { get; set; }
 
         public SelectList IdLanguages { get; set; }
+
+        public List<string> lsContext = new List<string>();
 
         [Required]
         public int IdLanguage { get; set; }

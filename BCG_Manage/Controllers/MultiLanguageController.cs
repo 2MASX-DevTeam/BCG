@@ -324,22 +324,24 @@ namespace BCG_Manage.Controllers
                             tblResources ON tblLanguages.IdLanguage = tblResources.IdLanguage
                     WHERE   tblResources.IdResource =" + IdRes + " )";
             
-
             var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
 
-            var model = new Resources();
+            var lsContext = (from tblResources in db.tblResources
+                            where tblResources.IdResource == IdRes
+                            select tblResources.tblContext.Context 
+                            ).ToList();
 
-            var items = new List<string>();
-          
+            var model = new Resources();
             if (sequenceQueryResult.Count != 0)
             {
                 model.IdResource = IdRes;
                 model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
+                model.lsContext = lsContext;
             }
             else
             {
                 TempData["ResultError"] = "Error in adding new translation to resource! There is no more languages.";
-                return RedirectToAction("AddNewResource");
+                return RedirectToAction("ViewAllResources");
             }
 
 
