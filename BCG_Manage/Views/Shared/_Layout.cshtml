@@ -327,10 +327,10 @@
                         <a href="#">
                             <i class="fa fa-group"></i>
                             <span>Registered users</span>
-                          @LayoutHelper.UsersCount()
+                      5
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-user-plus"></i>Create user</a></li>
+                            <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-user-plus"></i>Create user</a></li>
                             <li><a href="#"><i class="fa fa-user-times"></i>Delete User</a></li>
                             <li><a href="#"><i class="fa fa-list"></i>View all users</a></li>
                         </ul>
@@ -340,7 +340,7 @@
                         <a href="#">
                             <i class="fa  fa-male"></i>
                             <span>Registered admins</span>
-                             @LayoutHelper.AdminCount()
+                            5
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="#"><i class="fa fa-user-plus"></i>Create admin</a></li>
@@ -353,13 +353,14 @@
                         <a href="#">
                             <i class="fa fa-unlock-alt"></i>
                             <span>Created roles</span>
-                            @LayoutHelper.RolesCount()
+                   5
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="@Url.Action("Create", "Roles", null)"><i class="fa fa-circle-o"></i> Create role</a>
+                                <a href="@Url.Action("Create", "Roles")"><i class="fa fa-circle-o"></i> Create role</a>
                             </li>
-                            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> View all roles</a></li>
+                            <li><a href="@Url.Action("ViewAllRoles", "Roles")"><i class="fa fa-circle-o"></i> View all roles</a></li>
+                            <li><a href="@Url.Action("ManageUserRoles", "Roles")"><i class="fa fa-circle-o"></i>Manage roles</a></li>
                         </ul>
                     </li>
                     <!--Users-->
@@ -380,12 +381,12 @@
                                 <a href="#"><i class="fa fa-circle-o"></i> Languages <i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     <li>
-                                        <a href="@Url.Action( "AddNewLanguage", "MultiLanguage", null)">
+                                        <a href="@Url.Action( "AddNewLanguage", "MultiLanguage")">
                                             <i class="fa fa-circle-o"></i> Add new language
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="@Url.Action( "ViewAllLanguages", "MultiLanguage", null)">
+                                        <a href="@Url.Action( "ViewAllLanguages", "MultiLanguage")">
                                             <i class="fa fa-circle-o"></i> View all languages
                                         </a>
                                     </li>
@@ -396,13 +397,13 @@
                                 <a href="#"><i class="fa fa-circle-o"></i>Resources<i class="fa fa-angle-left pull-right"></i></a>
                                 <ul class="treeview-menu">
                                     <li>
-                                        <a href="@Url.Action( "AddNewResource", "MultiLanguage", null)">
+                                        <a href="@Url.Action( "AddNewResource", "MultiLanguage")">
                                             <i class="fa fa-circle-o"></i> Add new resource
                                         </a>
 
                                     </li>
                                     <li>
-                                        <a href="@Url.Action( "ViewAllResources", "MultiLanguage", null)" >
+                                        <a href="@Url.Action( "ViewAllResources", "MultiLanguage")" >
                                             <i class="fa fa-circle-o"></i> View all resources
                                         </a>
                                     </li>

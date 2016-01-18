@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using BCG_Manage.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace BCG_Manage.Controllers
 {
@@ -56,7 +58,7 @@ namespace BCG_Manage.Controllers
 
         // GET: /Roles/Edit/5
         [HttpGet]
-        public ActionResult Edit(string roleName)
+        public ActionResult EditRole(string roleName)
         {
             var thisRole = context.Roles.Where(r => r.Name.Equals(roleName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
@@ -102,8 +104,12 @@ namespace BCG_Manage.Controllers
             try
             {
                 ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
-                var account = new AccountController();
-                account.UserManager.AddToRole(user.Id, RoleName);
+              //  var account = new AccountController();
+             //   account.UserManager.AddToRoleAsync(user.Id, RoleName);
+
+
+                var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var idResult = um.AddToRole(user.Id, RoleName);
 
                 // prepopulat roles for the view dropdown 
                 var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
@@ -113,6 +119,8 @@ namespace BCG_Manage.Controllers
 
                 return View("ManageUserRoles");
             }
+
+           
             catch (Exception)
             {
                 TempData["ResultError"] = "Error in adding role!";
@@ -132,7 +140,10 @@ namespace BCG_Manage.Controllers
                 var account = new AccountController();
 
 
-                ViewBag.RolesForThisUser = account.UserManager.GetRoles(user.Id);
+             //   ViewBag.RolesForThisUser = account.UserManager.GetRoles(user.Id);
+
+                var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                ViewBag.RolesForThisUser = um.GetRoles(user.Id);
 
 
                 // prepopulat roles for the view dropdown 
@@ -169,13 +180,13 @@ namespace BCG_Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRoleForUser(string UserName, string RoleName)
         {
-            var account = new AccountController();
             ApplicationUser user = context.Users.Where(u => u.UserName.Equals(UserName, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
+            var um = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
 
-            if (account.UserManager.IsInRole(user.Id, RoleName))
+            if (um.IsInRole(user.Id, RoleName))
             {
-                account.UserManager.RemoveFromRole(user.Id, RoleName);
+                um.RemoveFromRole(user.Id, RoleName);
 
                 TempData["ResultSuccess"] = "Role removed from this user successfully!";
             }

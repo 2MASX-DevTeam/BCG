@@ -9,14 +9,17 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BCG_Manage.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BCG_Manage.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+
+        private ApplicationDbContext context = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -139,7 +142,15 @@ namespace BCG_Manage.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
+            new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
+
+            var model = new RegisterViewModel()
+            {
+                lsRoles = new SelectList( context.Roles.ToList(), "Name", "Name")
+            };
+
+            return View(model);
         }
 
         //
@@ -149,27 +160,46 @@ namespace BCG_Manage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            using (var context = new ApplicationDbContext())
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var result = await UserManager.CreateAsync(user, model.Password);
 
-                    return RedirectToAction("Index", "Home");
+                    user.Email = model.Email;
+                    user.EmailConfirmed = false;
+
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
+
+                    userManager.AddToRole(user.Id, model.Roles);
+
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+
+                        SendEmail(user.Email, "Confirm your account", "You have been added as a user of the site \"www.bc-vit.bg\".<BR/> Assigned role for you is: " + model.Roles + "." +"<BR/> Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        TempData["ResultSuccess"] = String.Format("Successfully added user with role: {1}! Confirmation email is sent to the email: {0} .", user.Email , model.Roles);
+
+                        return RedirectToAction("Register", "Account");
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
-            }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+                TempData["ResultSuccess"] = "Error in adding administrator!";
+                // If we got this far, something failed, redisplay form
+                return View(model);
+            }
         }
 
         //

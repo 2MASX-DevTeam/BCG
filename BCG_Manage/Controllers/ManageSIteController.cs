@@ -14,12 +14,13 @@ using BCG_DB.Entity.MultiLanguageEntity;
 namespace BCG_Manage.Controllers
 {
     [Authorize]
-    public class ManageSIteController : Controller
+    public class ManageSIteController : BaseController
     {
         private MultiLanguageModel db = new MultiLanguageModel();
 
         public ActionResult Index()
         {
+          
             return View(db);
         }
      
