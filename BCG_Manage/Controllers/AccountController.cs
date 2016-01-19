@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BCG_Manage.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using BCG_Manage.Areas.EmailTemplates.Models;
 
 namespace BCG_Manage.Controllers
 {
@@ -144,10 +145,11 @@ namespace BCG_Manage.Controllers
         {
             var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
             new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
-
+      
             var model = new RegisterViewModel()
             {
-                lsRoles = new SelectList( context.Roles.ToList(), "Name", "Name")
+                lsRoles = new SelectList(context.Roles.ToList(), "Name", "Name"),
+                BirthDate = DateTime.Now.AddYears(-18)
             };
 
             return View(model);
@@ -164,8 +166,9 @@ namespace BCG_Manage.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                    var result = await UserManager.CreateAsync(user, model.Password);
+                    string password = GenericPassword();
+                    var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, BirthDate = model.BirthDate };
+                    var result = await UserManager.CreateAsync(user, password);
 
                     user.Email = model.Email;
                     user.EmailConfirmed = false;
@@ -180,14 +183,16 @@ namespace BCG_Manage.Controllers
 
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-                        SendEmail(user.Email, "Confirm your account", "You have been added as a user of the site \"www.bc-vit.bg\".<BR/> Assigned role for you is: " + model.Roles + "." +"<BR/> Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                        var subjEmail = new EmailModels() { UserName = user.UserName, Role = user.Roles.ToString(), Link = callbackUrl, Password = GenericPassword() };
+                        var emailBody = RenderViewToString( "RegistrationEmail", subjEmail);
+                        SendEmail(user.Email, "New registration",  emailBody);
 
                         TempData["ResultSuccess"] = String.Format("Successfully added user with role: {1}! Confirmation email is sent to the email: {0} .", user.Email , model.Roles);
 
@@ -415,6 +420,9 @@ namespace BCG_Manage.Controllers
             return View(model);
         }
 
+
+        
+         
         //
         // POST: /Account/LogOff
         [HttpPost]

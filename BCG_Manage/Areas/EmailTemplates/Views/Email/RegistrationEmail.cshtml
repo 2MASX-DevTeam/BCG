@@ -1,0 +1,17 @@
+﻿@model BCG_Manage.Areas.EmailTemplates.Models.EmailModels
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+     <a href="@Model.Link" title="BC-VIT.BG" >Click for confirmation</a>
+        <p>
+            @Model.Password
+        </p>
+        <p>   @Model.Role</p>
+        <p>   @Model.UserName</p>
+        
+    </body>
+</html>

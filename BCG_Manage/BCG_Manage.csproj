@@ -208,7 +208,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\EmailTemplates\Controllers\EmailController.cs" />
+    <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
+    <Compile Include="Areas\EmailTemplates\Models\EmailModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -219,7 +223,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601090852406_InitialCreate.cs" />
+    <Compile Include="Migrations\201601090852406_InitialCreate.Designer.cs">
+      <DependentUpon>201601090852406_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601192016394_Birthdate.cs" />
+    <Compile Include="Migrations\201601192016394_Birthdate.Designer.cs">
+      <DependentUpon>201601192016394_Birthdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ITrackable.cs" />
     <Compile Include="Models\LanguagesInModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1116,6 +1130,8 @@
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="App_Code\ResultHelper.cshtml" />
     <Content Include="App_Code\LayoutHelper.cshtml" />
+    <Content Include="Areas\EmailTemplates\Views\web.config" />
+    <Content Include="Areas\EmailTemplates\Views\Email\RegistrationEmail.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1138,14 +1154,18 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ScriptsForViews.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -1189,9 +1209,16 @@
     <Content Include="Views\Roles\ViewAllRoles.cshtml" />
     <Content Include="Views\Roles\ManageUserRoles.cshtml" />
     <Content Include="Views\Roles\EditRole.cshtml" />
+    <Content Include="Views\Shared\_HeaderPartial.cshtml" />
+    <Content Include="Views\ApplicationUsers\Create.cshtml" />
+    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
+    <Content Include="Views\ApplicationUsers\Details.cshtml" />
+    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
+    <Content Include="Views\ApplicationUsers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\EmailTemplates\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -1201,6 +1228,14 @@
       <Project>{8cb3d51f-2349-4560-9291-99a0cf5f92d1}</Project>
       <Name>BCG_DB</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601090852406_InitialCreate.resx">
+      <DependentUpon>201601090852406_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601192016394_Birthdate.resx">
+      <DependentUpon>201601192016394_Birthdate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
