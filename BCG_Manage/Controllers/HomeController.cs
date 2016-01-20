@@ -62,19 +62,29 @@
 
         public ActionResult Index()
         {
-          string ip =   IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
-            string browserVersion = Request.UserAgent;
-            
-            var model = new tblIPLoginAtemts() {
-                IPAdress = ip,
-                UserAgend = browserVersion,
-                DateChanged= DateTime.Now,
-                DateCreated = DateTime.Now,
-                UserName = "SYSTEM"
-            };
+            try
+            {
+                string ip = IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
+                string browserVersion = Request.UserAgent;
 
-            db.tblIPLoginAtemts.Add(model);
-            db.SaveChanges();
+                var model = new tblIPLoginAtemts()
+                {
+                    IPAdress = ip,
+                    UserAgend = browserVersion,
+                    DateChanged = DateTime.Now,
+                    DateCreated = DateTime.Now,
+                    UserName = "SYSTEM"
+                };
+
+                db.tblIPLoginAtemts.Add(model);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+       
             return View();
         }
 
@@ -88,10 +98,10 @@
             {
                 return View(model);
             }
-
+            var user = await UserManager.FindByEmailAsync(model.Email);
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

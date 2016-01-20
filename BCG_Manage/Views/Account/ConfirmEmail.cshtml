@@ -33,10 +33,35 @@
                     <p>
                         Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
                     </p>
+                    <p>
+                        You will be redirected to set password
+                    </p>
                 </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <p class="text-info" id="time-span"></p>
+                </div>
             </div><!-- /.box -->
         </div>
 
     </div>
 
 </section><!-- /.content -->
+@section Scripts {
+
+
+    <script>
+        $(document).ready(function () {
+            var counter = 5;
+            var interval = setInterval(function () {
+                counter--;
+                console.log(counter);
+                // Display 'counter' wherever you want to display it.
+                $("#time-span").html("" + counter);
+                if (counter == 0) {
+                    window.location.href = "../Account/ForgotPassword";
+                }
+            }, 1000);
+        });
+
+    </script>
+}

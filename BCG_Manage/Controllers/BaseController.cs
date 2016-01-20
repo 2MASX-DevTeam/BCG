@@ -169,7 +169,7 @@ namespace BCG_Manage.Controllers
 
         public string RenderViewToString(string TemplateName, object model)
         {
-            TemplateName = "~/Areas/EmailTemplates/Views/Email/" + TemplateName;
+            TemplateName = "~/Areas/EmailTemplates/Views/Email/" + TemplateName + ".cshtml";
            // var controller = new EmailController();
             
             ViewData.Model = model;

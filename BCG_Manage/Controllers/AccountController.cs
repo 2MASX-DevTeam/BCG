@@ -76,10 +76,11 @@ namespace BCG_Manage.Controllers
             {
                 return View(model);
             }
+            var user = await UserManager.FindByEmailAsync(model.Email);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -140,7 +141,7 @@ namespace BCG_Manage.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Register()
         {
             var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
@@ -158,7 +159,7 @@ namespace BCG_Manage.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -167,7 +168,7 @@ namespace BCG_Manage.Controllers
                 if (ModelState.IsValid)
                 {
                     string password = GenericPassword();
-                    var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, BirthDate = model.BirthDate };
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDate = model.BirthDate };
                     var result = await UserManager.CreateAsync(user, password);
 
                     user.Email = model.Email;
@@ -190,7 +191,7 @@ namespace BCG_Manage.Controllers
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-                        var subjEmail = new EmailModels() { UserName = user.UserName, Role = user.Roles.ToString(), Link = callbackUrl, Password = GenericPassword() };
+                        var subjEmail = new EmailModels() { Admin = User.Identity.Name, UserName = user.UserName, Role = user.Roles.ToString(), Link = callbackUrl, Password = GenericPassword() };
                         var emailBody = RenderViewToString( "RegistrationEmail", subjEmail);
                         SendEmail(user.Email, "New registration",  emailBody);
 
@@ -247,8 +248,8 @@ namespace BCG_Manage.Controllers
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
                 string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                SendEmail(user.Email, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }
 

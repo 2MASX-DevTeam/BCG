@@ -12,12 +12,14 @@ using PagedList;
 
 namespace BCG_Manage.Controllers
 {
+    [Authorize]
     public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: ApplicationUsers
         [HttpGet]
+         
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 
@@ -64,6 +66,7 @@ namespace BCG_Manage.Controllers
         }
 
         // GET: ApplicationUsers/Details/5
+         
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace BCG_Manage.Controllers
         }
 
         // GET: ApplicationUsers/Create
+         
         public ActionResult Create()
         {
             return View();
@@ -88,6 +92,7 @@ namespace BCG_Manage.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+         
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
         {
@@ -102,6 +107,7 @@ namespace BCG_Manage.Controllers
         }
 
         // GET: ApplicationUsers/Edit/5
+         
         public ActionResult Edit(string id)
         {
             if (id == null)

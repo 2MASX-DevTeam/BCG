@@ -7,6 +7,8 @@ namespace BCG_Manage.Areas.EmailTemplates.Models
 {
     public class EmailModels
     {
+        public string Admin { get; set; }
+
         public string UserName { get; set; }
 
         public string Password { get; set; }
