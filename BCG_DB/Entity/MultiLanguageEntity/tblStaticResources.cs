@@ -10,6 +10,7 @@ namespace BCG_DB.Entity.MultiLanguageEntity
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdStatic { get; set; }
 
         [Key]
@@ -21,6 +22,9 @@ namespace BCG_DB.Entity.MultiLanguageEntity
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdStaticText { get; set; }
+
+        [StringLength(100)]
+        public string Description { get; set; }
 
         [StringLength(100)]
         public string StaticName { get; set; }

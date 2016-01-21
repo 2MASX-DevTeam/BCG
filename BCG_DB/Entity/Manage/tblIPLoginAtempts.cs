@@ -6,7 +6,7 @@ namespace BCG_DB.Entity.Manage
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tblIPLoginAtemts
+    public partial class tblIPLoginAttempts
     {
         [Key]
         [Column(Order = 0)]

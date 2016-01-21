@@ -89,11 +89,23 @@ namespace BCG_Manage.Models
         //[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         //public string ConfirmPassword { get; set; }
 
+
+        [Required]
+        [Display(Name="First Name")]
+        public string FirstName { get; set; }
+
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
         [DataType(DataType.Date)]
         [Display(Name = "Birth Date")]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
     
+
+
         public string Roles { get; set; }
 
         public SelectList lsRoles { get; set; }

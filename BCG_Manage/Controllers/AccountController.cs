@@ -141,12 +141,10 @@ namespace BCG_Manage.Controllers
 
         //
         // GET: /Account/Register
-        [Authorize]
+      [AllowAnonymous]
         public ActionResult Register()
         {
-            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr =>
-            new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
-      
+            var list = context.Roles.OrderBy(r => r.Name).ToList().Select(rr => new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             var model = new RegisterViewModel()
             {
                 lsRoles = new SelectList(context.Roles.ToList(), "Name", "Name"),
@@ -159,7 +157,7 @@ namespace BCG_Manage.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [Authorize]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
@@ -168,19 +166,19 @@ namespace BCG_Manage.Controllers
                 if (ModelState.IsValid)
                 {
                     string password = GenericPassword();
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDate = model.BirthDate };
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDate = model.BirthDate, FirstName = model.FirstName, LastName= model.LastName };
                     var result = await UserManager.CreateAsync(user, password);
 
                     user.Email = model.Email;
                     user.EmailConfirmed = false;
-
+                    
                     var roleStore = new RoleStore<IdentityRole>(context);
                     var roleManager = new RoleManager<IdentityRole>(roleStore);
 
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
 
-                    userManager.AddToRole(user.Id, model.Roles);
+                //    userManager.AddToRole(user.Id, model.Roles);
 
                     if (result.Succeeded)
                     {
@@ -202,7 +200,10 @@ namespace BCG_Manage.Controllers
                     AddErrors(result);
                 }
 
-                TempData["ResultSuccess"] = "Error in adding administrator!";
+
+                model.lsRoles = new SelectList(context.Roles.ToList(), "Name", "Name");
+
+                TempData["ResultError"] = "Error in adding administrator!";
                 // If we got this far, something failed, redisplay form
                 return View(model);
             }

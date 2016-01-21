@@ -223,20 +223,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601090852406_InitialCreate.cs" />
-    <Compile Include="Migrations\201601090852406_InitialCreate.Designer.cs">
-      <DependentUpon>201601090852406_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601192016394_Birthdate.cs" />
-    <Compile Include="Migrations\201601192016394_Birthdate.Designer.cs">
-      <DependentUpon>201601192016394_Birthdate.cs</DependentUpon>
+    <Compile Include="Migrations\201601211855244_InitialModel.cs" />
+    <Compile Include="Migrations\201601211855244_InitialModel.Designer.cs">
+      <DependentUpon>201601211855244_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ITrackable.cs" />
     <Compile Include="Models\LanguagesInModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserRolesModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1215,6 +1211,13 @@
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\MultiLanguage\AddNewStaticText.cshtml" />
+    <Content Include="Views\MultiLanguage\ViewAllStaticTexts.cshtml" />
+    <Content Include="Views\MultiLanguage\EditStaticText.cshtml" />
+    <Content Include="Views\MultiLanguage\AddTranslationStaticText.cshtml" />
+    <Content Include="Scripts\jquery.validate.min.js.map">
+      <DependentUpon>jquery.validate.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1230,11 +1233,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601090852406_InitialCreate.resx">
-      <DependentUpon>201601090852406_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601192016394_Birthdate.resx">
-      <DependentUpon>201601192016394_Birthdate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601211855244_InitialModel.resx">
+      <DependentUpon>201601211855244_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

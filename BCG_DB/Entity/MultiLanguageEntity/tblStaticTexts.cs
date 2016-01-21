@@ -6,6 +6,7 @@ namespace BCG_DB.Entity.MultiLanguageEntity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+    [Table("tblStaticTexts")]
     public partial class tblStaticTexts
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

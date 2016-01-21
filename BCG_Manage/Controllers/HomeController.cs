@@ -14,7 +14,7 @@
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         #region Constructors
         private ApplicationSignInManager _signInManager;
@@ -56,7 +56,7 @@
         
         #endregion
 
-        private LoginAtempts db = new LoginAtempts();
+        private LoginAttempts db = new LoginAttempts();
 
         [HttpGet]
 
@@ -67,7 +67,7 @@
                 string ip = IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
                 string browserVersion = Request.UserAgent;
 
-                var model = new tblIPLoginAtemts()
+                var model = new tblIPLoginAttempts()
                 {
                     IPAdress = ip,
                     UserAgend = browserVersion,
@@ -76,13 +76,12 @@
                     UserName = "SYSTEM"
                 };
 
-                db.tblIPLoginAtemts.Add(model);
+                db.tblIPLoginAttempts.Add(model);
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                SendExceptionToAdmin(ex.ToString());
             }
        
             return View();
@@ -98,10 +97,9 @@
             {
                 return View(model);
             }
-            var user = await UserManager.FindByEmailAsync(model.Email);
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:

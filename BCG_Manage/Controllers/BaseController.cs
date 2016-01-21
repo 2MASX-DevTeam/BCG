@@ -72,16 +72,10 @@ namespace BCG_Manage.Controllers
         [ChildActionOnly]
         public void SendExceptionToAdmin(string ex)
         {
-            string[] emailsettings;
             string emailAdmin = ConfigurationManager.AppSettings["EmailAdministrator"]; 
-#if DEBUG
-            emailsettings = System.IO.File.ReadAllLines("E:\\asp.net projects\\BCG\\BCG_Manage\\emailsettings.txt");
-            SmtpClient SmtpServer = new SmtpClient("mail.s2kdesign.com ");
-            SmtpServer.Port = 26;
-            SmtpServer.Credentials = new System.Net.NetworkCredential(emailsettings[0], emailsettings[1]);
-#else
+
             SmtpClient SmtpServer = new SmtpClient();
-#endif
+
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("no-reply@bc-vit.bg");
             mail.To.Add(emailAdmin);
@@ -96,15 +90,9 @@ namespace BCG_Manage.Controllers
         [ChildActionOnly]
         public void SendEmail(string reciever, string subject, string body)
         {
-            string[] emailsettings;
-#if DEBUG
-            emailsettings = System.IO.File.ReadAllLines("E:\\asp.net projects\\BCG\\BCG_Manage\\emailsettings.txt");
-            SmtpClient SmtpServer = new SmtpClient("mail.s2kdesign.com");
-            SmtpServer.Port = 26;
-            SmtpServer.Credentials = new System.Net.NetworkCredential(emailsettings[0], emailsettings[1]);
-#else
+           
             SmtpClient SmtpServer = new SmtpClient();
-#endif
+
             MailMessage mail = new MailMessage();
             mail.From = new MailAddress("no-reply@bc-vit.bg");
             mail.To.Add(reciever);

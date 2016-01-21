@@ -72,6 +72,33 @@ namespace BCG_Manage
        new { controller = "MultiLanguage", action = "AddTranslationResource" }
        );
 
+
+            routes.MapRoute(
+       "AddNewStaticText",
+       "Add New Static Text",
+       new { controller = "MultiLanguage", action = "AddNewStaticText" }
+       );
+
+
+            routes.MapRoute(
+       "EditStaticText",
+       "Edit Static Text",
+       new { controller = "MultiLanguage", action = "EditStaticText" }
+       );
+
+
+            routes.MapRoute(
+       "VewAllStaticTexts",
+       "Vew All Static Texts",
+       new { controller = "MultiLanguage", action = "ViewAllStaticTexts" }
+       );
+
+
+            routes.MapRoute(
+       "AddTranslationStaticText",
+       "Add Translation Static Text",
+       new { controller = "MultiLanguage", action = "AddTranslationStaticText" }
+       );
             #endregion
 
             #region Roles

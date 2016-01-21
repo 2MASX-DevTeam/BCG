@@ -31,25 +31,30 @@
                     </div>
                 </div>
                 <div class="box-body">
-                    @Html.ActionLink("List Roles", "ViewAllRoles") | @Html.ActionLink("Manage User Role", "ManageUserRoles")
-                    <hr />
+                   
                     @using (Html.BeginForm())
                    {
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true)
 
-                        <div>
-                            Role name
-                        </div>
-                        <p>
-                            @Html.TextBox("RoleName")
-                        </p>
-                        <input type="submit" value="Save" />
-                    }
-                </div><!-- /.box-body -->
-                <div class="box-footer">
-                    Footer
-                </div><!-- /.box-footer-->
+    <div class="form-group">
+
+        @Html.Label("Role name:", new { @class = "col-md-1 control-label" }) 
+        <div class="col-md-5">
+            @Html.TextBox("RoleName", null, new { @class = "form-control" })
+        </div>
+
+        <input type="submit" value="Save" class="btn btn-info col-md-1" />
+        <div class="col-md-6">
+
+        </div>
+
+    </div>
+
+   
+        }
+    </div><!-- /.box-body -->
+              
             </div><!-- /.box -->
         </div>
 

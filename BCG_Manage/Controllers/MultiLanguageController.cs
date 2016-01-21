@@ -88,7 +88,7 @@ namespace BCG_Manage.Controllers
                 else
                 {
                     TempData["ResultSuccess"] = "Succes in adding new language!";
-    
+
                     var tbl = new tblLanguages()
                     {
                         Language = model.Language,
@@ -187,7 +187,7 @@ namespace BCG_Manage.Controllers
         #endregion
 
 
-        #region Update 
+        #region Update
 
         public ActionResult ChangeIsActiveLanguage(int id)
         {
@@ -219,7 +219,7 @@ namespace BCG_Manage.Controllers
 
             if (searchString != null)
                 page = 1;
-            
+
             else
                 searchString = currentFilter;
 
@@ -269,11 +269,12 @@ namespace BCG_Manage.Controllers
         [HttpGet]
         public ActionResult AddNewResource()
         {
-            var model = new Resources() {
+            var model = new Resources()
+            {
                 IdLanguages = new SelectList(db.tblLanguages, "IdLanguage", "Language")
             };
-  
-           
+
+
             return View(model);
         }
 
@@ -282,7 +283,7 @@ namespace BCG_Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddNewResource(Resources model)
         {
-           
+
             if (ModelState.IsValid)
             {
                 TempData["ResultSuccess"] = "Succes in adding new resource!";
@@ -299,7 +300,7 @@ namespace BCG_Manage.Controllers
                     UserName = User.Identity.Name,
                     DateChanged = DateTime.Now,
                     DateCreated = DateTime.Now
-                    };
+                };
 
                 db.tblResources.Add(tblRes);
                 db.SaveChanges();
@@ -308,7 +309,7 @@ namespace BCG_Manage.Controllers
             }
             else
                 TempData["ResultError"] = "Error in adding new resource!";
-            
+
             return RedirectToAction("AddNewResource");
         }
 
@@ -323,12 +324,12 @@ namespace BCG_Manage.Controllers
                     SELECT  tblLanguages.IdLanguage FROM tblLanguages INNER JOIN
                             tblResources ON tblLanguages.IdLanguage = tblResources.IdLanguage
                     WHERE   tblResources.IdResource =" + IdRes + " )";
-            
+
             var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
 
             var lsContext = (from tblResources in db.tblResources
-                            where tblResources.IdResource == IdRes
-                            select tblResources.tblContext.Context 
+                             where tblResources.IdResource == IdRes
+                             select tblResources.tblContext.Context
                             ).ToList();
 
             var model = new Resources();
@@ -355,7 +356,7 @@ namespace BCG_Manage.Controllers
             if (ModelState.IsValid)
             {
                 TempData["ResultSuccess"] = "Succes in adding new resource!";
-             
+
                 using (var dataContext = new MultiLanguageModel())
                 using (var transaction = dataContext.Database.BeginTransaction())
                 {
@@ -366,10 +367,10 @@ namespace BCG_Manage.Controllers
                     tblCon.DateCreated = DateTime.Now;
                     db.tblContext.Add(tblCon);
                     db.SaveChanges();
-                    
+
                     var IdCont = (from tblContext in db.tblContext
-                                orderby tblContext.DateCreated descending
-                                select tblContext).First();
+                                  orderby tblContext.DateCreated descending
+                                  select tblContext).First();
 
                     var tblRes = new tblResources()
                     {
@@ -388,7 +389,7 @@ namespace BCG_Manage.Controllers
 
                     transaction.Commit();
                 }
-                return RedirectToAction("AddTranslationResource", new { id = model.IdResource});
+                return RedirectToAction("AddTranslationResource", new { id = model.IdResource });
             }
             else
                 TempData["ResultError"] = "Error in adding new translation!";
@@ -402,6 +403,221 @@ namespace BCG_Manage.Controllers
         {
             return View();
         }
+
+        #endregion
+
+        #region StaticResources
+
+
+        [HttpGet]
+        public ActionResult ViewAllStaticTexts(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IdResSortParm = String.IsNullOrEmpty(sortOrder) ? "IdStaticResource" : "";
+            ViewBag.IdLangSortParm = sortOrder == "IdLanguage" ? "IdLanguageDesc" : "IdLanguage";
+            ViewBag.ContextSortParm = sortOrder == "Context" ? "ContextDesc" : "Context";
+            ViewBag.DateModifySortParm = sortOrder == "DateChanged" ? "DateChangedDesc" : "DateChanged";
+            ViewBag.DateCreatedSortParm = sortOrder == "DateCreated" ? "DateCreatedDesc" : "DateCreated";
+
+            if (searchString != null)
+                page = 1;
+
+            else
+                searchString = currentFilter;
+
+            ViewBag.CurrentFilter = searchString;
+
+            var tblStatic = db.tblStaticResources.Include(t => t.tblStaticTexts).Include(t => t.tblLanguages);
+
+            if (!String.IsNullOrEmpty(searchString))
+                tblStatic = tblStatic.Where(s => s.tblStaticTexts.StaticText.Contains(searchString));
+
+            switch (sortOrder)
+            {
+                case "IdResource":
+                    tblStatic = tblStatic.OrderByDescending(s => s.IdStatic); break;
+                case "IdLanguage":
+                    tblStatic = tblStatic.OrderBy(s => s.IdLanguage); break;
+                case "IdLanguageDesc":
+                    tblStatic = tblStatic.OrderByDescending(s => s.IdLanguage); break;
+                case "Context":
+                    tblStatic = tblStatic.OrderBy(s => s.tblStaticTexts.StaticText); break;
+                case "ContextDesc":
+                    tblStatic = tblStatic.OrderByDescending(s => s.tblStaticTexts.StaticText); break;
+                case "DateChanged":
+                    tblStatic = tblStatic.OrderBy(s => s.DateChanged); break;
+                case "DateChangedDesc":
+                    tblStatic = tblStatic.OrderByDescending(s => s.DateChanged); break;
+                case "DateCreated":
+                    tblStatic = tblStatic.OrderBy(s => s.DateCreated); break;
+                case "DateCreatedDesc":
+                    tblStatic = tblStatic.OrderByDescending(s => s.DateCreated); break;
+
+
+                default:
+                    tblStatic = tblStatic.OrderBy(s => s.IdStatic);
+                    break;
+            }
+
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
+            int pageNumber = (page ?? 1);
+
+
+            return View(tblStatic.ToPagedList(pageNumber, pageSize));
+        }
+
+
+        [HttpGet]
+        public ActionResult AddNewStaticText()
+        {
+            var model = new StaticResources()
+            {
+                IdLanguages = new SelectList(db.tblLanguages, "IdLanguage", "Language")
+            };
+
+
+            return View(model);
+        }
+
+
+        [HttpPost, ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddNewStaticText(StaticResources model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var tblStatRes = new tblStaticResources()
+                    {
+                        IdLanguage = Convert.ToInt32(model.IdLanguage),
+                        tblStaticTexts = new tblStaticTexts
+                        {
+                            StaticText = model.Text,
+                            UserName = User.Identity.Name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now
+                        },
+                        Description = model.Description,
+                        StaticName = model.Description,
+                      
+                        UserName = User.Identity.Name,
+                        DateChanged = DateTime.Now,
+                        DateCreated = DateTime.Now
+                    };
+                    db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
+                    db.tblStaticResources.Add(tblStatRes);
+                    db.SaveChanges();
+                    db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+
+                    TempData["ResultSuccess"] = "Succes in adding new resource!";
+                    return RedirectToAction("AddNewStaticText");
+                }
+                else
+                {
+                    TempData["ResultError"] = "Error in adding new resource!";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                TempData["ResultError"] = "Error in adding new resource!";
+                return RedirectToAction("AddNewStaticText");
+
+            }
+
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 0)]
+        public ActionResult AddTranslationStaticText(int id)
+        {
+            int IdRes = id;
+
+            var query = @"SELECT IdLanguage, Language FROM tblLanguages
+                       WHERE tblLanguages.IdLanguage NOT IN(
+                    SELECT  tblLanguages.IdLanguage FROM tblLanguages INNER JOIN
+                            tblResources ON tblLanguages.IdLanguage = tblResources.IdLanguage
+                    WHERE   tblResources.IdResource =" + IdRes + " )";
+
+            var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
+
+            var lsContext = (from tblResources in db.tblResources
+                             where tblResources.IdResource == IdRes
+                             select tblResources.tblContext.Context
+                            ).ToList();
+
+            var model = new Resources();
+            if (sequenceQueryResult.Count != 0)
+            {
+                model.IdResource = IdRes;
+                model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
+                model.lsContext = lsContext;
+            }
+            else
+            {
+                TempData["ResultError"] = "Error in adding new translation to resource! There is no more languages.";
+                return RedirectToAction("ViewAllResources");
+            }
+
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTranslationStaticText(Resources model)
+        {
+            if (ModelState.IsValid)
+            {
+                TempData["ResultSuccess"] = "Succes in adding new resource!";
+
+                using (var dataContext = new MultiLanguageModel())
+                using (var transaction = dataContext.Database.BeginTransaction())
+                {
+                    var tblCon = new tblContext();
+                    tblCon.Context = model.Context;
+                    tblCon.UserName = User.Identity.Name;
+                    tblCon.DateChanged = DateTime.Now;
+                    tblCon.DateCreated = DateTime.Now;
+                    db.tblContext.Add(tblCon);
+                    db.SaveChanges();
+
+                    var IdCont = (from tblContext in db.tblContext
+                                  orderby tblContext.DateCreated descending
+                                  select tblContext).First();
+
+                    var tblRes = new tblResources()
+                    {
+                        IdResource = model.IdResource,
+                        IdLanguage = Convert.ToInt32(model.IdLanguage),
+                        IdContext = IdCont.IdContext,
+                        UserName = User.Identity.Name,
+                        DateChanged = DateTime.Now,
+                        DateCreated = DateTime.Now
+                    };
+
+                    dataContext.Set<tblResources>().Add(tblRes);
+                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
+                    dataContext.SaveChanges();
+                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+
+                    transaction.Commit();
+                }
+                return RedirectToAction("AddTranslationResource", new { id = model.IdResource });
+            }
+            else
+                TempData["ResultError"] = "Error in adding new translation!";
+            return RedirectToAction("AddTranslationResource");
+        }
+
+        [HttpGet]
+        public ActionResult EditStaticText()
+        {
+            return View();
+        }
+
 
         #endregion
     }

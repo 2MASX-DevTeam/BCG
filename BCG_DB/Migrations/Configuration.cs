@@ -1,18 +1,19 @@
-namespace BCG_Manage.Migrations
+namespace BCG_DB.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BCG_Manage.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BCG_DB.Entity.MultiLanguageEntity.MultiLanguageModel>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            ContextKey = "BCG_DB.Entity.MultiLanguageEntity.MultiLanguageModel";
         }
 
-        protected override void Seed(BCG_Manage.Models.ApplicationDbContext context)
+        protected override void Seed(BCG_DB.Entity.MultiLanguageEntity.MultiLanguageModel context)
         {
             //  This method will be called after migrating to the latest version.
 

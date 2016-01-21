@@ -107,8 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\Manage\LoginAtempts.cs" />
-    <Compile Include="Entity\Manage\tblIPLoginAtemts.cs" />
+    <Compile Include="Entity\Manage\LoginAttempts.cs" />
+    <Compile Include="Entity\Manage\tblIPLoginAtempts.cs" />
     <Compile Include="Entity\MultiLanguageEntity\MultiLanguageModel.cs" />
     <Compile Include="Entity\MultiLanguageEntity\tblContext.cs" />
     <Compile Include="Entity\MultiLanguageEntity\tblLanguages.cs" />
@@ -118,6 +118,11 @@
     <Compile Include="Filters\CacheFilter.cs" />
     <Compile Include="Filters\CompressFilter.cs" />
     <Compile Include="Filters\GZipBundle.cs" />
+    <Compile Include="Migrations\201601211918508_InitialCreate.cs" />
+    <Compile Include="Migrations\201601211918508_InitialCreate.Designer.cs">
+      <DependentUpon>201601211918508_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modules\Global.cs" />
     <Compile Include="Modules\Multilanguage\IMultilanguage.cs" />
     <Compile Include="Modules\Multilanguage\MultiLanguageControls.cs" />
@@ -133,22 +138,7 @@
     <Compile Include="SQLPreferences\SQLFillControl.cs" />
     <Compile Include="SQLPreferences\SQLFillParameter.cs" />
     <Compile Include="SQLPreferences\SQLParameters.cs" />
-    <Compile Include="Tools\checkVatService.cs" />
-    <Compile Include="Tools\Coding.cs" />
-    <Compile Include="Tools\DataSetHelper.cs" />
-    <Compile Include="Tools\DateTimeFormat.cs" />
-    <Compile Include="Tools\FileCheckSum.cs" />
-    <Compile Include="Tools\Formating.cs" />
-    <Compile Include="Tools\FtpClient.cs" />
-    <Compile Include="Tools\HelperString.cs" />
-    <Compile Include="Tools\HexEncoding.cs" />
-    <Compile Include="Tools\HTTPURLSerializer.cs" />
-    <Compile Include="Tools\IBanCodeManipulate.cs" />
     <Compile Include="Tools\IPAddress.cs" />
-    <Compile Include="Tools\ResourceAccess.cs" />
-    <Compile Include="Tools\URLSerializer.cs" />
-    <Compile Include="Tools\ValidateTools.cs" />
-    <Compile Include="Tools\ViewStateViewer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -162,6 +152,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201601211918508_InitialCreate.resx">
+      <DependentUpon>201601211918508_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+﻿@model BCG_Manage.Models.ListOfRoles
 
 @{
     ViewBag.Title = "View all roles";
@@ -34,17 +34,60 @@
                     </div>
                 </div>
                 <div class="box-body">
-                   
-                    @foreach (var role in Model)
-                    {
-                        <p>
-                            <strong>@role.Name | </strong>
-                            <span onclick="return confirm('Are you sure to delete?')"><a href="/Roles/Delete?RoleName=@role.Name" class="delLink" style="color:red;">Delete</a></span> |
-                            @Html.ActionLink("Edit", "EditRole", new { roleName = @role.Name })
-                        </p>
-                    }
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Id Role</th>
+                            <th>Role name</th>
+                            <th>Current users in role</th>
+                            <th>Functions</th>
+               
+                     
+
+                        </tr>
+
+                        @foreach (var role in Model.ListRoles)
+                        {
+                        <tr>
+                            <td>
+                               @role.RoleId
+                            </td>
+
+                            <td>
+                              @role.RoleName
+                            </td>
+
+                            <td>
+
+                                <span class="label label-warning" style="font-size: 1.0em">
+                                    @role.CountUsersInRole
+
+                                </span>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "EditRole", new { roleName = role.RoleName }, new { @class = "btn btn-success" })
+                                <span onclick="return confirm('Are you sure to delete?')">
+                                 @*   <a href="/Roles/Delete?RoleName=@role.RoleName" class="delLink" style="">Delete</a>*@
+                  
+                                    @Html.ActionLink("Delete role", "Delete", new { roleName = role.RoleName }, new { @class = "btn btn-danger" })
 
 
+                                </span>
+                            
+
+                            </td>
+                        </tr>
+                      
+                              
+                          
+
+
+
+
+
+
+                        }
+
+                    </table>
 
                 </div><!-- /.box-body -->
 

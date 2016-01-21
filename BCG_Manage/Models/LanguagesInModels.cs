@@ -46,4 +46,25 @@ namespace BCG_Manage.Models
         [Required]
         public string Context { get; set; }
     }
+
+
+    public class StaticResources
+    {
+        public int IdStaticResource { get; set; }
+
+        public string Language { get; set; }
+
+        public SelectList IdLanguages { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+      //  public List<string> lsContext = new List<string>();
+
+        [Required]
+        public int IdLanguage { get; set; }
+
+        [Required]
+        public string Text { get; set; }
+    }
 }
