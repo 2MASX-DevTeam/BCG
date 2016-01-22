@@ -32,6 +32,8 @@ namespace BCG_Manage.Models
 
     public class Resources
     {
+        public int IdContext { get; set; }
+
         public int IdResource { get; set; }
 
         public string Language { get; set; }
@@ -50,6 +52,8 @@ namespace BCG_Manage.Models
 
     public class StaticResources
     {
+        public int idStaticText { get; set; }
+
         public int IdStaticResource { get; set; }
 
         public string Language { get; set; }
@@ -59,12 +63,19 @@ namespace BCG_Manage.Models
         [Required]
         public string Description { get; set; }
 
-      //  public List<string> lsContext = new List<string>();
+        public List<string> lsDescription = new List<string>();
 
         [Required]
         public int IdLanguage { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
+    }
+
+    public class StaticDetails
+    {
+        public string Description { get; set; }
+        public string StaticText { get; set; }
     }
 }

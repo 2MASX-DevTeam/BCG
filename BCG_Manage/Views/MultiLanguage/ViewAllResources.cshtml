@@ -119,8 +119,11 @@
                                 <td>
                                     @Html.ActionLink("Add translation", "AddTranslationResource", new { id = item.IdResource }, new { @class = "btn btn-info" })
                                     @Html.ActionLink("Edit", "EditResource", new { id = item.IdResource, idLang = item.IdLanguage, idCont = item.IdContext }, new { @class = "btn btn-success" })
-                                    @Html.ActionLink("Delete", "DeleteResource", new { id = item.IdResource, idLang = item.IdLanguage, idCont = item.IdContext }, new { @class = "btn btn-danger" })
-                                </td>
+                                    <span onclick="return confirm('Are you sure you want to delete resource: '+ '@item.IdResource'+'?')">
+                                        @Html.ActionLink("Delete", "DeleteResource", new { id = item.IdResource, idLang = item.IdLanguage, idCont = item.IdContext }, new { @class = "btn btn-danger" })
+                                        </span>
+
+</td>
 
                             </tr>
                           }

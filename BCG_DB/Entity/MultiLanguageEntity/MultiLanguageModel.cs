@@ -36,10 +36,6 @@ namespace BCG_DB.Entity.MultiLanguageEntity
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<tblStaticTexts>()
-                .Property(e => e.StaticText)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblStaticTexts>()
                 .HasMany(e => e.tblStaticResources)
                 .WithRequired(e => e.tblStaticTexts)
                 .WillCascadeOnDelete(false);

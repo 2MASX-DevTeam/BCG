@@ -10,7 +10,7 @@ namespace BCG_DB.Entity.MultiLanguageEntity
     {
         [Key]
         [Column(Order = 0)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdStatic { get; set; }
 
         [Key]

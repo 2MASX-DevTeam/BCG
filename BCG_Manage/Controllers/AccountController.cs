@@ -84,7 +84,7 @@ namespace BCG_Manage.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index", "ManageSite");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -178,7 +178,7 @@ namespace BCG_Manage.Controllers
                     var userStore = new UserStore<ApplicationUser>(context);
                     var userManager = new UserManager<ApplicationUser>(userStore);
 
-                //    userManager.AddToRole(user.Id, model.Roles);
+                    userManager.AddToRole(user.Id, model.Roles);
 
                     if (result.Succeeded)
                     {

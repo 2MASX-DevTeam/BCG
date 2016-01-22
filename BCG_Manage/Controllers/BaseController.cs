@@ -14,6 +14,7 @@ namespace BCG_Manage.Controllers
     using System.Net.Mail;
     using System.Configuration;
     using Areas.EmailTemplates.Controllers;
+    using System.Web.Security;
     [Authorize]
     public class BaseController : Controller
     {
@@ -100,11 +101,6 @@ namespace BCG_Manage.Controllers
             mail.Body = body;
             mail.IsBodyHtml = true;
             SmtpServer.Send(mail);
-        }
-
-        public int GetAdminCounts()
-        {
-            return 2;
         }
 
         [ChildActionOnly]

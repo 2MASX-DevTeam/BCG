@@ -18,7 +18,7 @@ namespace BCG_DB.Entity.MultiLanguageEntity
         [Key]
         public int IdStaticText { get; set; }
 
-        [Column(TypeName = "text")]
+
         [Required]
         public string StaticText { get; set; }
 

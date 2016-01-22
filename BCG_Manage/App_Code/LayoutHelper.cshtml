@@ -3,14 +3,14 @@
 @helper UsersCount()
 {
     <span class="label label-primary pull-right">
-            @GetUsersCount()
+        
     </span>
 }
 
 @helper AdminCount()
 {
     <span class="label label-warning pull-right">
-      @GetAdminCount()
+
         
     </span>
 }
@@ -18,30 +18,8 @@
 @helper RolesCount()
 {
     <span class="label label-danger pull-right">
-        @GetRolesCount()
+
 
     </span>
 }
 
-
-
-
-@functions {
-
-
-    public static int GetUsersCount()
-    {
-        return 5;
-    }
-
-
-    public static int GetAdminCount()
-    {
-        return 2;
-    }
-
-    public static int GetRolesCount()
-    {
-        return 3;
-    }
-}

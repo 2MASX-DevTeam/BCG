@@ -54,7 +54,7 @@
                                 <div class="input-group-addon">
                                     <i class=" fa  fa-header"></i>
                                 </div>
-                                @Html.EditorFor(model => model.Description, null, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter..." } })
+                                @Html.EditorFor(model => model.Description, null, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter..."} })
                                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -62,11 +62,9 @@
 
                         <div class="form-group">
                             <label> Text: </label>
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class=" fa  fa-header"></i>
-                                </div>
-                                @Html.EditorFor(model => model.Text, null, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter..." } })
+                            <div class="input-group col-lg-12">
+                            
+                                @Html.EditorFor(model => model.Text, Model.Text, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter...", id = "editor" } })
                                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -85,3 +83,15 @@
 
 
 </section><!-- /.content -->
+@section Scripts {
+    <script src="https://cdn.ckeditor.com/4.4.3/full/ckeditor.js"></script>
+<script>
+    $(function () {
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor');
+
+    });
+</script>
+
+    }

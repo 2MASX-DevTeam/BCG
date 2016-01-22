@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<BCG_DB.Entity.MultiLanguageEntity.tblStaticResources>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Add new resource";
+    ViewBag.Title = "View all static resource";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -73,7 +73,7 @@
                                 <th>
                                     <a href="@Url.Action("ViewAllStaticTexts", new { sortOrder = ViewBag.ContextSortParm, currentFilter = ViewBag.CurrentFilter })">
                                         <i class="fa fa-sort-amount-desc"></i>
-                                       Description
+                                        Description
                                     </a>
 
                                 </th>
@@ -117,9 +117,23 @@
                                         @Html.DisplayFor(modelITem => item.DateCreated)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Add translation", "AddTranslationResource", new { id = item.IdStatic }, new { @class = "btn btn-info" })
-                                        @Html.ActionLink("Edit", "EditResource", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-success" })
-                                        @Html.ActionLink("Delete", "DeleteResource", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-danger" })
+                                        <button type="button"
+                                                class="btn btn-primary btnForModal"
+                                                data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"
+                                                data-idstatic="@item.IdStatic"
+                                                data-idlang="@item.IdLanguage"
+                                                data-idstatictext="@item.IdStaticText">
+                                            Details
+                                        </button>
+                                        @*   @Html.ActionLink("Details", "EditStaticText", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-success" })*@
+                                        @Html.ActionLink("Add translation", "AddTranslationStaticText", new { id = item.IdStatic }, new { @class = "btn btn-info" })
+
+
+                                        @Html.ActionLink("Edit", "EditStaticText", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-warning" })
+                                        <span onclick="return confirm('Are you sure you want to delete static resource: '+ '@item.IdStatic'+'?')">
+                                            @Html.ActionLink("Delete", "DeleteStaticText", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-danger" })
+                                        </span>
                                     </td>
 
                                 </tr>
@@ -140,3 +154,52 @@
 
 
 </section><!-- /.content -->
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel"></h4>
+
+            </div>
+            <div class="modal-body" id="modal-body-ajax">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        var idStatic, idLang, idStaticText;
+
+        $(".btnForModal").click(function () {
+            idStaic = $(this).data("idstatic");
+            idLang = $(this).data("idlang");
+            idStaticText = $(this).data("idstatictext");
+
+            $.ajax({
+                url: '/MultiLanguage/GetStaticText',
+                type: 'POST',
+                dataType: 'json',
+                data: { IdStaic: idStaic, IdLang: idLang, IdStaticText: idStaticText },
+                success: function (data) {
+                    $("#gridSystemModalLabel").text(data.Description);
+                    $("#modal-body-ajax").html(data.StaticText);
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+    </script>
+}

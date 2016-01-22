@@ -19,7 +19,7 @@ namespace BCG_Manage.Controllers
     [Authorize]
     public class MultiLanguageController : BaseController
     {
-        private byte[] Content { get; set; }
+        private byte[] Content;
 
         private MultiLanguageModel db = new MultiLanguageModel();
 
@@ -283,34 +283,56 @@ namespace BCG_Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddNewResource(Resources model)
         {
-
             if (ModelState.IsValid)
             {
-                TempData["ResultSuccess"] = "Succes in adding new resource!";
-                var tblRes = new tblResources()
+                try
                 {
-                    IdLanguage = Convert.ToInt32(model.IdLanguage),
-                    tblContext = new tblContext
+                    TempData["ResultSuccess"] = "Succes in adding new resource!";
+
+                    using (var dataContext = new MultiLanguageModel())
+                    using (var transaction = dataContext.Database.BeginTransaction())
                     {
-                        Context = model.Context,
-                        UserName = User.Identity.Name,
-                        DateChanged = DateTime.Now,
-                        DateCreated = DateTime.Now
-                    },
-                    UserName = User.Identity.Name,
-                    DateChanged = DateTime.Now,
-                    DateCreated = DateTime.Now
-                };
+                        var tblCon = new tblContext();
+                        tblCon.Context = model.Context;
+                        tblCon.UserName = User.Identity.Name;
+                        tblCon.DateChanged = DateTime.Now;
+                        tblCon.DateCreated = DateTime.Now;
+                        db.tblContext.Add(tblCon);
+                        db.SaveChanges();
 
-                db.tblResources.Add(tblRes);
-                db.SaveChanges();
+                        var IdCont = (from tblContext in db.tblContext
+                                      orderby tblContext.DateCreated descending
+                                      select tblContext).First();
+                        int intIdt = db.tblResources.Max(u => u.IdResource);
+                        var tblRes = new tblResources()
+                        {
+                            IdResource = intIdt + 1,
+                            IdLanguage = Convert.ToInt32(model.IdLanguage),
+                            IdContext = IdCont.IdContext,
+                            UserName = User.Identity.Name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now
+                        };
 
-                return RedirectToAction("AddNewResource");
+                        dataContext.Set<tblResources>().Add(tblRes);
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
+                        dataContext.SaveChanges();
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+
+                        transaction.Commit();
+                    }
+                    return RedirectToAction("ViewAllResources");
+                }
+                catch (Exception ex)
+                {
+                    SendExceptionToAdmin(ex.ToString());
+                }
+
             }
             else
-                TempData["ResultError"] = "Error in adding new resource!";
+                TempData["ResultError"] = "Error in adding new translation!";
 
-            return RedirectToAction("AddNewResource");
+            return RedirectToAction("ViewAllResources");
         }
 
         [HttpGet]
@@ -318,31 +340,39 @@ namespace BCG_Manage.Controllers
         public ActionResult AddTranslationResource(int id)
         {
             int IdRes = id;
-
-            var query = @"SELECT IdLanguage, Language FROM tblLanguages
+            var model = new Resources();
+            try
+            {
+                var query = @"SELECT IdLanguage, Language FROM tblLanguages
                        WHERE tblLanguages.IdLanguage NOT IN(
                     SELECT  tblLanguages.IdLanguage FROM tblLanguages INNER JOIN
                             tblResources ON tblLanguages.IdLanguage = tblResources.IdLanguage
                     WHERE   tblResources.IdResource =" + IdRes + " )";
 
-            var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
+                var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
 
-            var lsContext = (from tblResources in db.tblResources
-                             where tblResources.IdResource == IdRes
-                             select tblResources.tblContext.Context
-                            ).ToList();
+                var lsContext = (from tblResources in db.tblResources
+                                 where tblResources.IdResource == IdRes
+                                 select tblResources.tblContext.Context
+                                ).ToList();
 
-            var model = new Resources();
-            if (sequenceQueryResult.Count != 0)
-            {
-                model.IdResource = IdRes;
-                model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
-                model.lsContext = lsContext;
+
+                if (sequenceQueryResult.Count != 0)
+                {
+                    model.IdResource = IdRes;
+                    model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
+                    model.lsContext = lsContext;
+
+                }
+                else
+                {
+                    TempData["ResultAlert"] = "There is no more languages.";
+                    return RedirectToAction("ViewAllResources");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TempData["ResultError"] = "Error in adding new translation to resource! There is no more languages.";
-                return RedirectToAction("ViewAllResources");
+                SendExceptionToAdmin(ex.ToString());
             }
 
 
@@ -355,58 +385,150 @@ namespace BCG_Manage.Controllers
         {
             if (ModelState.IsValid)
             {
-                TempData["ResultSuccess"] = "Succes in adding new resource!";
-
-                using (var dataContext = new MultiLanguageModel())
-                using (var transaction = dataContext.Database.BeginTransaction())
+                try
                 {
-                    var tblCon = new tblContext();
-                    tblCon.Context = model.Context;
-                    tblCon.UserName = User.Identity.Name;
-                    tblCon.DateChanged = DateTime.Now;
-                    tblCon.DateCreated = DateTime.Now;
-                    db.tblContext.Add(tblCon);
-                    db.SaveChanges();
+                    TempData["ResultSuccess"] = "Succes in adding new resource!";
 
-                    var IdCont = (from tblContext in db.tblContext
-                                  orderby tblContext.DateCreated descending
-                                  select tblContext).First();
-
-                    var tblRes = new tblResources()
+                    using (var dataContext = new MultiLanguageModel())
+                    using (var transaction = dataContext.Database.BeginTransaction())
                     {
-                        IdResource = model.IdResource,
-                        IdLanguage = Convert.ToInt32(model.IdLanguage),
-                        IdContext = IdCont.IdContext,
-                        UserName = User.Identity.Name,
-                        DateChanged = DateTime.Now,
-                        DateCreated = DateTime.Now
-                    };
+                        var tblCon = new tblContext();
+                        tblCon.Context = model.Context;
+                        tblCon.UserName = User.Identity.Name;
+                        tblCon.DateChanged = DateTime.Now;
+                        tblCon.DateCreated = DateTime.Now;
+                        db.tblContext.Add(tblCon);
+                        db.SaveChanges();
 
-                    dataContext.Set<tblResources>().Add(tblRes);
-                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
-                    dataContext.SaveChanges();
-                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+                        var IdCont = (from tblContext in db.tblContext
+                                      orderby tblContext.DateCreated descending
+                                      select tblContext).First();
 
-                    transaction.Commit();
+                        var tblRes = new tblResources()
+                        {
+                            IdResource = model.IdResource,
+                            IdLanguage = Convert.ToInt32(model.IdLanguage),
+                            IdContext = IdCont.IdContext,
+                            UserName = User.Identity.Name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now
+                        };
+
+                        dataContext.Set<tblResources>().Add(tblRes);
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
+                        dataContext.SaveChanges();
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+
+                        transaction.Commit();
+                    }
+                    return RedirectToAction("AddTranslationResource", new { id = model.IdResource });
                 }
-                return RedirectToAction("AddTranslationResource", new { id = model.IdResource });
+                catch (Exception ex)
+                {
+                    SendExceptionToAdmin(ex.ToString());
+                }
             }
+
             else
                 TempData["ResultError"] = "Error in adding new translation!";
+
+
+
             return RedirectToAction("AddTranslationResource");
         }
         #endregion
 
+        #region Edit
 
         [HttpGet]
-        public ActionResult EditResource()
+        public ActionResult EditResource(int id, int idLang, int idCont)
         {
-            return View();
+            var model = new Resources();
+            try
+            {
+                var tbl = db.tblResources.Find(id, idLang, idCont);
+
+                model.IdResource = tbl.IdResource;
+                model.IdContext = tbl.IdContext;
+                model.IdLanguage = tbl.IdLanguage;
+                model.Language = tbl.tblLanguages.Language;
+                model.Context = tbl.tblContext.Context;
+
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                TempData["ResultError"] = "Error in loading for editing resource!";
+                return RedirectToAction("ViewAllStaticTexts");
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditResource(Resources model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var tbl = db.tblResources.Find(model.IdResource, model.IdLanguage, model.IdContext);
+
+           
+                    tbl.tblContext.Context = model.Context;
+                    tbl.DateChanged = DateTime.Now;
+                    tbl.tblContext.DateChanged = DateTime.Now;
+
+                    db.SaveChanges();
+                    TempData["ResultSuccess"] = "Success in edditing resource";
+                    return RedirectToAction("ViewAllResources");
+                }
+                catch (Exception ex)
+                {
+                    SendExceptionToAdmin(ex.ToString());
+                    TempData["ResultError"] = "Error in updating  text!";
+                    return RedirectToAction("ViewAllResources");
+                }
+
+            }
+            TempData["ResultError"] = "Error in updating text!";
+            return RedirectToAction("EditResource");
         }
 
         #endregion
 
+        #region DeleteResource
+
+        public ActionResult DeleteResource(int id, int idLang, int idCont)
+        {
+            try
+            {
+
+                var tbl = db.tblResources.Find(id, idLang, idCont);
+                db.tblResources.Remove(tbl);
+                db.SaveChanges();
+                TempData["ResultSuccess"] = "Success in deleting static text!";
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                TempData["ResultError"] = "Error in loading for editing  static text!";
+
+            }
+
+
+            return RedirectToAction("ViewAllResources");
+        }
+
+
+        #endregion
+
+
+        #endregion
+
+
         #region StaticResources
+
+        #region View All
 
 
         [HttpGet]
@@ -434,7 +556,7 @@ namespace BCG_Manage.Controllers
 
             switch (sortOrder)
             {
-                case "IdResource":
+                case "IdStaticResource":
                     tblStatic = tblStatic.OrderByDescending(s => s.IdStatic); break;
                 case "IdLanguage":
                     tblStatic = tblStatic.OrderBy(s => s.IdLanguage); break;
@@ -466,6 +588,32 @@ namespace BCG_Manage.Controllers
             return View(tblStatic.ToPagedList(pageNumber, pageSize));
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
+        public JsonResult GetStaticText(int IdStaic, int IdLang, int IdStaticText)
+        {
+
+            var model = new StaticDetails();
+
+
+            var tblStatic = db.tblStaticResources
+                .Include(t => t.tblStaticTexts)
+                .Include(t => t.tblLanguages)
+                .Where(t => t.IdStatic == IdStaic)
+                .Where(s => s.IdLanguage == IdLang)
+                .Where(s => s.IdStaticText == IdStaticText)
+                .Select(s => new { s.tblStaticTexts.StaticText, s.Description }).ToList();
+
+            model.Description = tblStatic[0].Description;
+            model.StaticText = tblStatic[0].StaticText;
+
+            return Json(model);
+        }
+
+        #endregion
+
+
+        #region Add
+
 
         [HttpGet]
         public ActionResult AddNewStaticText()
@@ -484,48 +632,58 @@ namespace BCG_Manage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddNewStaticText(StaticResources model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
-                    var tblStatRes = new tblStaticResources()
+                    using (var dataContext = new MultiLanguageModel())
+                    using (var transaction = dataContext.Database.BeginTransaction())
                     {
-                        IdLanguage = Convert.ToInt32(model.IdLanguage),
-                        tblStaticTexts = new tblStaticTexts
+                        var tblCon = new tblStaticTexts();
+                        tblCon.StaticText = model.Text;
+                        tblCon.UserName = User.Identity.Name;
+                        tblCon.DateChanged = DateTime.Now;
+                        tblCon.DateCreated = DateTime.Now;
+
+                        db.tblStaticTexts.Add(tblCon);
+                        db.SaveChanges();
+
+                        var IdCont = (from tblStaticTexts in db.tblStaticTexts
+                                      orderby tblStaticTexts.DateCreated descending
+                                      select tblStaticTexts).First();
+                        int intIdt = db.tblStaticResources.Max(u => u.IdStatic);
+                        var tblRes = new tblStaticResources()
                         {
-                            StaticText = model.Text,
+                            IdStatic = intIdt + 1,
+                            IdLanguage = Convert.ToInt32(model.IdLanguage),
+                            IdStaticText = IdCont.IdStaticText,
+                            Description = model.Description,
                             UserName = User.Identity.Name,
                             DateChanged = DateTime.Now,
                             DateCreated = DateTime.Now
-                        },
-                        Description = model.Description,
-                        StaticName = model.Description,
-                      
-                        UserName = User.Identity.Name,
-                        DateChanged = DateTime.Now,
-                        DateCreated = DateTime.Now
-                    };
-                    db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
-                    db.tblStaticResources.Add(tblStatRes);
-                    db.SaveChanges();
-                    db.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+                        };
 
-                    TempData["ResultSuccess"] = "Succes in adding new resource!";
-                    return RedirectToAction("AddNewStaticText");
+                        dataContext.Set<tblStaticResources>().Add(tblRes);
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblStaticResources ON");
+                        dataContext.SaveChanges();
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblStaticResources OFF");
+
+                        transaction.Commit();
+                        TempData["ResultSuccess"] = "Succes in adding new resource!";
+                    }
+                    return RedirectToAction("ViewAllStaticTexts");
                 }
-                else
+                catch (Exception ex)
                 {
-                    TempData["ResultError"] = "Error in adding new resource!";
-                    return View(model);
+                    SendExceptionToAdmin(ex.ToString());
                 }
-            }
-            catch (Exception ex)
-            {
-                SendExceptionToAdmin(ex.ToString());
-                TempData["ResultError"] = "Error in adding new resource!";
-                return RedirectToAction("AddNewStaticText");
 
             }
+            else
+                TempData["ResultError"] = "Error in adding new translation!";
+
+            model.IdLanguages = new SelectList(db.tblLanguages, "IdLanguage", "Language");
+            return View(model);
 
         }
 
@@ -533,32 +691,40 @@ namespace BCG_Manage.Controllers
         [OutputCache(Duration = 0)]
         public ActionResult AddTranslationStaticText(int id)
         {
-            int IdRes = id;
-
-            var query = @"SELECT IdLanguage, Language FROM tblLanguages
+            int IdStatRes = id;
+            var model = new StaticResources();
+            try
+            {
+                var query = @"SELECT IdLanguage, Language FROM tblLanguages
                        WHERE tblLanguages.IdLanguage NOT IN(
                     SELECT  tblLanguages.IdLanguage FROM tblLanguages INNER JOIN
-                            tblResources ON tblLanguages.IdLanguage = tblResources.IdLanguage
-                    WHERE   tblResources.IdResource =" + IdRes + " )";
+                            tblStaticResources ON tblLanguages.IdLanguage = tblStaticResources.IdLanguage
+                    WHERE   tblStaticResources.IdStatic =" + IdStatRes + " )";
 
-            var sequenceQueryResult = db.Database.SqlQuery<Resources>(query).ToList();
+                var sequenceQueryResult = db.Database.SqlQuery<StaticResources>(query).ToList();
 
-            var lsContext = (from tblResources in db.tblResources
-                             where tblResources.IdResource == IdRes
-                             select tblResources.tblContext.Context
-                            ).ToList();
+                var lsContext = (from tblStaticResources in db.tblStaticResources
+                                 where tblStaticResources.IdStatic == IdStatRes
+                                 select tblStaticResources.Description
+                                ).ToList();
 
-            var model = new Resources();
-            if (sequenceQueryResult.Count != 0)
-            {
-                model.IdResource = IdRes;
-                model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
-                model.lsContext = lsContext;
+
+                if (sequenceQueryResult.Count != 0)
+                {
+                    model.IdStaticResource = IdStatRes;
+                    model.IdLanguages = new SelectList(sequenceQueryResult, "IdLanguage", "Language");
+                    model.lsDescription = lsContext;
+
+                }
+                else
+                {
+                    TempData["ResultAlert"] = "There is no more languages.";
+                    return RedirectToAction("ViewAllResources");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                TempData["ResultError"] = "Error in adding new translation to resource! There is no more languages.";
-                return RedirectToAction("ViewAllResources");
+                SendExceptionToAdmin(ex.ToString());
             }
 
 
@@ -567,56 +733,160 @@ namespace BCG_Manage.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddTranslationStaticText(Resources model)
+        public ActionResult AddTranslationStaticText(StaticResources model)
         {
             if (ModelState.IsValid)
             {
-                TempData["ResultSuccess"] = "Succes in adding new resource!";
-
-                using (var dataContext = new MultiLanguageModel())
-                using (var transaction = dataContext.Database.BeginTransaction())
+                try
                 {
-                    var tblCon = new tblContext();
-                    tblCon.Context = model.Context;
-                    tblCon.UserName = User.Identity.Name;
-                    tblCon.DateChanged = DateTime.Now;
-                    tblCon.DateCreated = DateTime.Now;
-                    db.tblContext.Add(tblCon);
-                    db.SaveChanges();
-
-                    var IdCont = (from tblContext in db.tblContext
-                                  orderby tblContext.DateCreated descending
-                                  select tblContext).First();
-
-                    var tblRes = new tblResources()
+                    using (var dataContext = new MultiLanguageModel())
+                    using (var transaction = dataContext.Database.BeginTransaction())
                     {
-                        IdResource = model.IdResource,
-                        IdLanguage = Convert.ToInt32(model.IdLanguage),
-                        IdContext = IdCont.IdContext,
-                        UserName = User.Identity.Name,
-                        DateChanged = DateTime.Now,
-                        DateCreated = DateTime.Now
-                    };
+                        var tblCon = new tblStaticTexts();
+                        tblCon.StaticText = model.Text;
+                        tblCon.UserName = User.Identity.Name;
+                        tblCon.DateChanged = DateTime.Now;
+                        tblCon.DateCreated = DateTime.Now;
+                        db.tblStaticTexts.Add(tblCon);
+                        db.SaveChanges();
 
-                    dataContext.Set<tblResources>().Add(tblRes);
-                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources ON");
-                    dataContext.SaveChanges();
-                    dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblResources OFF");
+                        var IdCont = (from tblStaticTexts in db.tblStaticTexts
+                                      orderby tblStaticTexts.DateCreated descending
+                                      select tblStaticTexts).First();
 
-                    transaction.Commit();
+                        var tblRes = new tblStaticResources()
+                        {
+                            IdStatic = model.IdStaticResource,
+                            IdLanguage = Convert.ToInt32(model.IdLanguage),
+                            IdStaticText = IdCont.IdStaticText,
+                            Description = model.Description,
+                            UserName = User.Identity.Name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now
+                        };
+
+                        dataContext.Set<tblStaticResources>().Add(tblRes);
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblStaticResources ON");
+                        dataContext.SaveChanges();
+                        dataContext.Database.ExecuteSqlCommand("SET IDENTITY_INSERT tblStaticResources OFF");
+
+                        transaction.Commit();
+                        TempData["ResultSuccess"] = "Succes in adding new resource!";
+
+                    }
+                    return RedirectToAction("AddTranslationStaticText", new { id = model.IdStaticResource });
+
                 }
-                return RedirectToAction("AddTranslationResource", new { id = model.IdResource });
+                catch (Exception ex)
+                {
+                    TempData["ResultError"] = "Error in adding new translation!";
+                    SendExceptionToAdmin(ex.ToString());
+                }
             }
+
             else
                 TempData["ResultError"] = "Error in adding new translation!";
-            return RedirectToAction("AddTranslationResource");
+            return RedirectToAction("AddTranslationStaticText");
         }
 
+        #endregion
+
+        #region Edit
+
+
         [HttpGet]
-        public ActionResult EditStaticText()
+        public ActionResult EditStaticText(int id, int idLang, int idCont)
         {
-            return View();
+            var model = new StaticResources();
+
+            try
+            {
+
+                var tblStatic = db.tblStaticResources
+                    .Include(t => t.tblStaticTexts)
+                    .Include(t => t.tblLanguages)
+                    .Where(t => t.IdStatic == id)
+                    .Where(s => s.IdLanguage == idLang)
+                    .Where(s => s.IdStaticText == idCont)
+                    .Select(s => new { s.tblStaticTexts.StaticText, s.Description, s.IdLanguage, s.tblLanguages.Language }).ToList();
+
+                model.Description = tblStatic[0].Description;
+                model.Text = tblStatic[0].StaticText;
+                model.Language = tblStatic[0].Language;
+                model.IdLanguage = tblStatic[0].IdLanguage;
+                model.idStaticText = idCont;
+                model.IdStaticResource = id;
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                TempData["ResultError"] = "Error in loading for editing  static text!";
+                return RedirectToAction("ViewAllStaticTexts");
+            }
+
+
+            return View(model);
         }
+
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult EditStaticText(StaticResources model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var tbl = db.tblStaticResources.Find(model.IdStaticResource, model.IdLanguage, model.idStaticText);
+
+                    tbl.Description = model.Description;
+                    tbl.tblStaticTexts.StaticText = model.Text;
+                    tbl.DateChanged = DateTime.Now;
+                    tbl.tblStaticTexts.DateChanged = DateTime.Now;
+
+                    db.SaveChanges();
+                    TempData["ResultSuccess"] = "Success in edditing static resource";
+                    return RedirectToAction("ViewAllStaticTexts");
+                }
+                catch (Exception ex)
+                {
+                    SendExceptionToAdmin(ex.ToString());
+                    TempData["ResultError"] = "Error in updating  static text!";
+                    return RedirectToAction("ViewAllStaticTexts");
+                }
+
+            }
+            TempData["ResultError"] = "Error in updating  static text!";
+            return View(model);
+        }
+
+        #endregion
+
+        #region Delete
+
+        public ActionResult DeleteStaticText(int id, int idLang, int idCont)
+        {
+            try
+            {
+
+                var tbl = db.tblStaticResources.Find(id, idLang, idCont);
+                db.tblStaticResources.Remove(tbl);
+                db.SaveChanges();
+                TempData["ResultSuccess"] = "Success in deleting static text!";
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                TempData["ResultError"] = "Error in loading for editing  static text!";
+
+            }
+
+
+            return RedirectToAction("ViewAllStaticTexts");
+        }
+
+
+        #endregion
+
 
 
         #endregion
