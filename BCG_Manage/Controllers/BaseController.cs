@@ -15,10 +15,24 @@ namespace BCG_Manage.Controllers
     using System.Configuration;
     using Areas.EmailTemplates.Controllers;
     using System.Web.Security;
+    using Models;
     [Authorize]
     public class BaseController : Controller
     {
         private MultiLanguageModel db = new MultiLanguageModel();
+        private ApplicationDbContext dbUsers = new ApplicationDbContext();
+
+        public ActionResult GetCountsUsers()
+        {
+            var countUsers = dbUsers.Users.Count();
+            return Content(countUsers.ToString());
+        }
+
+        public ActionResult GetCountsRoles()
+        {
+            var countRoles = dbUsers.Roles.Count();
+            return Content(countRoles.ToString());
+        }
 
         [ChildActionOnly]
         public byte[] imageToByteArray(System.Drawing.Image imageIn)

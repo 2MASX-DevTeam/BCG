@@ -9,13 +9,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        View all resources.
-        <small>Multilanguage</small>
+        View all users.
+        <small>Users</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="~/Admin"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>MultiLanguage</li>
-        <li class="active">View all resources</li>
+        <li>Users</li>
+        <li class="active">View all users</li>
     </ol>
 </section>
 
@@ -52,27 +52,18 @@
                                 </th>
                           
                                 <th>
-                                    Phone Number
+                                   First name
                                 </th>
                                 <th>
-                                    Phone Number Confirmed
+                                  Last name
                                 </th>
                                 <th>
-                                    Two Factor Enabled
+                                 Roles
                                 </th>
                                 <th>
-                                    Lockout End Date - Utc
+                                   Functions
                                 </th>
-                                <th>
-                                    Lockout Enabled
-                                </th>
-                                <th>
-                                    Access Failed Count
-                                </th>
-                                <th>
-                                    UserName
-                                </th>
-                                <th></th>
+                               
                             </tr>
                         </thead>
                         <tbody>
@@ -86,19 +77,19 @@
                                         @Html.DisplayFor(modelItem => item.EmailConfirmed)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.UserName)
+                                        @Html.DisplayFor(modelItem => item.FirstName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                        @Html.DisplayFor(modelItem => item.LastName)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Email)
+                                        @Html.DisplayFor(modelItem => item.Roles.Count)
                                     </td>
                                   
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" }) 
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) 
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" } )
                                     </td>
                                 </tr>
                             }

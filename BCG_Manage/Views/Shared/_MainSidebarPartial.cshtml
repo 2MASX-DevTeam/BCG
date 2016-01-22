@@ -1,5 +1,4 @@
-﻿
-   <!-- Left side column. contains the logo and sidebar -->
+﻿<!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -48,8 +47,9 @@
                 <a href="#">
                     <i class="fa fa-group"></i>
                     <span>Registered users</span>
-                    <span class="label label-warning pull-right">
+                    <span class="label label-warning pull-right" id="registered-users">
 
+                        @{Html.RenderAction("GetCountsUsers", "Base"); }
 
                     </span>
                 </a>
@@ -61,23 +61,27 @@
             </li>
 
             @*<li class="treeview">
-                <a href="#">
-                    <i class="fa  fa-male"></i>
-                    <span>Registered admins</span>
-                    @LayoutHelper.UsersCount()
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-user-plus"></i>Create admin</a></li>
-                    <li><a href="#"><i class="fa fa-user-times"></i>Delete admin</a></li>
-                    <li><a href="#"><i class="fa fa-list"></i>View all admins</a></li>
-                </ul>
-            </li>*@
+                    <a href="#">
+                        <i class="fa  fa-male"></i>
+                        <span>Registered admins</span>
+                        @LayoutHelper.UsersCount()
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-user-plus"></i>Create admin</a></li>
+                        <li><a href="#"><i class="fa fa-user-times"></i>Delete admin</a></li>
+                        <li><a href="#"><i class="fa fa-list"></i>View all admins</a></li>
+                    </ul>
+                </li>*@
 
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-unlock-alt"></i>
                     <span>Created roles</span>
-                    @LayoutHelper.RolesCount()
+                    <span class="label label-danger pull-right">
+
+                        @{Html.RenderAction("GetCountsRoles", "Base"); }
+
+                    </span>
                 </a>
                 <ul class="treeview-menu">
                     <li>
@@ -151,3 +155,5 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+
+

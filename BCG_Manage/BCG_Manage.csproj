@@ -231,6 +231,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\LanguagesInModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LayoutModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserRolesModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1219,6 +1220,12 @@
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Shared\_MainSidebarPartial.cshtml" />
+    <None Include="Views\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Views\Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
