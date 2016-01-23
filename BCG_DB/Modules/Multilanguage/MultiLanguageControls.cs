@@ -8,6 +8,7 @@
     using System.Web.UI.HtmlControls;
     using System.Web.UI.WebControls;
     using MultilanguageTools.SQLPreferences;
+
     #region HtmlMultiLanguageButton
     public class HtmlMultiLanguageButton : HtmlButton, IMultiLanguage
     {
