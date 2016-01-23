@@ -229,6 +229,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\TablesViewModels.cs" />
     <Compile Include="Models\LanguagesInModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LayoutModels.cs" />
@@ -303,6 +304,8 @@
     <Content Include="dist\js\app.min.js" />
     <Content Include="dist\js\demo.js" />
     <Content Include="dist\js\pages\dashboard.js" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\bc-vit.png" />
     <Content Include="Images\no-img.gif" />
     <Content Include="Images\no-img.jpg" />
     <Content Include="Scripts\IndexChart.es5.js">
@@ -1140,6 +1143,8 @@
     <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1220,6 +1225,9 @@
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Shared\_MainSidebarPartial.cshtml" />
+    <Content Include="Views\Shared\IndexPartials\_UniqueVisitorsPartial.cshtml" />
+    <Content Include="Views\Shared\IndexPartials\_UserRegistrationsPartial.cshtml" />
+    <Content Include="Views\Shared\IndexPartials\_LatestOrdersPartial.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -76,20 +76,20 @@ namespace BCG_Manage.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        //[Required]
-        //[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Password")]
-        //public string Password { get; set; }
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 2)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
 
-        //[DataType(DataType.Password)]
-        //[Display(Name = "Confirm password")]
-        //[System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        //public string ConfirmPassword { get; set; }
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
 
 
         [Required]
-        [Display(Name="First Name")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
 
@@ -101,7 +101,7 @@ namespace BCG_Manage.Models
         [Display(Name = "Birth Date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime BirthDate { get; set; }
-    
+
 
 
         public string Roles { get; set; }
