@@ -43,7 +43,6 @@ namespace BCG_Manage
                 "~/plugins/datepicker/datepicker3.css",
                 "~/plugins/daterangepicker/daterangepicker-bs3.css",
                 "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css",
-                "~/plugins/jvectormap/jquery-jvectormap-1.2.2.css",
                 "~/plugins/datatables/dataTables.bootstrap.css"
                      ));
         }

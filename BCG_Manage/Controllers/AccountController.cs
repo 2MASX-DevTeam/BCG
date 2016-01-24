@@ -76,11 +76,11 @@ namespace BCG_Manage.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByEmailAsync(model.Email);
+         //   var user = await UserManager.FindByEmailAsync(model.Email);
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(user.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -165,9 +165,17 @@ namespace BCG_Manage.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    string password = GenericPassword();
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDate = model.BirthDate, FirstName = model.FirstName, LastName= model.LastName };
-                    var result = await UserManager.CreateAsync(user, password);
+                    var user = new ApplicationUser {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        BirthDate = model.BirthDate,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        DateCreated = DateTime.UtcNow,
+                        DateModified = DateTime.UtcNow
+                    };
+
+                    var result = await UserManager.CreateAsync(user, model.Password);
 
                     user.Email = model.Email;
                     user.EmailConfirmed = false;
@@ -189,7 +197,7 @@ namespace BCG_Manage.Controllers
                         string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                         var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
 
-                        var subjEmail = new EmailModels() { Admin = User.Identity.Name, UserName = user.UserName, Role = user.Roles.ToString(), Link = callbackUrl, Password = GenericPassword() };
+                        var subjEmail = new EmailModels() { Admin = User.Identity.Name, UserName = user.UserName, Role = model.Roles, Link = callbackUrl, Password = model.Password };
                         var emailBody = RenderViewToString( "RegistrationEmail", subjEmail);
                         SendEmail(user.Email, "New registration",  emailBody);
 

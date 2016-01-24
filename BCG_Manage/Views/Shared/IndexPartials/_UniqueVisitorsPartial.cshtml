@@ -1,0 +1,70 @@
+﻿@model List<BCG_Manage.Models.UniqueVisitorsModel>
+@using Newtonsoft.Json;
+<!-- MAP & BOX PANE -->
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Visitors Report</h3>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+    </div><!-- /.box-header -->
+    <div class="box-body no-padding">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pad">
+                    <!-- Map will be created here -->
+                    <div id="world-map-markers" style="height: 390px; width: 100%"></div>
+                </div>
+            </div><!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.box-body -->
+</div><!-- /.box -->
+<script>
+    /* jVector Maps
+  * ------------
+  * Create a world map with markers
+  */
+    var model =@Html.Raw(JsonConvert.SerializeObject(Model));
+    var mapMarkers = [];
+
+    for (var i = 0, l = model.length; i < l; i++) {
+        mapMarkers.push({ latLng: [model[i].lat, model[i].lng], name: model[i].country});
+    };
+
+
+    $('#world-map-markers').vectorMap({
+        map: 'world_mill_en',
+        normalizeFunction: 'polynomial',
+        hoverOpacity: 0.7,
+        hoverColor: false,
+        backgroundColor: 'transparent',
+        regionStyle: {
+            initial: {
+                fill: 'rgba(210, 214, 222, 1)',
+                "fill-opacity": 1,
+                stroke: 'none',
+                "stroke-width": 0,
+                "stroke-opacity": 1
+            },
+            hover: {
+                "fill-opacity": 0.7,
+                cursor: 'pointer'
+            },
+            selected: {
+                fill: 'yellow'
+            },
+            selectedHover: {
+            }
+        },
+        markerStyle: {
+            initial: {
+                fill: '#00a65a',
+                stroke: '#111'
+            }
+        },
+        markers: mapMarkers
+    });
+
+</script>

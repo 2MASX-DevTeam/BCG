@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title </title>
     @Styles.Render("~/Content/css")
+
+    <!-- jQuery 2.1.4 -->
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -46,33 +51,53 @@
         @{
             Html.RenderPartial("_HeaderPartial");
         }
-    
-
+        <script>
+            $(document).ready(function () {
+                $("#sidebar").load("/ManageSite/GetSideBarPartial", function () {
+                    $("#sectionsb").show(500);
+                });
+            });
    
-        @{
-            Html.RenderPartial("_MainSidebarPartial");
-        }
+        </script>
+        <aside class="main-sidebar" id="sidebar">
+
+            <img src="~/Images/ajax-loader.gif" style="margin: 50% 0 0 20%"/>
+            </aside>
+            @*@Ajax.ActionLink("Get server time", "GetSomething", "ManageSite",
+            new AjaxOptions
+            {
+                UpdateTargetId = "replace",
+                HttpMethod = "GET",
+                InsertionMode = InsertionMode.Replace
+                // AllowCache = true,
+                // Confirm = "Are you sure you want to update the time?"
+            }, new { @class = "btn btn-primary", id = "replace"})*@
 
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+            @*@{
+                Html.RenderPartial("_MainSidebarPartial");
+
+            }*@
 
 
-            @RenderBody()
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
 
 
-        </div><!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <div class="pull-right hidden-xs">
-                <b>Version</b> 2.3.0
-            </div>
-            <strong>Copyright &copy; 2015 - @DateTime.Now.Year <a href="http://s2kdesign.com">Svetlin Krastanov</a>.</strong> All rights reserved.
-        </footer>
+                @RenderBody()
 
 
-    </div><!-- ./wrapper -->
-    <!-- jQuery 2.1.4 -->
-    @Scripts.Render("~/bundles/jquery")
+            </div><!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div class="pull-right hidden-xs">
+                    <b>Version</b> 2.3.0
+                </div>
+                <strong>Copyright &copy; 2015 - @DateTime.Now.Year <a href="http://s2kdesign.com">Svetlin Krastanov</a>.</strong> All rights reserved.
+            </footer>
+
+
+</div><!-- ./wrapper -->
+
 
     @Scripts.Render("~/bundles/bootstrap")
 
