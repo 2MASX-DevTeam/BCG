@@ -103,6 +103,9 @@ namespace BCG_Manage.Models
         public DateTime BirthDate { get; set; }
 
 
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateModified { get; set; }
 
         public string Roles { get; set; }
 

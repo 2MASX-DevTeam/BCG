@@ -11,7 +11,8 @@ namespace BCG_Manage.Models
     public class ApplicationUser : IdentityUser 
     {
         public DateTime BirthDate { get; set; }
-
+        public DateTime DateCreated { get; internal set; }
+        public DateTime DateModified { get; internal set; }
         public string FirstName { get; set;  }
 
         public string LastName { get; set; }

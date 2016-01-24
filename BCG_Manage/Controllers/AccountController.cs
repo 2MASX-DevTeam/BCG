@@ -165,7 +165,16 @@ namespace BCG_Manage.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, BirthDate = model.BirthDate, FirstName = model.FirstName, LastName= model.LastName };
+                    var user = new ApplicationUser {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        BirthDate = model.BirthDate,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        DateCreated = DateTime.UtcNow,
+                        DateModified = DateTime.UtcNow
+                    };
+
                     var result = await UserManager.CreateAsync(user, model.Password);
 
                     user.Email = model.Email;

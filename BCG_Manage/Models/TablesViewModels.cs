@@ -7,7 +7,11 @@ namespace BCG_Manage.Models
 {
     public class UniqueVisitorsModel
     {
+        public string lat { get; set; }
 
+        public string lng { get; set; }
+        
+        public string country { get; set; }
     }
 
     public class UserRegistrationsModel

@@ -16,23 +16,12 @@ namespace BCG_Manage.Controllers
     using Areas.EmailTemplates.Controllers;
     using System.Web.Security;
     using Models;
+    using System.Net;
+    using Newtonsoft.Json;
     [Authorize]
     public class BaseController : Controller
     {
         private MultiLanguageModel db = new MultiLanguageModel();
-        private ApplicationDbContext dbUsers = new ApplicationDbContext();
-
-        public ActionResult GetCountsUsers()
-        {
-            var countUsers = dbUsers.Users.Count();
-            return Content(countUsers.ToString());
-        }
-
-        public ActionResult GetCountsRoles()
-        {
-            var countRoles = dbUsers.Roles.Count();
-            return Content(countRoles.ToString());
-        }
 
         [ChildActionOnly]
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
@@ -84,7 +73,7 @@ namespace BCG_Manage.Controllers
 
         }
 
-        [ChildActionOnly]
+    
         public void SendExceptionToAdmin(string ex)
         {
             string emailAdmin = ConfigurationManager.AppSettings["EmailAdministrator"]; 
@@ -190,6 +179,15 @@ namespace BCG_Manage.Controllers
                 TempData["ResultErrors"] = "There was a problem with rendering template for email!";
                 return "Error in register form! Email with the problem was send to aministrator.";
             }
+        }
+
+        public dynamic GetCountryByIp(string UserIP)
+        {
+            string url = "http://freegeoip.net/json/" + UserIP;
+            WebClient client = new WebClient();
+            string jsonstring = client.DownloadString(url);
+            dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
+            return dynObj;
         }
     }
 }
