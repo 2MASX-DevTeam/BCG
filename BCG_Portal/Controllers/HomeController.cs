@@ -12,11 +12,11 @@ namespace BCG_Portal.Controllers
         {
             return View();
         }
-        public ActionResult test()
+        public ActionResult Front()
         {
             return View();
         }
-        public ActionResult Test2()
+        public ActionResult Products()
         {
             return View();
         }

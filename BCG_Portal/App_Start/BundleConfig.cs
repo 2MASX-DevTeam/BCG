@@ -21,11 +21,20 @@ namespace BCG_Portal
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/Bilbo_400.font.js",
+                      "~/Scripts/css3-mediaqueries.js",
+                      "~/Scripts/cufon-replace.js",
+                      "~/Scripts/custPortalScripts.js",
+                      "~/Scripts/Bilbo_400.font.js"
+
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/custPortalCss.less"
+                      ));
         }
     }
 }
