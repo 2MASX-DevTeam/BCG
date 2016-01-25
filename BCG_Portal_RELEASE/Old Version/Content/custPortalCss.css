@@ -1,0 +1,376 @@
+﻿/*********** Custom responsive navigation ***************/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
+#responsive-navbar {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+  font-size: 10px;
+  line-height: 15px;
+  text-transform: uppercase;
+  text-align: center;
+}
+#responsive-navbar > ul {
+  width: 60%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 2px solid #ece6e8;
+  border-bottom: 2px solid #d9ced2;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+#responsive-navbar > ul li#responsive-tab {
+  display: none;
+  /* Hide for large screens */
+}
+#responsive-navbar > ul li {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+#responsive-navbar > ul li.right {
+  float: right;
+}
+#responsive-navbar > ul li.has-sub {
+  position: relative;
+}
+#responsive-navbar > ul li.has-sub:hover ul {
+  display: block;
+  text-align: left;
+}
+#responsive-navbar > ul li.has-sub ul {
+  display: none;
+  width: 250px;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  background: #ffffff;
+  border: 1px solid #ece6e8;
+  border-bottom: 3px solid #d9ced2;
+  border-top: 0 none;
+}
+#responsive-navbar > ul li.has-sub ul li {
+  display: block;
+}
+#responsive-navbar > ul li.has-sub > a {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAA4BAMAAAAskpSmAAAAElBMVEV0dHT///90dHT///90dHT///8zECc3AAAABHRSTlMAAICAZah98QAAAC9JREFUeF7Vw4EJABAUQMGXDV4WkCwgWUA20N9/FWULV0fbi7QLVB71+zMOOToOL0YTDMHMQcRrAAAAAElFTkSuQmCC') /*/images/caret.png*/;
+  background-repeat: no-repeat;
+  background-position: 90% -95%;
+}
+#responsive-navbar > ul li.has-sub > a.active,
+#responsive-navbar > ul li.has-sub > a:hover {
+  background: #d80041 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAA4BAMAAAAskpSmAAAAElBMVEV0dHT///90dHT///90dHT///8zECc3AAAABHRSTlMAAICAZah98QAAAC9JREFUeF7Vw4EJABAUQMGXDV4WkCwgWUA20N9/FWULV0fbi7QLVB71+zMOOToOL0YTDMHMQcRrAAAAAElFTkSuQmCC') /*/images/caret.png*/ no-repeat;
+  background-position: 90% 195%;
+}
+#responsive-navbar > ul li a {
+  display: block;
+  padding: 12px 24px 11px 24px;
+  text-decoration: none;
+  color: #747474;
+  text-shadow: 0px 1px 0px #fff;
+}
+#responsive-navbar > ul li a.active,
+#responsive-navbar > ul li a:hover {
+  background: #d80041;
+  color: #fff;
+  text-shadow: 0px 1px 0px #000;
+}
+@media (max-width: 630px) {
+  #responsive-navbar > ul {
+    float: none;
+    width: 100%;
+  }
+  #responsive-navbar > ul li#responsive-tab {
+    display: block;
+  }
+  #responsive-navbar > ul li#responsive-tab a {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAABMAgMAAAD/+BQ6AAAADFBMVEXX19f////X19f////0heqMAAAAAnRSTlMAAHaTzTgAAAAiSURBVCjPY1gFAg0MqBQqoFBJKAg4jFJUpv6DwAE0iipKAPcYuzNcib1eAAAAAElFTkSuQmCC') /*/images/menu.png*/ no-repeat;
+    background-position: 95% -35%;
+  }
+  #responsive-navbar > ul li#responsive-tab a:hover {
+    background-color: #d80041;
+    background-position: 95% 135%;
+  }
+  #responsive-navbar > ul li {
+    display: none;
+  }
+  #responsive-navbar > ul li.right {
+    float: none;
+  }
+  #responsive-navbar > ul li.has-sub {
+    position: relative;
+  }
+  #responsive-navbar > ul li.has-sub ul {
+    display: block;
+    position: static;
+    width: 100%;
+    background: #ffffff;
+    border: 0 none;
+  }
+  #responsive-navbar > ul li.has-sub ul li {
+    display: block !important;
+  }
+  #responsive-navbar > ul li.has-sub ul li a span {
+    display: block;
+    padding-left: 24px;
+  }
+  #responsive-navbar > ul li.has-sub > a {
+    background-image: none;
+  }
+}
+/* Make sure they show even if hidden in mobile view by JS */
+@media (min-width: 600px) {
+  #responsive-navbar > ul > li.collapsed {
+    float: none;
+    display: inline-block !important;
+    *display: inline;
+    zoom: 1;
+  }
+  #responsive-navbar > ul ul li.collapsed {
+    display: block !important;
+  }
+}
+/*********** End Custom responsive navigation ***************/
+/*********** Social Icons ***************/
+/*#socialIcons{
+    float:right;
+    text-align:center;
+    height:100px;
+}*/
+.custSocials {
+  width: 38px;
+  height: 32px;
+}
+.custSocials:hover {
+  width: 42px;
+  height: 38px;
+}
+.ft2Left {
+  float: left;
+}
+/*.ft2Right{
+    float:right;
+    height:100px;
+}*/
+/***********End Social Icons ***************/
+#dateTime {
+  width: 20%;
+}
+#socialIcons {
+  width: 100%;
+  text-align: center;
+}
+#lastOne {
+  width: 20%;
+}
+.custFooter {
+  display: inline-block;
+}
+/*contacts---------------------------------------------------------------*/
+.inputbg,
+.textareabg {
+  border: 2px black;
+  background: white;
+  width: 100%;
+  padding: 8px 5px;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.button-bg {
+  padding: 8px 20px;
+  border-radius: 4px;
+  background: #fdda00;
+  border: none;
+  color: #fff;
+}
+/* End contacts---------------------------------------------------------------*/
+/*******Animated portfolio*********************************/
+#overlay {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: none;
+  opacity: 0.9;
+}
+#thumbContainter {
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  margin: 0 auto;
+  width: 175px;
+  padding: 0 10px;
+  background: transparent url(../bg.png) repeat top left;
+  border-right: 1px solid #f0f0f0;
+  border-left: 1px solid #f0f0f0;
+  -moz-box-shadow: -2px 0px 10px #000000 inset;
+  -webkit-box-shadow: -2px 0px 10px #000000 inset;
+  box-shadow: -2px 0px 10px #000000 inset;
+  float: left;
+}
+#thumbScroller {
+  position: relative;
+  height: 600px;
+  overflow: hidden;
+  left: -180px;
+}
+#thumbScroller .container {
+  position: relative;
+  top: 0;
+  float: left;
+}
+#thumbScroller .content {
+  clear: both;
+  float: left;
+}
+#thumbScroller .content div {
+  padding: 2px;
+  height: 100%;
+  float: left;
+}
+#thumbScroller .content a {
+  outline: none;
+}
+#thumbScroller img {
+  border: 5px solid #000;
+  -moz-box-shadow: 0px 0px 2px #000;
+  -webkit-box-shadow: 0px 0px 2px #000;
+  box-shadow: 0px 0px 2px #000;
+}
+.pg_content .pg_description div {
+  display: none;
+}
+.pg_title h1 {
+  display: none;
+  left: 250px;
+  top: -50px;
+  /*25*/
+  background: transparent url(../bg.png) repeat top left;
+  padding: 10px 20px;
+  color: #d80041;
+  font-weight: bold;
+}
+img.pg_thumb {
+  display: none;
+}
+img#pg_large {
+  z-index: 9999;
+}
+img.pg_thumb,
+img#pg_large {
+  top: 50px;
+  left: 250px;
+  padding: 10px;
+  background: transparent url(../bg.png) repeat top left;
+  cursor: pointer;
+}
+.pg_description h2 {
+  color: #000;
+  font-size: 22px;
+  margin-bottom: 10px;
+  background: transparent url(../bg2.png) repeat top left;
+  padding: 5px;
+}
+.pg_description p {
+  font-size: 14px;
+  width: 500px;
+  padding: 10px;
+  overflow: hidden;
+  text-shadow: 0px 0px 1px #fdda00;
+  background: transparent url(../bg.png) repeat top left;
+  color: green;
+}
+#pg_desc1 div {
+  top: 420px;
+  left: 205px;
+}
+#pg_desc2 div {
+  top: 560px;
+  left: 295px;
+}
+/*******End Animated portfolio*********************************/
+/*custom something*/
+.ca_banner {
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #fff;
+  -moz-box-shadow: 0px 0px 2px #aaa inset;
+}
+.ca_slide {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.ca_zone {
+  position: absolute;
+  width: 100%;
+}
+.ca_wrap {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.ca_wrap img.ca_shown {
+  display: inline !important;
+}
+/* Custom styles of banner1 */
+.ca_banner1 {
+  width: 60%;
+  height: 400px;
+}
+.ca_bg1 {
+  background: #ffffff url(/images/bg.jpg) no-repeat top left;
+}
+.ca_banner1 .ca_zone1 {
+  top: 0px;
+  left: 0px;
+}
+.ca_banner1 .ca_wrap1 {
+  width: 320px;
+  height: 300px;
+}
+.ca_banner1 .ca_zone2 {
+  top: 100px;
+  left: 240px;
+}
+.ca_banner1 .ca_wrap2 {
+  width: 387px;
+  height: 203px;
+}
+.ca_banner1 .ca_zone3 {
+  top: 32px;
+  left: 250px;
+}
+.ca_banner1 .ca_wrap3 {
+  width: 378px;
+  height: 31px;
+}
+/*Custom Style for Second Banner*/
+.ca_banner2 {
+  width: 30%;
+  height: 600px;
+}
+.ca_bg2 {
+  background: #ffffff url(/images/bgSmall.jpg) no-repeat top left;
+}
+.ca_banner2 .ca_zone1 {
+  top: 10px;
+  left: 0px;
+}
+.ca_banner2 .ca_wrap1,
+.ca_banner2 .ca_wrap2 {
+  width: 120px;
+  height: 220px;
+}
+.ca_banner2 .ca_zone2 {
+  top: 250px;
+  left: 0px;
+}
+/*# sourceMappingURL=custPortalCss.css.map */

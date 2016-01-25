@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal", "BCG_Portal\BCG_Portal.csproj", "{486BD31A-B506-4263-A6A0-9FBB89FBFDCD}"
 EndProject
@@ -14,6 +14,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		bcg-manage.sln = bcg-manage.sln
 		bcg-portal.sln = bcg-portal.sln
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal_Models", "BCG_Portal_Models\BCG_Portal_Models.csproj", "{B5FC53F2-817A-4499-B520-FE2EDA7E5F53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal_Data", "BCG_Portal_Data\BCG_Portal_Data.csproj", "{F491D324-3C57-4D72-8446-6814B6D6C58A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{8CB3D51F-2349-4560-9291-99A0CF5F92D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CB3D51F-2349-4560-9291-99A0CF5F92D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CB3D51F-2349-4560-9291-99A0CF5F92D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5FC53F2-817A-4499-B520-FE2EDA7E5F53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5FC53F2-817A-4499-B520-FE2EDA7E5F53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5FC53F2-817A-4499-B520-FE2EDA7E5F53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5FC53F2-817A-4499-B520-FE2EDA7E5F53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

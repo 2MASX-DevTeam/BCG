@@ -6,21 +6,55 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Mvc.RazorTools.BundleManager.Styles.Render()
-    <link href="~/Content/custPortalCss.min.css" rel="stylesheet"/>
 
+
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/slider.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/zerogrid.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/responsive.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css" />
+
+
+    <link href="~/Content/custPortalCss.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.easing.1.3.js"></script>
     <script src="~/Scripts/cufon-yui.js"></script>
-    <script type="text/javascript">
-    Cufon.replace('h1,h2');
+    <script src="~/Scripts/cufon-replace.js"></script>
+    <script src="~/Scripts/Bilbo_400.font.js"></script>
+    <script src="~/Scripts/tms-0.4.1.js"></script>
+    <script src="~/Scripts/css3-mediaqueries.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.slider')._TMS({
+                show: 0,
+                pauseOnHover: true,
+                prevBu: false,
+                nextBu: false,
+                playBu: false,
+                duration: 800,
+                preset: 'fade',
+                pagination: true,
+                pagNums: false,
+                slideshow: 7000,
+                numStatus: false,
+                banners: 'fade',
+                waitBannerAnimation: false,
+                progressBar: false
+            });
+        });
     </script>
 </head>
+
 <body>
 
 
-<div id="responsive-navbar">
+@*<div id="responsive-navbar">
     <ul>
         <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
         <li class='has-sub'>
@@ -38,96 +72,77 @@
                 <li class='last'>@Html.ActionLink("Contact", "Contact", "Home")</li>
             </ul>
         </li>
-        <li class="last">@Html.ActionLink("testt", "test", "Home")</li>
+        <li class="last">@Html.ActionLink("Front", "Front", "Home")</li>
         <li class="last">@Html.ActionLink("test2", "Test2", "Home")</li>
         <li class="last">@Html.ActionLink("Contact", "Contact", "Home")</li>
         @Html.Partial("_LoginPartial")
     </ul>
-</div>
-  
+</div>*@
 
-    <div style="height: 50px;"></div>
 
-@*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-              @Html.Partial("_LoginPartial")  
+
+    <header>
+        <div class="nav-responsive">
+            <div>MENU</div>
+            <select onchange="location=this.value">
+                <option></option>
+                <option value="index.html">Home</option>
+                <option value="about.html">About</option>
+                <option value="services.html">Services</option>
+                <option value="products.html">Products</option>
+                <option value="contacts.html">Contacts</option>
+            </select>
+        </div>
+        <div>
+            <div>
+                <h1><a href="#"><img src="" alt=""></a></h1>
+                <nav>
+                    <ul class="menu">
+                        <li class="current">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Customize", "Index", "TinyMCE")</li>
+                        <li>@Html.ActionLink("Products", "Products", "Home")</li>
+                        <li>@Html.ActionLink("Front", "Front", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        @Html.Partial("_LoginPartial")
+                    </ul>
+                </nav>
+                <div class="clear"></div>
             </div>
         </div>
-    </div>*@
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-
-        <div id="dateTime" class="custFooter">
-            &copy; @DateTime.Now.Year
-        </div>
-
-        <div id="lastOne" class="custFooter"></div>
-
-        <!--
-        Html.FontAwesome(FontAwesomeIconSet.Star)
-
-        Html.FontAwesome(FontAwesomeIconSet.FacebookSquare.Spin().Large2x())
-        Html.FontAwesome(FontAwesomeIconSet.TwitterSquare.Large2x())
-        Html.FontAwesome(FontAwesomeIconSet.Google.Large2x())
-        Html.FontAwesome(FontAwesomeIconSet.Spinner, FontAwesomeStyles.Spin)
-        -->
+    </header> 
 
 
+<div style="height: 50px;"></div>
 
-    </footer>
-    <div id="socialIcons" class="custFooter">
-        <!--facebook-->
-        <span>
-            <img class="custSocials" src="/images/facebook.ico" alt="" title="Facebook" />
-        </span>
 
-        <!--twitter-->
-        <span>
-            <img class="custSocials" src="/images/twitter.ico" alt="" title="Twitter" />
-        </span>
+    <div class="container body-content">
+        @RenderBody()
+        <hr/>
 
-        <!--google-->
-        <span>
-            <img class="custSocials" src="/images/google.ico" alt="" title="Google" />
-        </span>
 
-        <!--email-->
-        <span>
-            <img class="custSocials" src="/images/envelope.ico" alt="" title="Email" />
-        </span>
+        <!--==============================footer=================================-->
+        <footer>
 
-        <!--skype-->
-        <span>
-            <img class="custSocials" src="/images/skype.ico" alt="" title="Skype" />
-        </span>
+            <div style="float: left !important; font-size: 18px !important;">
+                <span> &copy; 2015 -  @DateTime.Now.Year </span>
+                <span>www.bc-vit.com</span>
+            </div>
+            <div class="soc-icons">
+                <div>
+                    <a href="#"><img src="/images/facebook1.jpg" alt=""></a>
+                    <a href="#"><img src="/images/twitter1.jpg" alt=""></a>
+                    <a href="#"><img src="/images/google1.jpg" alt=""></a>
+                </div>
+            </div>
+        </footer>
+
     </div>
-</div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
-<script src="~/Scripts/Bebas_400.font.js"></script>
-<script src="~/Scripts/jquery.transform-0.8.0.min.js"></script>
-<script src="~/Scripts/jquery.easing.1.3.js"></script>
-<script src="~/Scripts/jquery.banner.js"></script>
-<script src="~/Scripts/custPortalScripts.js"></script>
-@RenderSection("scripts", required: false)
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+        @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -194,6 +194,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Application Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TinyMCEController.cs" />
@@ -202,9 +203,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ContactModel.cs" />
-    <Compile Include="Models\ExampleClass.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Application Models\ContactModel.cs" />
+    <Compile Include="Models\Application Models\ExampleClass.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -519,7 +519,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\lyIndex.cshtml" />
     <Content Include="Views\Home\Test2.cshtml" />
-    <Content Include="Views\Home\Front.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
@@ -544,6 +543,14 @@
     <ProjectReference Include="..\BCG_DB\BCG_DB.csproj">
       <Project>{8cb3d51f-2349-4560-9291-99a0cf5f92d1}</Project>
       <Name>BCG_DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCG_Portal_Data\BCG_Portal_Data.csproj">
+      <Project>{f491d324-3c57-4d72-8446-6814b6d6c58a}</Project>
+      <Name>BCG_Portal_Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCG_Portal_Models\BCG_Portal_Models.csproj">
+      <Project>{b5fc53f2-817a-4499-b520-fe2eda7e5f53}</Project>
+      <Name>BCG_Portal_Models</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
