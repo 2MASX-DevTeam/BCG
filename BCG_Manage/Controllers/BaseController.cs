@@ -183,11 +183,20 @@ namespace BCG_Manage.Controllers
 
         public dynamic GetCountryByIp(string UserIP)
         {
-            string url = "http://freegeoip.net/json/" + UserIP;
-            WebClient client = new WebClient();
-            string jsonstring = client.DownloadString(url);
-            dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
-            return dynObj;
+            try
+            {
+                string url = "http://freegeoip.net/json/" + UserIP;
+                WebClient client = new WebClient();
+                string jsonstring = client.DownloadString(url);
+                dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
+                return dynObj;
+            }
+            catch (Exception ex)
+            {
+               // SendExceptionToAdmin(ex.ToString());
+                return null;
+            }
+           
         }
     }
 }

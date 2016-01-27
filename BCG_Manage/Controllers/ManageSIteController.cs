@@ -96,6 +96,9 @@ namespace BCG_Manage.Controllers
                 {
                     var fullinfo = GetCountryByIp(ip.ToString());
 
+                    if (fullinfo == null)
+                        continue;
+
                     model.Add(new UniqueVisitorsModel
                     {
                         lat = fullinfo.latitude,
