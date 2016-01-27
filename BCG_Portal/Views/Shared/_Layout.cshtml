@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="google-site-verification" content="Bu0fzB8M0cfwLKyTxX8MzOstHQ1JSJAlnchcWcnuu0I" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Mvc.RazorTools.BundleManager.Styles.Render()
@@ -79,30 +79,30 @@
     </ul>
 </div>*@
 
-
-
+  
     <header>
-        <div class="nav-responsive">
-            <div>MENU</div>
-            <select onchange="location=this.value">
-                <option></option>
-                <option value="index.html">Home</option>
-                <option value="about.html">About</option>
-                <option value="services.html">Services</option>
-                <option value="products.html">Products</option>
-                <option value="contacts.html">Contacts</option>
-            </select>
+        <div class="responsive-navbar">
+            @*<div>MENU</div>
+            <ul class="menu">
+                <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Customize", "Index", "TinyMCE")</li>
+                <li>@Html.ActionLink("Products", "Products", "Home")</li>
+
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                @Html.Partial("_LoginPartial")
+            </ul>*@
         </div>
         <div>
             <div>
                 <h1><a href="#"><img src="" alt=""></a></h1>
                 <nav>
                     <ul class="menu">
-                        <li class="current">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Customize", "Index", "TinyMCE")</li>
-                        <li>@Html.ActionLink("Products", "Products", "Home")</li>
-                        <li>@Html.ActionLink("Front", "Front", "Home")</li>
+                        <li>@Html.ActionLink("Products", "Productz", "Home")</li>
+                      
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         @Html.Partial("_LoginPartial")
                     </ul>

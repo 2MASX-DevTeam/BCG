@@ -13,11 +13,8 @@ namespace BCG_Portal.Controllers
         {
             return View();
         }
-        public ActionResult Front()
-        {
-            return View();
-        }
-        public ActionResult Products()
+     
+        public ActionResult Productz()
         {
             return View();
         }
