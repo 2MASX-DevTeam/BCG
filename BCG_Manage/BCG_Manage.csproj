@@ -305,7 +305,6 @@
     <Content Include="Images\bc-vit.png" />
     <Content Include="Images\no-img.gif" />
     <Content Include="Images\no-img.jpg" />
-    <Content Include="Scripts\Custom.js" />
     <Content Include="Scripts\IndexChart.es5.js">
       <DependentUpon>IndexChart.js</DependentUpon>
     </Content>
