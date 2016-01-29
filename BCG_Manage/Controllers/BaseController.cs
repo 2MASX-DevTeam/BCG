@@ -49,7 +49,7 @@ namespace BCG_Manage.Controllers
                     var dir = Server.MapPath("/Images");
                     var path = Path.Combine(dir, "no-img" + ".jpg");
                   
-                    return base.File(path, "image/jpeg");
+                    return File(path, "image/jpeg");
                 }
                 else
                 {
