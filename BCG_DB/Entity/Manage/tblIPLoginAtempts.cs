@@ -20,6 +20,12 @@ namespace BCG_DB.Entity.Manage
         [StringLength(500)]
         public string UserAgend { get; set; }
 
+        public string Country { get; set; }
+
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
         public DateTime? DateChanged { get; set; }
 
         public DateTime? DateCreated { get; set; }

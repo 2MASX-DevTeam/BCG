@@ -13,7 +13,7 @@ namespace BCG_DB.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201601211918508_InitialCreate"; }
+            get { return "201601211918372_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

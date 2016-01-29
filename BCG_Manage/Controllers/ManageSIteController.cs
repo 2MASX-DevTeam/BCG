@@ -24,7 +24,6 @@ namespace BCG_Manage.Controllers
         private ApplicationDbContext dbUsers = new ApplicationDbContext();
         private LoginAttempts Ips = new LoginAttempts();
 
-
         public ActionResult Index()
         {
             var model = new IndexManageSiteViewModel();
@@ -88,26 +87,22 @@ namespace BCG_Manage.Controllers
             var ips = from tbllogin in Ips.tblIPLoginAttempts
                       where tbllogin.DateCreated >= yest
                       group tbllogin by tbllogin.IPAdress into unique
-                      select unique.FirstOrDefault().IPAdress;
+                      select new { unique.FirstOrDefault().IPAdress, unique.FirstOrDefault().Latitude, unique.FirstOrDefault().Country, unique.FirstOrDefault().Longitude };
 
             foreach (var ip in ips)
             {
-                if (!String.IsNullOrEmpty(ip))
+                if (!String.IsNullOrEmpty(ip.Country) && !String.IsNullOrEmpty(ip.Latitude) && !String.IsNullOrEmpty(ip.Longitude))
                 {
-                    var fullinfo = GetCountryByIp(ip.ToString());
-
-                    if (fullinfo == null)
-                        continue;
 
                     model.Add(new UniqueVisitorsModel
                     {
-                        lat = fullinfo.latitude,
-                        lng = fullinfo.longitude,
-                        country = fullinfo.country_name
+                       country = ip.Country,
+                       lat = ip.Latitude,
+                       lng = ip.Longitude
                     });
                 }
-
             }
+  
 
             return PartialView("~/Views/Shared/IndexPartials/_UniqueVisitorsPartial.cshtml", model);
         }

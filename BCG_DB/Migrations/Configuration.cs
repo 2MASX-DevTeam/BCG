@@ -5,15 +5,15 @@ namespace BCG_DB.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BCG_DB.Entity.MultiLanguageEntity.MultiLanguageModel>
+    internal sealed class Configuration : DbMigrationsConfiguration<BCG_DB.Entity.Manage.LoginAttempts>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "BCG_DB.Entity.MultiLanguageEntity.MultiLanguageModel";
+            ContextKey = "BCG_DB.Entity.Manage.LoginAttempts";
         }
 
-        protected override void Seed(BCG_DB.Entity.MultiLanguageEntity.MultiLanguageModel context)
+        protected override void Seed(BCG_DB.Entity.Manage.LoginAttempts context)
         {
             //  This method will be called after migrating to the latest version.
 

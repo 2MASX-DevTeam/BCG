@@ -118,9 +118,9 @@
     <Compile Include="Filters\CacheFilter.cs" />
     <Compile Include="Filters\CompressFilter.cs" />
     <Compile Include="Filters\GZipBundle.cs" />
-    <Compile Include="Migrations\201601211918508_InitialCreate.cs" />
-    <Compile Include="Migrations\201601211918508_InitialCreate.Designer.cs">
-      <DependentUpon>201601211918508_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201601211918372_InitialCreate.cs" />
+    <Compile Include="Migrations\201601211918372_InitialCreate.Designer.cs">
+      <DependentUpon>201601211918372_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modules\Global.cs" />
@@ -154,8 +154,8 @@
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601211918508_InitialCreate.resx">
-      <DependentUpon>201601211918508_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601211918372_InitialCreate.resx">
+      <DependentUpon>201601211918372_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
