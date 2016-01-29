@@ -1,44 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using BCG_Portal_Data.Migrations;
+using System.Linq;
+using System.Security.AccessControl;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 using BCG_Portal_Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BCG_Portal_Data
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
+ 
     public class BCGPortalDbContext : IdentityDbContext<User>
     {
-        // Your context has been configured to use a 'BCGPortalDbContext' connection string from your application's 
-        // configuration file (App.config or Web.config). By default, this connection string targets the 
-        // 'BCG_Portal_Data.BCGPortalDbContext' database on your LocalDb instance. 
-        // 
-        // If you wish to target a different database and/or database provider, modify the 'BCGPortalDbContext' 
-        // connection string in the application configuration file.
         public BCGPortalDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BCG_Portal_Data.BCGPortalDbContext, Configuration>());
         }
 
-        public static BCG_Portal_Data.BCGPortalDbContext Create()
+        public static BCGPortalDbContext Create()
         {
-            return new BCG_Portal_Data.BCGPortalDbContext();
+            return new BCGPortalDbContext();
         }
 
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
+        //  public System.Data.Entity.DbSet<BCG_Manage.Models.ApplicationUser> ApplicationUsers { get; set; }
 
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
+        public IDbSet<Order> Orders { get; set; }
+        public IDbSet<Category> Categories { get; set; }
+        public IDbSet<Product> Products { get; set; }
+        public IDbSet<CartItem> CartItems { get; set; }
     }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }
-
-

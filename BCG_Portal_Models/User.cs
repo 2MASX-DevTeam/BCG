@@ -11,23 +11,10 @@ namespace BCG_Portal_Models
 {
     public class User : IdentityUser
     {
-        public DateTime BirthDate
-        {
-            get;
-            set;
-        }
-        public DateTime DateCreated
-        {
-            get;
-            set;
-        }
-        public DateTime DateModified
-        {
-            get;
-            set;
-        }
-
-
+        public DateTime BirthDate { get; set; }
+        public DateTime DateCreated { get;  set; }
+        public DateTime DateModified { get;  set; }
+      
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
