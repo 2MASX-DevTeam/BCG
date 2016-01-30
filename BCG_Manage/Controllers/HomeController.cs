@@ -62,27 +62,7 @@
 
         public ActionResult Index()
         {
-            try
-            {
-                string ip = IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
-                string browserVersion = Request.UserAgent;
-
-                var model = new tblIPLoginAttempts()
-                {
-                    IPAdress = ip,
-                    UserAgend = browserVersion,
-                    DateChanged = DateTime.Now,
-                    DateCreated = DateTime.Now,
-                    UserName = "SYSTEM"
-                };
-
-                db.tblIPLoginAttempts.Add(model);
-                db.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                SendExceptionToAdmin(ex.ToString());
-            }
+           
        
             return View();
         }

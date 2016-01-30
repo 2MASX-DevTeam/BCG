@@ -10,6 +10,8 @@ using Tools;
 using BCG_Manage.Controllers;
 using System.Net.Mail;
 using System.Configuration;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace BCG_Manage
 {
@@ -26,28 +28,35 @@ namespace BCG_Manage
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-       protected void Session_Start()
-       {
-           string ip = IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
-           string browserVersion = Request.UserAgent;
+        protected void Session_Start()
+        {
+            string ip = Tools.IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
+            string browserVersion = Request.UserAgent;
             if (!String.IsNullOrWhiteSpace(ip))
             {
                 try
                 {
-                    var model = new tblIPLoginAttempts()
+                    var fullinfo = GetCountryByIp(ip.ToString());
+                    if (fullinfo != null)
                     {
-                        IPAdress = ip,
-                        UserAgend = browserVersion,
-                        DateChanged = DateTime.Now,
-                        DateCreated = DateTime.Now,
-                        UserName = "SYSTEM"
-                    };
+                        var model = new tblIPLoginAttempts()
+                        {
+                            IPAdress = ip,
+                            UserAgend = browserVersion,
+                            Latitude = fullinfo.latitude,
+                            Longitude = fullinfo.longitude,
+                            Country = fullinfo.country_name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now,
+                            UserName = "SYSTEM"
+                        };
 
-                    db.tblIPLoginAttempts.Add(model);
-                    db.SaveChanges();
+                        db.tblIPLoginAttempts.Add(model);
+                        db.SaveChanges();
+                    }
                 }
                 catch (Exception ex)
-                {                  
+                {
                     string emailAdmin = ConfigurationManager.AppSettings["EmailAdministrator"];
 
                     SmtpClient SmtpServer = new SmtpClient();
@@ -61,10 +70,28 @@ namespace BCG_Manage
 
                     SmtpServer.Send(mail);
                 }
-              
+
             }
-          
-       }
-      
+
+        }
+
+        public dynamic GetCountryByIp(string UserIP)
+        {
+            try
+            {
+                string url = "http://freegeoip.net/json/" + UserIP;
+                WebClient client = new WebClient();
+                string jsonstring = client.DownloadString(url);
+                dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
+                return dynObj;
+            }
+            catch (Exception ex)
+            {
+                // SendExceptionToAdmin(ex.ToString());
+                return null;
+            }
+
+        }
+
     }
 }

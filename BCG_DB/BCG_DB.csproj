@@ -115,12 +115,24 @@
     <Compile Include="Entity\MultiLanguageEntity\tblResources.cs" />
     <Compile Include="Entity\MultiLanguageEntity\tblStaticResources.cs" />
     <Compile Include="Entity\MultiLanguageEntity\tblStaticTexts.cs" />
+    <Compile Include="Entity\Store\StoreModel.cs" />
+    <Compile Include="Entity\Store\tblCurrency.cs" />
+    <Compile Include="Entity\Store\tblCustomerReview.cs" />
+    <Compile Include="Entity\Store\tblDiscount.cs" />
+    <Compile Include="Entity\Store\tblOrder.cs" />
+    <Compile Include="Entity\Store\tblOrder1.cs" />
+    <Compile Include="Entity\Store\tblOrderStatus.cs" />
+    <Compile Include="Entity\Store\tblProduct.cs" />
+    <Compile Include="Entity\Store\tblQuantity.cs" />
+    <Compile Include="Entity\Store\tblShopingCart.cs" />
+    <Compile Include="Entity\Store\tblShopper.cs" />
+    <Compile Include="Entity\Store\tblShopperGroup.cs" />
     <Compile Include="Filters\CacheFilter.cs" />
     <Compile Include="Filters\CompressFilter.cs" />
     <Compile Include="Filters\GZipBundle.cs" />
-    <Compile Include="Migrations\201601211918508_InitialCreate.cs" />
-    <Compile Include="Migrations\201601211918508_InitialCreate.Designer.cs">
-      <DependentUpon>201601211918508_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201601211918372_InitialCreate.cs" />
+    <Compile Include="Migrations\201601211918372_InitialCreate.Designer.cs">
+      <DependentUpon>201601211918372_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Modules\Global.cs" />
@@ -154,8 +166,8 @@
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601211918508_InitialCreate.resx">
-      <DependentUpon>201601211918508_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601211918372_InitialCreate.resx">
+      <DependentUpon>201601211918372_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

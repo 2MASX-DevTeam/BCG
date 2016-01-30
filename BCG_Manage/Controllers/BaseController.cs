@@ -49,7 +49,7 @@ namespace BCG_Manage.Controllers
                     var dir = Server.MapPath("/Images");
                     var path = Path.Combine(dir, "no-img" + ".jpg");
                   
-                    return base.File(path, "image/jpeg");
+                    return File(path, "image/jpeg");
                 }
                 else
                 {
@@ -181,22 +181,6 @@ namespace BCG_Manage.Controllers
             }
         }
 
-        public dynamic GetCountryByIp(string UserIP)
-        {
-            try
-            {
-                string url = "http://freegeoip.net/json/" + UserIP;
-                WebClient client = new WebClient();
-                string jsonstring = client.DownloadString(url);
-                dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
-                return dynObj;
-            }
-            catch (Exception ex)
-            {
-               // SendExceptionToAdmin(ex.ToString());
-                return null;
-            }
-           
-        }
+     
     }
 }
