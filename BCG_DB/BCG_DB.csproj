@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entity\Portal\" />
+    <Folder Include="Entity\Store\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
