@@ -41,9 +41,8 @@
                 <i class="fa fa-shopping-cart"></i> <span>Orders</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i>Not confirmed</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i>Refused</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("NotConfirmed", "Orders", new { area = "Store" })"><i class="fa fa-circle-o"></i>Not confirmed</a></li>
+                <li><a href="@Url.Action("ViewAll", "Orders", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 

@@ -31,7 +31,7 @@ namespace BCG_DB.Entity.Store
 
         public DateTime? DateCreated { get; set; }
 
-        public virtual tblOrder1 tblOrder1 { get; set; }
+        public virtual tblCompleteOrder tblCompleteOrder { get; set; }
 
         public virtual tblProduct tblProduct { get; set; }
 

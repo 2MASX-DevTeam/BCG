@@ -115,12 +115,11 @@
     <Compile Include="Entity\MultiLanguageEntity\tblResources.cs" />
     <Compile Include="Entity\MultiLanguageEntity\tblStaticResources.cs" />
     <Compile Include="Entity\MultiLanguageEntity\tblStaticTexts.cs" />
-    <Compile Include="Entity\Store\StoreModel.cs" />
+    <Compile Include="Entity\Store\StoreModels.cs" />
+    <Compile Include="Entity\Store\tblCompleteOrder.cs" />
     <Compile Include="Entity\Store\tblCurrency.cs" />
-    <Compile Include="Entity\Store\tblCustomerReview.cs" />
     <Compile Include="Entity\Store\tblDiscount.cs" />
     <Compile Include="Entity\Store\tblOrder.cs" />
-    <Compile Include="Entity\Store\tblOrder1.cs" />
     <Compile Include="Entity\Store\tblOrderStatus.cs" />
     <Compile Include="Entity\Store\tblProduct.cs" />
     <Compile Include="Entity\Store\tblQuantity.cs" />

@@ -211,6 +211,14 @@
     <Compile Include="Areas\EmailTemplates\Controllers\EmailController.cs" />
     <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
     <Compile Include="Areas\EmailTemplates\Models\EmailModels.cs" />
+    <Compile Include="Areas\Store\Controllers\CouponsController.cs" />
+    <Compile Include="Areas\Store\Controllers\CurrenciesController.cs" />
+    <Compile Include="Areas\Store\Controllers\CustomerReviewsController.cs" />
+    <Compile Include="Areas\Store\Controllers\DiscountsController.cs" />
+    <Compile Include="Areas\Store\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Store\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Store\Controllers\ShoppersController.cs" />
+    <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -1129,6 +1137,9 @@
     <Content Include="App_Code\LayoutHelper.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\web.config" />
     <Content Include="Areas\EmailTemplates\Views\Email\RegistrationEmail.cshtml" />
+    <Content Include="Areas\Store\Views\web.config" />
+    <Content Include="Areas\Store\Views\Orders\ViewAll.cshtml" />
+    <Content Include="Areas\Store\Views\Orders\NotConfirmed.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1235,6 +1246,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
+    <Folder Include="Areas\Store\Models\" />
+    <Folder Include="Areas\Store\Views\Coupons\" />
+    <Folder Include="Areas\Store\Views\Currencies\" />
+    <Folder Include="Areas\Store\Views\CustomerReviews\" />
+    <Folder Include="Areas\Store\Views\Discounts\" />
+    <Folder Include="Areas\Store\Views\Products\" />
+    <Folder Include="Areas\Store\Views\Shoppers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

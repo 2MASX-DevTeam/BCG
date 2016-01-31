@@ -6,11 +6,10 @@ namespace BCG_DB.Entity.Store
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("tblOrders")]
-    public partial class tblOrder1
+    public partial class tblCompleteOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblOrder1()
+        public tblCompleteOrder()
         {
             tblOrders = new HashSet<tblOrder>();
         }
