@@ -104,6 +104,7 @@ namespace BCG_Manage.Areas.Store.Controllers
 
         public ActionResult NotConfirmed()
         {
+           
             return View();
         }
     }

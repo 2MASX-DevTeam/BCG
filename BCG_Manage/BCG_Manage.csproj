@@ -1141,6 +1141,7 @@
     <Content Include="Areas\Store\Views\web.config" />
     <Content Include="Areas\Store\Views\Orders\ViewAll.cshtml" />
     <Content Include="Areas\Store\Views\Orders\NotConfirmed.cshtml" />
+    <Content Include="Areas\Store\Views\Currencies\AddNewCurrency.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1159,6 +1160,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\money.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -1248,7 +1250,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\Store\Views\Coupons\" />
-    <Folder Include="Areas\Store\Views\Currencies\" />
     <Folder Include="Areas\Store\Views\CustomerReviews\" />
     <Folder Include="Areas\Store\Views\Discounts\" />
     <Folder Include="Areas\Store\Views\Products\" />
