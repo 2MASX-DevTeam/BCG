@@ -1142,6 +1142,7 @@
     <Content Include="Areas\Store\Views\Orders\ViewAll.cshtml" />
     <Content Include="Areas\Store\Views\Orders\NotConfirmed.cshtml" />
     <Content Include="Areas\Store\Views\Currencies\AddNewCurrency.cshtml" />
+    <Content Include="Areas\Store\Views\Currencies\ViewAllCurrencies.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

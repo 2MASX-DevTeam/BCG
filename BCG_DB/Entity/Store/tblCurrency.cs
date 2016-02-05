@@ -25,6 +25,7 @@ namespace BCG_DB.Entity.Store
         [StringLength(50)]
         public string CurrencyCode { get; set; }
 
+        [DataType("decimal(6 ,4")]
         public decimal CurrencyValue { get; set; }
 
         [StringLength(50)]
