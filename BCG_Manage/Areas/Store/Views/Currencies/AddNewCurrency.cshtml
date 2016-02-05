@@ -40,14 +40,14 @@
                     <div class="box-body">
                         <div class="form-group">
                             <label>Currency Code: </label>
-                            @Html.EditorFor(model => model.CurrencyCode, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.CurrencyCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Example:  BGN" } })
                             @Html.ValidationMessageFor(model => model.CurrencyCode, "", new { @class = "text-danger" })
 
                         </div>
                         <div class="form-group">
 
                             <label>Currency Name:</label>
-                            @Html.EditorFor(model => model.CurrencyName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.CurrencyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Example:  Bulgarian Lev" } })
                             @Html.ValidationMessageFor(model => model.CurrencyName, "", new { @class = "text-danger" })
                         </div>
 

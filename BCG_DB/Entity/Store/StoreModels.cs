@@ -32,7 +32,7 @@ namespace BCG_DB.Entity.Store
 
             modelBuilder.Entity<tblCurrency>()
                 .Property(e => e.CurrencyValue)
-                .HasPrecision(4, 2);
+                .HasPrecision(6, 4);
 
             modelBuilder.Entity<tblCurrency>()
                 .HasMany(e => e.tblProducts)

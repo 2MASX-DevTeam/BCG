@@ -21,6 +21,7 @@ namespace BCG_Manage.Areas.Store.Controllers
     [Authorize]
     public class CurrenciesController : BaseController
     {
+        private StoreModels db = new StoreModels();
         private bool isAllGood = false;
 
         [HttpGet]
@@ -28,8 +29,7 @@ namespace BCG_Manage.Areas.Store.Controllers
         {
             //  TempData["ResultInfo"] = @"Example:  Currency Name = Bulgarian Lev , Currency Code = BGN , Currency Value = 1.5";
             TempData["ResultAlert"] = "Each new currency will be compared  to Euro";
-
-
+            
             return View();
         }
 
@@ -48,9 +48,22 @@ namespace BCG_Manage.Areas.Store.Controllers
 
                     if (isAllGood)
                     {
-                        //TODO: Add insert in db
 
-                        TempData["ResultAlert"] = currencyData.rates[symbol];
+                        var value = currencyData.rates[symbol];
+
+                        var tbl = new tblCurrency
+                        {
+                            CurrencyCode = model.CurrencyCode,
+                            CurrencyName = model.CurrencyName,
+                            CurrencyValue = Convert.ToDecimal(value),
+                            UserName = User.Identity.Name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now
+                        };
+
+                        db.tblCurrencies.Add(tbl);
+                        db.SaveChanges();
+
                         return RedirectToAction("AddNewCurrency");
                     }
                 }
