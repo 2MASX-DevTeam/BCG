@@ -87,7 +87,7 @@ namespace BCG_Manage.Controllers
                 }
                 else
                 {
-                    TempData["ResultSuccess"] = "Succes in adding new language!";
+                    TempData["ResultSuccess"] = "Success in adding new language!";
 
                     var tbl = new tblLanguages()
                     {

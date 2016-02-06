@@ -107,7 +107,7 @@ namespace BCG_Manage.Controllers
         }
 
         [ChildActionOnly]
-        public string GenericPassword()
+        public string GenericSymbols()
         {
             string Template = ConfigurationManager.AppSettings["passwordTemplate"].ToString();
             String l = "qwertyuiopasdfghjklzxcvbnm";

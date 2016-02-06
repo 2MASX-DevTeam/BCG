@@ -1145,6 +1145,8 @@
     <Content Include="Areas\Store\Views\Currencies\AddNewCurrency.cshtml" />
     <Content Include="Areas\Store\Views\Currencies\ViewAllCurrencies.cshtml" />
     <Content Include="Areas\Store\Views\CustomerReviews\ViewAllReviews.cshtml" />
+    <Content Include="Areas\Store\Views\Coupons\AddNewCoupon.cshtml" />
+    <Content Include="Areas\Store\Views\Coupons\ViewAllCoupons.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1252,7 +1254,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
-    <Folder Include="Areas\Store\Views\Coupons\" />
     <Folder Include="Areas\Store\Views\Discounts\" />
     <Folder Include="Areas\Store\Views\Products\" />
     <Folder Include="Areas\Store\Views\Shoppers\" />
