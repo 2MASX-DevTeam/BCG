@@ -218,6 +218,7 @@
     <Compile Include="Areas\Store\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Store\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Store\Controllers\ShoppersController.cs" />
+    <Compile Include="Areas\Store\Models\CustomerReviewsViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrdersViewModel.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -1143,6 +1144,7 @@
     <Content Include="Areas\Store\Views\Orders\NotConfirmed.cshtml" />
     <Content Include="Areas\Store\Views\Currencies\AddNewCurrency.cshtml" />
     <Content Include="Areas\Store\Views\Currencies\ViewAllCurrencies.cshtml" />
+    <Content Include="Areas\Store\Views\CustomerReviews\ViewAllReviews.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1251,7 +1253,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\Store\Views\Coupons\" />
-    <Folder Include="Areas\Store\Views\CustomerReviews\" />
     <Folder Include="Areas\Store\Views\Discounts\" />
     <Folder Include="Areas\Store\Views\Products\" />
     <Folder Include="Areas\Store\Views\Shoppers\" />

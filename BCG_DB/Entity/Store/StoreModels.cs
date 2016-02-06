@@ -22,6 +22,7 @@ namespace BCG_DB.Entity.Store
         public virtual DbSet<tblShopingCart> tblShopingCarts { get; set; }
         public virtual DbSet<tblShopperGroup> tblShopperGroups { get; set; }
         public virtual DbSet<tblShopper> tblShoppers { get; set; }
+        public virtual DbSet<tblCustomerReview> tblCustomerReviews { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -54,6 +55,11 @@ namespace BCG_DB.Entity.Store
                 .WithRequired(e => e.tblProduct)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<tblProduct>()
+                .HasMany(e => e.tblCustomerReviews)
+                .WithRequired(e => e.tblProducts)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<tblQuantity>()
                 .HasMany(e => e.tblOrders)
                 .WithRequired(e => e.tblQuantity)
@@ -72,6 +78,11 @@ namespace BCG_DB.Entity.Store
             modelBuilder.Entity<tblShopper>()
                 .HasMany(e => e.tblShopingCarts)
                 .WithRequired(e => e.tblShopper)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<tblShopper>()
+                .HasMany(e => e.tblCustomerReviews)
+                .WithRequired(e => e.tblShoppers)
                 .WillCascadeOnDelete(false);
         }
     }

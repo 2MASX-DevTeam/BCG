@@ -49,5 +49,8 @@ namespace BCG_DB.Entity.Store
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblShopingCart> tblShopingCarts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerReview> tblCustomerReviews { get; set; }
     }
 }

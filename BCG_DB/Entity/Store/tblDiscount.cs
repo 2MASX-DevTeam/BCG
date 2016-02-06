@@ -25,6 +25,9 @@ namespace BCG_DB.Entity.Store
         public DateTime? EndDateOfDiscount { get; set; }
 
         [StringLength(50)]
+        public string DiscountKey { get; set; }
+
+        [StringLength(50)]
         public string UserName { get; set; }
 
         public DateTime? DateChanged { get; set; }
