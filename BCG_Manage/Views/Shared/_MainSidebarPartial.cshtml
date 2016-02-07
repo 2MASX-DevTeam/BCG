@@ -87,9 +87,10 @@
                 <i class="fa fa-money"></i> <span>Discounts</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Add new</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Apply to users</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("AddNewDiscount", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> Add new</a></li>
+                <li><a href="@Url.Action("ApplyDiscountToUsers", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> Apply to shopper</a></li>
+                <li><a href="@Url.Action("ApplyDiscountToProducts", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> Apply to products</a></li>
+                <li><a href="@Url.Action("ViewAllDiscounts", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 
@@ -100,6 +101,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="@Url.Action("AddNewCoupon", "Coupons", new { area = "Store" })"><i class="fa fa-circle-o"></i> Add new</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> Send to users</a></li>
                 <li><a href="@Url.Action("ViewAllCoupons", "Coupons", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
