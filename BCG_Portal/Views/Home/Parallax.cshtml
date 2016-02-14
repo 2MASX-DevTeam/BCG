@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Creating a Simple Parallax Scrolling Website</title>
+    <link href="~/Content/parallaxcss.min.css" rel="stylesheet" />
+    <script src="~/Scripts/parallaxjs.js"></script>
+    @*<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>*@
+
+    @*<link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>*@
+   
+    </head>
+
+    <body>
+        <!----- LINK BACK TO THE TUTORIAL--->
+        @*<div id="demo_back">
+                <a href="#" class="lpanel"> << BACK TO THE 1STWEBDESIGN ARTICLE </a>
+                <a href="#" class="rpanel"> NEXT DEMO >> </a>
+            </div>*@
+
+        <!----- HEADER START--->
+        @*<header id="header">
+                <div class="content">
+                    <div id="logo"><a href=""> PARALLAX </a></div>
+
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="#slide1" class="active" title="Next Section">Slide 1</a></li>
+                            <li><a href="#slide2" title="Next Section">Slide 2</a></li>
+                            <li><a href="#slide3" title="Next Section">Slide 3</a></li>
+                            <li><a href="#slide4" title="Next Section">Slide 4</a></li>
+                            <li><a href="#slide5" title="Next Section">Slide 5</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>*@
+        <!----- HEADER END--->
+        <!----- SLIDES START --->
+        <div style="width: 900px;">
+            <div id="background"></div>
+            <div id="midground"></div>
+            <div id="foreground"></div>
+            <!-- HTML -->
+            <div class="example1">
+                <h2> Some....Scrolling.....Text</h2>
+            </div>
+           
+            <div id="earth"></div>
+        </div>
+
+
+        <div id="slide1">
+            <div class="content">
+                @*<div id="christmas_tree"> </div>
+                    <div id="snowflakes1"></div>
+                    <div id="snowflakes2"></div>
+                    <h2>MERRY</h2>
+                    <h1>CHRISTMAS</h1>
+                    <div id="divider"> </div>
+                    <h3>HAPPY NEW YEAR </h3>
+                    <div id="ribbon"></div>
+                    <div id="new_year"> </div>*@
+            </div>
+        </div>
+
+        @*<div id="slide2">
+                <div class="content">
+                    <div class="quotes_container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="date"><strong>29</strong><span>May, 2012</span></div>
+                                <p>
+                                    <a href="#" class="link">Lorem ipsum dolor sit amet consetetur</a><br>Sadipscing elitriam nonumy eirmod nonumy eirmod tempor invidunt labore.
+                                </p>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="date"><strong>21</strong><span>May, 2012</span></div>
+                                <p>
+                                    <a href="#" class="link">Dolore magna aliquyam erat dolor</a><br>At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren.
+                                </p>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="date"><strong>Q</strong><span>May, 2012</span></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>*@
+
+        <div id="slide3">
+            <div class="content">
+                <div class="quotes_container">
+                    @*<h3 class="quotes">“I truly believe that if we keep telling the Christmas story, singing the Christmas songs, and living the Christmas spirit, we can bring joy and happiness and peace to this world.”  </h3>
+                        <img src="/images/paralaximages/norman.png" align="left"/> <h4 class="author_name_white">Norman Vincent Peale </h4>*@
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="slide4">
+            <div class="content">
+                <div class="quotes_container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="date"><strong>29</strong><span>May, 2012</span></div>
+                            <p>
+                                <a href="#" class="link">Lorem ipsum dolor sit amet consetetur</a><br>Sadipscing elitriam nonumy eirmod nonumy eirmod tempor invidunt labore.
+                            </p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="date"><strong>21</strong><span>May, 2012</span></div>
+                            <p>
+                                <a href="#" class="link">Dolore magna aliquyam erat dolor</a><br>At vero eos et accusam et justo duo dolores et ea rebum stet clita kasd gubergren.
+                            </p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="date"><strong>Q</strong><span>May, 2012</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="slide5">
+            <div class="content">
+                <div class="quotes_container">
+                    <h3 class="quotes">“My idea of Christmas, whether old-fashioned or modern, is very simple: loving others. Come to think of it, why do we have to wait for Christmas to do that?” </h3>
+                    <img src="img/bob.png" align="left" /> <h4 class="author_name_white">Bob Hope </h4>
+                </div>
+                <div id="copyright"><a href="http://www.1stwebdesigner.com/">Copyright 1stwebdesigner.com </a></div>
+            </div>
+        </div>
+        <!----- SLIDES END --->
+
+    </body>
+</html>

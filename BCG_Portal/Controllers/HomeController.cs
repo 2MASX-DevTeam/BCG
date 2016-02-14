@@ -9,11 +9,18 @@ namespace BCG_Portal.Controllers
 {
     public class HomeController : BaseController
     {
+
+
+
+        public ActionResult Parallax()
+        {
+            return View();
+        }
         public ActionResult Index()
         {
             return View();
         }
-     
+
         public ActionResult Productz()
         {
             return View();
