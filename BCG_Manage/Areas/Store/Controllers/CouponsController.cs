@@ -59,7 +59,7 @@
 
                     TempData["ResultSuccess"] = "Success in adding new coupon!";
 
-                    return RedirectToAction("AddNewCoupon");
+                    return RedirectToAction("ViewAllCoupons");
                 }
                 catch (Exception ex)
                 {

@@ -219,6 +219,7 @@
     <Compile Include="Areas\Store\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Store\Controllers\ShoppersController.cs" />
     <Compile Include="Areas\Store\Models\CustomerReviewsViewModel.cs" />
+    <Compile Include="Areas\Store\Models\DiscountsViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrdersViewModel.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -1151,6 +1152,7 @@
     <Content Include="Areas\Store\Views\Discounts\ViewAllDiscounts.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToUsers.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToProducts.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\_ShoppersPartial.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

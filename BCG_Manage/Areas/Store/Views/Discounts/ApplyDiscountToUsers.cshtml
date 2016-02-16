@@ -1,8 +1,97 @@
-﻿
+﻿@model BCG_Manage.Areas.Store.Models.ApplyToUsersViewModel
 @{
-    ViewBag.Title = "ApplyDiscountToUsers";
+    ViewBag.Title = "Apply Discount To Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Apply Discount To Users.
+        <small>Store</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>Store</li>
+        <li class="active">Apply Discount To Users</li>
+    </ol>
+</section>
 
-<h2>ApplyDiscountToUsers</h2>
+<!-- Main content -->
+<section class="content">
 
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">   Discount  </h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+
+                <div class="box-body">
+
+                    <div class="form-group">
+
+                        <select class="form-control select2 text-justify" style="width: 100%;">
+                            <option selected="selected" >5%  - From Date: @DateTime.Now - To Date: @DateTime.Now</option>
+                            <option>Alaska</option>
+                            <option>California</option>
+                            <option>Delaware</option>
+                            <option>Tennessee</option>
+                            <option>Texas</option>
+                            <option>Washington</option>
+                        </select>
+
+                        @*@Html.DropDownListFor(model => model.SelectedDiscount, Model.ListDiscounts, htmlAttributes: new { @class = "form-control" })*@
+                    </div>
+
+
+                </div><!-- /.box-body -->
+
+            </div><!-- /.box -->
+        </div>
+
+
+    </div>
+    <div class="row" id="tblShoppers">
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#tblShoppers").load("/Store/Discounts/ShoppersForDIscount", function () {
+                $("#tblShopperInner").show(500);
+            });
+        });
+
+    </script>
+
+
+</section><!-- /.content -->
+@section Styles{
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/plugins/iCheck/all.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/plugins/select2/select2.min.css">
+
+}
+
+
+@section Scripts {
+    <!-- iCheck 1.0.1 -->
+    <script src="~/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/plugins/select2/select2.full.min.js"></script>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
+        });
+
+
+
+    </script>
+}

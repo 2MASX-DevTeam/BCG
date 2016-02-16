@@ -15,24 +15,215 @@
     using System.Data.SqlClient;
     using BCG_Manage.Controllers;
 
+    [Authorize]
     public class DiscountsController : BaseController
     {
-        // GET: Store/Discounts
+        private StoreModels db = new StoreModels();
+
+        #region Add
+
+        [HttpGet]
         public ActionResult AddNewDiscount()
         {
             return View();
         }
 
-        public ActionResult ViewAllDiscounts()
+        [HttpPost]
+        public ActionResult AddNewDiscount(tblDiscount Model, string Reservationtime)
         {
+            DateTime? startDate, endDate;
+            int discount = 0;
+            string reservationtime = Reservationtime;
+
+            if (ModelState.IsValid && !String.IsNullOrEmpty(reservationtime))
+            {
+                try
+                {
+                    startDate = Convert.ToDateTime(reservationtime.Split('-')[0].Trim());
+                    endDate = Convert.ToDateTime(reservationtime.Split('-')[1].Trim());
+                    discount = Model.DiscountAmount;
+
+                    var tbl = new tblDiscount
+                    {
+                        DiscountAmount = discount,
+                        StartDateOfDiscount = startDate,
+                        EndDateOfDiscount = endDate,
+                        UserName = User.Identity.Name,
+                        DateChanged = DateTime.Now,
+                        DateCreated = DateTime.Now
+                    };
+
+                    db.tblDiscounts.Add(tbl);
+                    db.SaveChanges();
+
+                    TempData["ResultSuccess"] = "Success in adding new discount!";
+
+                    return RedirectToAction("ViewAllDiscounts");
+                }
+                catch (Exception ex)
+                {
+                    TempData["ResultError"] = "Error in adding new discount!";
+                    SendExceptionToAdmin(ex.ToString());
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
             return View();
         }
 
-        public ActionResult ApplyDiscountToUsers()
+        #endregion
+
+        #region ViewAll
+
+        public ActionResult ViewAllDiscounts(string sortOrder, string currentFilter, int? page)
         {
-            return View();
+            var model = new List<DiscountsViewModel>();
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IdDiscountSortParm = String.IsNullOrEmpty(sortOrder) ? "IdDiscount" : "";
+            ViewBag.AmountSortParm = sortOrder == "DiscountAmount" ? "DiscountAmountDesc" : "DiscountAmount";
+
+            ViewBag.CountProductsNameSortParm = sortOrder == "CountUsers" ? "CountUsersDesc" : "CountUsers";
+            ViewBag.CountUsersNameSortParm = sortOrder == "CountProducts" ? "CountProductsDesc" : "CountProducts";
+
+            ViewBag.StartDateSortParm = sortOrder == "StartDateOfDiscount" ? "StartDateOfDiscountDesc" : "StartDateOfDiscount";
+            ViewBag.EndDateSortParm = sortOrder == "EndDateOfDiscount" ? "EndDateOfDiscountDesc" : "EndDateOfDiscount";
+
+
+            page = 1;
+
+            var tbl = db.tblDiscounts.Where(i => i.DiscountKey == null).AsQueryable();
+
+
+            foreach (var item in tbl)
+            {
+                model.Add(new DiscountsViewModel
+                {
+                    IdDiscount = item.IdDiscount,
+                    DiscountAmount = item.DiscountAmount,
+                    CounterProducts = CountProducts(item.IdDiscount),
+                    CounterUsers = CountUsers(item.IdDiscount),
+                    StartDate = item.StartDateOfDiscount,
+                    EndDate = item.EndDateOfDiscount
+                });
+            }
+            switch (sortOrder)
+            {
+                case "IdDiscount":
+                    model = (List<DiscountsViewModel>)model.OrderByDescending(s => s.IdDiscount).ToList(); break;
+                case "DiscountAmount":
+                    model = (List<DiscountsViewModel>)model.OrderBy(s => s.DiscountAmount).ToList(); break;
+                case "DiscountAmountDesc":
+                    model = (List<DiscountsViewModel>)model.OrderByDescending(s => s.DiscountAmount).ToList(); break;
+                case "CountProducts":
+                    model = (List<DiscountsViewModel>)model.OrderBy(s => s.CounterProducts).ToList(); break;
+                case "CountProductsDesc":
+                    model = (List<DiscountsViewModel>)model.OrderByDescending(s => s.CounterProducts).ToList(); break;
+                case "CountUsers":
+                    model = (List<DiscountsViewModel>)model.OrderBy(s => s.CounterUsers).ToList(); break;
+                case "CountUsersDesc":
+                    model = (List<DiscountsViewModel>)model.OrderByDescending(s => s.CounterUsers).ToList(); break;
+                case "StartDateOfDiscount":
+                    model = (List<DiscountsViewModel>)model.OrderBy(s => s.StartDate).ToList(); break;
+                case "StartDateOfDiscountDesc":
+                    model = (List<DiscountsViewModel>)model.OrderByDescending(s => s.StartDate).ToList(); break;
+                case "EndDateOfDiscount":
+                    model = (List<DiscountsViewModel>)model.OrderBy(s => s.EndDate).ToList(); break;
+                case "EndDateOfDiscountDesc":
+                    model = (List<DiscountsViewModel>)model.OrderByDescending(s => s.EndDate).ToList(); break;
+
+
+                default:
+                    model = (List<DiscountsViewModel>)model.OrderBy(s => s.IdDiscount).ToList();
+                    break;
+            }
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
+            int pageNumber = (page ?? 1);
+
+
+            return View(model.ToPagedList(pageNumber, pageSize));
+
         }
 
+        private int CountUsers(int idDiscount)
+        {
+            var id = idDiscount;
+            var counter = db.tblShoppers.Where(i => i.IdDiscount == id).Count();
+            return counter;
+        }
+
+        private int CountProducts(int idDiscount)
+        {
+            var id = idDiscount;
+            var counter = db.tblProducts.Where(i => i.IdDiscount == id).Count();
+            return counter;
+        }
+
+        #endregion
+
+        public ActionResult ApplyDiscountToUsers(int? id)
+        {
+            id = 0;
+            int idDiscount = (id ?? 0);
+            var model = new ApplyToUsersViewModel();
+            return View(model);
+        }
+
+  
+        public ActionResult ShoppersForDIscount()
+        {
+            var model = new List<ShopersForDiscountsModel>();
+
+            var tbl = db.tblShoppers.Include(i =>i.tblDiscount);
+            foreach (var item in tbl)
+            {
+                model.Add(new ShopersForDiscountsModel {
+                    FullName = String.Format("{0} {1} {3}", item.FirstName, item.SecondName, item.LastName),
+                    OrdersCount = CountOrdersForUser(item.IdShopper),
+                    DiscountAmount = item.tblDiscount.DiscountAmount
+                });
+
+            }
+
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
+            int pageNumber = 1;
+
+            return PartialView("~/Areas/Store/Views/Discounts/_ShoppersPartial.cshtml", model.ToPagedList(pageNumber, pageSize));
+        }
+
+        private int CountOrdersForUser(int idShopper)
+        {
+            var id = idShopper;
+            var counter = (from tblCompleteOrder in db.tblCompleteOrders
+                             where tblCompleteOrder.IdShopper == id
+                             select tblCompleteOrder.IdShopper
+                             ).Count();
+            return counter;
+        }
+
+        [HttpGet]
+        public ActionResult ShoppersForDIscount(string sortOrder, string currentFilter, int? page)
+        {
+            var model = new List<ShopersForDiscountsModel>();
+
+            var tbl = db.tblShoppers.Include(i => i.tblDiscount);
+            foreach (var item in tbl)
+            {
+                model.Add(new ShopersForDiscountsModel
+                {
+                    IdShopper = item.IdShopper,
+                    FullName = String.Format("{0} {1} {2}", item.FirstName, item.SecondName, item.LastName),
+                    OrdersCount = CountOrdersForUser(item.IdShopper),
+                    DiscountAmount =( item.tblDiscount == null)?0: item.tblDiscount.DiscountAmount
+                });
+
+            }
+
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
+            int pageNumber = 1;
+
+            return PartialView("~/Areas/Store/Views/Discounts/_ShoppersPartial.cshtml", model.ToPagedList(pageNumber, pageSize));
+        }
         public ActionResult ApplyDiscountToProducts()
         {
             return View();

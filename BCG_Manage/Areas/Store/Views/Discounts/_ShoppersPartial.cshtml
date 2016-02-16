@@ -1,0 +1,167 @@
+﻿@model PagedList.IPagedList<BCG_Manage.Areas.Store.Models.ShopersForDiscountsModel>
+
+
+
+<div class="col-md-12" id="tblShopperInner" style="display: none">
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Shoppers: </h3>
+
+        </div><!-- /.box-header -->
+
+        <div class="box-body table-responsive no-padding">
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.IdDiscountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                ID Shopper:
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.AmountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Full name:
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.CountProductsNameSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Discount Amount:
+                            </a>
+
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.CountUsersNameSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Completed orders:
+                            </a>
+
+                        </th>
+
+
+                        <th>
+                            Added To Discount
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdShopper)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName) 
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DiscountAmount)
+                            </td>
+                            <td>
+                                <div id="discount">
+                                    @Html.DisplayFor(modelItem => item.OrdersCount)
+                                </div>
+                            </td>
+
+
+                            <td>
+                                @GetCheckBoxes(item.IdShopper, item.DiscountAmount)
+
+                            </td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div><!-- /.box-body -->
+
+    </div><!-- /.box -->
+</div>
+
+@helper GetCheckBoxes(int id , int discount)
+{
+      <!--TODO: add ICheckBox-->
+
+using (Ajax.BeginForm("ChangeUserDiscount", "Discounts", new { id = id },
+                                    new AjaxOptions
+                                    {
+                                        UpdateTargetId = "discount",
+                                        OnBegin = "OnAjaxRequestBegin",
+                                        InsertionMode = InsertionMode.Replace,
+                                        OnComplete = "OnAjaxRequestComplete",
+                                        HttpMethod = "POST"
+                                    }, new { @class = "", id = "newOrders" }))
+{
+        @*<a href="#" class="columns small-box-footer" onclick="ChangeUserDiscount()">
+                More info <i class="fa fa-arrow-circle-right"></i>
+            </a>*@
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" class="flat-red" id="check" checked="@GetValue(discount)" />
+
+
+            </label>
+
+
+
+        </div>
+}
+}
+@functions{
+    bool GetValue(int value)
+    {
+        if (value == 0)
+        {
+            return false;
+        }
+        return true;
+    }
+}
+<script>
+    function OnAjaxRequestBegin() {
+        if ($("#discount").children().length > 0) {
+            $("#discount").animate({
+                left: '100%',
+                opacity: 0
+            });
+        };
+
+
+    };
+    var loader = "<i class='fa fa-refresh fa-spin pull-right' id='loadingstate'></i>";
+
+    function ChangeUserDiscount() {
+        $("#newOrders a").append(loader)
+        $("#newOrders").submit();
+    };
+
+
+    function OnAjaxRequestComplete(request, status) {
+        $("#discount").animate({
+            left: 0,
+            opacity: 1
+        }, function () {
+            $("#discount").show();
+            $("#loadingstate").remove();
+        });
+
+    };
+    $(document).ready(function () {
+
+        //iCheck for checkbox and radio inputs
+        $('#check').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'icheckbox_square-blue'
+        });
+    });
+
+</script>
