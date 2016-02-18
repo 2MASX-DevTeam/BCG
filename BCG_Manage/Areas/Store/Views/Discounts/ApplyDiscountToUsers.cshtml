@@ -35,18 +35,8 @@
                 <div class="box-body">
 
                     <div class="form-group">
+                        @Html.DropDownListFor(model => model.SelectedDiscount, Model.ListDiscounts, new { @class = "form-control select2 text-justify" , id = "drpDiscounts"})
 
-                        <select class="form-control select2 text-justify" style="width: 100%;">
-                            <option selected="selected" >5%  - From Date: @DateTime.Now - To Date: @DateTime.Now</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
-                        </select>
-
-                        @*@Html.DropDownListFor(model => model.SelectedDiscount, Model.ListDiscounts, htmlAttributes: new { @class = "form-control" })*@
                     </div>
 
 
@@ -61,12 +51,31 @@
 
     </div>
     <script>
+        var str = "";
         $(document).ready(function () {
-            $("#tblShoppers").load("/Store/Discounts/ShoppersForDIscount", function () {
-                $("#tblShopperInner").show(500);
+            str = @Model.SelectedDiscount;
+            $("#tblShoppers").load("/Store/Discounts/ShoppersForDIscount/"+ str+"", function () {
+                $("#tblShopperInner").fadeTo(500, 1);
             });
         });
+        $("#drpDiscounts").change(function(event) {
+            $("#tblShoppers").fadeTo(500, 0);
 
+            $("select option:selected").each(function() {
+                str = $(this).val();
+            });
+           // console.log(str);
+            $("#tblShoppers").stop(500).empty();
+            var link = "/Store/Discounts/ShoppersForDIscount/" + str;
+           // console.log(link);
+            $("#tblShoppers").load(link, function() {
+              //  console.log(link);
+               // $("#tblShopperInner").fadeTo(500, 1);
+                $("#tblShopperInner").fadeTo(200, 1);
+            });
+       
+         
+        });
     </script>
 
 

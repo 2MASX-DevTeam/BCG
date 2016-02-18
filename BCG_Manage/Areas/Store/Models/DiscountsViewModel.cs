@@ -33,6 +33,8 @@ namespace BCG_Manage.Areas.Store.Models
 
     public class ShopersForDiscountsModel
     {
+        public int IdDiscount { get; set; }         
+
         public int IdShopper { get; set; }
 
         public string FullName { get; set; }
@@ -40,5 +42,10 @@ namespace BCG_Manage.Areas.Store.Models
         public int OrdersCount { get; set; }
 
         public int DiscountAmount { get; set; }
+
+        public string PeriodDiscount { get; set; }
+
     }
+
+   
 }

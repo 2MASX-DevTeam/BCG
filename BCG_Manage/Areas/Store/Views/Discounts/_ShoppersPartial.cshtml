@@ -1,8 +1,8 @@
 ﻿@model PagedList.IPagedList<BCG_Manage.Areas.Store.Models.ShopersForDiscountsModel>
+@using PagedList;
 
 
-
-<div class="col-md-12" id="tblShopperInner" style="display: none">
+<div class="col-md-12" id="tblShopperInner" style="opacity: 0">
     <div class="box box-success">
         <div class="box-header with-border">
             <h3 class="box-title">Shoppers: </h3>
@@ -30,7 +30,7 @@
                         <th>
                             <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.CountProductsNameSortParm, currentFilter = ViewBag.CurrentFilter })">
                                 <i class="fa fa-sort-amount-desc"></i>
-                                Discount Amount:
+                                Discount:
                             </a>
 
                         </th>
@@ -39,9 +39,15 @@
                                 <i class="fa fa-sort-amount-desc"></i>
                                 Completed orders:
                             </a>
+                
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.CountUsersNameSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                               Period Discount:
+                            </a>
 
                         </th>
-
 
                         <th>
                             Added To Discount
@@ -60,20 +66,26 @@
                                 @Html.DisplayFor(modelItem => item.FullName) 
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DiscountAmount)
-                            </td>
+                                <div  class="discount">
+                                    @Html.DisplayFor(modelItem => item.DiscountAmount) %
+                                </div>
+</td>
                             <td>
-                                <div id="discount">
+                             
                                     @Html.DisplayFor(modelItem => item.OrdersCount)
+                               
+                            </td>
+
+                            <td>
+                                <div class="periodDiscount">
+                                    @Html.DisplayFor(modelitem => item.PeriodDiscount)
                                 </div>
                             </td>
 
-
                             <td>
-                                @GetCheckBoxes(item.IdShopper, item.DiscountAmount)
+                                @GetCheckBoxes(item.IdShopper,  item.IdDiscount , item.DiscountAmount)
 
                             </td>
-
 
 
                         </tr>
@@ -86,27 +98,26 @@
     </div><!-- /.box -->
 </div>
 
-@helper GetCheckBoxes(int id , int discount)
+@helper GetCheckBoxes(int id ,int idDiscount, int discount)
 {
       <!--TODO: add ICheckBox-->
 
-using (Ajax.BeginForm("ChangeUserDiscount", "Discounts", new { id = id },
-                                    new AjaxOptions
-                                    {
-                                        UpdateTargetId = "discount",
-                                        OnBegin = "OnAjaxRequestBegin",
-                                        InsertionMode = InsertionMode.Replace,
-                                        OnComplete = "OnAjaxRequestComplete",
-                                        HttpMethod = "POST"
-                                    }, new { @class = "", id = "newOrders" }))
-{
+    using (Ajax.BeginForm("ChangeUserDiscount", "Discounts", new { id = id, disc = idDiscount , check = @GetValue(discount) },
+                                        new AjaxOptions
+                                        {
+                                            OnBegin = "OnAjaxRequestBeginPartial",
+                                            InsertionMode = InsertionMode.Replace,
+                                            OnComplete = "OnAjaxRequestComplete",
+                                            HttpMethod = "POST"
+                                        }, new { @class = "", id = "changeDiscountForm" }))
+    {
         @*<a href="#" class="columns small-box-footer" onclick="ChangeUserDiscount()">
                 More info <i class="fa fa-arrow-circle-right"></i>
             </a>*@
 
         <div class="form-group">
             <label>
-                <input type="checkbox" class="flat-red" id="check" checked="@GetValue(discount)" />
+                <input type="checkbox" class="flat-red icheck" id="check" checked="@GetValue(discount)" name="icheck"/>
 
 
             </label>
@@ -127,38 +138,75 @@ using (Ajax.BeginForm("ChangeUserDiscount", "Discounts", new { id = id },
     }
 }
 <script>
-    function OnAjaxRequestBegin() {
-        if ($("#discount").children().length > 0) {
-            $("#discount").animate({
-                left: '100%',
-                opacity: 0
-            });
-        };
-
-
-    };
     var loader = "<i class='fa fa-refresh fa-spin pull-right' id='loadingstate'></i>";
 
-    function ChangeUserDiscount() {
-        $("#newOrders a").append(loader)
-        $("#newOrders").submit();
-    };
+    $('input').on('ifChecked', function (event) {
+        event.preventDefault();
+        var value = $(this).val();
+        if (value === 'on') {
+            value = true;
+        }
 
+        var form = $(this).parents('form');
+
+        var stract = form.attr("action").slice(0, -5);
+  //      console.log(stract);
+
+        form.attr("action", stract + value);
+        $(form).find('label').append(loader);
+        $(form).submit();
+
+    });
+
+    $('input').on('ifUnchecked', function (event) {
+        event.preventDefault();
+        var value = $(this).val();
+        if (value === 'on') {
+            value = false;
+        }
+
+        var form = $(this).parents('form');
+      
+        var stract = form.attr("action").slice(0, -4);
+    //    console.log(stract);
+
+        form.attr("action", stract + value);
+        $(form).find('label').append(loader);
+        $(form).submit();
+    });
+    
+  
+    function OnAjaxRequestBeginPartial() {
+        var div = $(this).parents('tr').find('.discount');
+
+        $(div).animate({
+            left: '100%',
+            opacity: 0
+        });
+    };
 
     function OnAjaxRequestComplete(request, status) {
-        $("#discount").animate({
-            left: 0,
+        var divDisc = $(this).parents('tr').find('.discount');
+        var divPer = $(this).parents('tr').find('.periodDiscount');
+        divDisc.text(request.responseJSON[0] + " %");
+        divPer.text(request.responseJSON[1]);
+       // console.log(request);
+
+        $(divDisc).animate({
             opacity: 1
         }, function () {
-            $("#discount").show();
+            $(divDisc).show();
             $("#loadingstate").remove();
         });
-
+        $(divPer).animate({
+            opacity: 1
+        }, function () {
+            $(divPer).show();
+        });
     };
-    $(document).ready(function () {
 
-        //iCheck for checkbox and radio inputs
-        $('#check').iCheck({
+    $(document).ready(function () {
+        $('.icheck').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'icheckbox_square-blue'
         });
