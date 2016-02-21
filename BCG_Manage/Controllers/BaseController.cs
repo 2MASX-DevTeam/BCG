@@ -1,4 +1,5 @@
 ﻿
+
 namespace BCG_Manage.Controllers
 {
     using System;
@@ -18,10 +19,13 @@ namespace BCG_Manage.Controllers
     using Models;
     using System.Net;
     using Newtonsoft.Json;
+    using BCG_DB.Entity.Store;
+
     [Authorize]
     public class BaseController : Controller
     {
         private MultiLanguageModel db = new MultiLanguageModel();
+        private StoreModels dbStore = new StoreModels();
 
         [ChildActionOnly]
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
@@ -73,7 +77,25 @@ namespace BCG_Manage.Controllers
 
         }
 
-    
+        [ChildActionOnly]
+        public string PriceForProduct(int idProduct)
+        {
+            int id = idProduct;
+            var tbl = (from tblProduct in dbStore.tblProducts
+                       join tblCurrency in dbStore.tblCurrencies on tblProduct.IdCurrency equals tblCurrency.IdCurrency
+                       where tblProduct.IdProduct == id
+                       select new { Price = tblProduct.Price, CurrencyCode = tblCurrency.CurrencyCode, CurrencyValue = tblCurrency.CurrencyValue, IdDiscount = tblProduct.IdDiscount }).FirstOrDefault();
+            
+            var price =Convert.ToDecimal(tbl.Price);
+            if (tbl.IdDiscount != null)
+            {
+                var discount = dbStore.tblDiscounts.Find(tbl.IdDiscount).DiscountAmount;
+                price = price - price*discount/100;
+            }
+            var result = String.Format("{0} {1}", price, tbl.CurrencyCode);
+            return result;
+        }
+
         public void SendExceptionToAdmin(string ex)
         {
             string emailAdmin = ConfigurationManager.AppSettings["EmailAdministrator"]; 

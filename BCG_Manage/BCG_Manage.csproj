@@ -1153,6 +1153,7 @@
     <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToUsers.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToProducts.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\_ShoppersPartial.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\_ProductsPartial.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

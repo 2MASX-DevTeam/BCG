@@ -47,5 +47,23 @@ namespace BCG_Manage.Areas.Store.Models
 
     }
 
-   
+    public class ProductsForDiscountsModel
+    {
+        public int IdProduct { get; set; }
+
+        public string Media { get; set; }
+
+        public string ProductName { get; set; }
+
+        public string Price { get; set; }
+
+        public int DiscountAmount { get; set; }
+
+        public int IdDiscount { get; set; }
+
+        public int OrdersCount { get; set; }
+
+        public string PeriodDiscount { get; set; }
+        public bool? IsPublish { get; set; }
+    }
 }

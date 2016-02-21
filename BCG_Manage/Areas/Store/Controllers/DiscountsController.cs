@@ -148,7 +148,7 @@
         private int CountUsers(int idDiscount)
         {
             var id = idDiscount;
-            var counter = db.tblShoppers.Where(i => i.IdDiscount == id).Count();
+            var counter = db.tblShoppers.Count(i => i.IdDiscount == id);
             return counter;
         }
 
@@ -161,6 +161,9 @@
 
         #endregion
 
+
+        #region Apply to users
+
         public ActionResult ApplyDiscountToUsers(int? id)
         {
             id = 0;
@@ -168,30 +171,31 @@
             var tbl = db.tblDiscounts.ToList().Select(s => new
             {
                 IdDiscount = s.IdDiscount,
+                DiscountKey = s.DiscountKey,
                 DiscountPeriod = String.Format("Amount: {0}% - From Date -- {1}   To Date -- {2} ", s.DiscountAmount, s.StartDateOfDiscount, s.EndDateOfDiscount)
-            }).OrderBy(s => s.IdDiscount);
+            }).Where(x => x.DiscountKey != null).OrderBy(s => s.IdDiscount);
 
             var model = new ApplyToUsersViewModel
             {
                 SelectedDiscount = idDiscount.ToString(),
-                ListDiscounts = new SelectList(tbl, "IdDiscount", "DiscountPeriod", "---Select A Dessert ---")
+                ListDiscounts = new SelectList(tbl, "IdDiscount", "DiscountPeriod")
             };
-            
+
 
             return View(model);
         }
 
-  
+
         private int CountOrdersForUser(int idShopper)
         {
             var id = idShopper;
             var counter = (from tblCompleteOrder in db.tblCompleteOrders
-                             where tblCompleteOrder.IdShopper == id
-                             select tblCompleteOrder.IdShopper
+                           where tblCompleteOrder.IdShopper == id
+                           select tblCompleteOrder.IdShopper
                              ).Count();
             return counter;
         }
-        
+
         public ActionResult ShoppersForDIscount(int? id)
         {
             //id = 0;
@@ -202,27 +206,22 @@
             var tbl = db.tblShoppers.Include(i => i.tblDiscount);
             foreach (var item in tbl)
             {
-      
-                    model.Add(new ShopersForDiscountsModel
-                    {
-                        IdDiscount = idDiscount,
-                        IdShopper = item.IdShopper,
-                        FullName = String.Format("{0} {1} {2}", item.FirstName, item.SecondName, item.LastName),
-                        OrdersCount = CountOrdersForUser(item.IdShopper),
-                        DiscountAmount =( item.tblDiscount == null)?0: item.tblDiscount.DiscountAmount,
-                        PeriodDiscount = (item.tblDiscount != null)? item.tblDiscount.StartDateOfDiscount + " - " + item.tblDiscount.EndDateOfDiscount:""
-                    });
+
+                model.Add(new ShopersForDiscountsModel
+                {
+                    IdDiscount = idDiscount,
+                    IdShopper = item.IdShopper,
+                    FullName = String.Format("{0} {1} {2}", item.FirstName, item.SecondName, item.LastName),
+                    OrdersCount = CountOrdersForUser(item.IdShopper),
+                    DiscountAmount = (item.tblDiscount == null) ? 0 : item.tblDiscount.DiscountAmount,
+                    PeriodDiscount = (item.tblDiscount != null) ? item.tblDiscount.StartDateOfDiscount + " - " + item.tblDiscount.EndDateOfDiscount : ""
+                });
             }
 
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
             int pageNumber = 1;
 
             return PartialView("~/Areas/Store/Views/Discounts/_ShoppersPartial.cshtml", model.ToPagedList(pageNumber, pageSize));
-        }
-
-        public ActionResult ApplyDiscountToProducts()
-        {
-            return View();
         }
 
         public JsonResult ChangeUserDiscount(int id, int disc, bool check)
@@ -259,5 +258,126 @@
 
             return Json(data);
         }
+
+        #endregion
+
+        #region Apply to products
+
+        public ActionResult ApplyDiscountToProducts(int? id)
+        {
+            id = 0;
+            int idDiscount = (id ?? 0);
+            var tbl = db.tblDiscounts.ToList().Select(s => new
+            {
+                IdDiscount = s.IdDiscount,
+                DiscountKey = s.DiscountKey,
+                DiscountPeriod = String.Format("Amount: {0}% - From Date -- {1}   To Date -- {2} ", s.DiscountAmount, s.StartDateOfDiscount, s.EndDateOfDiscount)
+            }).Where(x => x.DiscountKey == null).OrderBy(s => s.IdDiscount);
+
+            var model = new ApplyToUsersViewModel
+            {
+                SelectedDiscount = idDiscount.ToString(),
+                ListDiscounts = new SelectList(tbl, "IdDiscount", "DiscountPeriod")
+            };
+
+
+            return View(model);
+        }
+
+        public ActionResult ProductsForDIscount(int? id)
+        {
+            //id = 0;
+            int idDiscount = (id ?? 0);
+
+            var model = new List<ProductsForDiscountsModel>();
+
+            var tbl = db.tblProducts.Include(i => i.tblDiscount).Include(i => i.tblCurrency);
+            foreach (var item in tbl)
+            {
+                if (item.IdDiscount == null)
+                {
+                    model.Add(new ProductsForDiscountsModel
+                    {
+                        IdProduct = item.IdProduct,
+                        Media = item.Media,
+                        OrdersCount = CountOrdersForProducts(item.IdProduct),
+                        ProductName = item.ProductName,
+                        IsPublish = item.IsPublish,
+                        Price = PriceForProduct(item.IdProduct)
+                    });
+                    continue;
+                    
+                }
+                model.Add(new ProductsForDiscountsModel
+                {
+                    IdDiscount = idDiscount,
+                    DiscountAmount = item.tblDiscount.DiscountAmount,
+                    IdProduct = item.IdProduct,
+                    Media = item.Media,
+                    OrdersCount = CountOrdersForProducts(item.IdProduct),
+                    ProductName = item.ProductName,
+                    IsPublish = item.IsPublish,
+                    PeriodDiscount = (item.tblDiscount != null) ? item.tblDiscount.StartDateOfDiscount + " - " + item.tblDiscount.EndDateOfDiscount : "",
+                   Price = PriceForProduct(item.IdProduct)
+                });
+                
+            }
+
+            int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
+            int pageNumber = 1;
+
+            return PartialView("~/Areas/Store/Views/Discounts/_ProductsPartial.cshtml", model.ToPagedList(pageNumber, pageSize));
+        }
+
+        private int CountOrdersForProducts(int idProduct)
+        {
+            var id = idProduct;
+            var counter = (from tblOrder in db.tblOrders
+                where tblOrder.IdProduct == id
+                select tblOrder.IdOrder).Count();
+            return counter;
+        }
+
+        public JsonResult ChangeProductDiscount(int id, int disc, bool check)
+        {
+            var icheck = check;
+            var idProduct = id;
+            var idDiscount = disc;
+
+            if (idDiscount == 0)
+            {
+                var firstOrDefault = db.tblDiscounts.Where(i => i.DiscountKey == null).FirstOrDefault();
+                if (firstOrDefault != null) idDiscount = firstOrDefault.IdDiscount;
+            }
+
+            var tbl = db.tblProducts.Find(idProduct);
+            var discountAmount = 0;
+            var period = "";
+            var price = "";
+            if (icheck)
+            {
+                tbl.IdDiscount = idDiscount;
+                discountAmount = db.tblDiscounts.Find(idDiscount).DiscountAmount;
+                period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount, db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
+              
+            }
+            else
+                tbl.IdDiscount = null;
+
+
+            db.SaveChanges();
+            var data = new List<string>();
+            data.Add(discountAmount.ToString());
+            data.Add(period);
+
+            price = PriceForProduct(idProduct);
+
+            data.Add(price);
+            var newDiscount = discountAmount;
+
+            return Json(data);
+        }
+
+        #endregion
     }
 }
