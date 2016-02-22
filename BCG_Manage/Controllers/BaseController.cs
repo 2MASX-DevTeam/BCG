@@ -176,9 +176,9 @@ namespace BCG_Manage.Controllers
         }
 
 
-        public string RenderViewToString(string TemplateName, object model)
+        public string RenderViewToString(string templateName, object model)
         {
-            TemplateName = "~/Areas/EmailTemplates/Views/Email/" + TemplateName + ".cshtml";
+            templateName = "~/Areas/EmailTemplates/Views/Email/" + templateName + ".cshtml";
            // var controller = new EmailController();
             
             ViewData.Model = model;
@@ -187,7 +187,7 @@ namespace BCG_Manage.Controllers
             {
                 using (StringWriter sw = new StringWriter())
                 {
-                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, TemplateName, null);
+                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, templateName, null);
                     ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
                     viewResult.View.Render(viewContext, sw);
                     viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);

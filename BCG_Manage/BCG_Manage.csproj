@@ -210,6 +210,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\EmailTemplates\Controllers\EmailController.cs" />
     <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
+    <Compile Include="Areas\EmailTemplates\Models\CouponsModels.cs" />
     <Compile Include="Areas\EmailTemplates\Models\EmailModels.cs" />
     <Compile Include="Areas\Store\Controllers\CouponsController.cs" />
     <Compile Include="Areas\Store\Controllers\CurrenciesController.cs" />
@@ -1154,6 +1155,7 @@
     <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToProducts.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\_ShoppersPartial.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\_ProductsPartial.cshtml" />
+    <Content Include="Areas\EmailTemplates\Views\Email\CouponsEmail.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>

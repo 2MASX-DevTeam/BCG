@@ -1,4 +1,6 @@
-﻿namespace BCG_Manage.Areas.Store.Controllers
+﻿using BCG_Manage.Areas.EmailTemplates.Models;
+
+namespace BCG_Manage.Areas.Store.Controllers
 {
     using BCG_DB.Entity.Store;
     using System;
@@ -247,10 +249,14 @@
                 {
                     tbl.IdDiscount = idDiscount;
                     discountAmount = db.tblDiscounts.Find(idDiscount).DiscountAmount;
-                    period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount, db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
+                    period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount,
+                        db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
                 }
                 else
+                {
                     tbl.IdDiscount = null;
+                    tbl.IsMessageForDiscountSended = false;
+                }
 
                 db.SaveChanges();
                 var data = new List<string>();
@@ -270,20 +276,50 @@
         }
         
 
-        public JsonResult SendCouponToUser(int id)
+        public JsonResult SendCouponToUser(int IdShopper)
         {
+            int idShopper =IdShopper;
+
             if (Request.IsAjaxRequest())
             {
-
-                return Json( new
+          
+                try
                 {
-                    Data = "Booked!"
-                });
+                    var strDiscountPeriod = "";
+                    var name = "";
+
+                    var tbl = db.tblShoppers.Find(idShopper);
+                    var tblDisc = db.tblDiscounts.Find(tbl.IdDiscount);
+                    strDiscountPeriod = String.Format("From: {0} To: {1}", tblDisc.StartDateOfDiscount,
+                tblDisc.EndDateOfDiscount);
+
+                    name = String.Format("{0} {1}", tbl.FirstName, tbl.LastName);
+
+                    var model = new CouponsModels
+                    {
+                        Name = name,
+                        Email = tbl.Email,
+                        DiscountDuration = strDiscountPeriod,
+                        DiscountKey = tblDisc.DiscountKey,
+                        DiscountAmount = tblDisc.DiscountAmount + " %"
+                    };
+            
+
+                    var emailBody = RenderViewToString("CouponsEmail", model);
+                    SendEmail(tbl.Email, "New coupon", emailBody);
+
+                    tbl.IsMessageForDiscountSended = true;
+                    db.SaveChanges();
+                    return Json(tbl.Email.ToString());
+
+                }
+                catch (Exception ex)
+                {
+                    SendExceptionToAdmin(ex.ToString());
+                    return Json("Error in update");
+                }
             }
-            return Json(new
-            {
-                Data = "Booked!"
-            });
+            return Json("Error!");
         }
 
         #endregion

@@ -92,7 +92,7 @@
                                 @Ajax.ActionLink((item.IsMessageSended)?"Message is already sent ":"Send message",
                                "SendCouponToUser",
                                "Discounts",
-                               new { id = item.IdShopper },
+                               new { IdShopper = item.IdShopper, IdDiscount = item.IdDiscount },
                                new AjaxOptions { HttpMethod = "POST", OnBegin = "CouponTransactionBegin" ,OnComplete = "CouponIsSended" },
                                new { @class = (!item.IsMessageSended) ? "btn btn-success btnSendMessage" : "btn btn-default btnSendMessage" })
 
@@ -164,18 +164,39 @@
     //        return false;
     //    });
     //});
+    $('.btnSendMessage').mousedown(function(e) {
+        e.preventDefault();
+        if ($(this).hasClass("btn-default")) {
+            var r = confirm("Are you shore you want to send message again?");
+            if (r == true) {
+                $(this).click();
+            } else {
+                return;
+            }
+        }
+    });
+
     function CouponIsSended(request, status) {
-        var btn = $(this).parents('tr').find('.btnSendMessage');
+
+        var btn = $(this);
+        var root = $(this).parent();
+        btn.removeClass();
         console.log(status);
         if (status === "success") {
+            $(btn).addClass('btn btn-default btnSendMessage');
+            console.log(request);
             btn.fadeOut(200);
             btn.html("Message is sent");
             btn.fadeIn(100);
+            root.append(request.responseJSON);
+        }
+        else {
+            $(btn).addClass('btn btn-danger btnSendMessage');
         }
     };
 
     function CouponTransactionBegin() {
-        var btn = $(this).parents('tr').find('.btnSendMessage');
+        var btn = $(this);
         btn.fadeOut(200);
         btn.html("Message is in transit");
         btn.fadeIn(100);
@@ -234,12 +255,15 @@
     };
 
     function OnAjaxRequestComplete(request, status) {
+        var divBtnSend = $(this).parents('tr').find('.btnSendMessage');
         var divDisc = $(this).parents('tr').find('.discount');
         var divPer = $(this).parents('tr').find('.periodDiscount');
         divDisc.text(request.responseJSON[0] + " %");
         divPer.text(request.responseJSON[1]);
         // console.log(request);
-
+        divBtnSend.removeClass();
+        divBtnSend.html("Send message");
+        divBtnSend.addClass("btn btn-success btnSendMessage");
         $(divDisc).animate({
             opacity: 1
         }, function () {
