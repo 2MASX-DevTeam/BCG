@@ -45,6 +45,7 @@ namespace BCG_Manage.Areas.Store.Models
 
         public string PeriodDiscount { get; set; }
 
+        public bool IsMessageSended { get; set; }
     }
 
     public class ProductsForDiscountsModel

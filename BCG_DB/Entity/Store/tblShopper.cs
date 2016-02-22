@@ -53,6 +53,10 @@ namespace BCG_DB.Entity.Store
 
         [StringLength(100)]
         public string CompanyName { get; set; }
+        
+        public DateTime? DateCreated { get; set; }
+
+        public bool? IsMessageForDiscountSended { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCompleteOrder> tblCompleteOrders { get; set; }

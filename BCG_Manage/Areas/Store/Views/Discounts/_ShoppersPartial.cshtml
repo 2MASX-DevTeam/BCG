@@ -52,6 +52,7 @@
                         <th>
                             Added To Discount
                         </th>
+                        <th>Functions</th>
                     </tr>
                 </thead>
 
@@ -86,6 +87,18 @@
                                 @GetCheckBoxes(item.IdShopper,  item.IdDiscount , item.DiscountAmount)
 
                             </td>
+                            <td>
+
+                                @Ajax.ActionLink((item.IsMessageSended)?"Message is already sent ":"Send message",
+                               "SendCouponToUser",
+                               "Discounts",
+                               new { id = item.IdShopper },
+                               new AjaxOptions { HttpMethod = "POST", OnBegin = "CouponTransactionBegin" ,OnComplete = "CouponIsSended" },
+                               new { @class = (!item.IsMessageSended) ? "btn btn-success btnSendMessage" : "btn btn-default btnSendMessage" })
+
+                            </td>
+
+
 
 
                         </tr>
@@ -107,8 +120,7 @@
                                         {
                                             OnBegin = "OnAjaxRequestBeginPartial",
                                             InsertionMode = InsertionMode.Replace,
-                                            OnComplete = "OnAjaxRequestComplete",
-                                            HttpMethod = "POST"
+                                            OnComplete = "OnAjaxRequestComplete"
                                         }, new { @class = "", id = "changeDiscountForm" }))
     {
         @*<a href="#" class="columns small-box-footer" onclick="ChangeUserDiscount()">
@@ -125,9 +137,17 @@
 
 
         </div>
-}
+    }<div style="display: none" id="dvhide"></div>
 }
 @functions{
+
+    string GetClass(bool value)
+    {
+        if (value)
+            return "";
+        else
+            return "";
+    }
     bool GetValue(int value)
     {
         if (value == 0)
@@ -138,6 +158,29 @@
     }
 }
 <script>
+    //$(function () {
+    //    $('.btnSendMessage').click(function () {
+    //        $('#dvhide').load(this.href);
+    //        return false;
+    //    });
+    //});
+    function CouponIsSended(request, status) {
+        var btn = $(this).parents('tr').find('.btnSendMessage');
+        console.log(status);
+        if (status === "success") {
+            btn.fadeOut(200);
+            btn.html("Message is sent");
+            btn.fadeIn(100);
+        }
+    };
+
+    function CouponTransactionBegin() {
+        var btn = $(this).parents('tr').find('.btnSendMessage');
+        btn.fadeOut(200);
+        btn.html("Message is in transit");
+        btn.fadeIn(100);
+    }
+
     var loader = "<i class='fa fa-refresh fa-spin pull-right' id='loadingstate'></i>";
 
     $('input').on('ifChecked', function (event) {
@@ -149,8 +192,11 @@
 
         var form = $(this).parents('form');
 
+        var checkBoxValue = $(this).parents('tr').find('.btnSendMessage');
+        checkBoxValue.show(100);
+
         var stract = form.attr("action").slice(0, -5);
-  //      console.log(stract);
+        //      console.log(stract);
 
         form.attr("action", stract + value);
         $(form).find('label').append(loader);
@@ -164,11 +210,13 @@
         if (value === 'on') {
             value = false;
         }
+        var checkBoxValue = $(this).parents('tr').find('.btnSendMessage');
+        checkBoxValue.hide(100);
 
         var form = $(this).parents('form');
       
         var stract = form.attr("action").slice(0, -4);
-    //    console.log(stract);
+        //    console.log(stract);
 
         form.attr("action", stract + value);
         $(form).find('label').append(loader);
@@ -190,7 +238,7 @@
         var divPer = $(this).parents('tr').find('.periodDiscount');
         divDisc.text(request.responseJSON[0] + " %");
         divPer.text(request.responseJSON[1]);
-       // console.log(request);
+        // console.log(request);
 
         $(divDisc).animate({
             opacity: 1
@@ -209,6 +257,13 @@
         $('.icheck').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'icheckbox_square-blue'
+        });
+
+        $('.btnSendMessage').each(function() {
+            var checkBoxValue = $(this).parents('tr').find('.icheck');
+            if (!checkBoxValue.is(':checked')) {
+                $(this).css('display', 'none');
+            }
         });
     });
 

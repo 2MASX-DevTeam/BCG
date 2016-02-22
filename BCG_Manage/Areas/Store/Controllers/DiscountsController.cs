@@ -214,7 +214,8 @@
                     FullName = String.Format("{0} {1} {2}", item.FirstName, item.SecondName, item.LastName),
                     OrdersCount = CountOrdersForUser(item.IdShopper),
                     DiscountAmount = (item.tblDiscount == null) ? 0 : item.tblDiscount.DiscountAmount,
-                    PeriodDiscount = (item.tblDiscount != null) ? item.tblDiscount.StartDateOfDiscount + " - " + item.tblDiscount.EndDateOfDiscount : ""
+                    PeriodDiscount = (item.tblDiscount != null) ? item.tblDiscount.StartDateOfDiscount + " - " + item.tblDiscount.EndDateOfDiscount : "",
+                    IsMessageSended = item.IsMessageForDiscountSended.GetValueOrDefault()
                 });
             }
 
@@ -226,37 +227,63 @@
 
         public JsonResult ChangeUserDiscount(int id, int disc, bool check)
         {
-            var icheck = check;
-            var idShopper = id;
-            var idDiscount = disc;
-
-            if (idDiscount == 0)
+            try
             {
-                var firstOrDefault = db.tblDiscounts.FirstOrDefault();
-                if (firstOrDefault != null) idDiscount = firstOrDefault.IdDiscount;
+                var icheck = check;
+                var idShopper = id;
+                var idDiscount = disc;
+
+                if (idDiscount == 0)
+                {
+                    var firstOrDefault = db.tblDiscounts.FirstOrDefault();
+                    if (firstOrDefault != null) idDiscount = firstOrDefault.IdDiscount;
+                }
+
+                var tbl = db.tblShoppers.Find(idShopper);
+                var discountAmount = 0;
+                var period = "";
+
+                if (icheck)
+                {
+                    tbl.IdDiscount = idDiscount;
+                    discountAmount = db.tblDiscounts.Find(idDiscount).DiscountAmount;
+                    period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount, db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
+                }
+                else
+                    tbl.IdDiscount = null;
+
+                db.SaveChanges();
+                var data = new List<string>();
+                data.Add(discountAmount.ToString());
+                data.Add(period);
+
+                var newDiscount = discountAmount;
+
+                return Json(data);
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                return Json("ERROR!");
             }
 
-            var tbl = db.tblShoppers.Find(idShopper);
-            var discountAmount = 0;
-            var period = "";
+        }
+        
 
-            if (icheck)
+        public JsonResult SendCouponToUser(int id)
+        {
+            if (Request.IsAjaxRequest())
             {
-                tbl.IdDiscount = idDiscount;
-                discountAmount = db.tblDiscounts.Find(idDiscount).DiscountAmount;
-                period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount, db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
+
+                return Json( new
+                {
+                    Data = "Booked!"
+                });
             }
-            else
-                tbl.IdDiscount = null;
-
-            db.SaveChanges();
-            var data = new List<string>();
-            data.Add(discountAmount.ToString());
-            data.Add(period);
-
-            var newDiscount = discountAmount;
-
-            return Json(data);
+            return Json(new
+            {
+                Data = "Booked!"
+            });
         }
 
         #endregion
@@ -306,7 +333,7 @@
                         Price = PriceForProduct(item.IdProduct)
                     });
                     continue;
-                    
+
                 }
                 model.Add(new ProductsForDiscountsModel
                 {
@@ -318,9 +345,9 @@
                     ProductName = item.ProductName,
                     IsPublish = item.IsPublish,
                     PeriodDiscount = (item.tblDiscount != null) ? item.tblDiscount.StartDateOfDiscount + " - " + item.tblDiscount.EndDateOfDiscount : "",
-                   Price = PriceForProduct(item.IdProduct)
+                    Price = PriceForProduct(item.IdProduct)
                 });
-                
+
             }
 
             int pageSize = Convert.ToInt32(ConfigurationManager.AppSettings["ItemsPerPage"]);
@@ -333,51 +360,61 @@
         {
             var id = idProduct;
             var counter = (from tblOrder in db.tblOrders
-                where tblOrder.IdProduct == id
-                select tblOrder.IdOrder).Count();
+                           where tblOrder.IdProduct == id
+                           select tblOrder.IdOrder).Count();
             return counter;
         }
 
         public JsonResult ChangeProductDiscount(int id, int disc, bool check)
         {
-            var icheck = check;
-            var idProduct = id;
-            var idDiscount = disc;
-
-            if (idDiscount == 0)
+            try
             {
-                var firstOrDefault = db.tblDiscounts.Where(i => i.DiscountKey == null).FirstOrDefault();
-                if (firstOrDefault != null) idDiscount = firstOrDefault.IdDiscount;
-            }
+                var icheck = check;
+                var idProduct = id;
+                var idDiscount = disc;
 
-            var tbl = db.tblProducts.Find(idProduct);
-            var discountAmount = 0;
-            var period = "";
-            var price = "";
-            if (icheck)
+                if (idDiscount == 0)
+                {
+                    var firstOrDefault = db.tblDiscounts.Where(i => i.DiscountKey == null).FirstOrDefault();
+                    if (firstOrDefault != null) idDiscount = firstOrDefault.IdDiscount;
+                }
+
+                var tbl = db.tblProducts.Find(idProduct);
+                var discountAmount = 0;
+                var period = "";
+                var price = "";
+                if (icheck)
+                {
+                    tbl.IdDiscount = idDiscount;
+                    discountAmount = db.tblDiscounts.Find(idDiscount).DiscountAmount;
+                    period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount, db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
+
+                }
+                else
+                    tbl.IdDiscount = null;
+
+
+                db.SaveChanges();
+                var data = new List<string>();
+                data.Add(discountAmount.ToString());
+                data.Add(period);
+
+                price = PriceForProduct(idProduct);
+
+                data.Add(price);
+                var newDiscount = discountAmount;
+
+                return Json(data);
+            }
+            catch (Exception ex)
             {
-                tbl.IdDiscount = idDiscount;
-                discountAmount = db.tblDiscounts.Find(idDiscount).DiscountAmount;
-                period = String.Format("{0} - {1}", db.tblDiscounts.Find(idDiscount).StartDateOfDiscount, db.tblDiscounts.Find(idDiscount).EndDateOfDiscount);
-              
+                SendExceptionToAdmin(ex.ToString());
+                return Json("ERROR!");
             }
-            else
-                tbl.IdDiscount = null;
-
-
-            db.SaveChanges();
-            var data = new List<string>();
-            data.Add(discountAmount.ToString());
-            data.Add(period);
-
-            price = PriceForProduct(idProduct);
-
-            data.Add(price);
-            var newDiscount = discountAmount;
-
-            return Json(data);
         }
 
         #endregion
+
+
     }
 }
