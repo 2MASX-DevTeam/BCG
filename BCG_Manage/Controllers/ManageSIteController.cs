@@ -71,11 +71,38 @@ namespace BCG_Manage.Controllers
             var model = new LayoutModels();
             model.CountAllRoles = dbUsers.Roles.Count();
             model.CountAllUsers = dbUsers.Users.Count();
+            var tbl = dbUsers.Users.Find(User.Identity.GetUserId());
+            var str = tbl.TblProfilePictures.FirstOrDefault(item => item.IsProfile == true);
+
+            model.UrlProfilePicture = (str != null) ? "../"+ str.PicturePath : "http://placehold.it/300x300";
+
+            model.Name = String.Format("{0} {1}", tbl.FirstName, tbl.LastName);
 
             var partial = PartialView("_MainSidebarPartial", model);
 
             return partial;
         }
+
+        public ActionResult GetControlSideBarPartial()
+        {
+            var partial = PartialView("_RIghtSideBarPartial");
+
+            return partial;
+        }
+
+        public ActionResult GetHeaderPartial()
+        {
+            var model = new HeaderModel();
+            var tbl = dbUsers.Users.Find(User.Identity.GetUserId());
+            var str = tbl.TblProfilePictures.FirstOrDefault(item => item.IsProfile == true);
+            
+            model.UrlProfilePicture = (str != null) ? "../" + str.PicturePath: "http://placehold.it/300x300";
+            model.MemberSince = tbl.DateCreated.ToString("MMMM yyyy");
+            model.Name = String.Format("{0} {1}", tbl.FirstName, tbl.LastName);
+
+            return PartialView("~/Views/Shared/_HeaderPartial.cshtml", model);
+        }
+
 
         public ActionResult UniqueVisitors()
         {

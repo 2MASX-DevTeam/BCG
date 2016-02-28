@@ -1263,6 +1263,7 @@
     <Content Include="Views\Shared\IndexPartials\_UserRegistrationsPartial.cshtml" />
     <Content Include="Views\Shared\IndexPartials\_LatestOrdersPartial.cshtml" />
     <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
+    <Content Include="Views\Shared\_RIghtSideBarPartial.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

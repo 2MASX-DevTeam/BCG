@@ -50,58 +50,93 @@
 <body class="hold-transition skin-blue  sidebar-mini">
     <div class="wrapper">
 
-        @{
-            Html.RenderPartial("_HeaderPartial");
-        }
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="@Url.Action("Index", "ManageSite", new {area = ""})" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>AD</b>M</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin</b>BC-VIT</span>
+            </a>
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav" id="header">
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </nav>
+        </header>
+
         <script>
-            $(document).ready(function () {
-                $("#sidebar").load("/ManageSite/GetSideBarPartial", function () {
+          
+                $.get("/ManageSite/GetHeaderPartial", function (data) {
+                    $("#header").prepend(data);
+                });
+
+
+                $.get( "/ManageSite/GetSideBarPartial" ,function (data) {
+                    $("#sidebar").html(data);
                     $("#sectionsb").show(500);
                 });
-            });
-   
+
+
+                //$.get("/ManageSite/GetControlSideBarPartial", function (data) {
+                //    $("#right-sidebar").prepend(data);
+                //});
+         
+
         </script>
         <aside class="main-sidebar" id="sidebar">
 
-            <img src="~/Images/ajax-loader.gif" style="margin: 50% 0 0 20%"/>
-            </aside>
-            @*@Ajax.ActionLink("Get server time", "GetSomething", "ManageSite",
-            new AjaxOptions
-            {
-                UpdateTargetId = "replace",
-                HttpMethod = "GET",
-                InsertionMode = InsertionMode.Replace
-                // AllowCache = true,
-                // Confirm = "Are you sure you want to update the time?"
-            }, new { @class = "btn btn-primary", id = "replace"})*@
+            <img src="~/Images/ajax-loader.gif" style="margin: 50% 0 0 20%" />
+        </aside>
+        <div class="content-wrapper">
 
 
-            @*@{
-                Html.RenderPartial("_MainSidebarPartial");
-
-            }*@
+            @RenderBody()
 
 
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
+        </div><!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.3.0
+            </div>
+            <strong>Copyright &copy; 2015 - @DateTime.Now.Year <a href="http://s2kdesign.com">Svetlin Krastanov</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark" id="right-sidebar">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+               
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                   
+                </div><!-- /.tab-pane -->
+       
+            </div>
+        </aside><!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+        immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 
 
-                @RenderBody()
-
-
-            </div><!-- /.content-wrapper -->
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.3.0
-                </div>
-                <strong>Copyright &copy; 2015 - @DateTime.Now.Year <a href="http://s2kdesign.com">Svetlin Krastanov</a>.</strong> All rights reserved.
-            </footer>
-
-
-</div><!-- ./wrapper -->
-@Scripts.Render("~/bundles/jqueryval") 
+    </div><!-- ./wrapper -->
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
-
     <!-- AdminLTE for demo purposes -->
     <script src="~/dist/js/demo.js"></script>
 
