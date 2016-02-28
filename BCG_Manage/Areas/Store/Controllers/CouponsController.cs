@@ -85,7 +85,7 @@
             
             page = 1;
 
-            var tbl = db.tblDiscounts.AsQueryable();
+            var tbl = db.tblDiscounts.Where(i => i.DiscountKey != null).AsQueryable();
 
             switch (sortOrder)
             {

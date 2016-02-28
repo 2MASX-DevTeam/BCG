@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -11,7 +14,7 @@ using BCG_Manage.Models;
 namespace BCG_Manage.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -32,9 +35,9 @@ namespace BCG_Manage.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -331,7 +334,7 @@ namespace BCG_Manage.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -382,6 +385,133 @@ namespace BCG_Manage.Controllers
             Error
         }
 
-#endregion
+        #endregion
+
+        #region Profile Pictures
+
+        public ActionResult ChangeProfilePicture()
+        {
+            var tbl = UserManager.FindById(User.Identity.GetUserId()).TblProfilePictures.ToList();
+            var firstOrDefault = tbl.Where(item => item.IsProfile == true).Select(item => item.PicturePath).FirstOrDefault();
+
+
+            var listUrls = tbl.Select(item => item.PicturePath).ToList();
+            var model = new ProfilePictureModel
+            {
+                ListUrls = listUrls
+            };
+
+            if (firstOrDefault != null)
+            {
+                var selectedPicture = firstOrDefault.ToString();
+
+                listUrls.RemoveAt(listUrls.FindIndex(item => item == selectedPicture));
+                listUrls.Insert(0, selectedPicture);
+                model.SelectedPicture = selectedPicture;
+                model.IsActiveProfile = true;
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ImageUploaderHandler(IEnumerable<HttpPostedFileBase> files)
+        {
+            if (files != null && Request.IsAjaxRequest())
+            {
+                foreach (var file in files)
+                {
+                    
+                    // Verify that the user selected a file
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string[] allowedFileExtensions = new string[] { ".jpg", ".gif", ".png", ".jpeg" };
+
+                        if (!allowedFileExtensions.Contains(file.FileName.Substring(file.FileName.LastIndexOf('.'))))
+                           return Json(new JsonResult { Data = new {Result = false}});
+                        
+                        var fileName = String.Format("{0}{1}", DateTime.Now.ToString("yy-MM-dd_HH-mm-ss"), Path.GetExtension(file.FileName));
+                        var rootFolder = Server.MapPath(String.Format("{0}/{1}", "../Uploads/ProfilePictures", User.Identity.GetUserId()));
+                        var isProfile = false;
+                        
+                        if (!Directory.Exists(rootFolder))
+                        {
+                            Directory.CreateDirectory(rootFolder);
+                            isProfile = true;
+                        }
+
+                        var path = Path.Combine(rootFolder, fileName);
+                        //file.SaveAs(path);
+
+                        Image imgOriginal = Image.FromStream(file.InputStream);
+                        
+                        imgOriginal = ResizeImage(imgOriginal, 300, 300);
+
+                        imgOriginal.Save(path);
+
+                        ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+                        var link = String.Format("{0}/{1}/{2}", "../Uploads/ProfilePictures", User.Identity.GetUserId(), fileName);
+                        var model = new tblProfilePicturesAdmins
+                        {
+                            PicturePath = link,
+                            IsProfile = isProfile,
+                            IsVisible = true,
+                            UserName = User.Identity.Name,
+                            DateChanged = DateTime.Now,
+                            DateCreated = DateTime.Now,
+                            User = user
+                        };
+
+                        user.TblProfilePictures.Add(model);
+                        IdentityResult result = await UserManager.UpdateAsync(user);
+
+                        var json = new JsonResult
+                        {
+                            Data = new { Result = result.Succeeded, Link = link }
+                        };
+                        return Json(json);
+                    }
+                }
+            }
+            var jsonErr = new JsonResult
+            {
+                Data = new { Result = false, Link = "http://placehold.it/400x300" }
+            };
+            return Json(jsonErr);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeProfileClick(string url, bool isActive)
+        {
+            var json = new JsonResult
+            {
+                Data = new { Result = true }
+            };
+
+            try
+            {
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                var tbl = user.TblProfilePictures.FirstOrDefault(item => item.IsProfile == true);
+        
+
+                if (tbl != null) tbl.IsProfile = false;
+
+                if (isActive)
+                {
+                     tbl = user.TblProfilePictures.FirstOrDefault(item => item.PicturePath == url);
+                     tbl.IsProfile = true;
+                }
+
+                IdentityResult result = await UserManager.UpdateAsync(user);
+
+            }
+            catch (Exception ex)
+            {
+                SendExceptionToAdmin(ex.ToString());
+                json.Data = new {Result = false};
+            }
+       
+            return Json(json);
+        }
+        #endregion
     }
 }

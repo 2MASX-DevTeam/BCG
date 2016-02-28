@@ -2,5 +2,9 @@
   {
     "outputFile": "Scripts/IndexChart.es5.js",
     "inputFile": "Scripts/IndexChart.js"
+  },
+  {
+    "outputFile": "Content/CustomTemplate.css",
+    "inputFile": "Content/CustomTemplate.less"
   }
 ]

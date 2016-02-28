@@ -274,15 +274,15 @@ namespace BCG_Manage.Areas.Store.Controllers
             }
 
         }
-        
+
 
         public JsonResult SendCouponToUser(int IdShopper)
         {
-            int idShopper =IdShopper;
+            int idShopper = IdShopper;
 
             if (Request.IsAjaxRequest())
             {
-          
+
                 try
                 {
                     var strDiscountPeriod = "";
@@ -303,7 +303,7 @@ namespace BCG_Manage.Areas.Store.Controllers
                         DiscountKey = tblDisc.DiscountKey,
                         DiscountAmount = tblDisc.DiscountAmount + " %"
                     };
-            
+
 
                     var emailBody = RenderViewToString("CouponsEmail", model);
                     SendEmail(tbl.Email, "New coupon", emailBody);
@@ -451,6 +451,39 @@ namespace BCG_Manage.Areas.Store.Controllers
 
         #endregion
 
+        public ActionResult DeleteDiscount(int id)
+        {
+            var idDiscount = id;
+            using (var scope = db.Database.BeginTransaction())
+            {
+                try
+                {
 
+                    var tblProd = db.tblProducts.Where(i => i.IdDiscount == idDiscount);
+                    foreach (var item in tblProd)
+                    {
+                        item.IdDiscount = null;
+                    }
+
+                    var tbl = db.tblDiscounts.Find(idDiscount);
+                    db.tblDiscounts.Remove(tbl);
+                    db.SaveChanges();
+
+                    scope.Commit();
+
+                    TempData["ResultSuccess"] = "Success in deleting discount!";
+                    return RedirectToAction("ViewAllDiscounts");
+                }
+                catch
+                (Exception ex)
+                {
+
+                    TempData["ResultError"] = "Error in deleting discount!";
+                    scope.Rollback();
+                    SendExceptionToAdmin(ex.ToString());
+                    return RedirectToAction("ViewAllDiscounts");
+                }
+            }
+        }
     }
 }

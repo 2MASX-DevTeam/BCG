@@ -48,7 +48,25 @@
                                         ID Coupon:
                                     </a>
                                 </th>
-                     
+                                <th>
+                                    <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.IdDiscountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Discount Amount:
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.IdDiscountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Products in discount:
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.IdDiscountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Period:
+                                    </a>
+                                </th>
+
 
                                 <th>
                                     Functions
@@ -69,24 +87,18 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CounterProducts)
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CounterUsers)
-                                    </td>
-                                    <td>
+                                    <td>s
                                         @Html.DisplayFor(modelItem => item.StartDate)
-                                    </td>
-                                    <td>
+                          -
                                         @Html.DisplayFor(modelItem => item.EndDate)
                                     </td>
 
                                     <td>
+                                        
                                         <span>
-                                            @Html.ActionLink("Apply To Users", "ApplyDiscountToUsers", new { id = item.IdDiscount }, new { @class = "btn btn-info" })
+                                            @Html.ActionLink("Apply To Products", "ApplyDiscountToProducts", new { id = item.IdDiscount }, new { @class = "btn btn-info" })
                                         </span>
-                                        <span>
-                                            @Html.ActionLink("Apply To Products", "ApplyDiscountToUsers", new { id = item.IdDiscount }, new { @class = "btn btn-info" })
-                                        </span>
-                                        <span onclick="return confirm('Are you sure you want to delete resource: '+ '@item.IdDiscount'+'?')">
+                                        <span onclick="return confirm('Are you sure you want to delete discount?: '+ '@item.IdDiscount'+'?')">
                                             @Html.ActionLink("Delete", "DeleteDiscount", new { id = item.IdDiscount }, new { @class = "btn btn-danger" })
                                         </span>
                                        

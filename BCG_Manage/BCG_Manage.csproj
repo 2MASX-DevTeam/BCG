@@ -222,6 +222,7 @@
     <Compile Include="Areas\Store\Models\CustomerReviewsViewModel.cs" />
     <Compile Include="Areas\Store\Models\DiscountsViewModel.cs" />
     <Compile Include="Areas\Store\Models\OrdersViewModel.cs" />
+    <Compile Include="Areas\Store\Models\ShoppersViewModels.cs" />
     <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
@@ -252,6 +253,12 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CustomTemplate.css">
+      <DependentUpon>CustomTemplate.less</DependentUpon>
+    </Content>
+    <Content Include="Content\CustomTemplate.min.css">
+      <DependentUpon>CustomTemplate.css</DependentUpon>
+    </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
@@ -1156,10 +1163,12 @@
     <Content Include="Areas\Store\Views\Discounts\_ShoppersPartial.cshtml" />
     <Content Include="Areas\Store\Views\Discounts\_ProductsPartial.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\Email\CouponsEmail.cshtml" />
+    <Content Include="Areas\Store\Views\Shoppers\RegisterShopper.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\CustomTemplate.less" />
     <None Include="Properties\PublishProfiles\LocalPublish.pubxml" />
     <None Include="Properties\PublishProfiles\manage.bc-vit.bg - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
@@ -1253,6 +1262,7 @@
     <Content Include="Views\Shared\IndexPartials\_UniqueVisitorsPartial.cshtml" />
     <Content Include="Views\Shared\IndexPartials\_UserRegistrationsPartial.cshtml" />
     <Content Include="Views\Shared\IndexPartials\_LatestOrdersPartial.cshtml" />
+    <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1264,7 +1274,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
     <Folder Include="Areas\Store\Views\Products\" />
-    <Folder Include="Areas\Store\Views\Shoppers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
