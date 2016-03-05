@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Business Card Generator";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Add new Card.
+        <small>Store</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>Business Card Generator</li>
+        <li class="active">Add new card</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">   Add new card </h3>
+                </div><!-- /.box-header -->
+
+
+                <div class="box-body">
+
+                    <div class="col-lg-12 wrapper-bcg">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Custom Tabs -->
+                                <div class="nav-tabs-custom nav-add-new">
+                                    <ul class="nav nav-tabs">
+                                        @*<li class="active"><a href="#tab_start" data-toggle="tab">Start with little info</a></li>*@
+                                        <li class="active"><a href="#tab_create" data-toggle="tab">Create custom form</a></li>
+                                        <li><a href="#tab_txt_boxs" data-toggle="tab">Add text boxes</a></li>
+                                        <li><a href="#tab_future" data-toggle="tab">Add extra futures</a></li>
+                                        <li><a href="#tab_save" data-toggle="tab">Preview and save</a></li>
+
+                                        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                                    </ul>
+                             
+                                    <div class="tab-content bcg-content">
+                                        @*<div class="tab-pane active content-start" id="tab_start">
+                                                <b>How to use:</b>
+                                            </div>*@<!-- /.tab-pane -->
+                                   
+                                        <div class="tab-pane active  conent-create" id="tab_create">
+                                            <div class="form-group pull-left">
+                                                <label class="render-forms">
+                                                    <input type="radio" name="r3" class="flat-red" checked>
+                                                    <i>
+                                                        Curve form generator
+                                                    </i>
+                                                </label>
+                                                <label class="render-forms">
+                                                    <input type="radio" name="r3" class="flat-red " disabled>
+                                                    <i>
+                                                        Form with sharp Edges
+                                                    </i>
+                                                </label>
+                                            </div>
+                                            
+                                        @Html.Partial("_CurvedEdgesFormPartial")
+
+
+                                        
+
+
+                                        </div><!-- /.tab-pane -->
+
+                                        <div class="tab-pane" id="tab_txt_boxs">
+                                            tab_txt_boxs
+                                        </div><!-- /.tab-pane -->
+
+                                        <div class="tab-pane" id="tab_future">
+                                            tab_future
+                                        </div><!-- /.tab-pane -->
+
+                                        <div class="tab-pane" id="tab_save">
+                                            tab_future
+                                        </div><!-- /.tab-pane -->
+                                    </div><!-- /.tab-content -->
+                                </div><!-- nav-tabs-custom -->
+                            </div><!-- /.col -->
+                        </div> <!-- /.row -->
+                        <!-- END CUSTOM TABS -->
+                    </div>
+
+                </div><!-- /.box-body -->
+
+                <div class="box-footer">
+                    <div class="col-md-2">
+                        <button class="btn btn-success col-md-6">
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+            </div><!-- /.box -->
+        </div>
+
+
+    </div>
+
+
+</section><!-- /.content -->
+@section Scripts {
+    @Scripts.Render("~/areas/bcgenerator/scripts")
+
+    <script>
+  
+      
+        //Flat red color scheme for iCheck]
+        $(document).ready(function () {
+            var url = "/BCGenerator/CurvedEdgesPartial";
+            //$.get(url, function (data) {
+            //    $("#tab_create").append(data);
+            //});
+            //  $("#tab_create").load(url);
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+            $('.flat-blue').iCheck({
+                checkboxClass: 'icheckbox_flat-blue',
+                radioClass: 'iradio_flat-blue'
+            });
+        });
+
+    </script>
+}
+
+@section Styles
+{
+
+    @Styles.Render("~/areas/bcgenerator/styles")
+
+    <link href="~/plugins/iCheck/all.css" rel="stylesheet" />
+}

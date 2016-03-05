@@ -66,6 +66,7 @@ namespace BCG_Manage.Controllers
             return View(model);
         }
 
+        [OutputCache(Duration = 100)]
         public ActionResult GetSideBarPartial()
         {
             var model = new LayoutModels();
@@ -82,14 +83,14 @@ namespace BCG_Manage.Controllers
 
             return partial;
         }
-
+        [OutputCache(Duration = 100)]
         public ActionResult GetControlSideBarPartial()
         {
             var partial = PartialView("_RIghtSideBarPartial");
 
             return partial;
         }
-
+        [OutputCache(Duration = 100)]
         public ActionResult GetHeaderPartial()
         {
             var model = new HeaderModel();

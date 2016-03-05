@@ -12,8 +12,7 @@
         </div>
     </div>
     <!-- search form -->
-    <div class="sidebar-form">
-        <div class="input-group">
+    <div class="sidebar-form"><div class="input-group">
             <input type="text" name="q" class="form-control search-filter" placeholder="Search...">
             <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
@@ -22,9 +21,19 @@
     </div>
     <!-- /.search form -->
     <!-- sidebar menu: : style can be found in sidebar.less -->
- 
+
     <ul class="sidebar-menu">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">CARD GENERATOR</li>
+        <li class="treeview">
+            <a href="#">
+                <i class="fa  fa-dashboard"></i> <span>Create</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="@Url.Action("AddNewCard", "Main", new {area = "BCGenerator"}, null)"><i class="fa fa-circle-o"></i> Add new card</a></li>
+            </ul>
+        </li>
+
+    <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
             <a href="#">
                 <i class="fa  fa-dashboard"></i> <span>Statistics</span> <i class="fa fa-angle-left pull-right"></i>
@@ -41,8 +50,8 @@
                 <i class="fa fa-shopping-cart"></i> <span>Orders</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="@Url.Action("NotConfirmed", "Orders", new { area = "Store" })"><i class="fa fa-circle-o"></i>Not confirmed</a></li>
-                <li><a href="@Url.Action("ViewAll", "Orders", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("NotConfirmed", "Orders", new {area = "Store"})"><i class="fa fa-circle-o"></i>Not confirmed</a></li>
+                <li><a href="@Url.Action("ViewAll", "Orders", new {area = "Store"})"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 
@@ -75,9 +84,9 @@
                 <i class="glyphicon glyphicon-usd"></i> <span>Currencies</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="@Url.Action("AddNewCurrency", "Currencies", new { area = "Store" })"><i class="fa fa-circle-o"></i>Add new </a></li>
+                <li><a href="@Url.Action("AddNewCurrency", "Currencies", new {area = "Store"})"><i class="fa fa-circle-o"></i>Add new </a></li>
 
-                <li><a href="@Url.Action("ViewAllCurrencies", "Currencies", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("ViewAllCurrencies", "Currencies", new {area = "Store"})"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 
@@ -87,9 +96,9 @@
                 <i class="fa fa-money"></i> <span>Discounts</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="@Url.Action("AddNewDiscount", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> Add new</a></li>
-                <li><a href="@Url.Action("ApplyDiscountToProducts", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> Apply to products</a></li>
-                <li><a href="@Url.Action("ViewAllDiscounts", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("AddNewDiscount", "Discounts", new {area = "Store"})"><i class="fa fa-circle-o"></i> Add new</a></li>
+                <li><a href="@Url.Action("ApplyDiscountToProducts", "Discounts", new {area = "Store"})"><i class="fa fa-circle-o"></i> Apply to products</a></li>
+                <li><a href="@Url.Action("ViewAllDiscounts", "Discounts", new {area = "Store"})"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 
@@ -99,9 +108,9 @@
                 <i class="fa fa-barcode"></i> <span>Coupons</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="@Url.Action("AddNewCoupon", "Coupons", new { area = "Store" })"><i class="fa fa-circle-o"></i> Add new</a></li>
-                <li><a href="@Url.Action("ApplyDiscountToUsers", "Discounts", new { area = "Store" })"><i class="fa fa-circle-o"></i> Apply to shopper</a></li>
-                <li><a href="@Url.Action("ViewAllCoupons", "Coupons", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("AddNewCoupon", "Coupons", new {area = "Store"})"><i class="fa fa-circle-o"></i> Add new</a></li>
+                <li><a href="@Url.Action("ApplyDiscountToUsers", "Discounts", new {area = "Store"})"><i class="fa fa-circle-o"></i> Apply to shopper</a></li>
+                <li><a href="@Url.Action("ViewAllCoupons", "Coupons", new {area = "Store"})"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 
@@ -111,7 +120,7 @@
                 <i class="fa fa-commenting"></i> <span>Customer Reviews</span> <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="@Url.Action("ViewAllReviews", "CustomerReviews", new { area = "Store" })"><i class="fa fa-circle-o"></i> View all</a></li>
+                <li><a href="@Url.Action("ViewAllReviews", "CustomerReviews", new {area = "Store"})"><i class="fa fa-circle-o"></i> View all</a></li>
             </ul>
         </li>
 
@@ -128,7 +137,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="@Url.Action("Register", "Account")"><i class="fa fa-user-plus"></i>Create user</a></li>
-                <li><a href="@Url.Action("Index" ,"ApplicationUsers")"><i class="fa fa-list"></i>View all users</a></li>
+                <li><a href="@Url.Action("Index", "ApplicationUsers")"><i class="fa fa-list"></i>View all users</a></li>
             </ul>
         </li>
 
@@ -151,7 +160,7 @@
                 <span>Created roles</span>
                 <span class="label label-danger pull-right">
 
-              @Model.CountAllRoles
+                    @Model.CountAllRoles
 
                 </span>
             </a>
@@ -177,12 +186,12 @@
                     <a href="#"><i class="fa fa-circle-o"></i> Languages <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="@Url.Action( "AddNewLanguage", "MultiLanguage")">
+                            <a href="@Url.Action("AddNewLanguage", "MultiLanguage")">
                                 <i class="fa fa-circle-o"></i> Add new language
                             </a>
                         </li>
                         <li>
-                            <a href="@Url.Action( "ViewAllLanguages", "MultiLanguage")">
+                            <a href="@Url.Action("ViewAllLanguages", "MultiLanguage")">
                                 <i class="fa fa-circle-o"></i> View all languages
                             </a>
                         </li>
@@ -193,13 +202,13 @@
                     <a href="#"><i class="fa fa-circle-o"></i>Resources<i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="@Url.Action( "AddNewResource", "MultiLanguage")">
+                            <a href="@Url.Action("AddNewResource", "MultiLanguage")">
                                 <i class="fa fa-circle-o"></i> Add new resource
                             </a>
 
                         </li>
                         <li>
-                            <a href="@Url.Action( "ViewAllResources", "MultiLanguage")">
+                            <a href="@Url.Action("ViewAllResources", "MultiLanguage")">
                                 <i class="fa fa-circle-o"></i> View all resources
                             </a>
                         </li>
@@ -210,7 +219,7 @@
                     <a href="#"><i class="fa fa-circle-o"></i>Static Resources<i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="@Url.Action( "AddNewStaticText", "MultiLanguage")"><i class="fa fa-circle-o"></i> Add new static text</a>
+                            <a href="@Url.Action("AddNewStaticText", "MultiLanguage")"><i class="fa fa-circle-o"></i> Add new static text</a>
                         </li>
                         <li>
                             <a href="@Url.Action("ViewAllStaticTexts", "MultiLanguage")"><i class="fa fa-circle-o"></i> View all static texts </a>
@@ -226,6 +235,3 @@
     </ul>
 </section>
 <!-- /.sidebar -->
-
-
-
