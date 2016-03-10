@@ -383,7 +383,7 @@ ul.built {
   background-size: cover;
 }
 #slide3 {
-  background: url('/images/paralaximages/3d.jpg') 50% 0 no-repeat fixed;
+  background: url('/images/paralaximages/photo1.jpg') 50% 0 no-repeat fixed;
   color: #fff;
   height: 600px;
   padding: 170px 0 0 0;
@@ -396,7 +396,7 @@ ul.built {
   padding: 200px 0;
 }
 #slide5 {
-  background: url(/images/paralaximages/slide3.jpg) 50% 0 no-repeat fixed;
+  background: url(/images/paralaximages/photo2.jpg) 50% 0 no-repeat fixed;
   height: 200px;
   margin: 0 auto;
   padding: 250px 0;

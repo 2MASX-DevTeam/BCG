@@ -160,7 +160,6 @@ namespace BCG_Portal.Controllers
                     {
                         UserName = model.Username,
                         Email = model.Email,
-                        BirthDate = model.BirthDate,
                         DateCreated = DateTime.UtcNow,
                         DateModified = DateTime.UtcNow
                     };
