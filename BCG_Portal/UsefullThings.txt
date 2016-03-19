@@ -1,0 +1,14 @@
+﻿/* Implementing shopping cart */
+http://www.asp.net/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-8
+
+
+/*Custom editor*/
+http://quilljs.com/docs/modules/
+
+
+https://raventools.com/blog/create-a-modal-dialog-using-css-and-javascript/
+
+
+
+
+http://hallojs.org/js/hallo.js

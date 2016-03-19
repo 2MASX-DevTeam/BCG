@@ -83,12 +83,6 @@ namespace BCG_Portal.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-
-        [Required]
-        [Display(Name = "Date Of Birth")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")] 
-        public DateTime BirthDate { get; set; }
-
         public DateTime DateCreated { get; set; }
 
         public DateTime DateModified { get; set; }
