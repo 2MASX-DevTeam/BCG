@@ -1,0 +1,51 @@
+﻿@model BCG_Manage.Areas.EmailTemplates.Models.CouponsModels
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New registration in www.bc-vit.bg</title>
+
+</head>
+<body>
+    <table width="100%" style="background-color: white">
+        <tr>
+            <td colspan="2">
+                <a href="http://www.bc-vit.bg" title="BC-VIT.BG">
+
+                    <img src="http://manage.bc-vit.bg/Images/bc-vit.png" width="100%" height="340px" style="heght: 340px; width: 100%;" />
+                </a>
+            </td>
+        </tr>
+
+    </table>
+
+    <table width="100%" height="300" style="height: 200px; background-color: white; border-bottom: 2px solid grey; border-top: 2px solid grey; width: 100%;">
+        <tr>
+            <td>
+                <i> Здравейте @Model.Name (@Model.Email) .</i>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <i> Получавате отстъпка за сайта www.bcvit.bg в размер на </i>
+            </td>
+            <td>@Model.DiscountAmount</td>
+        </tr>
+        <tr>
+            <td>
+                <i> Когато правите нова поръчка към сайта, моля въведете този код </i>
+            </td>
+            <td>@Model.DiscountKey</td>
+        </tr>
+        <tr>
+            <td>
+                <i>Отстъпката е валидна за периода: </i>
+            </td>
+            <td>@Model.DiscountDuration</td>
+        </tr>
+    </table>
+
+
+
+</body>
+</html>
