@@ -108,7 +108,7 @@ function getMousePosition(e) {
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
 
-    console.log(x + "   " + y);
+  //  console.log(x + "   " + y);
     return new Point(x, y);
 }
 

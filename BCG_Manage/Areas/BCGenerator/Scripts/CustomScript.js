@@ -9,3 +9,10 @@
       //TODO: add other form generator with sharp edges
     }
 });
+
+
+$("#btnNext").click(function() {
+    var txtBoxValue;
+    txtBoxValue = $("#putJS").val();
+    console.log(txtBoxValue);
+});
