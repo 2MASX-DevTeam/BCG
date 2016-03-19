@@ -12,3 +12,9 @@ $(".render-forms").click(function () {
         }
 });
 
+$("#btnNext").click(function () {
+    var txtBoxValue;
+    txtBoxValue = $("#putJS").val();
+    console.log(txtBoxValue);
+});
+

@@ -30,7 +30,7 @@ namespace BCG_Manage
                       "~/plugins/jvectormap/jquery-jvectormap-world-mill-en.js",
                          "~/plugins/datatables/jquery.dataTables.min.js",
                       "~/plugins/datatables/dataTables.bootstrap.min.js"
-                   
+
                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
@@ -45,6 +45,28 @@ namespace BCG_Manage
                 "~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css",
                 "~/plugins/datatables/dataTables.bootstrap.css"
                      ));
+
+            #region BC Generator 
+
+            bundles.Add(new ScriptBundle("~/areas/bcgenerator/scripts").Include(
+                       "~/plugins/jQueryUI/jquery-ui.min.js",
+                      "~/Areas/BCGenerator/Scripts/CustomScript.es5.min.js",
+                       "~/Areas/BCGenerator/Scripts/CurvedEdgesScripts.js",
+                    "~/Areas/BCGenerator/Scripts/SharpEdgesScripts.es5.min.js",
+                      "~/plugins/iCheck/icheck.min.js"
+                     ));
+
+
+            bundles.Add(new StyleBundle("~/areas/bcgenerator/styles").Include(
+        
+                "~/Areas/BCGenerator/Styles/CustomStyles.min.css"
+
+                ));
+
+
+
+            #endregion
+
         }
     }
 }

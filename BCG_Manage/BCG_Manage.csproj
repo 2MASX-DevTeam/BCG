@@ -208,9 +208,24 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\BCGenerator\BCGeneratorAreaRegistration.cs" />
+    <Compile Include="Areas\BCGenerator\Controllers\MainController.cs" />
     <Compile Include="Areas\EmailTemplates\Controllers\EmailController.cs" />
     <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
+    <Compile Include="Areas\EmailTemplates\Models\CouponsModels.cs" />
     <Compile Include="Areas\EmailTemplates\Models\EmailModels.cs" />
+    <Compile Include="Areas\Store\Controllers\CouponsController.cs" />
+    <Compile Include="Areas\Store\Controllers\CurrenciesController.cs" />
+    <Compile Include="Areas\Store\Controllers\CustomerReviewsController.cs" />
+    <Compile Include="Areas\Store\Controllers\DiscountsController.cs" />
+    <Compile Include="Areas\Store\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Store\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Store\Controllers\ShoppersController.cs" />
+    <Compile Include="Areas\Store\Models\CustomerReviewsViewModel.cs" />
+    <Compile Include="Areas\Store\Models\DiscountsViewModel.cs" />
+    <Compile Include="Areas\Store\Models\OrdersViewModel.cs" />
+    <Compile Include="Areas\Store\Models\ShoppersViewModels.cs" />
+    <Compile Include="Areas\Store\StoreAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -236,10 +251,43 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\BCGenerator\Scripts\CurvedEdgesScripts.es5.js">
+      <DependentUpon>CurvedEdgesScripts.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Scripts\CurvedEdgesScripts.es5.min.js">
+      <DependentUpon>CurvedEdgesScripts.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Scripts\CurvedEdgesScripts.js" />
+    <Content Include="Areas\BCGenerator\Scripts\CustomScript.es5.js">
+      <DependentUpon>CustomScript.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Scripts\CustomScript.es5.min.js">
+      <DependentUpon>CustomScript.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Scripts\CustomScripts.es5.js">
+      <DependentUpon>SharpEdgesScripts.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Scripts\CustomScripts.es5.min.js">
+      <DependentUpon>CustomScripts.es5.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Scripts\CustomScript.js" />
+    <Content Include="Areas\BCGenerator\Scripts\SharpEdgesScripts.js" />
+    <Content Include="Areas\BCGenerator\Styles\CustomStyles.css">
+      <DependentUpon>CustomStyles.less</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Styles\CustomStyles.min.css">
+      <DependentUpon>CustomStyles.css</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CustomTemplate.css">
+      <DependentUpon>CustomTemplate.less</DependentUpon>
+    </Content>
+    <Content Include="Content\CustomTemplate.min.css">
+      <DependentUpon>CustomTemplate.css</DependentUpon>
+    </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
@@ -1129,10 +1177,35 @@
     <Content Include="App_Code\LayoutHelper.cshtml" />
     <Content Include="Areas\EmailTemplates\Views\web.config" />
     <Content Include="Areas\EmailTemplates\Views\Email\RegistrationEmail.cshtml" />
+    <Content Include="Areas\Store\Views\web.config" />
+    <Content Include="Areas\Store\Views\Orders\ViewAll.cshtml" />
+    <Content Include="Areas\Store\Views\Orders\NotConfirmed.cshtml" />
+    <Content Include="Areas\Store\Views\Currencies\AddNewCurrency.cshtml" />
+    <Content Include="Areas\Store\Views\Currencies\ViewAllCurrencies.cshtml" />
+    <Content Include="Areas\Store\Views\CustomerReviews\ViewAllReviews.cshtml" />
+    <Content Include="Areas\Store\Views\Coupons\AddNewCoupon.cshtml" />
+    <Content Include="Areas\Store\Views\Coupons\ViewAllCoupons.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\AddNewDiscount.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\ViewAllDiscounts.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToUsers.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\ApplyDiscountToProducts.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\_ShoppersPartial.cshtml" />
+    <Content Include="Areas\Store\Views\Discounts\_ProductsPartial.cshtml" />
+    <Content Include="Areas\EmailTemplates\Views\Email\CouponsEmail.cshtml" />
+    <Content Include="Areas\Store\Views\Shoppers\RegisterShopper.cshtml" />
+    <Content Include="Areas\BCGenerator\Views\web.config" />
+    <Content Include="Areas\BCGenerator\Styles\CustomStyles.less" />
+    <Content Include="Areas\BCGenerator\Views\Main\AddNewCard.cshtml" />
+    <Content Include="Areas\BCGenerator\Scripts\CustomScripts.js.vsspell">
+      <DependentUpon>SharpEdgesScripts.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\BCGenerator\Views\Main\_SharpEdgesFormPartial.cshtml" />
+    <Content Include="Areas\BCGenerator\Views\Main\_CurvedEdgesFormPartial.cshtml" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Content\CustomTemplate.less" />
     <None Include="Properties\PublishProfiles\LocalPublish.pubxml" />
     <None Include="Properties\PublishProfiles\manage.bc-vit.bg - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
@@ -1147,12 +1220,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\money.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ScriptsForViews.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\ProfilePictures\a43d7ff2-8f7f-4cda-808c-a0abb5e446e4\16-02-28_22-08-25.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1225,6 +1300,8 @@
     <Content Include="Views\Shared\IndexPartials\_UniqueVisitorsPartial.cshtml" />
     <Content Include="Views\Shared\IndexPartials\_UserRegistrationsPartial.cshtml" />
     <Content Include="Views\Shared\IndexPartials\_LatestOrdersPartial.cshtml" />
+    <Content Include="Views\Manage\ChangeProfilePicture.cshtml" />
+    <Content Include="Views\Shared\_RIghtSideBarPartial.cshtml" />
     <None Include="Views\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1234,7 +1311,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\BCGenerator\Models\" />
+    <Folder Include="Areas\BCGenerator\Views\Shared\" />
     <Folder Include="Areas\EmailTemplates\Views\Shared\" />
+    <Folder Include="Areas\Store\Views\Products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

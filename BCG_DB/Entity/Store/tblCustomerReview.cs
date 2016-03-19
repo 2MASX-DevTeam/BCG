@@ -22,12 +22,14 @@ namespace BCG_DB.Entity.Store
         [StringLength(50)]
         public string UserName { get; set; }
 
+        public string ReviewContext { get; set; }
+
         public DateTime? DateChanged { get; set; }
 
         public DateTime? DateCreated { get; set; }
-
-        public virtual tblProduct tblProduct { get; set; }
-
-        public virtual tblShopper tblShopper { get; set; }
+        
+        public virtual tblShopper tblShoppers { get; set; }
+        
+        public virtual tblProduct tblProducts { get; set; }
     }
 }

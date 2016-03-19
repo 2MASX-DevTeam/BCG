@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BCG_Manage.Models
 {
@@ -14,8 +16,8 @@ namespace BCG_Manage.Models
         public DateTime DateCreated { get; internal set; }
         public DateTime DateModified { get; internal set; }
         public string FirstName { get; set;  }
-
         public string LastName { get; set; }
+        public virtual ICollection<tblProfilePicturesAdmins>  TblProfilePictures{ get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -40,5 +42,30 @@ namespace BCG_Manage.Models
         }
 
       //  public System.Data.Entity.DbSet<BCG_Manage.Models.ApplicationUser> ApplicationUsers { get; set; }
+    }
+
+    public class tblProfilePicturesAdmins
+    {
+        [Key]
+        public int IdProfilePicture { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string PicturePath { get; set; }
+
+        [Required]
+        public bool IsProfile { get; set; }
+
+        [Required]
+        public bool IsVisible { get; set; }
+
+        [StringLength(50)]
+        public string UserName { get; set; }
+
+        public DateTime? DateChanged { get; set; }
+
+        public DateTime? DateCreated { get; set; }
+
+        public virtual ApplicationUser User { get; set; }
     }
 }

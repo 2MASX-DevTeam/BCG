@@ -1,4 +1,8 @@
 ﻿
+
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
+
 namespace BCG_Manage.Controllers
 {
     using System;
@@ -18,10 +22,13 @@ namespace BCG_Manage.Controllers
     using Models;
     using System.Net;
     using Newtonsoft.Json;
+    using BCG_DB.Entity.Store;
+
     [Authorize]
     public class BaseController : Controller
     {
         private MultiLanguageModel db = new MultiLanguageModel();
+        private StoreModels dbStore = new StoreModels();
 
         [ChildActionOnly]
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
@@ -73,7 +80,25 @@ namespace BCG_Manage.Controllers
 
         }
 
-    
+        [ChildActionOnly]
+        public string PriceForProduct(int idProduct)
+        {
+            int id = idProduct;
+            var tbl = (from tblProduct in dbStore.tblProducts
+                       join tblCurrency in dbStore.tblCurrencies on tblProduct.IdCurrency equals tblCurrency.IdCurrency
+                       where tblProduct.IdProduct == id
+                       select new { Price = tblProduct.Price, CurrencyCode = tblCurrency.CurrencyCode, CurrencyValue = tblCurrency.CurrencyValue, IdDiscount = tblProduct.IdDiscount }).FirstOrDefault();
+            
+            var price =Convert.ToDecimal(tbl.Price);
+            if (tbl.IdDiscount != null)
+            {
+                var discount = dbStore.tblDiscounts.Find(tbl.IdDiscount).DiscountAmount;
+                price = price - price*discount/100;
+            }
+            var result = String.Format("{0} {1}", price, tbl.CurrencyCode);
+            return result;
+        }
+
         public void SendExceptionToAdmin(string ex)
         {
             string emailAdmin = ConfigurationManager.AppSettings["EmailAdministrator"]; 
@@ -107,7 +132,7 @@ namespace BCG_Manage.Controllers
         }
 
         [ChildActionOnly]
-        public string GenericPassword()
+        public string GenericSymbols()
         {
             string Template = ConfigurationManager.AppSettings["passwordTemplate"].ToString();
             String l = "qwertyuiopasdfghjklzxcvbnm";
@@ -154,9 +179,9 @@ namespace BCG_Manage.Controllers
         }
 
 
-        public string RenderViewToString(string TemplateName, object model)
+        public string RenderViewToString(string templateName, object model)
         {
-            TemplateName = "~/Areas/EmailTemplates/Views/Email/" + TemplateName + ".cshtml";
+            templateName = "~/Areas/EmailTemplates/Views/Email/" + templateName + ".cshtml";
            // var controller = new EmailController();
             
             ViewData.Model = model;
@@ -165,7 +190,7 @@ namespace BCG_Manage.Controllers
             {
                 using (StringWriter sw = new StringWriter())
                 {
-                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, TemplateName, null);
+                    ViewEngineResult viewResult = ViewEngines.Engines.FindView(ControllerContext, templateName, null);
                     ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
                     viewResult.View.Render(viewContext, sw);
                     viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
@@ -181,6 +206,36 @@ namespace BCG_Manage.Controllers
             }
         }
 
-     
+        /// <summary>
+        /// Resize the image to the specified width and height.
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The width to resize to.</param>
+        /// <param name="height">The height to resize to.</param>
+        /// <returns>The resized image.</returns>
+        public static Bitmap ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
+        }
     }
 }

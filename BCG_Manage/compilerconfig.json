@@ -2,5 +2,25 @@
   {
     "outputFile": "Scripts/IndexChart.es5.js",
     "inputFile": "Scripts/IndexChart.js"
+  },
+  {
+    "outputFile": "Content/CustomTemplate.css",
+    "inputFile": "Content/CustomTemplate.less"
+  },
+  {
+    "outputFile": "Areas/BCGenerator/Styles/CustomStyles.css",
+    "inputFile": "Areas/BCGenerator/Styles/CustomStyles.less"
+  },
+  {
+    "outputFile": "Areas/BCGenerator/Scripts/CustomScripts.es5.js",
+    "inputFile": "Areas/BCGenerator/Scripts/CustomScripts.js"
+  },
+  {
+    "outputFile": "Areas/BCGenerator/Scripts/CurvedEdgesScripts.es5.js",
+    "inputFile": "Areas/BCGenerator/Scripts/CurvedEdgesScripts.js"
+  },
+  {
+    "outputFile": "Areas/BCGenerator/Scripts/CustomScript.es5.js",
+    "inputFile": "Areas/BCGenerator/Scripts/CustomScript.js"
   }
 ]

@@ -11,7 +11,6 @@ namespace BCG_DB.Entity.Store
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblProduct()
         {
-            tblCustomerReviews = new HashSet<tblCustomerReview>();
             tblOrders = new HashSet<tblOrder>();
             tblShopingCarts = new HashSet<tblShopingCart>();
         }
@@ -43,9 +42,6 @@ namespace BCG_DB.Entity.Store
 
         public virtual tblCurrency tblCurrency { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomerReview> tblCustomerReviews { get; set; }
-
         public virtual tblDiscount tblDiscount { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -53,5 +49,8 @@ namespace BCG_DB.Entity.Store
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblShopingCart> tblShopingCarts { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomerReview> tblCustomerReviews { get; set; }
     }
 }

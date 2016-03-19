@@ -14,6 +14,16 @@ namespace BCG_Manage.Models
         public bool BrowserRemembered { get; set; }
     }
 
+    public class ProfilePictureModel
+    {
+
+        public List<string> ListUrls { get; set; }
+
+        public string SelectedPicture { get; set; }
+
+        public bool IsActiveProfile { get; set; }
+    }
+
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
