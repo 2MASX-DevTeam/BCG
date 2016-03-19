@@ -4,7 +4,7 @@
     ViewBag.Title = "Contact";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
+
 
   <!--==============================content================================-->
 <section id="content">
@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="wrap-col">
-                    <h2>How to Find Us</h2>
+                    <h2>Как да се свържете с нас</h2>
                     <div class="map img-border">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23667.076222646938!2d24.728607281192076!3d42.14205759022273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14acd1b737c83041%3A0x4b859e8be8490ec7!2z0J_Qu9C-0LLQtNC40LIg0KbQtdC90YLRitGALCDQn9C70L7QstC00LjQsg!5e0!3m2!1sbg!2sbg!4v1453645388002" width="600" height="450" frameborder="0" style="border: 0" allowfullscreen></iframe>
                     </div>
@@ -32,35 +32,35 @@
             <div class="col-md-4">
                 <div class="wrap-col">
                     <!--==============================Contact Form Start================================-->
-                    <h2>Contact Form</h2>
+                    <h2>Форма за контакти</h2>
 
                     @using (Html.BeginForm(new
                     {
                         @class = "contacts-form"
                     }))
                     {
-                        @Html.LabelFor(model => model.Name, "Your name:")<br />
+                        @Html.LabelFor(model => model.Name, "Име:")<br />
                         @Html.TextBoxFor(model => model.Name, new
                    {
                        @class = "inputbg"
                    })<br />
                         @Html.ValidationMessageFor(model => model.Name)<br />
 
-                        @Html.LabelFor(model => model.Email, "Your e-mail:")<br />
+                        @Html.LabelFor(model => model.Email, "Електронна поща:")<br />
                         @Html.TextBoxFor(model => model.Email, new
                    {
                        @class = "inputbg"
                    })<br />
                         @Html.ValidationMessageFor(model => model.Email)<br />
 
-                        @Html.LabelFor(model => model.Mobile, "Your mobile phone:")<br />
+                        @Html.LabelFor(model => model.Mobile, "Телефон за връзка:")<br />
                         @Html.TextBoxFor(model => model.Mobile, new
                    {
                        @class = "inputbg"
                    })<br />
                         @Html.ValidationMessageFor(model => model.Mobile)<br />
 
-                        @Html.LabelFor(model => model.Message, "Your message:")
+                        @Html.LabelFor(model => model.Message, "Вашето съобщение:")
                         <br />
                         @Html.TextAreaFor(model => model.Message, new
                    {
@@ -69,7 +69,7 @@
                         @Html.ValidationMessageFor(model => model.Message)<br />
 
                         <div class="g-recaptcha" data-sitekey=@ConfigurationManager.AppSettings["ReCaptchaPublicKey"]></div>
-                        <a href="#" class="button" onclick="document.getElementById('form').submit()">Send</a>
+                        <a href="#" class="button" onclick="document.getElementById('form').submit()">Изпрати</a>
 
                         @*<input type="submit" class="button-bg" value="Send" />*@
                     }
