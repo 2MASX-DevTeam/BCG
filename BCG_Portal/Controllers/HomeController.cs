@@ -9,9 +9,6 @@ namespace BCG_Portal.Controllers
 {
     public class HomeController : BaseController
     {
-
-        ExceptionToAdmin adminNotificator = new ExceptionToAdmin();
-
         public ActionResult Parallax()
         {
             return View();
