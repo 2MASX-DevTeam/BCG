@@ -14,6 +14,17 @@ namespace BCG_Portal
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+
+            //Create bundel for jQueryUI  
+            //js  
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                      "~/Scripts/jquery-ui-{version}.js"));
+            //css  
+            bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
+                   "~/Content/jquery-ui.css"));  
+
+
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -22,12 +33,7 @@ namespace BCG_Portal
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/Bilbo_400.font.js",
-                      "~/Scripts/css3-mediaqueries.js",
-                      "~/Scripts/cufon-replace.js",
-                      "~/Scripts/custPortalScripts.js",
-                      "~/Scripts/Bilbo_400.font.js"
-
+                      "~/Scripts/parallax.js"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

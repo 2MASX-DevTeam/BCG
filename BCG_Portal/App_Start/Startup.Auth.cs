@@ -9,6 +9,8 @@ using Owin;
 using BCG_Portal.Models;
 using BCG_Portal_Data;
 using BCG_Portal_Models;
+using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.Twitter;
 
 namespace BCG_Portal
 {
@@ -53,13 +55,17 @@ namespace BCG_Portal
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(new TwitterAuthenticationOptions()
+            {
+                ConsumerKey = ConfigurationManager.AppSettings["twitterConsumerKey"],
+                ConsumerSecret = ConfigurationManager.AppSettings["twitterConsumerSecret"]
+            });
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions()
+            {
+                AppId = ConfigurationManager.AppSettings["facebookAppId"],
+                AppSecret = ConfigurationManager.AppSettings["facebookSecret"]
+            });
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

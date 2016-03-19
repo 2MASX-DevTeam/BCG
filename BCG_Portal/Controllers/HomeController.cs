@@ -4,16 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BCG_Portal.Controllers.Application_Controllers;
-
+using SendMailHelper;
 namespace BCG_Portal.Controllers
 {
     public class HomeController : BaseController
     {
-        public ActionResult Index()
+
+        ExceptionToAdmin adminNotificator = new ExceptionToAdmin();
+
+        public ActionResult Parallax()
         {
             return View();
         }
-     
+        public ActionResult Index()
+        {
+          
+            return View();
+        }
+
         public ActionResult Productz()
         {
             return View();
