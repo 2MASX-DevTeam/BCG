@@ -1,0 +1,113 @@
+﻿@model BCG_DB.Entity.Store.tblCurrency
+
+@{
+    ViewBag.Title = "Add new currency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Add new currency.
+        <small>Store</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>Store</li>
+        <li class="active">Add currency</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">   Add  </h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+
+                @using (Html.BeginForm("AddNewCurrency", "Currencies", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>Currency Code: </label>
+                            @Html.EditorFor(model => model.CurrencyCode, new { htmlAttributes = new { @class = "form-control", placeholder = "Example:  BGN" } })
+                            @Html.ValidationMessageFor(model => model.CurrencyCode, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group">
+
+                            <label>Currency Name:</label>
+                            @Html.EditorFor(model => model.CurrencyName, new { htmlAttributes = new { @class = "form-control", placeholder = "Example:  Bulgarian Lev" } })
+                            @Html.ValidationMessageFor(model => model.CurrencyName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            <label> Currency Value:</label>
+                            @*@Html.EditorFor(model => model.CurrencyValue, new { htmlAttributes = new { @class = "form-control"} })
+                                @Html.ValidationMessageFor(model => model.CurrencyValue, "", new { @class = "text-danger" })*@
+
+                            <input type="text" id="currency-value" name="value" class="form-control" placeholder="Enter ..." disabled>
+                        </div>
+                    </div><!-- /.box-body -->
+
+                    <div class="box-footer">
+
+                        <a class="btn btn-success" onclick="checkValue()" id="check">Check currency exchange rate </a>
+                        <button type="submit" class="btn btn-primary" style="display: none" id="btnSubmit" >Submit</button>
+
+                    </div>
+                }
+            </div><!-- /.box -->
+        </div>
+
+
+    </div>
+
+
+</section><!-- /.content -->
+
+
+@section Scripts {
+    <script src="~/Scripts/money.min.js"></script>
+
+    <script>
+        var div = $(".alert").html();
+
+        function checkValue() {
+            var symbol = $("#CurrencyCode").val();
+            var name = $("#CurrencyName").val();
+            if (symbol.length != 3 && name.length < 6) {
+                alert("Currency Code must be 3 characters and Currency Name at least 6 characters")
+                return;
+            }
+            var demo = function (data) {
+                fx.rates = data.rates
+                var rate = fx(1).to(symbol)
+
+                $("#currency-value").attr("placeholder", rate.toFixed(4));
+
+                $(".alert").html(div + "<h1>&#8364; 1 =  " + rate.toFixed(4) + " " + symbol);
+
+                $("#btnSubmit").removeAttr("style");
+
+                $("#check").css("display", "none");
+            }
+
+            $.getJSON("http://api.fixer.io/latest", demo)
+        };
+
+
+    </script>
+
+
+}

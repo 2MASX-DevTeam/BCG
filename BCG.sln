@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal_Models", "BCG_Po
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal_Data", "BCG_Portal_Data\BCG_Portal_Data.csproj", "{F491D324-3C57-4D72-8446-6814B6D6C58A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMailHelper", "D:\PROGRAMING\MY PROJECTS\External App Helpers\SendMailHelper\SendMailHelper.csproj", "{EC735012-D12D-4C52-BCC4-3940D9CE3165}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F491D324-3C57-4D72-8446-6814B6D6C58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

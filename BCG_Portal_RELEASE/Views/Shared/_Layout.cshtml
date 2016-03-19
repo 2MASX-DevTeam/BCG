@@ -1,0 +1,98 @@
+﻿@using Mvc.RazorTools.FontAwesome
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Mvc.RazorTools.BundleManager.Styles.Render()
+    @*<link rel="stylesheet" type="text/css" media="screen" href="~/Content/style.css">*@
+    <link href="~/Content/custPortalCss.min.css" rel="stylesheet" />
+    <link href="~/Content/parallaxcss.min.css" rel="stylesheet" />
+    <link href="~/Content/custCardGeneratorCss.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container daliQ">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand daliQ" href="~/">WWW.BC-VIT.BG</a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav">
+                    <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+
+                    <li>@Html.ActionLink("Products", "Productz", "Home")</li>
+
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Cards", "CardGenerator", "CardGenerator")</li>
+                    @*<li>@Html.ActionLink("Parallax", "Parallax", "Home")</li>*@
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+@*<style>
+    #cartState {
+        display: block;
+    }
+</style>
+
+<div style="float: right; background: fuchsia">
+    <img style="width: 64px; height: 64px;" src="~/images/shop-cart.png" alt=""/>
+</div>*@
+
+
+<div style="height: 50px;"></div>
+
+
+<div class="container body-content">
+
+    @RenderBody()
+    <hr/>
+
+
+    <!--==============================footer=================================-->
+    <footer>
+        <div style="vertical-align: middle !important; font-size: 18px !important;">
+            <span> &copy; @DateTime.Now.Year </span>
+            <span>www.bc-vit.com</span>
+        </div>
+        <div class="soc-icons">
+            <div>
+                <a href="#"><img src="/images/icon-1.jpg" alt=""></a>
+                <a href="#"><img src="/images/icon-2.jpg" alt=""></a>
+                <a href="#"><img src="/images/icon-3.jpg" alt=""></a>
+            </div>
+        </div>
+    </footer>
+    <!--==============================end footer=================================-->
+</div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+        @RenderSection("scripts", required: false)
+</body>
+</html>

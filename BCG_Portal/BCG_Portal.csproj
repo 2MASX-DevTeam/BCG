@@ -305,7 +305,6 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="New Microsoft Word Document.docx" />
     <None Include="Properties\PublishProfiles\BCG_Portal_RELEASE.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <None Include="Scripts\jquery-2.1.4-vsdoc.js" />
