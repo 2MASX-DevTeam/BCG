@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BCG_Portal.Models.BCGDB_Entities;
-
 namespace BCG_Portal.Controllers
 {
     public class HomeController : Controller
@@ -32,5 +30,10 @@ namespace BCG_Portal.Controllers
 
             return View();
         }
+        public ActionResult Products()
+        {
+            return View();
+        }
+
     }
 }
