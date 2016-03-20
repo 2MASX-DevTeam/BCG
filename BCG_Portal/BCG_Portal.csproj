@@ -82,6 +82,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PayPal, Version=1.7.3.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.7.3\lib\net45\PayPal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -256,6 +260,7 @@
     <Compile Include="Controllers\CardGeneratorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PayPalController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -469,6 +474,7 @@
     <Content Include="Views\Home\Parallax.cshtml" />
     <Content Include="Views\Canvas\CanvasIndex.cshtml" />
     <Content Include="Views\CardGenerator\CardGenerator.cshtml" />
+    <Content Include="Views\PayPal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -489,10 +495,6 @@
     <ProjectReference Include="..\BCG_Portal_Models\BCG_Portal_Models.csproj">
       <Project>{b5fc53f2-817a-4499-b520-fe2eda7e5f53}</Project>
       <Name>BCG_Portal_Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="D:\PROGRAMING\MY PROJECTS\External App Helpers\SendMailHelper\SendMailHelper.csproj">
-      <Project>{ec735012-d12d-4c52-bcc4-3940d9ce3165}</Project>
-      <Name>SendMailHelper</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
