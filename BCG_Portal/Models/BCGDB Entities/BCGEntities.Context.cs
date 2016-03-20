@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bcvitbg_DBEntities : DbContext
+    public partial class bcvitbg_Entity : DbContext
     {
-        public bcvitbg_DBEntities()
-            : base("name=bcvitbg_DBEntities")
+        public bcvitbg_Entity()
+            : base("name=bcvitbg_Entity")
         {
         }
     
@@ -25,10 +25,6 @@ namespace BCG_Portal_Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tblCompleteOrder> tblCompleteOrders { get; set; }
         public virtual DbSet<tblContext> tblContexts { get; set; }
         public virtual DbSet<tblCurrency> tblCurrencies { get; set; }

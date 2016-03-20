@@ -7,23 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblStaticResource
+    public partial class tblIPLoginAttempt
     {
-        public int IdStatic { get; set; }
-        public int IdLanguage { get; set; }
-        public int IdStaticText { get; set; }
-        public string Description { get; set; }
-        public string StaticName { get; set; }
-        public string UserName { get; set; }
+        public int IdIPAdress { get; set; }
+        public string IPAdress { get; set; }
+        public string UserAgend { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
-    
-        public virtual tblLanguage tblLanguage { get; set; }
-        public virtual tblStaticText tblStaticText { get; set; }
+        public string UserName { get; set; }
+        public string Country { get; set; }
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;

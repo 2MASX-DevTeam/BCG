@@ -7,26 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblOrderStatus
+    public partial class tblResource
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblOrderStatus()
-        {
-            this.tblOrders = new HashSet<tblOrder>();
-        }
-    
-        public int IdOrderStatus { get; set; }
-        public string OrderStatusName { get; set; }
+        public int IdResource { get; set; }
+        public int IdLanguage { get; set; }
+        public int IdContext { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrder> tblOrders { get; set; }
+        public virtual tblContext tblContext { get; set; }
+        public virtual tblLanguage tblLanguage { get; set; }
     }
 }

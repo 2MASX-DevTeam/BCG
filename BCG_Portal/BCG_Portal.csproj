@@ -16,10 +16,10 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -51,6 +51,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -162,10 +164,83 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ShoppersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BCGDB Entities\BCGEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCGEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\BCGEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\BCGEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblCompleteOrder.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblContext.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblCurrency.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblCustomerReview.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblDiscount.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblIPLoginAttempt.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblLanguage.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblOrder.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblOrderStatus.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblProduct.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblProfilePicturesAdmin.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblProfilePicturesShopper.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblQuantity.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblResource.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblShopingCart.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblShopper.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblShopperGroup.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblStaticResource.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGDB Entities\tblStaticText.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +268,23 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <EntityDeploy Include="Models\BCGDB Entities\BCGEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BCGEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BCGDB Entities\BCGEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+      <LastGenOutput>BCGEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BCGDB Entities\BCGEntities.edmx.diagram">
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BCGDB Entities\BCGEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+      <LastGenOutput>BCGEntities.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -238,6 +330,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shoppers\Create.cshtml" />
+    <Content Include="Views\Shoppers\Delete.cshtml" />
+    <Content Include="Views\Shoppers\Details.cshtml" />
+    <Content Include="Views\Shoppers\Edit.cshtml" />
+    <Content Include="Views\Shoppers\Index.cshtml" />
+    <Content Include="Views\Shoppers\RegisterShopper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -245,6 +343,15 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BCG_Portal_Models\BCG_Portal_Models.csproj">
+      <Project>{b5fc53f2-817a-4499-b520-fe2eda7e5f53}</Project>
+      <Name>BCG_Portal_Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

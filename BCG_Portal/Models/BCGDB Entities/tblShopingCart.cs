@@ -7,27 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblOrder
+    public partial class tblShopingCart
     {
-        public int IdOrder { get; set; }
-        public int IdOrders { get; set; }
+        public int IdShopingCart { get; set; }
+        public int IdShopper { get; set; }
         public int IdProduct { get; set; }
-        public int IdOrderStatus { get; set; }
         public int IdQuantity { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public int QuantityLeft { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual tblCompleteOrder tblCompleteOrder { get; set; }
         public virtual tblProduct tblProduct { get; set; }
         public virtual tblQuantity tblQuantity { get; set; }
-        public virtual tblOrderStatus tblOrderStatus { get; set; }
+        public virtual tblShopper tblShopper { get; set; }
     }
 }

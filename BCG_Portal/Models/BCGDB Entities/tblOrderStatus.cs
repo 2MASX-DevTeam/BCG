@@ -7,28 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCurrency
+    public partial class tblOrderStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCurrency()
+        public tblOrderStatus()
         {
-            this.tblProducts = new HashSet<tblProduct>();
+            this.tblOrders = new HashSet<tblOrder>();
         }
     
-        public int IdCurrency { get; set; }
-        public string CurrencyName { get; set; }
-        public string CurrencyCode { get; set; }
-        public decimal CurrencyValue { get; set; }
+        public int IdOrderStatus { get; set; }
+        public string OrderStatusName { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblProduct> tblProducts { get; set; }
+        public virtual ICollection<tblOrder> tblOrders { get; set; }
     }
 }

@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblProduct
+    public partial class tblQuantity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblProduct()
+        public tblQuantity()
         {
-            this.tblCustomerReviews = new HashSet<tblCustomerReview>();
             this.tblOrders = new HashSet<tblOrder>();
             this.tblShopingCarts = new HashSet<tblShopingCart>();
         }
     
-        public int IdProduct { get; set; }
+        public int IdQuantity { get; set; }
         public Nullable<int> IdDiscount { get; set; }
-        public int IdCurrency { get; set; }
-        public string ProductName { get; set; }
-        public string Media { get; set; }
-        public string Price { get; set; }
-        public Nullable<bool> IsPublish { get; set; }
+        public int Quantity { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual tblCurrency tblCurrency { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomerReview> tblCustomerReviews { get; set; }
-        public virtual tblDiscount tblDiscount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblOrder> tblOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

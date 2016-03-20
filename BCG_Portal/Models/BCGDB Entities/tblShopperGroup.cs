@@ -7,33 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblLanguage
+    public partial class tblShopperGroup
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblLanguage()
+        public tblShopperGroup()
         {
-            this.tblResources = new HashSet<tblResource>();
-            this.tblStaticResources = new HashSet<tblStaticResource>();
+            this.tblShoppers = new HashSet<tblShopper>();
         }
     
-        public int IdLanguage { get; set; }
-        public string Language { get; set; }
-        public string Initials { get; set; }
-        public string Culture { get; set; }
-        public byte[] Picture { get; set; }
-        public bool IsActive { get; set; }
+        public int IdShopperGroup { get; set; }
+        public string GroupName { get; set; }
+        public string GroupDescription { get; set; }
         public string UserName { get; set; }
-        public Nullable<System.DateTime> Datechanged { get; set; }
+        public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblResource> tblResources { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStaticResource> tblStaticResources { get; set; }
+        public virtual ICollection<tblShopper> tblShoppers { get; set; }
     }
 }

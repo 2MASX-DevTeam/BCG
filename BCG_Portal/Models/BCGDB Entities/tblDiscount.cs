@@ -7,26 +7,32 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal_Models
+namespace BCG_Portal.Models.BCGDB_Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblStaticText
+    public partial class tblDiscount
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblStaticText()
+        public tblDiscount()
         {
-            this.tblStaticResources = new HashSet<tblStaticResource>();
+            this.tblProducts = new HashSet<tblProduct>();
+            this.tblShoppers = new HashSet<tblShopper>();
         }
     
-        public int IdStaticText { get; set; }
-        public string StaticText { get; set; }
+        public int IdDiscount { get; set; }
+        public int DiscountAmount { get; set; }
+        public Nullable<System.DateTime> StartDateOfDiscount { get; set; }
+        public Nullable<System.DateTime> EndDateOfDiscount { get; set; }
+        public string DiscountKey { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStaticResource> tblStaticResources { get; set; }
+        public virtual ICollection<tblProduct> tblProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblShopper> tblShoppers { get; set; }
     }
 }
