@@ -351,6 +351,7 @@
     <Content Include="Content\bussinessCardsStyle.css.map">
       <DependentUpon>bussinessCardsStyle.css</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\BCG-Portal.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
