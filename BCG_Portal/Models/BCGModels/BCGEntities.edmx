@@ -1,0 +1,1489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bcvitbg_EntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCompleteOrders">
+          <Key>
+            <PropertyRef Name="IdOrders" />
+          </Key>
+          <Property Name="IdOrders" Type="int" Nullable="false" />
+          <Property Name="IdShopper" Type="int" Nullable="false" />
+          <Property Name="IsPaid" Type="bit" />
+          <Property Name="DatePayment" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblContext">
+          <Key>
+            <PropertyRef Name="IdContext" />
+          </Key>
+          <Property Name="IdContext" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Context" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCurrencies">
+          <Key>
+            <PropertyRef Name="IdCurrency" />
+          </Key>
+          <Property Name="IdCurrency" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CurrencyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CurrencyValue" Type="decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblCustomerReviews">
+          <Key>
+            <PropertyRef Name="IdCustomerReview" />
+          </Key>
+          <Property Name="IdCustomerReview" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="IdShopper" Type="int" Nullable="false" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="ReviewContext" Type="nvarchar(max)" />
+          <Property Name="IsPublish" Type="bit" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDiscounts">
+          <Key>
+            <PropertyRef Name="IdDiscount" />
+          </Key>
+          <Property Name="IdDiscount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountAmount" Type="int" Nullable="false" />
+          <Property Name="StartDateOfDiscount" Type="datetime" />
+          <Property Name="EndDateOfDiscount" Type="datetime" />
+          <Property Name="DiscountKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblIPLoginAttempts">
+          <Key>
+            <PropertyRef Name="IdIPAdress" />
+          </Key>
+          <Property Name="IdIPAdress" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IPAdress" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserAgend" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblLanguages">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Language" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Initials" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Culture" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Datechanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrders" Type="int" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="IdOrderStatus" Type="int" Nullable="false" />
+          <Property Name="IdQuantity" Type="int" Nullable="false" />
+          <Property Name="OrderDate" Type="datetime" Nullable="false" />
+          <Property Name="QuantityLeft" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblOrderStatuses">
+          <Key>
+            <PropertyRef Name="IdOrderStatus" />
+          </Key>
+          <Property Name="IdOrderStatus" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblProducts">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDiscount" Type="int" />
+          <Property Name="IdCurrency" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Media" Type="nvarchar(max)" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsPublish" Type="bit" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblProfilePicturesAdmins">
+          <Key>
+            <PropertyRef Name="IdProfilePicture" />
+          </Key>
+          <Property Name="IdProfilePicture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PicturePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="IsProfile" Type="bit" Nullable="false" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="tblProfilePicturesShoppers">
+          <Key>
+            <PropertyRef Name="IdProfilePicture" />
+          </Key>
+          <Property Name="IdProfilePicture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdShopper" Type="int" Nullable="false" />
+          <Property Name="PicturePath" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsProfile" Type="bit" Nullable="false" />
+          <Property Name="IsVisible" Type="bit" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblQuantities">
+          <Key>
+            <PropertyRef Name="IdQuantity" />
+          </Key>
+          <Property Name="IdQuantity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDiscount" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblResources">
+          <Key>
+            <PropertyRef Name="IdResource" />
+            <PropertyRef Name="IdLanguage" />
+            <PropertyRef Name="IdContext" />
+          </Key>
+          <Property Name="IdResource" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLanguage" Type="int" Nullable="false" />
+          <Property Name="IdContext" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblShopingCart">
+          <Key>
+            <PropertyRef Name="IdShopingCart" />
+          </Key>
+          <Property Name="IdShopingCart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdShopper" Type="int" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="IdQuantity" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblShopperGroups">
+          <Key>
+            <PropertyRef Name="IdShopperGroup" />
+          </Key>
+          <Property Name="IdShopperGroup" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblShoppers">
+          <Key>
+            <PropertyRef Name="IdShopper" />
+          </Key>
+          <Property Name="IdShopper" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdShopperGroup" Type="int" />
+          <Property Name="IdDiscount" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobilePhone" Type="int" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsMessageForDiscountSended" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblStaticResources">
+          <Key>
+            <PropertyRef Name="IdStatic" />
+            <PropertyRef Name="IdLanguage" />
+            <PropertyRef Name="IdStaticText" />
+          </Key>
+          <Property Name="IdStatic" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdLanguage" Type="int" Nullable="false" />
+          <Property Name="IdStaticText" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="StaticName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblStaticTexts">
+          <Key>
+            <PropertyRef Name="IdStaticText" />
+          </Key>
+          <Property Name="IdStaticText" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaticText" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateChanged" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_dbo_tblResources_dbo_tblContext_IdContext">
+          <End Role="tblContext" Type="Self.tblContext" Multiplicity="1" />
+          <End Role="tblResources" Type="Self.tblResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContext">
+              <PropertyRef Name="IdContext" />
+            </Principal>
+            <Dependent Role="tblResources">
+              <PropertyRef Name="IdContext" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblResources_dbo_tblLanguages_IdLanguage">
+          <End Role="tblLanguages" Type="Self.tblLanguages" Multiplicity="1" />
+          <End Role="tblResources" Type="Self.tblResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="tblResources">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage">
+          <End Role="tblLanguages" Type="Self.tblLanguages" Multiplicity="1" />
+          <End Role="tblStaticResources" Type="Self.tblStaticResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="tblStaticResources">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText">
+          <End Role="tblStaticTexts" Type="Self.tblStaticTexts" Multiplicity="1" />
+          <End Role="tblStaticResources" Type="Self.tblStaticResources" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStaticTexts">
+              <PropertyRef Name="IdStaticText" />
+            </Principal>
+            <Dependent Role="tblStaticResources">
+              <PropertyRef Name="IdStaticText" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerReviews_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="1" />
+          <End Role="tblCustomerReviews" Type="Self.tblCustomerReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="tblCustomerReviews">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerReviews_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShoppers" Multiplicity="1" />
+          <End Role="tblCustomerReviews" Type="Self.tblCustomerReviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblCustomerReviews">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblOrders">
+          <End Role="tblCompleteOrders" Type="Self.tblCompleteOrders" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompleteOrders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblQuantities">
+          <End Role="tblQuantities" Type="Self.tblQuantities" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuantities">
+              <PropertyRef Name="IdQuantity" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdQuantity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrders_tblOrderStatuses">
+          <End Role="tblOrderStatuses" Type="Self.tblOrderStatuses" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrderStatuses">
+              <PropertyRef Name="IdOrderStatus" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdOrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrders_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShoppers" Multiplicity="1" />
+          <End Role="tblCompleteOrders" Type="Self.tblCompleteOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblCompleteOrders">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProducts_tblCurrencies">
+          <End Role="tblCurrencies" Type="Self.tblCurrencies" Multiplicity="1" />
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCurrencies">
+              <PropertyRef Name="IdCurrency" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="IdCurrency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProducts_tblDiscounts">
+          <End Role="tblDiscounts" Type="Self.tblDiscounts" Multiplicity="0..1" />
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiscounts">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProfilePictures_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShoppers" Multiplicity="1" />
+          <End Role="tblProfilePicturesShoppers" Type="Self.tblProfilePicturesShoppers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblProfilePicturesShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShopingCart_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProducts" Multiplicity="1" />
+          <End Role="tblShopingCart" Type="Self.tblShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="tblShopingCart">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShopingCart_tblQuantities">
+          <End Role="tblQuantities" Type="Self.tblQuantities" Multiplicity="1" />
+          <End Role="tblShopingCart" Type="Self.tblShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuantities">
+              <PropertyRef Name="IdQuantity" />
+            </Principal>
+            <Dependent Role="tblShopingCart">
+              <PropertyRef Name="IdQuantity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShopingCart_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShoppers" Multiplicity="1" />
+          <End Role="tblShopingCart" Type="Self.tblShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblShopingCart">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShoppers_tblDiscounts">
+          <End Role="tblDiscounts" Type="Self.tblDiscounts" Multiplicity="0..1" />
+          <End Role="tblShoppers" Type="Self.tblShoppers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiscounts">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="tblShoppers">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShoppers_tblShopperGroups">
+          <End Role="tblShopperGroups" Type="Self.tblShopperGroups" Multiplicity="0..1" />
+          <End Role="tblShoppers" Type="Self.tblShoppers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShopperGroups">
+              <PropertyRef Name="IdShopperGroup" />
+            </Principal>
+            <Dependent Role="tblShoppers">
+              <PropertyRef Name="IdShopperGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bcvitbg_EntityModelStoreContainer">
+          <EntitySet Name="tblCompleteOrders" EntityType="Self.tblCompleteOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblContext" EntityType="Self.tblContext" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCurrencies" EntityType="Self.tblCurrencies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCustomerReviews" EntityType="Self.tblCustomerReviews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDiscounts" EntityType="Self.tblDiscounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblIPLoginAttempts" EntityType="Self.tblIPLoginAttempts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLanguages" EntityType="Self.tblLanguages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrder" EntityType="Self.tblOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblOrderStatuses" EntityType="Self.tblOrderStatuses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProfilePicturesAdmins" EntityType="Self.tblProfilePicturesAdmins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProfilePicturesShoppers" EntityType="Self.tblProfilePicturesShoppers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblQuantities" EntityType="Self.tblQuantities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblResources" EntityType="Self.tblResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblShopingCart" EntityType="Self.tblShopingCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblShopperGroups" EntityType="Self.tblShopperGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblShoppers" EntityType="Self.tblShoppers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStaticResources" EntityType="Self.tblStaticResources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblStaticTexts" EntityType="Self.tblStaticTexts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_tblResources_dbo_tblContext_IdContext" Association="Self.FK_dbo_tblResources_dbo_tblContext_IdContext">
+            <End Role="tblContext" EntitySet="tblContext" />
+            <End Role="tblResources" EntitySet="tblResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblResources_dbo_tblLanguages_IdLanguage" Association="Self.FK_dbo_tblResources_dbo_tblLanguages_IdLanguage">
+            <End Role="tblLanguages" EntitySet="tblLanguages" />
+            <End Role="tblResources" EntitySet="tblResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage" Association="Self.FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage">
+            <End Role="tblLanguages" EntitySet="tblLanguages" />
+            <End Role="tblStaticResources" EntitySet="tblStaticResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText" Association="Self.FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText">
+            <End Role="tblStaticTexts" EntitySet="tblStaticTexts" />
+            <End Role="tblStaticResources" EntitySet="tblStaticResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerReviews_tblProducts" Association="Self.FK_tblCustomerReviews_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblCustomerReviews" EntitySet="tblCustomerReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerReviews_tblShoppers" Association="Self.FK_tblCustomerReviews_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblCustomerReviews" EntitySet="tblCustomerReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblOrders" Association="Self.FK_tblOrder_tblOrders">
+            <End Role="tblCompleteOrders" EntitySet="tblCompleteOrders" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblProducts" Association="Self.FK_tblOrder_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblQuantities" Association="Self.FK_tblOrder_tblQuantities">
+            <End Role="tblQuantities" EntitySet="tblQuantities" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrders_tblOrderStatuses" Association="Self.FK_tblOrders_tblOrderStatuses">
+            <End Role="tblOrderStatuses" EntitySet="tblOrderStatuses" />
+            <End Role="tblOrder" EntitySet="tblOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrders_tblShoppers" Association="Self.FK_tblOrders_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblCompleteOrders" EntitySet="tblCompleteOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProducts_tblCurrencies" Association="Self.FK_tblProducts_tblCurrencies">
+            <End Role="tblCurrencies" EntitySet="tblCurrencies" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProducts_tblDiscounts" Association="Self.FK_tblProducts_tblDiscounts">
+            <End Role="tblDiscounts" EntitySet="tblDiscounts" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProfilePictures_tblShoppers" Association="Self.FK_tblProfilePictures_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblProfilePicturesShoppers" EntitySet="tblProfilePicturesShoppers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShopingCart_tblProducts" Association="Self.FK_tblShopingCart_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblShopingCart" EntitySet="tblShopingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShopingCart_tblQuantities" Association="Self.FK_tblShopingCart_tblQuantities">
+            <End Role="tblQuantities" EntitySet="tblQuantities" />
+            <End Role="tblShopingCart" EntitySet="tblShopingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShopingCart_tblShoppers" Association="Self.FK_tblShopingCart_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblShopingCart" EntitySet="tblShopingCart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShoppers_tblDiscounts" Association="Self.FK_tblShoppers_tblDiscounts">
+            <End Role="tblDiscounts" EntitySet="tblDiscounts" />
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShoppers_tblShopperGroups" Association="Self.FK_tblShoppers_tblShopperGroups">
+            <End Role="tblShopperGroups" EntitySet="tblShopperGroups" />
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bcvitbg_EntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCompleteOrder">
+          <Key>
+            <PropertyRef Name="IdOrders" />
+          </Key>
+          <Property Name="IdOrders" Type="Int32" Nullable="false" />
+          <Property Name="IdShopper" Type="Int32" Nullable="false" />
+          <Property Name="IsPaid" Type="Boolean" />
+          <Property Name="DatePayment" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblOrders" FromRole="tblCompleteOrders" ToRole="tblOrder" />
+          <NavigationProperty Name="tblShopper" Relationship="Self.FK_tblOrders_tblShoppers" FromRole="tblCompleteOrders" ToRole="tblShoppers" />
+        </EntityType>
+        <EntityType Name="tblContext">
+          <Key>
+            <PropertyRef Name="IdContext" />
+          </Key>
+          <Property Name="IdContext" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Context" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblResources" Relationship="Self.FK_dbo_tblResources_dbo_tblContext_IdContext" FromRole="tblContext" ToRole="tblResources" />
+        </EntityType>
+        <EntityType Name="tblCurrency">
+          <Key>
+            <PropertyRef Name="IdCurrency" />
+          </Key>
+          <Property Name="IdCurrency" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CurrencyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CurrencyValue" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProducts_tblCurrencies" FromRole="tblCurrencies" ToRole="tblProducts" />
+        </EntityType>
+        <EntityType Name="tblCustomerReview">
+          <Key>
+            <PropertyRef Name="IdCustomerReview" />
+          </Key>
+          <Property Name="IdCustomerReview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="IdShopper" Type="Int32" Nullable="false" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="ReviewContext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublish" Type="Boolean" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblCustomerReviews_tblProducts" FromRole="tblCustomerReviews" ToRole="tblProducts" />
+          <NavigationProperty Name="tblShopper" Relationship="Self.FK_tblCustomerReviews_tblShoppers" FromRole="tblCustomerReviews" ToRole="tblShoppers" />
+        </EntityType>
+        <EntityType Name="tblDiscount">
+          <Key>
+            <PropertyRef Name="IdDiscount" />
+          </Key>
+          <Property Name="IdDiscount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountAmount" Type="Int32" Nullable="false" />
+          <Property Name="StartDateOfDiscount" Type="DateTime" Precision="3" />
+          <Property Name="EndDateOfDiscount" Type="DateTime" Precision="3" />
+          <Property Name="DiscountKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProducts_tblDiscounts" FromRole="tblDiscounts" ToRole="tblProducts" />
+          <NavigationProperty Name="tblShoppers" Relationship="Self.FK_tblShoppers_tblDiscounts" FromRole="tblDiscounts" ToRole="tblShoppers" />
+        </EntityType>
+        <EntityType Name="tblIPLoginAttempt">
+          <Key>
+            <PropertyRef Name="IdIPAdress" />
+          </Key>
+          <Property Name="IdIPAdress" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IPAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserAgend" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblLanguage">
+          <Key>
+            <PropertyRef Name="IdLanguage" />
+          </Key>
+          <Property Name="IdLanguage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Language" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Initials" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Culture" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Datechanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblResources" Relationship="Self.FK_dbo_tblResources_dbo_tblLanguages_IdLanguage" FromRole="tblLanguages" ToRole="tblResources" />
+          <NavigationProperty Name="tblStaticResources" Relationship="Self.FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage" FromRole="tblLanguages" ToRole="tblStaticResources" />
+        </EntityType>
+        <EntityType Name="tblOrder">
+          <Key>
+            <PropertyRef Name="IdOrder" />
+          </Key>
+          <Property Name="IdOrder" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrders" Type="Int32" Nullable="false" />
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="IdOrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="IdQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="QuantityLeft" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCompleteOrder" Relationship="Self.FK_tblOrder_tblOrders" FromRole="tblOrder" ToRole="tblCompleteOrders" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblOrder_tblProducts" FromRole="tblOrder" ToRole="tblProducts" />
+          <NavigationProperty Name="tblQuantity" Relationship="Self.FK_tblOrder_tblQuantities" FromRole="tblOrder" ToRole="tblQuantities" />
+          <NavigationProperty Name="tblOrderStatus" Relationship="Self.FK_tblOrders_tblOrderStatuses" FromRole="tblOrder" ToRole="tblOrderStatuses" />
+        </EntityType>
+        <EntityType Name="tblOrderStatus">
+          <Key>
+            <PropertyRef Name="IdOrderStatus" />
+          </Key>
+          <Property Name="IdOrderStatus" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrders_tblOrderStatuses" FromRole="tblOrderStatuses" ToRole="tblOrder" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDiscount" Type="Int32" />
+          <Property Name="IdCurrency" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Media" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublish" Type="Boolean" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCurrency" Relationship="Self.FK_tblProducts_tblCurrencies" FromRole="tblProducts" ToRole="tblCurrencies" />
+          <NavigationProperty Name="tblCustomerReviews" Relationship="Self.FK_tblCustomerReviews_tblProducts" FromRole="tblProducts" ToRole="tblCustomerReviews" />
+          <NavigationProperty Name="tblDiscount" Relationship="Self.FK_tblProducts_tblDiscounts" FromRole="tblProducts" ToRole="tblDiscounts" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblProducts" FromRole="tblProducts" ToRole="tblOrder" />
+          <NavigationProperty Name="tblShopingCarts" Relationship="Self.FK_tblShopingCart_tblProducts" FromRole="tblProducts" ToRole="tblShopingCart" />
+        </EntityType>
+        <EntityType Name="tblProfilePicturesAdmin">
+          <Key>
+            <PropertyRef Name="IdProfilePicture" />
+          </Key>
+          <Property Name="IdProfilePicture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PicturePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsProfile" Type="Boolean" Nullable="false" />
+          <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblProfilePicturesShopper">
+          <Key>
+            <PropertyRef Name="IdProfilePicture" />
+          </Key>
+          <Property Name="IdProfilePicture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdShopper" Type="Int32" Nullable="false" />
+          <Property Name="PicturePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsProfile" Type="Boolean" Nullable="false" />
+          <Property Name="IsVisible" Type="Boolean" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblShopper" Relationship="Self.FK_tblProfilePictures_tblShoppers" FromRole="tblProfilePicturesShoppers" ToRole="tblShoppers" />
+        </EntityType>
+        <EntityType Name="tblQuantity">
+          <Key>
+            <PropertyRef Name="IdQuantity" />
+          </Key>
+          <Property Name="IdQuantity" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDiscount" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblOrders" Relationship="Self.FK_tblOrder_tblQuantities" FromRole="tblQuantities" ToRole="tblOrder" />
+          <NavigationProperty Name="tblShopingCarts" Relationship="Self.FK_tblShopingCart_tblQuantities" FromRole="tblQuantities" ToRole="tblShopingCart" />
+        </EntityType>
+        <EntityType Name="tblResource">
+          <Key>
+            <PropertyRef Name="IdResource" />
+            <PropertyRef Name="IdLanguage" />
+            <PropertyRef Name="IdContext" />
+          </Key>
+          <Property Name="IdResource" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLanguage" Type="Int32" Nullable="false" />
+          <Property Name="IdContext" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblContext" Relationship="Self.FK_dbo_tblResources_dbo_tblContext_IdContext" FromRole="tblResources" ToRole="tblContext" />
+          <NavigationProperty Name="tblLanguage" Relationship="Self.FK_dbo_tblResources_dbo_tblLanguages_IdLanguage" FromRole="tblResources" ToRole="tblLanguages" />
+        </EntityType>
+        <EntityType Name="tblShopingCart">
+          <Key>
+            <PropertyRef Name="IdShopingCart" />
+          </Key>
+          <Property Name="IdShopingCart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdShopper" Type="Int32" Nullable="false" />
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="IdQuantity" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblProduct" Relationship="Self.FK_tblShopingCart_tblProducts" FromRole="tblShopingCart" ToRole="tblProducts" />
+          <NavigationProperty Name="tblQuantity" Relationship="Self.FK_tblShopingCart_tblQuantities" FromRole="tblShopingCart" ToRole="tblQuantities" />
+          <NavigationProperty Name="tblShopper" Relationship="Self.FK_tblShopingCart_tblShoppers" FromRole="tblShopingCart" ToRole="tblShoppers" />
+        </EntityType>
+        <EntityType Name="tblShopperGroup">
+          <Key>
+            <PropertyRef Name="IdShopperGroup" />
+          </Key>
+          <Property Name="IdShopperGroup" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblShoppers" Relationship="Self.FK_tblShoppers_tblShopperGroups" FromRole="tblShopperGroups" ToRole="tblShoppers" />
+        </EntityType>
+        <EntityType Name="tblShopper">
+          <Key>
+            <PropertyRef Name="IdShopper" />
+          </Key>
+          <Property Name="IdShopper" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdShopperGroup" Type="Int32" />
+          <Property Name="IdDiscount" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobilePhone" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsMessageForDiscountSended" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblCompleteOrders" Relationship="Self.FK_tblOrders_tblShoppers" FromRole="tblShoppers" ToRole="tblCompleteOrders" />
+          <NavigationProperty Name="tblCustomerReviews" Relationship="Self.FK_tblCustomerReviews_tblShoppers" FromRole="tblShoppers" ToRole="tblCustomerReviews" />
+          <NavigationProperty Name="tblDiscount" Relationship="Self.FK_tblShoppers_tblDiscounts" FromRole="tblShoppers" ToRole="tblDiscounts" />
+          <NavigationProperty Name="tblProfilePicturesShoppers" Relationship="Self.FK_tblProfilePictures_tblShoppers" FromRole="tblShoppers" ToRole="tblProfilePicturesShoppers" />
+          <NavigationProperty Name="tblShopingCarts" Relationship="Self.FK_tblShopingCart_tblShoppers" FromRole="tblShoppers" ToRole="tblShopingCart" />
+          <NavigationProperty Name="tblShopperGroup" Relationship="Self.FK_tblShoppers_tblShopperGroups" FromRole="tblShoppers" ToRole="tblShopperGroups" />
+        </EntityType>
+        <EntityType Name="tblStaticResource">
+          <Key>
+            <PropertyRef Name="IdStatic" />
+            <PropertyRef Name="IdLanguage" />
+            <PropertyRef Name="IdStaticText" />
+          </Key>
+          <Property Name="IdStatic" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdLanguage" Type="Int32" Nullable="false" />
+          <Property Name="IdStaticText" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StaticName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblLanguage" Relationship="Self.FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage" FromRole="tblStaticResources" ToRole="tblLanguages" />
+          <NavigationProperty Name="tblStaticText" Relationship="Self.FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText" FromRole="tblStaticResources" ToRole="tblStaticTexts" />
+        </EntityType>
+        <EntityType Name="tblStaticText">
+          <Key>
+            <PropertyRef Name="IdStaticText" />
+          </Key>
+          <Property Name="IdStaticText" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaticText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateChanged" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblStaticResources" Relationship="Self.FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText" FromRole="tblStaticTexts" ToRole="tblStaticResources" />
+        </EntityType>
+        <Association Name="FK_tblOrder_tblOrders">
+          <End Role="tblCompleteOrders" Type="Self.tblCompleteOrder" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompleteOrders">
+              <PropertyRef Name="IdOrders" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrders_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShopper" Multiplicity="1" />
+          <End Role="tblCompleteOrders" Type="Self.tblCompleteOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblCompleteOrders">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblResources_dbo_tblContext_IdContext">
+          <End Role="tblContext" Type="Self.tblContext" Multiplicity="1" />
+          <End Role="tblResources" Type="Self.tblResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContext">
+              <PropertyRef Name="IdContext" />
+            </Principal>
+            <Dependent Role="tblResources">
+              <PropertyRef Name="IdContext" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProducts_tblCurrencies">
+          <End Role="tblCurrencies" Type="Self.tblCurrency" Multiplicity="1" />
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCurrencies">
+              <PropertyRef Name="IdCurrency" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="IdCurrency" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerReviews_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="1" />
+          <End Role="tblCustomerReviews" Type="Self.tblCustomerReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="tblCustomerReviews">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerReviews_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShopper" Multiplicity="1" />
+          <End Role="tblCustomerReviews" Type="Self.tblCustomerReview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblCustomerReviews">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProducts_tblDiscounts">
+          <End Role="tblDiscounts" Type="Self.tblDiscount" Multiplicity="0..1" />
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiscounts">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="tblProducts">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShoppers_tblDiscounts">
+          <End Role="tblDiscounts" Type="Self.tblDiscount" Multiplicity="0..1" />
+          <End Role="tblShoppers" Type="Self.tblShopper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDiscounts">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="tblShoppers">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblResources_dbo_tblLanguages_IdLanguage">
+          <End Role="tblLanguages" Type="Self.tblLanguage" Multiplicity="1" />
+          <End Role="tblResources" Type="Self.tblResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="tblResources">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage">
+          <End Role="tblLanguages" Type="Self.tblLanguage" Multiplicity="1" />
+          <End Role="tblStaticResources" Type="Self.tblStaticResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLanguages">
+              <PropertyRef Name="IdLanguage" />
+            </Principal>
+            <Dependent Role="tblStaticResources">
+              <PropertyRef Name="IdLanguage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrder_tblQuantities">
+          <End Role="tblQuantities" Type="Self.tblQuantity" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuantities">
+              <PropertyRef Name="IdQuantity" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdQuantity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblOrders_tblOrderStatuses">
+          <End Role="tblOrderStatuses" Type="Self.tblOrderStatus" Multiplicity="1" />
+          <End Role="tblOrder" Type="Self.tblOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblOrderStatuses">
+              <PropertyRef Name="IdOrderStatus" />
+            </Principal>
+            <Dependent Role="tblOrder">
+              <PropertyRef Name="IdOrderStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShopingCart_tblProducts">
+          <End Role="tblProducts" Type="Self.tblProduct" Multiplicity="1" />
+          <End Role="tblShopingCart" Type="Self.tblShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProducts">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="tblShopingCart">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProfilePictures_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShopper" Multiplicity="1" />
+          <End Role="tblProfilePicturesShoppers" Type="Self.tblProfilePicturesShopper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblProfilePicturesShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShopingCart_tblQuantities">
+          <End Role="tblQuantities" Type="Self.tblQuantity" Multiplicity="1" />
+          <End Role="tblShopingCart" Type="Self.tblShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblQuantities">
+              <PropertyRef Name="IdQuantity" />
+            </Principal>
+            <Dependent Role="tblShopingCart">
+              <PropertyRef Name="IdQuantity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShopingCart_tblShoppers">
+          <End Role="tblShoppers" Type="Self.tblShopper" Multiplicity="1" />
+          <End Role="tblShopingCart" Type="Self.tblShopingCart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShoppers">
+              <PropertyRef Name="IdShopper" />
+            </Principal>
+            <Dependent Role="tblShopingCart">
+              <PropertyRef Name="IdShopper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblShoppers_tblShopperGroups">
+          <End Role="tblShopperGroups" Type="Self.tblShopperGroup" Multiplicity="0..1" />
+          <End Role="tblShoppers" Type="Self.tblShopper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblShopperGroups">
+              <PropertyRef Name="IdShopperGroup" />
+            </Principal>
+            <Dependent Role="tblShoppers">
+              <PropertyRef Name="IdShopperGroup" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText">
+          <End Role="tblStaticTexts" Type="Self.tblStaticText" Multiplicity="1" />
+          <End Role="tblStaticResources" Type="Self.tblStaticResource" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblStaticTexts">
+              <PropertyRef Name="IdStaticText" />
+            </Principal>
+            <Dependent Role="tblStaticResources">
+              <PropertyRef Name="IdStaticText" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bcvitbg_EntityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCompleteOrders" EntityType="Self.tblCompleteOrder" />
+          <EntitySet Name="tblContexts" EntityType="Self.tblContext" />
+          <EntitySet Name="tblCurrencies" EntityType="Self.tblCurrency" />
+          <EntitySet Name="tblCustomerReviews" EntityType="Self.tblCustomerReview" />
+          <EntitySet Name="tblDiscounts" EntityType="Self.tblDiscount" />
+          <EntitySet Name="tblIPLoginAttempts" EntityType="Self.tblIPLoginAttempt" />
+          <EntitySet Name="tblLanguages" EntityType="Self.tblLanguage" />
+          <EntitySet Name="tblOrders" EntityType="Self.tblOrder" />
+          <EntitySet Name="tblOrderStatuses" EntityType="Self.tblOrderStatus" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblProfilePicturesAdmins" EntityType="Self.tblProfilePicturesAdmin" />
+          <EntitySet Name="tblProfilePicturesShoppers" EntityType="Self.tblProfilePicturesShopper" />
+          <EntitySet Name="tblQuantities" EntityType="Self.tblQuantity" />
+          <EntitySet Name="tblResources" EntityType="Self.tblResource" />
+          <EntitySet Name="tblShopingCarts" EntityType="Self.tblShopingCart" />
+          <EntitySet Name="tblShopperGroups" EntityType="Self.tblShopperGroup" />
+          <EntitySet Name="tblShoppers" EntityType="Self.tblShopper" />
+          <EntitySet Name="tblStaticResources" EntityType="Self.tblStaticResource" />
+          <EntitySet Name="tblStaticTexts" EntityType="Self.tblStaticText" />
+          <AssociationSet Name="FK_tblOrder_tblOrders" Association="Self.FK_tblOrder_tblOrders">
+            <End Role="tblCompleteOrders" EntitySet="tblCompleteOrders" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrders_tblShoppers" Association="Self.FK_tblOrders_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblCompleteOrders" EntitySet="tblCompleteOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblResources_dbo_tblContext_IdContext" Association="Self.FK_dbo_tblResources_dbo_tblContext_IdContext">
+            <End Role="tblContext" EntitySet="tblContexts" />
+            <End Role="tblResources" EntitySet="tblResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProducts_tblCurrencies" Association="Self.FK_tblProducts_tblCurrencies">
+            <End Role="tblCurrencies" EntitySet="tblCurrencies" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerReviews_tblProducts" Association="Self.FK_tblCustomerReviews_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblCustomerReviews" EntitySet="tblCustomerReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerReviews_tblShoppers" Association="Self.FK_tblCustomerReviews_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblCustomerReviews" EntitySet="tblCustomerReviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProducts_tblDiscounts" Association="Self.FK_tblProducts_tblDiscounts">
+            <End Role="tblDiscounts" EntitySet="tblDiscounts" />
+            <End Role="tblProducts" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShoppers_tblDiscounts" Association="Self.FK_tblShoppers_tblDiscounts">
+            <End Role="tblDiscounts" EntitySet="tblDiscounts" />
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblResources_dbo_tblLanguages_IdLanguage" Association="Self.FK_dbo_tblResources_dbo_tblLanguages_IdLanguage">
+            <End Role="tblLanguages" EntitySet="tblLanguages" />
+            <End Role="tblResources" EntitySet="tblResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage" Association="Self.FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage">
+            <End Role="tblLanguages" EntitySet="tblLanguages" />
+            <End Role="tblStaticResources" EntitySet="tblStaticResources" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblProducts" Association="Self.FK_tblOrder_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrder_tblQuantities" Association="Self.FK_tblOrder_tblQuantities">
+            <End Role="tblQuantities" EntitySet="tblQuantities" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblOrders_tblOrderStatuses" Association="Self.FK_tblOrders_tblOrderStatuses">
+            <End Role="tblOrderStatuses" EntitySet="tblOrderStatuses" />
+            <End Role="tblOrder" EntitySet="tblOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShopingCart_tblProducts" Association="Self.FK_tblShopingCart_tblProducts">
+            <End Role="tblProducts" EntitySet="tblProducts" />
+            <End Role="tblShopingCart" EntitySet="tblShopingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProfilePictures_tblShoppers" Association="Self.FK_tblProfilePictures_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblProfilePicturesShoppers" EntitySet="tblProfilePicturesShoppers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShopingCart_tblQuantities" Association="Self.FK_tblShopingCart_tblQuantities">
+            <End Role="tblQuantities" EntitySet="tblQuantities" />
+            <End Role="tblShopingCart" EntitySet="tblShopingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShopingCart_tblShoppers" Association="Self.FK_tblShopingCart_tblShoppers">
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+            <End Role="tblShopingCart" EntitySet="tblShopingCarts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblShoppers_tblShopperGroups" Association="Self.FK_tblShoppers_tblShopperGroups">
+            <End Role="tblShopperGroups" EntitySet="tblShopperGroups" />
+            <End Role="tblShoppers" EntitySet="tblShoppers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText" Association="Self.FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText">
+            <End Role="tblStaticTexts" EntitySet="tblStaticTexts" />
+            <End Role="tblStaticResources" EntitySet="tblStaticResources" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bcvitbg_EntityModelStoreContainer" CdmEntityContainer="bcvitbg_EntityEntities">
+          <EntitySetMapping Name="tblCompleteOrders">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblCompleteOrder">
+              <MappingFragment StoreEntitySet="tblCompleteOrders">
+                <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
+                <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="DatePayment" ColumnName="DatePayment" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContexts">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblContext">
+              <MappingFragment StoreEntitySet="tblContext">
+                <ScalarProperty Name="IdContext" ColumnName="IdContext" />
+                <ScalarProperty Name="Context" ColumnName="Context" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCurrencies">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblCurrency">
+              <MappingFragment StoreEntitySet="tblCurrencies">
+                <ScalarProperty Name="IdCurrency" ColumnName="IdCurrency" />
+                <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="CurrencyValue" ColumnName="CurrencyValue" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomerReviews">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblCustomerReview">
+              <MappingFragment StoreEntitySet="tblCustomerReviews">
+                <ScalarProperty Name="IdCustomerReview" ColumnName="IdCustomerReview" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ReviewContext" ColumnName="ReviewContext" />
+                <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDiscounts">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblDiscount">
+              <MappingFragment StoreEntitySet="tblDiscounts">
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="StartDateOfDiscount" ColumnName="StartDateOfDiscount" />
+                <ScalarProperty Name="EndDateOfDiscount" ColumnName="EndDateOfDiscount" />
+                <ScalarProperty Name="DiscountKey" ColumnName="DiscountKey" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblIPLoginAttempts">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblIPLoginAttempt">
+              <MappingFragment StoreEntitySet="tblIPLoginAttempts">
+                <ScalarProperty Name="IdIPAdress" ColumnName="IdIPAdress" />
+                <ScalarProperty Name="IPAdress" ColumnName="IPAdress" />
+                <ScalarProperty Name="UserAgend" ColumnName="UserAgend" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLanguages">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblLanguage">
+              <MappingFragment StoreEntitySet="tblLanguages">
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Initials" ColumnName="Initials" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Datechanged" ColumnName="Datechanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrders">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblOrder">
+              <MappingFragment StoreEntitySet="tblOrder">
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdOrderStatus" ColumnName="IdOrderStatus" />
+                <ScalarProperty Name="IdQuantity" ColumnName="IdQuantity" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="QuantityLeft" ColumnName="QuantityLeft" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblOrderStatuses">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblOrderStatus">
+              <MappingFragment StoreEntitySet="tblOrderStatuses">
+                <ScalarProperty Name="IdOrderStatus" ColumnName="IdOrderStatus" />
+                <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblProduct">
+              <MappingFragment StoreEntitySet="tblProducts">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="IdCurrency" ColumnName="IdCurrency" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="Media" ColumnName="Media" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsPublish" ColumnName="IsPublish" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProfilePicturesAdmins">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblProfilePicturesAdmin">
+              <MappingFragment StoreEntitySet="tblProfilePicturesAdmins">
+                <ScalarProperty Name="IdProfilePicture" ColumnName="IdProfilePicture" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="IsProfile" ColumnName="IsProfile" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProfilePicturesShoppers">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblProfilePicturesShopper">
+              <MappingFragment StoreEntitySet="tblProfilePicturesShoppers">
+                <ScalarProperty Name="IdProfilePicture" ColumnName="IdProfilePicture" />
+                <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
+                <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+                <ScalarProperty Name="IsProfile" ColumnName="IsProfile" />
+                <ScalarProperty Name="IsVisible" ColumnName="IsVisible" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblQuantities">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblQuantity">
+              <MappingFragment StoreEntitySet="tblQuantities">
+                <ScalarProperty Name="IdQuantity" ColumnName="IdQuantity" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblResources">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblResource">
+              <MappingFragment StoreEntitySet="tblResources">
+                <ScalarProperty Name="IdResource" ColumnName="IdResource" />
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="IdContext" ColumnName="IdContext" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblShopingCarts">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblShopingCart">
+              <MappingFragment StoreEntitySet="tblShopingCart">
+                <ScalarProperty Name="IdShopingCart" ColumnName="IdShopingCart" />
+                <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdQuantity" ColumnName="IdQuantity" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblShopperGroups">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblShopperGroup">
+              <MappingFragment StoreEntitySet="tblShopperGroups">
+                <ScalarProperty Name="IdShopperGroup" ColumnName="IdShopperGroup" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupDescription" ColumnName="GroupDescription" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblShoppers">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblShopper">
+              <MappingFragment StoreEntitySet="tblShoppers">
+                <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
+                <ScalarProperty Name="IdShopperGroup" ColumnName="IdShopperGroup" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IsMessageForDiscountSended" ColumnName="IsMessageForDiscountSended" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStaticResources">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblStaticResource">
+              <MappingFragment StoreEntitySet="tblStaticResources">
+                <ScalarProperty Name="IdStatic" ColumnName="IdStatic" />
+                <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
+                <ScalarProperty Name="IdStaticText" ColumnName="IdStaticText" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StaticName" ColumnName="StaticName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStaticTexts">
+            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblStaticText">
+              <MappingFragment StoreEntitySet="tblStaticTexts">
+                <ScalarProperty Name="IdStaticText" ColumnName="IdStaticText" />
+                <ScalarProperty Name="StaticText" ColumnName="StaticText" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="DateChanged" ColumnName="DateChanged" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

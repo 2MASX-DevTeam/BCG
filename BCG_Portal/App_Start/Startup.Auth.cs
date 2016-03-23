@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using BCG_Portal.Models;
+using BCG_Portal_Models;
 
 namespace BCG_Portal
 {

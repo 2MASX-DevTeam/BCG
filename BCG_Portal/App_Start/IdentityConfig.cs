@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BCG_Portal.Models;
+using BCG_Portal_Models;
 
 namespace BCG_Portal
 {

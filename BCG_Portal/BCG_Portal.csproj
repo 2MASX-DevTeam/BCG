@@ -48,6 +48,10 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -162,12 +166,85 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BCGModels\BCGEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCGEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\BCGEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\BCGEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblCompleteOrder.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblContext.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblCurrency.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblCustomerReview.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblDiscount.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblIPLoginAttempt.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblLanguage.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblOrder.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblOrderStatus.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblProduct.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblProfilePicturesAdmin.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblProfilePicturesShopper.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblQuantity.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblResource.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblShopingCart.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblShopper.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblShopperGroup.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblStaticResource.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BCGModels\tblStaticText.cs">
+      <DependentUpon>BCGEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ExternalModels\ContactModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -179,12 +256,19 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bussinessCardsStyle.css">
+      <DependentUpon>bussinessCardsStyle.less</DependentUpon>
+    </Content>
+    <Content Include="Content\bussinessCardsStyle.min.css">
+      <DependentUpon>bussinessCardsStyle.css</DependentUpon>
+    </Content>
     <Content Include="Content\custPortalCss.css">
       <DependentUpon>custPortalCss.less</DependentUpon>
     </Content>
     <Content Include="Content\custPortalCss.min.css">
       <DependentUpon>custPortalCss.css</DependentUpon>
     </Content>
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\parallaxcss.css">
       <DependentUpon>parallaxcss.less</DependentUpon>
     </Content>
@@ -246,6 +330,27 @@
     </Content>
     <Content Include="fonts\daliQ.ttf" />
     <Content Include="fonts\TravelingTypewriter.ttf" />
+    <EntityDeploy Include="Models\BCGModels\BCGEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BCGEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\BCGModels\BCGEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+      <LastGenOutput>BCGEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BCGModels\BCGEntities.edmx.diagram">
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\BCGModels\BCGEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BCGEntities.edmx</DependentUpon>
+      <LastGenOutput>BCGEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Content\bussinessCardsStyle.less" />
+    <Content Include="Content\bussinessCardsStyle.css.map">
+      <DependentUpon>bussinessCardsStyle.css</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -297,12 +402,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ApplicationUsers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BCG_DB\BCG_DB.csproj">
+      <Project>{8cb3d51f-2349-4560-9291-99a0cf5f92d1}</Project>
+      <Name>BCG_DB</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BCG_Portal_Models\BCG_Portal_Models.csproj">
       <Project>{b5fc53f2-817a-4499-b520-fe2eda7e5f53}</Project>
       <Name>BCG_Portal_Models</Name>

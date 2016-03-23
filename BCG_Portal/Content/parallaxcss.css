@@ -15,6 +15,26 @@
     top: -200px;
   }
 }
+@-moz-keyframes STAR-MOVE {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -5000px;
+    top: -200px;
+  }
+}
+@keyframes STAR-MOVE {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -5000px;
+    top: -200px;
+  }
+}
 #background {
   background: black url(../images/movingstars/background.png) repeat 5% 5%;
   position: absolute;
