@@ -5,17 +5,19 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using BCG_DB.Entity.Manage;
 using System.Configuration;
 using System.Net.Mail;
 using System.Net;
+using Tools;
 using Newtonsoft.Json;
+using SendMailHelper;
+using BCG_Portal.Models;
 
 namespace BCG_Portal
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private LoginAttempts db = new LoginAttempts();
+        ExceptionToAdmin mail = new ExceptionToAdmin();
 
         protected void Application_Start()
         {
@@ -27,6 +29,7 @@ namespace BCG_Portal
 
         protected void Session_Start()
         {
+            var db = new BCGEntities();
             string ip = Tools.IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
             string browserVersion = Request.UserAgent;
             if (!String.IsNullOrWhiteSpace(ip))
@@ -36,16 +39,16 @@ namespace BCG_Portal
                     var fullinfo = GetCountryByIp(ip.ToString());
                     if (fullinfo != null)
                     {
-                        var model = new tblIPLoginAttempts()
+                        var model = db.tblIPLoginAttempts.Create();
                         {
-                            IPAdress = ip,
-                            UserAgend = browserVersion,
-                            Latitude = fullinfo.latitude,
-                            Longitude = fullinfo.longitude,
-                            Country = fullinfo.country_name,
-                            DateChanged = DateTime.Now,
-                            DateCreated = DateTime.Now,
-                            UserName = "SYSTEM"
+                            model.IPAdress = ip;
+                            model.UserAgend = browserVersion;
+                            model.Latitude = fullinfo.latitude;
+                            model.Longitude = fullinfo.longitude;
+                            model.Country = fullinfo.country_name;
+                            model.DateChanged = DateTime.Now;
+                            model.DateCreated = DateTime.Now;
+                            model.UserName = "SYSTEM";
                         };
 
                         db.tblIPLoginAttempts.Add(model);

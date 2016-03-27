@@ -7,23 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblShopingCart
+    public partial class tblProfilePicturesShopper
     {
-        public int IdShopingCart { get; set; }
+        public int IdProfilePicture { get; set; }
         public int IdShopper { get; set; }
-        public int IdProduct { get; set; }
-        public int IdQuantity { get; set; }
+        public string PicturePath { get; set; }
+        public bool IsProfile { get; set; }
+        public bool IsVisible { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual tblProduct tblProduct { get; set; }
-        public virtual tblQuantity tblQuantity { get; set; }
         public virtual tblShopper tblShopper { get; set; }
     }
 }

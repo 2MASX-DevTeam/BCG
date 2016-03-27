@@ -7,30 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblQuantity
+    public partial class tblStaticText
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblQuantity()
+        public tblStaticText()
         {
-            this.tblOrders = new HashSet<tblOrder>();
-            this.tblShopingCarts = new HashSet<tblShopingCart>();
+            this.tblStaticResources = new HashSet<tblStaticResource>();
         }
     
-        public int IdQuantity { get; set; }
-        public Nullable<int> IdDiscount { get; set; }
-        public int Quantity { get; set; }
+        public int IdStaticText { get; set; }
+        public string StaticText { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblOrder> tblOrders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblShopingCart> tblShopingCarts { get; set; }
+        public virtual ICollection<tblStaticResource> tblStaticResources { get; set; }
     }
 }

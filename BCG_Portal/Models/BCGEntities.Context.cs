@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bcvitbg_EntityEntities : DbContext
+    public partial class BCGEntities : DbContext
     {
-        public bcvitbg_EntityEntities()
-            : base("name=bcvitbg_EntityEntities")
+        public BCGEntities()
+            : base("name=BCGEntities")
         {
         }
     

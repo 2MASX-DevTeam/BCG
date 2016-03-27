@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Collections.Generic;
@@ -39,6 +39,7 @@ namespace BCG_Portal.Models.BCGModels
         public string CompanyName { get; set; }
         public Nullable<bool> IsMessageForDiscountSended { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
+        public string ConfirmationToken { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCompleteOrder> tblCompleteOrders { get; set; }

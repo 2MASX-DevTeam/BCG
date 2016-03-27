@@ -12,7 +12,6 @@
     <link href="~/Content/custPortalCss.min.css" rel="stylesheet" />
     <link href="~/Content/parallaxcss.min.css" rel="stylesheet" />
     <link href="~/Content/bussinessCardsStyle.min.css" rel="stylesheet" />
-    
 </head>
 
 <body>
@@ -33,18 +32,30 @@
 
                 <ul class="nav navbar-nav">
                     <li class="">@Html.ActionLink("Home", "Index", "Home")</li>
+
                     <li>@Html.ActionLink("About", "About", "Home")</li>
 
                     <li>@Html.ActionLink("Products", "Products", "Home")</li>
 
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Cards", "CardGenerator", "CardGenerator")</li>
-                    <li>@Html.ActionLink("Paypal", "Index", "PayPal")</li>
+                    @*<li>@Html.ActionLink("Paypal", "Index", "PayPal")</li>*@
                     @*<li>@Html.ActionLink("Parallax", "Parallax", "Home")</li>*@
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @Html.Partial("_LoginPartial")
-                </ul>
+                @if (ViewBag.IsAuthenticated == true)
+                {
+                    @Html.AntiForgeryToken()
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>john</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Register", "Register", "LoginRegister")</li>
+                        <li>@Html.ActionLink("Login", "Login", "LoginRegister")</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
@@ -72,12 +83,15 @@
         @RenderBody()
         <hr />
 
-
+        <div class="clearfix"></div>
         <!--==============================footer=================================-->
-        <footer>
-            <div style="vertical-align: middle !important; font-size: 18px !important;">
-                <span> &copy; @DateTime.Now.Year </span>
-                <span>www.bc-vit.com</span>
+        <footer class="text-center" style="vertical-align:middle;">
+            <div>
+                <h3 class="">
+                    <span>Copyright &copy; @DateTime.Now.Year </span>
+                    @*<a href="https://www.bc-vit.bg" style="text-decoration:none !important;">www.bc-vit.bg</a>*@
+                    @Html.ActionLink("www.bc-vit.bg", "Index", "Home")
+                </h3>
             </div>
             <div class="soc-icons">
                 <div>

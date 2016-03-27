@@ -7,21 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblResource
+    public partial class tblCustomerReview
     {
-        public int IdResource { get; set; }
-        public int IdLanguage { get; set; }
-        public int IdContext { get; set; }
+        public int IdCustomerReview { get; set; }
+        public int IdProduct { get; set; }
+        public int IdShopper { get; set; }
+        public Nullable<int> Rating { get; set; }
+        public string ReviewContext { get; set; }
+        public Nullable<bool> IsPublish { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
-        public virtual tblContext tblContext { get; set; }
-        public virtual tblLanguage tblLanguage { get; set; }
+        public virtual tblProduct tblProduct { get; set; }
+        public virtual tblShopper tblShopper { get; set; }
     }
 }

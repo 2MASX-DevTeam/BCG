@@ -7,27 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblOrder
+    public partial class tblProfilePicturesAdmin
     {
-        public int IdOrder { get; set; }
-        public int IdOrders { get; set; }
-        public int IdProduct { get; set; }
-        public int IdOrderStatus { get; set; }
-        public int IdQuantity { get; set; }
-        public System.DateTime OrderDate { get; set; }
-        public int QuantityLeft { get; set; }
+        public int IdProfilePicture { get; set; }
+        public string PicturePath { get; set; }
+        public bool IsProfile { get; set; }
+        public bool IsVisible { get; set; }
         public string UserName { get; set; }
         public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
-    
-        public virtual tblCompleteOrder tblCompleteOrder { get; set; }
-        public virtual tblProduct tblProduct { get; set; }
-        public virtual tblQuantity tblQuantity { get; set; }
-        public virtual tblOrderStatus tblOrderStatus { get; set; }
+        public string User_Id { get; set; }
     }
 }

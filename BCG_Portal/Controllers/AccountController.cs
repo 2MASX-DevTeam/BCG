@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
 using BCG_Portal.Models;
-using BCG_Portal_Models;
 
 namespace BCG_Portal.Controllers
 {
@@ -156,7 +155,7 @@ namespace BCG_Portal.Controllers
             
                 if (ModelState.IsValid)
                 {
-                       var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                       var user = new BCG_Portal.Models.ApplicationDbContext.ApplicationUser { UserName = model.Email, Email = model.Email };
 
                     var result = await UserManager.CreateAsync(user, model.Password);
 
@@ -379,7 +378,7 @@ namespace BCG_Portal.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new BCG_Portal.Models.ApplicationDbContext.ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

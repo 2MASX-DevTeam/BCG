@@ -7,33 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BCG_Portal.Models.BCGModels
+namespace BCG_Portal.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class tblLanguage
+    public partial class tblCurrency
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblLanguage()
+        public tblCurrency()
         {
-            this.tblResources = new HashSet<tblResource>();
-            this.tblStaticResources = new HashSet<tblStaticResource>();
+            this.tblProducts = new HashSet<tblProduct>();
         }
     
-        public int IdLanguage { get; set; }
-        public string Language { get; set; }
-        public string Initials { get; set; }
-        public string Culture { get; set; }
-        public byte[] Picture { get; set; }
-        public bool IsActive { get; set; }
+        public int IdCurrency { get; set; }
+        public string CurrencyName { get; set; }
+        public string CurrencyCode { get; set; }
+        public decimal CurrencyValue { get; set; }
         public string UserName { get; set; }
-        public Nullable<System.DateTime> Datechanged { get; set; }
+        public Nullable<System.DateTime> DateChanged { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblResource> tblResources { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblStaticResource> tblStaticResources { get; set; }
+        public virtual ICollection<tblProduct> tblProducts { get; set; }
     }
 }

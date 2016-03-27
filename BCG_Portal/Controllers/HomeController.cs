@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BCG_Portal.Models.BCGModels;
+using BCG_Portal.Models;
 namespace BCG_Portal.Controllers
 {
     public class HomeController : Controller
     {
         /* Private and Static naming have the same effect */
-        private readonly BCG_Portal.Models.BCGModels.tblShopper _shopper =
-                new BCG_Portal.Models.BCGModels.tblShopper();
+        private readonly BCG_Portal.Models.tblShopper _shopper =
+                new BCG_Portal.Models.tblShopper();
 
-        private static BCG_Portal.Models.BCGModels.tblIPLoginAttempt _ipGeoLocation =
-                new BCG_Portal.Models.BCGModels.tblIPLoginAttempt();
+        private static BCG_Portal.Models.tblIPLoginAttempt _ipGeoLocation =
+                new BCG_Portal.Models.tblIPLoginAttempt();
         public ActionResult Index()
         {
             return View();

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bcvitbg_EntityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblCompleteOrders">
           <Key>
             <PropertyRef Name="IdOrders" />
@@ -227,6 +227,7 @@
           <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
           <Property Name="IsMessageForDiscountSended" Type="bit" />
           <Property Name="DateCreated" Type="datetime" />
+          <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblStaticResources">
           <Key>
@@ -481,7 +482,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bcvitbg_EntityModelStoreContainer">
+        <EntityContainer Name="ModelsStoreContainer">
           <EntitySet Name="tblCompleteOrders" EntityType="Self.tblCompleteOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblContext" EntityType="Self.tblContext" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCurrencies" EntityType="Self.tblCurrencies" Schema="dbo" store:Type="Tables" />
@@ -582,7 +583,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="bcvitbg_EntityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="tblCompleteOrder">
           <Key>
             <PropertyRef Name="IdOrders" />
@@ -834,6 +835,7 @@
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsMessageForDiscountSended" Type="Boolean" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmationToken" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblCompleteOrders" Relationship="Self.FK_tblOrders_tblShoppers" FromRole="tblShoppers" ToRole="tblCompleteOrders" />
           <NavigationProperty Name="tblCustomerReviews" Relationship="Self.FK_tblCustomerReviews_tblShoppers" FromRole="tblShoppers" ToRole="tblCustomerReviews" />
           <NavigationProperty Name="tblDiscount" Relationship="Self.FK_tblShoppers_tblDiscounts" FromRole="tblShoppers" ToRole="tblDiscounts" />
@@ -1097,7 +1099,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bcvitbg_EntityEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BCGEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblCompleteOrders" EntityType="Self.tblCompleteOrder" />
           <EntitySet Name="tblContexts" EntityType="Self.tblContext" />
           <EntitySet Name="tblCurrencies" EntityType="Self.tblCurrency" />
@@ -1199,9 +1201,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bcvitbg_EntityModelStoreContainer" CdmEntityContainer="bcvitbg_EntityEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="BCGEntities">
           <EntitySetMapping Name="tblCompleteOrders">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblCompleteOrder">
+            <EntityTypeMapping TypeName="Models.tblCompleteOrder">
               <MappingFragment StoreEntitySet="tblCompleteOrders">
                 <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
                 <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
@@ -1214,7 +1216,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblContexts">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblContext">
+            <EntityTypeMapping TypeName="Models.tblContext">
               <MappingFragment StoreEntitySet="tblContext">
                 <ScalarProperty Name="IdContext" ColumnName="IdContext" />
                 <ScalarProperty Name="Context" ColumnName="Context" />
@@ -1225,7 +1227,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblCurrencies">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblCurrency">
+            <EntityTypeMapping TypeName="Models.tblCurrency">
               <MappingFragment StoreEntitySet="tblCurrencies">
                 <ScalarProperty Name="IdCurrency" ColumnName="IdCurrency" />
                 <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
@@ -1238,7 +1240,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblCustomerReviews">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblCustomerReview">
+            <EntityTypeMapping TypeName="Models.tblCustomerReview">
               <MappingFragment StoreEntitySet="tblCustomerReviews">
                 <ScalarProperty Name="IdCustomerReview" ColumnName="IdCustomerReview" />
                 <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
@@ -1253,7 +1255,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblDiscounts">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblDiscount">
+            <EntityTypeMapping TypeName="Models.tblDiscount">
               <MappingFragment StoreEntitySet="tblDiscounts">
                 <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
                 <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
@@ -1267,7 +1269,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblIPLoginAttempts">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblIPLoginAttempt">
+            <EntityTypeMapping TypeName="Models.tblIPLoginAttempt">
               <MappingFragment StoreEntitySet="tblIPLoginAttempts">
                 <ScalarProperty Name="IdIPAdress" ColumnName="IdIPAdress" />
                 <ScalarProperty Name="IPAdress" ColumnName="IPAdress" />
@@ -1282,7 +1284,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblLanguages">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblLanguage">
+            <EntityTypeMapping TypeName="Models.tblLanguage">
               <MappingFragment StoreEntitySet="tblLanguages">
                 <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
@@ -1297,7 +1299,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrders">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblOrder">
+            <EntityTypeMapping TypeName="Models.tblOrder">
               <MappingFragment StoreEntitySet="tblOrder">
                 <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
                 <ScalarProperty Name="IdOrders" ColumnName="IdOrders" />
@@ -1313,7 +1315,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblOrderStatuses">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblOrderStatus">
+            <EntityTypeMapping TypeName="Models.tblOrderStatus">
               <MappingFragment StoreEntitySet="tblOrderStatuses">
                 <ScalarProperty Name="IdOrderStatus" ColumnName="IdOrderStatus" />
                 <ScalarProperty Name="OrderStatusName" ColumnName="OrderStatusName" />
@@ -1324,7 +1326,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProducts">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblProduct">
+            <EntityTypeMapping TypeName="Models.tblProduct">
               <MappingFragment StoreEntitySet="tblProducts">
                 <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
                 <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
@@ -1340,7 +1342,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProfilePicturesAdmins">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblProfilePicturesAdmin">
+            <EntityTypeMapping TypeName="Models.tblProfilePicturesAdmin">
               <MappingFragment StoreEntitySet="tblProfilePicturesAdmins">
                 <ScalarProperty Name="IdProfilePicture" ColumnName="IdProfilePicture" />
                 <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
@@ -1354,7 +1356,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProfilePicturesShoppers">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblProfilePicturesShopper">
+            <EntityTypeMapping TypeName="Models.tblProfilePicturesShopper">
               <MappingFragment StoreEntitySet="tblProfilePicturesShoppers">
                 <ScalarProperty Name="IdProfilePicture" ColumnName="IdProfilePicture" />
                 <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
@@ -1368,7 +1370,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblQuantities">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblQuantity">
+            <EntityTypeMapping TypeName="Models.tblQuantity">
               <MappingFragment StoreEntitySet="tblQuantities">
                 <ScalarProperty Name="IdQuantity" ColumnName="IdQuantity" />
                 <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
@@ -1380,7 +1382,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblResources">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblResource">
+            <EntityTypeMapping TypeName="Models.tblResource">
               <MappingFragment StoreEntitySet="tblResources">
                 <ScalarProperty Name="IdResource" ColumnName="IdResource" />
                 <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
@@ -1392,7 +1394,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblShopingCarts">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblShopingCart">
+            <EntityTypeMapping TypeName="Models.tblShopingCart">
               <MappingFragment StoreEntitySet="tblShopingCart">
                 <ScalarProperty Name="IdShopingCart" ColumnName="IdShopingCart" />
                 <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
@@ -1405,7 +1407,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblShopperGroups">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblShopperGroup">
+            <EntityTypeMapping TypeName="Models.tblShopperGroup">
               <MappingFragment StoreEntitySet="tblShopperGroups">
                 <ScalarProperty Name="IdShopperGroup" ColumnName="IdShopperGroup" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
@@ -1417,7 +1419,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblShoppers">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblShopper">
+            <EntityTypeMapping TypeName="Models.tblShopper">
               <MappingFragment StoreEntitySet="tblShoppers">
                 <ScalarProperty Name="IdShopper" ColumnName="IdShopper" />
                 <ScalarProperty Name="IdShopperGroup" ColumnName="IdShopperGroup" />
@@ -1435,11 +1437,12 @@
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="IsMessageForDiscountSended" ColumnName="IsMessageForDiscountSended" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblStaticResources">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblStaticResource">
+            <EntityTypeMapping TypeName="Models.tblStaticResource">
               <MappingFragment StoreEntitySet="tblStaticResources">
                 <ScalarProperty Name="IdStatic" ColumnName="IdStatic" />
                 <ScalarProperty Name="IdLanguage" ColumnName="IdLanguage" />
@@ -1453,7 +1456,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblStaticTexts">
-            <EntityTypeMapping TypeName="bcvitbg_EntityModel.tblStaticText">
+            <EntityTypeMapping TypeName="Models.tblStaticText">
               <MappingFragment StoreEntitySet="tblStaticTexts">
                 <ScalarProperty Name="IdStaticText" ColumnName="IdStaticText" />
                 <ScalarProperty Name="StaticText" ColumnName="StaticText" />
