@@ -85,9 +85,9 @@ namespace BCG_Portal
                 dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
                 return dynObj;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // SendExceptionToAdmin(ex.ToString());
+                mail.SendExceptionToAdmin(ex.ToString());
                 return null;
             }
 
