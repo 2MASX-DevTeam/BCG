@@ -12,6 +12,7 @@ using Tools;
 using Newtonsoft.Json;
 using SendMailHelper;
 using BCG_Portal.Models;
+using BCG_Portal.Data;
 
 namespace BCG_Portal
 {
@@ -21,16 +22,20 @@ namespace BCG_Portal
 
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            //AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RazorViewEngine());
+
         }
 
         protected void Session_Start()
         {
-            var db = new BCGEntities();
-            string ip = Tools.IPAddress.GetClientIPAddress(System.Web.HttpContext.Current);
+            var db = new ApplicationDbContext();
+            string ip = Tools.IPAddress.GetClientIPAddress(HttpContext.Current);
             string browserVersion = Request.UserAgent;
             if (!String.IsNullOrWhiteSpace(ip))
             {
@@ -39,7 +44,7 @@ namespace BCG_Portal
                     var fullinfo = GetCountryByIp(ip.ToString());
                     if (fullinfo != null)
                     {
-                        var model = db.tblIPLoginAttempts.Create();
+                        var model = db.IPLoginAttempts.Create();
                         {
                             model.IPAdress = ip;
                             model.UserAgend = browserVersion;
@@ -51,7 +56,7 @@ namespace BCG_Portal
                             model.UserName = "SYSTEM";
                         };
 
-                        db.tblIPLoginAttempts.Add(model);
+                        db.IPLoginAttempts.Add(model);
                         db.SaveChanges();
                     }
                 }
@@ -87,7 +92,7 @@ namespace BCG_Portal
             }
             catch (Exception ex)
             {
-                mail.SendExceptionToAdmin(ex.ToString());
+                //mail.SendExceptionToAdmin(ex.ToString());
                 return null;
             }
 
