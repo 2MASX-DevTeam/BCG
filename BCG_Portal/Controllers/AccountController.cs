@@ -153,29 +153,22 @@ namespace BCG_Portal.Controllers
             
                 if (ModelState.IsValid)
                 {
-                       var user = new BCG_Portal.Models.User { UserName = model.Username, Email = model.Email };
-
+                    var user = new User { UserName = model.Username, Email = model.Email };
+                    user.Email = model.Email;
+                    user.ConfirmedEmail = false;
                     var result = await UserManager.CreateAsync(user, model.Password);
 
                     if (result.Succeeded)
                     {
-                        //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                        // Send an email with this link
-                        string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new
-                        {
-                            userId = user.Id,
-                            code = code
-                        }, protocol: Request.Url.Scheme);
-
-                     
-                        return RedirectToAction("Index", "Home");
+                        System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+                        new System.Net.Mail.MailAddress("sender@mydomain.com", "Web Registration"),
+                        new System.Net.Mail.MailAddress(user.Email));
+                        m.Subject = "Email confirmation"; 
+                        m.Body = string.Format("Dear {0}<BR/>Thank you for your registration, please click on the below link to comlete your registration: <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.UserName,
+                            Url.Action("ConfirmEmail", "Account", new { userId = user.Id, Email = user.Email }, Request.Url.Scheme)); 
                     }
-                    AddErrors(result);
-                }
 
+                }
                 // If we got this far, something failed, redisplay form
                 return View(model);
           
@@ -184,14 +177,27 @@ namespace BCG_Portal.Controllers
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(string userId, string Email)
         {
-            if (userId == null || code == null)
-            {
-                return View("Error");
-            }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            User user = this.UserManager.FindById(userId); 
+            if (user != null) 
+            { 
+                if (user.Email == Email) 
+                { 
+                    user.ConfirmedEmail = true; 
+                   // await UserManager.UpdateAsync(user); 
+                  //  await SignInAsync(user, isPersistent: false); 
+                    return RedirectToAction("Index", "Home", new { ConfirmedEmail = user.Email }); 
+                } 
+                else 
+                { 
+                    return RedirectToAction("Confirm", "Account", new { Email = user.Email }); 
+                } 
+            } 
+            else 
+            { 
+                return RedirectToAction("Confirm", "Account", new { Email = "" }); 
+            } 
         }
 
         //

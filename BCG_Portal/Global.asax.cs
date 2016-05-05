@@ -10,7 +10,7 @@ using System.Net.Mail;
 using System.Net;
 using Tools;
 using Newtonsoft.Json;
-using SendMailHelper;
+//using SendMailHelper;
 using BCG_Portal.Models;
 using BCG_Portal.Data;
 
@@ -18,7 +18,7 @@ namespace BCG_Portal
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        ExceptionToAdmin mail = new ExceptionToAdmin();
+       // ExceptionToAdmin mail = new ExceptionToAdmin();
 
         protected void Application_Start()
         {
@@ -90,7 +90,7 @@ namespace BCG_Portal
                 dynamic dynObj = JsonConvert.DeserializeObject(jsonstring);
                 return dynObj;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //mail.SendExceptionToAdmin(ex.ToString());
                 return null;

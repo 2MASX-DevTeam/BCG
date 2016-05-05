@@ -1,0 +1,80 @@
+﻿@model BCG_Portal.Models.tblShopper
+@{
+    ViewBag.Title = "Register";
+}
+<link href="~/Content/custAuthenticateCss.min.css" rel="stylesheet" />
+
+<div class="text-center" style="vertical-align:middle;">
+    <br />
+    <br />
+    <div class="logo">Register</div>
+
+    <!-- START: Html.BeginForm -->
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "Registeration Failed, fields.");
+
+
+        @* Secure the error messages who will be shown to the user *@
+        if (ViewBag.ShowErrorDiv == true)
+        {
+            <div class="@ViewBag.DivClass" style="width:42%; margin:0 auto;">
+                <p>@ViewBag.ErrorMessage</p>
+            </div>
+        }
+        <br />
+
+    <!-- START: Main Form -->
+        <div class="login-form-1">
+            <!-- START: register-form -->
+            <div id="register-form" class="text-left">
+
+                <div class="main-login-form">
+
+                    <div class="login-group">
+
+                        @*<%-- Username --%>*@
+                        <div class="form-group">
+                            @Html.TextBoxFor(u => u.UserName, null, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Username"
+                           })
+                        </div>
+                        @*<%-- Password --%>*@
+                        <div class="form-group">
+                            @Html.TextBoxFor(u => u.Password, null, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Password"
+                           })
+                        </div>
+                        
+                        @*<%-- Email --%>*@
+                        <div class="form-group">
+                            @*<input type="text" class="form-control" id="regemail" placeholder="Email" />*@
+                            @Html.TextBoxFor(u => u.Email, null, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Email"
+                           })
+                        </div>
+                    </div>
+                    @*<button id="RegisterMe" class="login-button" type="submit">GO </button>*@
+                    <input type="submit" value="GO" class="login-button" />
+                </div>
+                <br />
+                <div class="etc-login-form text-center">
+                    <p>
+                        Already have an account?
+                        @Html.ActionLink("Login here >>>>", "Login", "LoginRegister")
+                    </p>
+                </div>
+            </div>
+            <!-- END: register-form -->
+        </div>
+    <!-- END: Main Form -->
+    }
+    <!-- END: Html.BeginForm -->
+</div>
+<br />

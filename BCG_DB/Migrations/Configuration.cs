@@ -11,6 +11,7 @@ namespace BCG_DB.Migrations
         {
             AutomaticMigrationsEnabled = true;
             ContextKey = "BCG_DB.Entity.Manage.LoginAttempts";
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(BCG_DB.Entity.Manage.LoginAttempts context)
