@@ -19,7 +19,6 @@ namespace BCG_Manage.Controllers
 
         // GET: ApplicationUsers
         [HttpGet]
-         
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Manage", "BCG_Manage\BCG_Manage.csproj", "{E5AC414B-2E09-4E98-9456-21ADDCBE7AD2}"
 EndProject
@@ -14,8 +14,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal", "BCG_Portal\BCG_Portal.csproj", "{1071DC78-1813-4451-A4F5-532BFB870731}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMailHelper", "..\External App Helpers\SendMailHelper\SendMailHelper.csproj", "{EC735012-D12D-4C52-BCC4-3940D9CE3165}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCG_Portal.Data", "BCG_Portal.Data\BCG_Portal.Data.csproj", "{0032610E-C90B-4ADE-B0EC-BD4F73872832}"
 EndProject
@@ -39,10 +37,6 @@ Global
 		{1071DC78-1813-4451-A4F5-532BFB870731}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1071DC78-1813-4451-A4F5-532BFB870731}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1071DC78-1813-4451-A4F5-532BFB870731}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC735012-D12D-4C52-BCC4-3940D9CE3165}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0032610E-C90B-4ADE-B0EC-BD4F73872832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0032610E-C90B-4ADE-B0EC-BD4F73872832}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0032610E-C90B-4ADE-B0EC-BD4F73872832}.Release|Any CPU.ActiveCfg = Release|Any CPU

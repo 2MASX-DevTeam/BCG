@@ -5,7 +5,7 @@ namespace BCG_DB.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BCG_DB.Entity.Manage.LoginAttempts>
+    internal sealed class Configuration : DbMigrationsConfiguration<Entity.Manage.LoginAttempts>
     {
         public Configuration()
         {
