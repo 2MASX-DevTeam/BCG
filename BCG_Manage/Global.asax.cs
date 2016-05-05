@@ -6,8 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Tools;
-using BCG_Manage.Controllers;
 using System.Net.Mail;
 using System.Configuration;
 using System.Net;

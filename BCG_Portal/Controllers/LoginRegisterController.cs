@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BCG_Portal.Models;
 using System.Data.Entity.Validation;
-using SendMailHelper;
+//using SendMailHelper;
 using System.Text;
 using System.Text.RegularExpressions;
 using BCG_Portal.Helpers;
@@ -17,7 +17,7 @@ namespace BCG_Portal.Controllers
 {
     public class LoginRegisterController : Controller
     {
-        private ExceptionToAdmin mail = new ExceptionToAdmin();
+        //private ExceptionToAdmin mail = new ExceptionToAdmin();
         private EmailConfirmationHandler sendConfirmMail = new EmailConfirmationHandler();
         private PasswordHandler secureThePass = new PasswordHandler();
 
@@ -166,7 +166,7 @@ namespace BCG_Portal.Controllers
                         br.AppendLine(jo2);
                     }
                     /* Send info whats wrong */
-                    mail.SendExceptionToAdmin(br.ToString());
+                    //mail.SendExceptionToAdmin(br.ToString());
                 }
             }
             catch(Exception Ex)
@@ -176,7 +176,7 @@ namespace BCG_Portal.Controllers
                 ViewBag.ShowErrorDiv = true;
                 ViewBag.ErrorMessage = "Something get wrong! Unable to save the data! Try Again!";
                 string error = Ex.ToString();
-                mail.SendExceptionToAdmin("BCG Portal: Error in registration form => " + error);
+               // mail.SendExceptionToAdmin("BCG Portal: Error in registration form => " + error);
             }
 
             // If we got this far, something failed, redisplay form

@@ -21,11 +21,26 @@ namespace BCG_Portal
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/bussinesCardJs.js",
+                      "~/Scripts/parallaxjs.js",
+                      "~/Scripts/custPortalScripts.js",
+                      "~/Scripts/jquery-eu-cookie-law-popup.js",
+                      "~/Scripts/jquery-ui-1.11.4.min.js",
+                      "~/Scripts/jquery.elastislide.js",
+                      "~/Scripts/jquerypp.custom.js",
+                      "~/Scripts/modernizr.custom.17475.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bussinessCardsStyle.min.css",
+                       "~/Content/parallaxcss.min.css",
+                       "~/Content/custPortalCss.min.css",
+                       "~/Content/cuts-jquery-eupopup.min.css",
+                       "~/Content/custCarouselCss.min.css",
+                       "~/Content/custCarouselDemo.min.css",
+                       "~/Content/custElastislideCarousel.min.css"));
         }
     }
 }

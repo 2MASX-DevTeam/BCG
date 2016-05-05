@@ -37,5 +37,15 @@ namespace BCG_Portal.Controllers
             return View();
         }
 
+        public ActionResult TermsOfUseBG()
+        {
+            return View();
+        }
+
+        public ActionResult CoockieDeclarationBG()
+        {
+            return View();
+        }
+
     }
 }

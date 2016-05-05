@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="Helpers\EmailConfirmationHandler.cs" />
     <Compile Include="Helpers\PasswordHandler.cs" />
+    <Compile Include="Helpers\SendEmailsHandler.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BCGEntities.Context.cs">
       <AutoGen>True</AutoGen>
@@ -272,11 +273,35 @@
     <Content Include="Content\custAuthenticateCss.min.css">
       <DependentUpon>custAuthenticateCss.css</DependentUpon>
     </Content>
+    <Content Include="Content\custCarouselCss.css">
+      <DependentUpon>custCarouselCss.less</DependentUpon>
+    </Content>
+    <Content Include="Content\custCarouselCss.min.css">
+      <DependentUpon>custCarouselCss.css</DependentUpon>
+    </Content>
+    <Content Include="Content\custCarouselDemo.css">
+      <DependentUpon>custCarouselDemo.less</DependentUpon>
+    </Content>
+    <Content Include="Content\custCarouselDemo.min.css">
+      <DependentUpon>custCarouselDemo.css</DependentUpon>
+    </Content>
+    <Content Include="Content\custElastislideCarousel.css">
+      <DependentUpon>custElastislideCarousel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\custElastislideCarousel.min.css">
+      <DependentUpon>custElastislideCarousel.css</DependentUpon>
+    </Content>
     <Content Include="Content\custPortalCss.css">
       <DependentUpon>custPortalCss.less</DependentUpon>
     </Content>
     <Content Include="Content\custPortalCss.min.css">
       <DependentUpon>custPortalCss.css</DependentUpon>
+    </Content>
+    <Content Include="Content\cuts-jquery-eupopup.css">
+      <DependentUpon>cuts-jquery-eupopup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\cuts-jquery-eupopup.min.css">
+      <DependentUpon>cuts-jquery-eupopup.css</DependentUpon>
     </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\parallaxcss.css">
@@ -286,13 +311,22 @@
       <DependentUpon>parallaxcss.css</DependentUpon>
     </Content>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\arrLft.png" />
+    <Content Include="images\arrRgh.png" />
+    <Content Include="images\bg.jpg" />
+    <Content Include="images\black_denim.png" />
+    <Content Include="images\bobo.png" />
     <Content Include="images\busCards\d.jpg" />
     <Content Include="images\busCards\dd.jpg" />
     <Content Include="images\busCards\demot.jpg" />
     <Content Include="images\busCards\google-plus-icon-set.png" />
     <Content Include="images\busCards\xfiles-back.jpeg" />
+    <Content Include="images\bussnessCardSmall.png" />
+    <Content Include="images\deluxSmall.png" />
     <Content Include="images\EARTHATLASES\atlas.jpg" />
     <Content Include="images\EARTHATLASES\eart.jpg" />
     <Content Include="images\EARTHATLASES\earth.jpg" />
@@ -301,9 +335,15 @@
     <Content Include="images\EARTHATLASES\earth2.png" />
     <Content Include="images\facebook.jpg" />
     <Content Include="images\google.jpg" />
+    <Content Include="images\intuneBigCopy.png" />
+    <Content Include="images\loading.gif" />
+    <Content Include="images\loading_dark.gif" />
+    <Content Include="images\logo\bcvitLogo.PNG" />
     <Content Include="images\movingstars\background.png" />
     <Content Include="images\movingstars\foreground.png" />
     <Content Include="images\movingstars\midground.png" />
+    <Content Include="images\natureSmall.png" />
+    <Content Include="images\nav.png" />
     <Content Include="images\paralaximages\3d.jpg" />
     <Content Include="images\paralaximages\bob.png" />
     <Content Include="images\paralaximages\christmas-tree.png" />
@@ -319,9 +359,13 @@
     <Content Include="images\paralaximages\slide5.jpg" />
     <Content Include="images\paralaximages\snowflakes.png" />
     <Content Include="images\shop-cart.png" />
+    <Content Include="images\sixsenseSmall.png" />
     <Content Include="images\twitter.jpg" />
+    <Content Include="images\vizitka_moq\Veso1.jpg" />
+    <Content Include="images\vizitka_moq\Veso2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bussinesCardJs.js" />
     <Content Include="Scripts\custPortalScripts.js" />
     <Content Include="Scripts\jquery-2.2.1.js" />
     <Content Include="Scripts\jquery-2.2.1.min.js" />
@@ -365,20 +409,49 @@
       <DependentUpon>BCGEntities.edmx</DependentUpon>
       <LastGenOutput>BCGEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Content\cuts-jquery-eupopup.less" />
+    <Content Include="Content\cuts-jquery-eupopup.css.map">
+      <DependentUpon>cuts-jquery-eupopup.css</DependentUpon>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\custCarouselCss.less" />
+    <Content Include="Content\custCarouselCss.css.map">
+      <DependentUpon>custCarouselCss.css</DependentUpon>
+    </Content>
+    <Content Include="Content\custCarouselDemo.less" />
+    <Content Include="Content\custCarouselDemo.css.map">
+      <DependentUpon>custCarouselDemo.css</DependentUpon>
+    </Content>
+    <Content Include="Content\custElastislideCarousel.less" />
+    <Content Include="Content\custElastislideCarousel.css.map">
+      <DependentUpon>custElastislideCarousel.css</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\BCG-Portal.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-eu-cookie-law-popup.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.elastislide.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquerypp.custom.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\modernizr.custom.17475.js" />
     <Content Include="Scripts\parallaxjs.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UsefullThings.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -421,6 +494,8 @@
     <Content Include="Views\LoginRegister\Register.cshtml" />
     <Content Include="Views\Shared\_LoginRegisterErrors.cshtml" />
     <Content Include="Views\RegisterUserAdminPanel\Index.cshtml" />
+    <Content Include="Views\Home\TermsOfUseBG.cshtml" />
+    <Content Include="Views\Home\CoockieDeclarationBG.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

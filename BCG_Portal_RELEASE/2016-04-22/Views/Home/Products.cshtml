@@ -1,0 +1,182 @@
+﻿<!--==============================content================================-->
+@*<script src="~/Scripts/jquery-2.2.1.min.js"></script>*@
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<style>
+    .drago {
+        width: 98%;
+        margin: 0 auto;
+    }
+
+    .dragThis {
+        padding: 0 15px 0 5px;
+        color: firebrick;
+    }
+
+    [contenteditable="true"]:active,
+    [contenteditable="true"]:focus {
+        border: none;
+        outline: none;
+    }
+
+    /*#flipCard{
+        width:100%;
+        height:300px;
+        border:2px solid black;
+    }*/
+
+    .moveRight {
+        text-align: right;
+    }
+
+    .arr {
+        width: 15%;
+        height: 15%;
+    }
+
+    .arr:hover {
+     cursor: pointer;
+    }
+</style>
+<section id="content">
+    <h2 class="daliQ">OUR PRODUCTS</h2><hr />
+    <div class="row">
+        <div class="col-md-3"> TO DO: Slider</div>
+        <div class="col-md-6">
+            <div id="showCards">
+                <div id="natureBig">
+                    @*<div class="daliQ2 drago"><span class="dragThis">Company Name</span></div>
+                        <div class="daliQ1 drago"><span class="dragThis">Company Message</span></div><br />
+                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
+                        <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
+                        <div class="daliQ1 drago"><span class="dragThis">Address Line 1</span></div>
+                        <div class="daliQ1 drago"><span class="dragThis">Address Line 2</span></div><br />
+                        <div class="daliQ1 drago"><span class="dragThis">Phone / Other</span></div>
+                        <div class="daliQ1 drago"><span class="dragThis">Email / Other</span></div>
+                        <div class="daliQ1 drago"><span class="dragThis">Web / Other</span></div>*@
+
+                    <div class="daliQ2 drago"><span class="dragThis">BC-VIT</span></div>
+                    <div class="daliQ1 drago"><span class="dragThis">Make a digital business card in a way you like it.</span></div><br />
+                    <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
+                    <div class="daliQ1 drago"><span class="dragThis">Manager HR</span></div><br />
+                    <div class="daliQ1 drago"><span class="dragThis">Redmond, USA</span></div>
+                    <div class="daliQ1 drago"><span class="dragThis">One Way Road, WA 98052-6399</span></div><br />
+                    <div class="daliQ1 drago"><span class="dragThis">+79 1223 33456 7809</span></div>
+                    <div class="daliQ1 drago"><span class="dragThis">bcvit&#64;domain.com</span></div>
+                    <div class="daliQ1 drago"><span class="dragThis">www.bc-vit.com</span></div>
+
+                </div>
+
+                @*<div id="intuneBig" style="visibility:hidden;"></div>
+                    <div id="intuitikBig" style="visibility:hidden;"></div>
+                    <div id="deluxBig" style="visibility:hidden;"></div>
+                    <div id="evolveBig" style="visibility:hidden;"></div>
+                    <div id="phoenixBig" style="visibility:hidden;"></div>*@
+                @*<div id="sixsenseBig"></div>
+                    <div id="sixsenseBig"></div>*@
+
+            </div>
+
+            <div id="flipCard">
+                &nbsp;
+                <div class="row">
+
+                    <div class="col-md-6 col-xs-6 moveRight">
+                        <span class="daliQ2">Flip Front</span>
+                        <img id="FrontSide" class="arr" src="~/images/arrLft.png" alt="Flip To Front Side" title="Flip To Front Side" />
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <img id="BackSide" class="arr" src="~/images/arrRgh.png" alt="Flip To Back Side" title="Flip To Back Side" />
+                        <span class="daliQ2">Flip Back</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            @*<input type="Button" value="Justify" onclick="function2();">*@
+            <input type="Button" value="Left" onclick="function3();">
+            <input type="Button" value="Center" onclick="function1();">
+            <input type="Button" value="Right" onclick="function4();">
+        </div>
+    </div>
+    @* Bussines card area *@
+
+
+    <div class="clearfix"></div>
+
+
+
+    <script>
+        var offset123;
+        $(document).ready(function () {
+            offset123 = $('.dragThis').position("left");
+            console.log(offset123);
+        });
+
+        function function1() {
+            document.all.natureBig.align = "center";
+        }
+        function function2() {
+            document.all.natureBig.align = "justify";
+        }
+        function function3() {
+            document.all.natureBig.align = "left";
+        }
+        function function4() {
+            document.all.natureBig.align = "right";
+        }
+
+        $("#BackSide").click(function () {
+
+            alert("hello");
+        });
+
+        $(".dragThis").click(function () {
+            $(this).attr("maxlength", "20");
+            $(this).attr("contenteditable", "true");
+            $(this).css("border", "1px dashed white");
+            $(this).css("word-break", "break-all")
+            $(this).keypress(function (e) {
+                if (e.which == 13) {
+                    e.preventDefault();
+                }
+            });
+        });
+
+        //$(".dragThis").dblclick(function () {
+        //    $(this).css("cursor", "e-resize");
+        //    $(this).attr("contenteditable", "false");
+        //});
+
+        $(".dragThis").mouseleave(function () {
+            $(this).css("border", "none");
+            $(this).attr("contenteditable", "false");
+        });
+        $(".dragThis").keypress(function () {
+            console.log($(this).text().length)
+            return $(this).text().length <= 46;
+        });
+        $('.drago').draggable(
+        {
+            containment: "parent",
+            drag: function (event, ui) {
+                var offset = $(this).offset();
+                var xPos = this.offset.left;
+                var yPos = this.offset.top;
+                $('#posX').text('x: ' + xPos);
+                $('#posY').text('y: ' + yPos);
+                //console.log(this.offset);
+                //console.log(xPos);
+                //console.log(yPos);
+            }
+        });
+
+
+    </script>
+
+</section> 
