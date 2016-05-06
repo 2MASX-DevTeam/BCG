@@ -10,7 +10,7 @@ namespace BCG_Portal.Models
     {
         public List<Card> Products = new List<Card>();
 
-        public int Total { get; set; }
+        public string Total { get; set; }
     }
 
     public class Card
@@ -49,5 +49,14 @@ namespace BCG_Portal.Models
         public string ImageUrl { get; set; }
 
         public string Media { get; set; }
+    }
+
+    public class CheckoutViewModel
+    {
+        public List<Card> Products = new List<Card>();
+
+        public string Total { get; set; }
+
+        public SelectList ListCurrencies { get; set; }
     }
 }

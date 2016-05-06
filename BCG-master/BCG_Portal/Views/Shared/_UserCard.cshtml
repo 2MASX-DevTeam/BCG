@@ -35,7 +35,7 @@
                             Product Name: @product.ProductName
 
                             <br />
-                            Prize per 100: @product.Price
+                            Price per 100: @product.Price
                             <br />
                             Quantity: @product.Quantity
                             <hr />
@@ -51,10 +51,7 @@
                         </div>
                     </div>
                 }
-                <div>
-                    <hr />
-                    Total: @Model.Total
-                </div>
+               
                 <div>
                     @Html.ActionLink("Checkout", "CheckOut", null, new { @class = "btn btn-primary"})
                 </div>

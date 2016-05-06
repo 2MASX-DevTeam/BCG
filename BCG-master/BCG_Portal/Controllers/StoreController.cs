@@ -13,6 +13,7 @@ namespace BCG_Portal.Controllers
     public class StoreController : Controller
     {
         private StoreModels db = new StoreModels();
+        private string total = "";
 
         public ActionResult AddToCard(string idProduct, ProductsViewModels models)
         {
@@ -67,7 +68,6 @@ namespace BCG_Portal.Controllers
                                    Quantity = tblQuantity.Quantity,
                                }).ToList();
 
-                model.Total = 0;
 
                 foreach (var item in tblCart)
                 {
@@ -80,6 +80,8 @@ namespace BCG_Portal.Controllers
                     });
 
                 }
+                model.Total = total;
+
             }
             return model;
         }
@@ -104,6 +106,9 @@ namespace BCG_Portal.Controllers
                 var discount = db.tblDiscounts.Find(tbl.IdDiscount).DiscountAmount;
                 price = price - price * discount / 100;
             }
+
+            total += price;
+
             var result = String.Format("{0} {1}", price, tbl.CurrencyCode);
             return result;
         }
