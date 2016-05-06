@@ -11,13 +11,6 @@ namespace BCG_Portal.Controllers
 {
     public class HomeController : Controller
     {
-        ///* Private and Static naming have the same effect */
-        //private readonly BCG_Portal.Models.tblShopper _shopper =
-        //        new BCG_Portal.Models.tblShopper();
-
-        //private static BCG_Portal.Models.tblIPLoginAttempt _ipGeoLocation =
-        //        new BCG_Portal.Models.tblIPLoginAttempt();
-
         private StoreModels db = new StoreModels();
 
         public ActionResult Index()
@@ -95,6 +88,13 @@ namespace BCG_Portal.Controllers
         {
             return View();
         }
+
+        public ActionResult ConfirmEmail()
+        {
+            return View();
+        }
+
+        
 
     }
 }

@@ -12,15 +12,18 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using BCG_Portal.Models;
 using BCG_Portal.Data;
+using BCG_Portal.Helpers;
 
 namespace BCG_Portal
 {
     public class EmailService : IIdentityMessageService
     {
+        private SendMailHelper sendMail = new SendMailHelper();
+
         public Task SendAsync(IdentityMessage message)
         {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return sendMail.SendEmailConfirmation(message);
+            //return client.SendMailAsync(mail);
         }
     }
 
