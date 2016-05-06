@@ -14,7 +14,6 @@
     background: #efefef; 
     padding: 3px; 
     font-family: Papyrus; 
-
 } 
 /*=== 2. Anchor Link ===*/
 a {
@@ -23,6 +22,7 @@ a {
     -o-transition: all ease-in-out 200ms;
     -webkit-transition: all ease-in-out 200ms;
     transition: all ease-in-out 200ms;
+      text-decoration: none; 
 } 
 a:hover { 
     color: #333333; 
@@ -34,16 +34,17 @@ a:hover {
     padding: 10px 20px;
     font-size:1.5em;
     font-family:TravelingTypewriter;
-    p{
-        margin-bottom: 5px; 
-    }
-    a{
-        color: #e74c3c; 
-    }
-    a:hover{
-        color: #3c7be7 !important; 
-    }
 }
+.etc-login-form p{
+    margin-bottom: 5px; 
+}
+.etc-login-form a{
+    color: #e74c3c; 
+}
+.etc-login-form a:hover{
+    color: #3c7be7 !important; 
+}
+
 .login-button{
     font-size:1.4em;
     font-family:TravelingTypewriter;
@@ -97,23 +98,23 @@ a:hover {
     padding: 5px 0; 
 } 
 /*=== 5. Login Button ===*/
-    .login-form-1 .login-button {
-        position: absolute;
-        right: -25px;
-        top: 50%;
-        background: #ffffff;
-        color: #999999;
-        padding: 11px 0;
-        width: 50px;
-        height: 50px;
-        margin-top: -25px;
-        border: 5px solid #efefef;
-        border-radius: 50%;
-        -moz-transition: all ease-in-out 500ms;
-        -o-transition: all ease-in-out 500ms;
-        -webkit-transition: all ease-in-out 500ms;
-        transition: all ease-in-out 500ms;
-    } 
+.login-form-1 .login-button {
+    position: absolute;
+    right: -25px;
+    top: 50%;
+    background: #ffffff;
+    color: #999999;
+    padding: 11px 0;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    border: 5px solid #efefef;
+    border-radius: 50%;
+    -moz-transition: all ease-in-out 500ms;
+    -o-transition: all ease-in-out 500ms;
+    -webkit-transition: all ease-in-out 500ms;
+    transition: all ease-in-out 500ms;
+} 
 .login-form-1 .login-button:hover { 
     color: #555555;
      -moz-transform: rotate(720deg);
@@ -153,7 +154,7 @@ a:hover {
 [type="radio"]:not(:checked) + label:before, 
 [type="radio"]:checked + label:before { 
     content: ''; 
-   // position: absolute; 
+    /*position: absolute;*/ 
     left: 0; 
     top: 2px; 
     width: 17px; 
@@ -250,7 +251,7 @@ label:hover:before {
 }
 /*=== 9. Misc ===*/
 .logo {
-    font-family:COMPUTERRobot;
+    font-family:Papyrus;
     padding: 15px 0;
     font-size:2.5em;
 }

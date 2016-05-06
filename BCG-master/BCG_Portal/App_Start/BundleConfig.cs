@@ -37,7 +37,7 @@ namespace BCG_Portal
                       "~/Content/bussinessCardsStyle.min.css",
                       "~/Content/custAuthenticateCss.css",
                        "~/Content/parallaxcss.min.css",
-                       "~/Content/custPortalCss.min.css",
+                       "~/Content/custPortalCss.css",
                        "~/Content/cuts-jquery-eupopup.min.css",
                        "~/Content/custCarouselCss.min.css",
                        "~/Content/custCarouselDemo.min.css",
