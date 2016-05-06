@@ -26,6 +26,8 @@ namespace BCG_DB.Entity.Store
         [StringLength(50)]
         public string ProductName { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public string Media { get; set; }
 
         [StringLength(50)]

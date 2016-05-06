@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BCG_Portal.Models.ProductsViewModels
+@{
     ViewBag.Title = "Products";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -23,15 +24,22 @@
             <div class="bobi">
                 <!-- ================== Start Carousel ==================-->
                 <ul id="carousel" class="elastislide-list">
-                    <li id="natureSmall" class="qQoq"><img src="~/images/natureSmall.png" alt="image05" /></li>
+                    @foreach (var product in Model.LstProducts)
+                    {
+                        <li>
+                            <img src=@product.ImageUrl alt="..." />
+                        </li>
+
+                    }
+                    @*<li id="natureSmall" class="qQoq"><img src="~/images/natureSmall.png" alt="image05" /></li>
                     <li id="intuneSmall" class="qQoq"><img src="~/images/intuneBigCopy.png" alt="image05" /></li>
                     <li id="deluxSmall" class="qQoq"><img src="~/images/deluxSmall.png" alt="image05" /></li>
-                    <li id="sixsenseSmall" class="qQoq"><img src="~/images/sixsenseSmall.png" alt="image05" /></li>
-                
+                    <li id="sixsenseSmall" class="qQoq"><img src="~/images/sixsenseSmall.png" alt="image05" /></li>*@
+
                     @*<li><img src="~/images/facebook.jpg" alt="image06" /></li>
-                        <li><a href="#"><img src="~/images/google.jpg" alt="image07" /></a></li>
-                        <li><a href="#"><img src="~/images/twitter.jpg" alt="image11" /></a></li>
-                        <li><a href="#"><img src="~/images/shop-cart.png" alt="image12" /></a></li>*@
+            <li><a href="#"><img src="~/images/google.jpg" alt="image07" /></a></li>
+            <li><a href="#"><img src="~/images/twitter.jpg" alt="image11" /></a></li>
+            <li><a href="#"><img src="~/images/shop-cart.png" alt="image12" /></a></li>*@
                     <!-- ================== You can put as many images as you wish ==================-->
                 </ul>
                 <!-- ================== End Carousel ==================-->
@@ -65,9 +73,6 @@
                         <div class="daliQ1 drago"><span class="dragThis">Email / Other</span></div>
                         <div class="daliQ1 drago"><span class="dragThis">Web / Other</span></div>
                     </div>
-                    @*
-                                 <div id="intuitikBig" style="visibility:hidden;"></div>
-                    <div id="phoenixBig" style="visibility:hidden;"></div>>*@
                 </div>
 
                 <div id="intuneBig" class="card" style="display:none;">
@@ -130,19 +135,6 @@
                     </div>
                 </div>
 
-                <div id="evolveBig" class="card" style="display:none;">
-                    <div class="face front evolveBig">
-                        <div class="daliQ2 drago"><span class="dragThis">BC-VIT</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Make a digital business card in a way you like it.</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                    </div>
-                    <div class="face back evolveBig">
-                        <div class="daliQ2 drago"><span class="dragThis">Company Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Company Message</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                    </div>
-                </div>
-
                 <div id="flipCard">
                     &nbsp;
                     <div class="row">
@@ -194,31 +186,15 @@
         //        $('#showCards .card').removeClass('flipped');
         //    }
         //);
-        $("#natureSmall").click(function (e) {
-            $("#intuneBig").hide();
-            $("#deluxBig").hide();
-            $("#sixsenseBig").hide();
-            $("#natureBig").show();
-        });
-        $("#intuneSmall").click(function (e) {
-            $("#natureBig").hide();
-            $("#deluxBig").hide();
-            $("#sixsenseBig").hide();
-            $("#intuneBig").show();
-        });
-        $("#deluxSmall").click(function (e) {
-            $("#natureBig").hide();
-            $("#intuneBig").hide();
-            $("#sixsenseBig").hide();
-            $("#deluxBig").show();
-        });
-        $("#sixsenseSmall").click(function (e) {
-            $("#natureBig").hide();
-            $("#intuneBig").hide();
-            $("#deluxBig").hide();
-            $("#sixsenseBig").show();
-        });
+    
+        $('#carousel li').click(function () {
+            var clickedLI = $(this).index() + 1;
 
+            console.log(clickedLI);
+
+            $(".card").hide();
+            $(".card:nth-child(" + clickedLI + ")").show();
+        });
 
         $('#carousel').elastislide({
             orientation: 'vertical'
