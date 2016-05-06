@@ -47,6 +47,7 @@ namespace BCG_Portal.Controllers
             var model = new ProductsViewModels();
 
             var tblProducts = db.tblProducts.Include(i => i.tblDiscount).Include(i => i.tblCurrency);
+            var tblQuantitys = db.tblQuantities.ToList();
 
             foreach (var row in tblProducts)
             {
@@ -58,6 +59,8 @@ namespace BCG_Portal.Controllers
                         Price = PriceForProduct(row.IdProduct)
                     });
             }
+
+            model.ListQuantitys = new SelectList(tblQuantitys, "IdQuantity", "Quantity");
 
             return View(model);
         }

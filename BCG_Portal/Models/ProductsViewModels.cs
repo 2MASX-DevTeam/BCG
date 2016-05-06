@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BCG_Portal.Models
 {
@@ -10,6 +11,10 @@ namespace BCG_Portal.Models
     public class ProductsViewModels
     {
         public List<Product> LstProducts = new List<Product>();
+
+        public string SelectedQuantity { get; set; }
+
+        public SelectList ListQuantitys { get; set; }
     }
 
     public class Product

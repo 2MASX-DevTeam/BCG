@@ -9,8 +9,9 @@
 <script src="~/Scripts/jquery-2.2.1.min.js"></script>
 <script src="~/Scripts/jquery.elastislide.js"></script>
 <style>
-    .qQoq{
+    .card:not(:first-child) {
         /*margin:10px !important;*/
+        display: none;
     }
 </style>
 <!--============================== Start Products Content ================================-->
@@ -31,16 +32,6 @@
                         </li>
 
                     }
-                    @*<li id="natureSmall" class="qQoq"><img src="~/images/natureSmall.png" alt="image05" /></li>
-                    <li id="intuneSmall" class="qQoq"><img src="~/images/intuneBigCopy.png" alt="image05" /></li>
-                    <li id="deluxSmall" class="qQoq"><img src="~/images/deluxSmall.png" alt="image05" /></li>
-                    <li id="sixsenseSmall" class="qQoq"><img src="~/images/sixsenseSmall.png" alt="image05" /></li>*@
-
-                    @*<li><img src="~/images/facebook.jpg" alt="image06" /></li>
-            <li><a href="#"><img src="~/images/google.jpg" alt="image07" /></a></li>
-            <li><a href="#"><img src="~/images/twitter.jpg" alt="image11" /></a></li>
-            <li><a href="#"><img src="~/images/shop-cart.png" alt="image12" /></a></li>*@
-                    <!-- ================== You can put as many images as you wish ==================-->
                 </ul>
                 <!-- ================== End Carousel ==================-->
             </div>
@@ -49,91 +40,19 @@
         @* Start Bussines card area *@
         <div class="col-md-6">
             <div id="showCards" class="flip">
+   
+                @foreach (var product in Model.LstProducts)
+                {
+                        <div class="card">
+                            <div class="row">
+                                @Html.Raw(product.Media)
+                            </div>
+                            <div class="row price">
+                                @product.Price
+                            </div>
+                        </div>
+                }
 
-                <div id="natureBig" class="card">
-                    <div class="face front">
-                        <div class="daliQ2 drago"><span class="dragThis">BC-VIT</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Make a digital business card in a way you like it.</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Manager HR</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">Redmond, USA</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">One Way Road, WA 98052-6399</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">+79 1223 33456 7809</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">bcvit&#64;domain.com</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">www.bc-vit.com</span></div>
-                    </div>
-                    <div class="face back">
-                        <div class="daliQ2 drago"><span class="dragThis">Company Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Company Message</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">Address Line 1</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Address Line 2</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">Phone / Other</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Email / Other</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Web / Other</span></div>
-                    </div>
-                </div>
-
-                <div id="intuneBig" class="card" style="display:none;">
-                    <div class="face front intuneBig">
-                        <div class="daliQ2 drago"><span class="dragThis">BC-VITSSSSSS</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Make a digital business card in a way you like it.</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Manager HR</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">Redmond, USA</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">One Way Road, WA 98052-6399</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">+79 1223 33456 7809</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">bcvit&#64;domain.com</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">www.bc-vit.com</span></div>
-                    </div>
-                    <div class="face back intuneBig">
-                        <div class="daliQ2 drago"><span class="dragThis">Company Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Company Message</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
-                    </div>
-                </div>
-
-                <div id="deluxBig" class="card" style="display:none;">
-                    <div class="face front deluxBig">
-                        <div class="daliQ2 drago"><span class="dragThis">BC-VITSSSSSS</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Make a digital business card in a way you like it.</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Manager HR</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">Redmond, USA</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">One Way Road, WA 98052-6399</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">+79 1223 33456 7809</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">bcvit&#64;domain.com</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">www.bc-vit.com</span></div>
-                    </div>
-                    <div class="face back deluxBig">
-                        <div class="daliQ2 drago"><span class="dragThis">Company Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Company Message</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
-                    </div>
-                </div>
-
-                <div id="sixsenseBig" class="card" style="display:none;">
-                    <div class="face front sixsenseBig">
-                        <div class="daliQ2 drago"><span class="dragThis">BC-VITSSSSSS</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Make a digital business card in a way you like it.</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Manager HR</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">Redmond, USA</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">One Way Road, WA 98052-6399</span></div><br />
-                        <div class="daliQ1 drago"><span class="dragThis">+79 1223 33456 7809</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">bcvit&#64;domain.com</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">www.bc-vit.com</span></div>
-                    </div>
-                    <div class="face back sixsenseBig">
-                        <div class="daliQ2 drago"><span class="dragThis">Company Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Company Message</span></div><br />
-                        <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
-                        <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
-                    </div>
-                </div>
 
                 <div id="flipCard">
                     &nbsp;
@@ -154,10 +73,12 @@
 
                 <div id="paypalSubmit" class="text-center" style="margin-top: 50px">
                     <form action="paypal/createpayment" method="post">
-                        <div class="row">
-                            @Html.Label("Quantity:", new { @class = " col-md-4"})
-                            @Html.TextBox("Quantity", null, new { required = "required", @class = "form-control col-md-4" })
+                        <div class="row form-group">
+                            @Html.Label("Quantity:", new { @class = "col-md-4" })
+                            @Html.DropDownListFor(model => model.SelectedQuantity, Model.ListQuantitys, new { @class = "form-control col-md-8" })
+
                         </div>
+
                         <div class="row" style="margin-top: 15px">
                             <button type="submit" class="btn btn-primary">Pay with PayPal</button>
 
@@ -186,7 +107,7 @@
         //        $('#showCards .card').removeClass('flipped');
         //    }
         //);
-    
+
         $('#carousel li').click(function () {
             var clickedLI = $(this).index() + 1;
 
