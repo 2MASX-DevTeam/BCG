@@ -21,7 +21,5 @@ namespace BCG_Portal.Models
 
         DateTime date = DateTime.Now;
         public DateTime BirthDate { get{return this.date;} set{this.date = value;} }
-        public string Email{ get; set; }
-        public bool ConfirmedEmail { get; set; }
     }
 }
