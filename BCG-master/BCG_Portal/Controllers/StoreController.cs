@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace BCG_Portal.Controllers
 {
@@ -21,7 +22,8 @@ namespace BCG_Portal.Controllers
             }
             if (Request.IsAjaxRequest())
             {
-                var user = db.tblShoppers.Where(b => b.Email == User.Identity.Name).FirstOrDefault();
+               
+                var user = db.tblShoppers.Where(b => b.UserName == User.Identity.Name).FirstOrDefault();
                 var basket = new BCG_DB.Entity.Store.tblShopingCart()
                 {
                     IdShopper = user.IdShopper,
@@ -51,7 +53,7 @@ namespace BCG_Portal.Controllers
                 return model;
             }
 
-            var user = db.tblShoppers.Where(b => b.Email == User.Identity.Name).FirstOrDefault();
+            var user = db.tblShoppers.Where(b => b.UserName == User.Identity.Name ).FirstOrDefault();
             if (user != null)
             {
                 var tblCart = (from tblShopingCart in db.tblShopingCarts

@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
 using BCG_Portal.Models;
+using BCG_DB.Entity.Store;
 
 namespace BCG_Portal.Controllers
 {
@@ -18,12 +19,13 @@ namespace BCG_Portal.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private StoreModels db = new StoreModels();
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +37,9 @@ namespace BCG_Portal.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -121,7 +123,7 @@ namespace BCG_Portal.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -150,28 +152,39 @@ namespace BCG_Portal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
-                if (ModelState.IsValid)
+
+            if (ModelState.IsValid)
+            {
+                var user = new User { UserName = model.Username, Email = model.Email };
+                user.Email = model.Email;
+                user.EmailConfirmed = false;
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
                 {
-                    var user = new User { UserName = model.Username, Email = model.Email };
-                    user.Email = model.Email;
-                    user.ConfirmedEmail = false;
-                    var result = await UserManager.CreateAsync(user, model.Password);
+                    System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
+                    new System.Net.Mail.MailAddress("sender@mydomain.com", "Web Registration"),
+                    new System.Net.Mail.MailAddress(user.Email));
+                    m.Subject = "Email confirmation";
+                    m.Body = string.Format("Dear {0}<BR/>Thank you for your registration, please click on the below link to comlete your registration: <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.UserName,
+                        Url.Action("ConfirmEmail", "Account", new { userId = user.Id, Email = user.Email }, Request.Url.Scheme));
 
-                    if (result.Succeeded)
-                    {
-                        System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(
-                        new System.Net.Mail.MailAddress("sender@mydomain.com", "Web Registration"),
-                        new System.Net.Mail.MailAddress(user.Email));
-                        m.Subject = "Email confirmation"; 
-                        m.Body = string.Format("Dear {0}<BR/>Thank you for your registration, please click on the below link to comlete your registration: <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.UserName,
-                            Url.Action("ConfirmEmail", "Account", new { userId = user.Id, Email = user.Email }, Request.Url.Scheme)); 
-                    }
+                    //insert user info in tblShoppers. Check if this work with Faceshit and google-
+                    var tblShopper = new tblShopper() {
+                        UserName = model.Username,
+                        Email = model.Email,
+                        EmailConfirmed = false,
+                        DateCreated = DateTime.Now
+                    };
 
+                    db.tblShoppers.Add(tblShopper);
+                    db.SaveChanges();
                 }
-                // If we got this far, something failed, redisplay form
-                return View(model);
-          
+
+            }
+            // If we got this far, something failed, redisplay form
+            return View(model);
+
         }
 
         //
@@ -179,25 +192,25 @@ namespace BCG_Portal.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string Email)
         {
-            User user = this.UserManager.FindById(userId); 
-            if (user != null) 
-            { 
-                if (user.Email == Email) 
-                { 
-                    user.ConfirmedEmail = true; 
-                   // await UserManager.UpdateAsync(user); 
-                  //  await SignInAsync(user, isPersistent: false); 
-                    return RedirectToAction("Index", "Home", new { ConfirmedEmail = user.Email }); 
-                } 
-                else 
-                { 
-                    return RedirectToAction("Confirm", "Account", new { Email = user.Email }); 
-                } 
-            } 
-            else 
-            { 
-                return RedirectToAction("Confirm", "Account", new { Email = "" }); 
-            } 
+            User user = this.UserManager.FindById(userId);
+            if (user != null)
+            {
+                if (user.Email == Email)
+                {
+                    user.EmailConfirmed = true;
+                    // await UserManager.UpdateAsync(user); 
+                    //  await SignInAsync(user, isPersistent: false); 
+                    return RedirectToAction("Index", "Home", new { ConfirmedEmail = user.Email });
+                }
+                else
+                {
+                    return RedirectToAction("Confirm", "Account", new { Email = user.Email });
+                }
+            }
+            else
+            {
+                return RedirectToAction("Confirm", "Account", new { Email = "" });
+            }
         }
 
         //
