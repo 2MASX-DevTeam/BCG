@@ -203,6 +203,7 @@
     <Compile Include="Models\ExternalModels\ContactModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PayPalViewData.cs" />
+    <Compile Include="Models\ProductsViewModels.cs" />
     <Compile Include="Models\tblCompleteOrder.cs">
       <DependentUpon>BCGEntities.tt</DependentUpon>
     </Compile>
@@ -508,6 +509,7 @@
     <Content Include="Views\PayPal\Void.cshtml" />
     <Content Include="Views\PayPal\Success.cshtml" />
     <Content Include="Views\PayPal\Confirmed.cshtml" />
+    <Content Include="Views\PayPal\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

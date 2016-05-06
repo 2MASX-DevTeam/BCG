@@ -27,11 +27,7 @@
                     <li id="intuneSmall" class="qQoq"><img src="~/images/intuneBigCopy.png" alt="image05" /></li>
                     <li id="deluxSmall" class="qQoq"><img src="~/images/deluxSmall.png" alt="image05" /></li>
                     <li id="sixsenseSmall" class="qQoq"><img src="~/images/sixsenseSmall.png" alt="image05" /></li>
-                    <li class="qQoq"><img src="~/images/bussnessCardSmall.png" alt="image05" /></li>
-                    <li class="qQoq"><img src="~/images/bussnessCardSmall.png" alt="image05" /></li>
-                    <li class="qQoq"><img src="~/images/bussnessCardSmall.png" alt="image05" /></li>
-                    <li class="qQoq"><img src="~/images/bussnessCardSmall.png" alt="image05" /></li>
-                    <li class="qQoq"><img src="~/images/bussnessCardSmall.png" alt="image05" /></li>
+                
                     @*<li><img src="~/images/facebook.jpg" alt="image06" /></li>
                         <li><a href="#"><img src="~/images/google.jpg" alt="image07" /></a></li>
                         <li><a href="#"><img src="~/images/twitter.jpg" alt="image11" /></a></li>
@@ -73,6 +69,7 @@
                                  <div id="intuitikBig" style="visibility:hidden;"></div>
                     <div id="phoenixBig" style="visibility:hidden;"></div>>*@
                 </div>
+
                 <div id="intuneBig" class="card" style="display:none;">
                     <div class="face front intuneBig">
                         <div class="daliQ2 drago"><span class="dragThis">BC-VITSSSSSS</span></div>
@@ -92,6 +89,7 @@
                         <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
                     </div>
                 </div>
+
                 <div id="deluxBig" class="card" style="display:none;">
                     <div class="face front deluxBig">
                         <div class="daliQ2 drago"><span class="dragThis">BC-VITSSSSSS</span></div>
@@ -111,6 +109,7 @@
                         <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
                     </div>
                 </div>
+
                 <div id="sixsenseBig" class="card" style="display:none;">
                     <div class="face front sixsenseBig">
                         <div class="daliQ2 drago"><span class="dragThis">BC-VITSSSSSS</span></div>
@@ -130,6 +129,7 @@
                         <div class="daliQ1 drago"><span class="dragThis">Job Title</span></div><br />
                     </div>
                 </div>
+
                 <div id="evolveBig" class="card" style="display:none;">
                     <div class="face front evolveBig">
                         <div class="daliQ2 drago"><span class="dragThis">BC-VIT</span></div>
@@ -142,6 +142,7 @@
                         <div class="daliQ2 drago"><span class="dragThis">Full Name</span></div>
                     </div>
                 </div>
+
                 <div id="flipCard">
                     &nbsp;
                     <div class="row">
@@ -158,6 +159,22 @@
                     </div>
 
                 </div>
+
+                <div id="paypalSubmit" class="text-center" style="margin-top: 50px">
+                    <form action="paypal/createpayment" method="post">
+                        <div class="row">
+                            @Html.Label("Quantity:", new { @class = " col-md-4"})
+                            @Html.TextBox("Quantity", null, new { required = "required", @class = "form-control col-md-4" })
+                        </div>
+                        <div class="row" style="margin-top: 15px">
+                            <button type="submit" class="btn btn-primary">Pay with PayPal</button>
+
+                        </div>
+                    </form>
+
+
+                </div>
+
             </div>
             @* End Bussines card area *@
         </div>
