@@ -8,20 +8,22 @@ namespace BCG_Portal.Models
 {
     public class UserCard
     {
-        public List<Product> Products { get; set; }
+        public List<Card> Products = new List<Card>();
 
-        public string Total { get; set; }
+        public int Total { get; set; }
     }
 
     public class Card
     {
+        public int IdShopingCard { get; set; }
+
         public int IdProduct { get; set; }
 
         public int Quantity { get; set; }
 
         public string ProductName { get; set; }
 
-        public string Prize { get; set; }
+        public string Price { get; set; }
 
     }
 

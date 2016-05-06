@@ -60,6 +60,18 @@
         <!-- END: Main Form -->
     } 
     <!-- END Html.BeginForm -->
+
+    <br />
+    @*<%-- Etc Login Information --%>*@
+    <div class="etc-login-form text-center">
+        <p>
+            Forgot your password? @Html.ActionLink("Click here >>>>", "ForgotPassword")
+        </p>
+        <p>
+            New user? @Html.ActionLink("Create new account  >>>>", "Register")
+        </p>
+    </div>
+
     <div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })

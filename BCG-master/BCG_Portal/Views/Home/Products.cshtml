@@ -8,28 +8,11 @@
 <!--==== Use <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> if you want to make items draggable ===-->
 <script src="~/Scripts/jquery-2.2.1.min.js"></script>
 <script src="~/Scripts/jquery.elastislide.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <style>
     .card:not(:first-child) {
         /*margin:10px !important;*/
         display: none;
-    }
-    .basket {
-        position: fixed;
-        right: -270px;
-        top: 50%;
-        width: 350px;
-        padding: 10px;
-        box-shadow: 0 0 5px black;
-        -moz-transition: 0.5s linear;
-        -o-transition: 0.5s linear;
-        -webkit-transition: 0.5s linear;
-        transition: 0.5s linear;
-    }
-    .basket span:first-child{
-        font-size: 3.5em;
-    }
-    .basket:hover{
-        right: 0;
     }
 </style>
 <!--============================== Start Products Content ================================-->
@@ -71,10 +54,9 @@
 
                         <div id="paypalSubmit" class="text-center" style="margin-top: 50px">
 
-                            @using (Ajax.BeginForm("AddToCard", "Store", null, new AjaxOptions
+                            @using (Ajax.BeginForm("AddToCard", "Store", new { idProduct = product.IdProduct }, new AjaxOptions
                             {
-                                UpdateTargetId = "smallboxesresult",
-                                OnBegin = "OnAjaxRequestBegin",
+                                UpdateTargetId = "basket",
                                 InsertionMode = InsertionMode.Replace,
                                 OnComplete = "OnAjaxRequestComplete",
                                 HttpMethod = "POST"
@@ -84,7 +66,7 @@
 
                                 <div class="row form-group">
                                     @Html.Label("Quantity:", new { @class = "col-md-4" })
-                                    @Html.DropDownListFor(model => model.SelectedQuantity, Model.ListQuantitys, new { @class = "form-control col-md-8" })
+                                    @Html.DropDownListFor(model => model.SelectedQuantity, Model.ListQuantitys, new { @class = "form-control col-md-8", name = "quantity" })
 
                                 </div>
                                 <div class="row" style="margin-top: 15px">
@@ -131,14 +113,7 @@
     </div>
     <!--============================== End Products Content ================================-->
 
-    <div class="basket">
-        <span class="glyphicon glyphicon-shopping-cart col-md-2"></span>
-        <span class="col-md-10">
-            asdaadsasdasdasdluhdsk;
-            ladfshlkjshlfjashkljfhakdfhaidfjha
-            s;dkjfh;askjdfh;aksdjfhas;jkdfha;kjsh
-        </span>
-    </div>
+    
 
     <script>
         //$(document).mousemove(function (e) {
@@ -146,11 +121,20 @@
         //    }
         //);
 
+        function OnAjaxRequestComplete(request, status) {
+            //$.get("/Store/GetBasket", function (data) {
+            //    $("#content").prepend(data);
+            //});
+
+        };
+
+        $.get("/Store/GetBasket", function (data) {
+            $("#content").prepend(data);
+        });
+
         $('#carousel li').click(function () {
             var clickedLI = $(this).index() + 1;
-
             console.log(clickedLI);
-
             $(".card").hide();
             $(".card:nth-child(" + clickedLI + ")").show();
         });

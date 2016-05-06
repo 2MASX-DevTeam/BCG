@@ -1,2 +1,80 @@
 ﻿@model BCG_Portal.Models.UserCard
+<style>
+    .basket {
+        background-color: white;
+        position: fixed;
+        right: -270px;
+        top: 40%;
+        width: 350px;
+        padding: 10px;
+        box-shadow: 0 0 5px black;
+        transition: 0.5s linear;
+    }
 
+        .basket .glyphicon {
+            margin-top: 10%;
+            font-size: 3.0em;
+        }
+
+        .basket:hover {
+            right: 0;
+        }
+</style>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div id="basket" class="basket">
+        <div class="glyphicon glyphicon-shopping-cart col-md-2"></div>
+        <div class="col-md-10">
+            @if (Model.Products.Count > 0)
+            {
+                foreach (var product in Model.Products)
+                {
+                    <div class="row">
+                        <div class="col-md-10">
+                            Product Name: @product.ProductName
+
+                            <br />
+                            Prize per 100: @product.Price
+                            <br />
+                            Quantity: @product.Quantity
+                            <hr />
+                        </div>
+                        <div class="col-md-1">
+
+                            @Ajax.ActionLink("X", "DeleteProductFromCart", "Store", new { IdShopingCard = product.IdShopingCard },
+                             new AjaxOptions
+                             {
+                                 UpdateTargetId = "basket",
+                                 InsertionMode = InsertionMode.ReplaceWith
+                             }, new { @class = "text-danger", title = "remove from card" })
+                        </div>
+                    </div>
+                }
+                <div>
+                    <hr />
+                    Total: @Model.Total
+                </div>
+                <div>
+                    @Html.ActionLink("Checkout", "CheckOut", null, new { @class = "btn btn-primary"})
+                </div>
+            }
+            else
+            {
+                <span>
+                    Your shopping card is empty
+                </span>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="basket">
+        <span class="glyphicon glyphicon-shopping-cart col-md-2"></span>
+        <span class="col-md-10">
+            You have to be logged in
+        </span>
+    </div>
+
+}
