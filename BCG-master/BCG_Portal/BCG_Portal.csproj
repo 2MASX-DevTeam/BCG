@@ -409,6 +409,7 @@
     <Content Include="Views\Store\CheckOut.cshtml" />
     <Content Include="Views\Shared\_UserCard.cshtml" />
     <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <Content Include="Views\PayPal\Canceled.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,7 +449,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1191</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

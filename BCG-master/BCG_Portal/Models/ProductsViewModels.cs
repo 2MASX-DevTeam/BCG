@@ -57,6 +57,8 @@ namespace BCG_Portal.Models
 
         public string Total { get; set; }
 
+        public string SelectedCurrency { get; set; }
+
         public SelectList ListCurrencies { get; set; }
     }
 }

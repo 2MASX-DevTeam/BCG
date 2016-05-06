@@ -13,7 +13,8 @@ namespace BCG_Portal.Controllers
     public class StoreController : Controller
     {
         private StoreModels db = new StoreModels();
-        private string total = "";
+
+        
 
         public ActionResult AddToCard(string idProduct, ProductsViewModels models)
         {
@@ -68,19 +69,20 @@ namespace BCG_Portal.Controllers
                                    Quantity = tblQuantity.Quantity,
                                }).ToList();
 
-
+                decimal quantity = 0;
                 foreach (var item in tblCart)
                 {
+                    var price = PriceForProduct(item.IdProduct);
                     model.Products.Add(new Card()
                     {
                         IdShopingCard = item.IdShopingCart,
                         ProductName = item.ProductName,
-                        Price = PriceForProduct(item.IdProduct),
+                        Price = price,
                         Quantity = item.Quantity
                     });
-
+                    quantity += item.Quantity / 100 * Convert.ToDecimal(price.Split(' ')[0]);
                 }
-                model.Total = total;
+                model.Total =  quantity + " EU";
 
             }
             return model;
@@ -107,8 +109,6 @@ namespace BCG_Portal.Controllers
                 price = price - price * discount / 100;
             }
 
-            total += price;
-
             var result = String.Format("{0} {1}", price, tbl.CurrencyCode);
             return result;
         }
@@ -125,7 +125,20 @@ namespace BCG_Portal.Controllers
         // GET: Store
         public ActionResult CheckOut()
         {
-            return View();
+            var model = new CheckoutViewModel();
+            var currencies = db.tblCurrencies.ToList();
+            decimal total = 0;
+
+            model.Products = GetModelFromBasket().Products;
+            model.ListCurrencies = new SelectList(currencies, "CurrencyCode", "CurrencyCode");
+
+            foreach (var item in model.Products)
+            {
+                total += item.Quantity / 100 * Convert.ToDecimal(item.Price.Split(' ')[0]);
+            }
+            model.Total = total + " EU";
+
+            return View(model);
         }
     }
 }

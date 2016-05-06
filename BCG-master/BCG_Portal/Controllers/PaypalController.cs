@@ -18,10 +18,13 @@ namespace BCG_Portal.Controllers
         //
         // GET: /Payment/
 
-        public ActionResult CreatePayment(string IdProduct, ProductsViewModels Model)
+        public ActionResult CreatePayment(string Total, CheckoutViewModel Model)
         {
             var viewData = new PayPalViewData();
             var guid = Guid.NewGuid().ToString();
+
+            var currencyValue = db.tblCurrencies.Where(m => m.CurrencyCode == Model.SelectedCurrency).FirstOrDefault().CurrencyValue;
+            decimal total = Convert.ToDecimal(Total.Split(' ')[0]) * currencyValue;
 
             var paymentInit = new Payment
             {
@@ -36,9 +39,10 @@ namespace BCG_Portal.Controllers
                     {
                         amount = new Amount
                         {
-                            currency = "USD",
-                            total = ("1").ToString(),
+                            currency = Model.SelectedCurrency,
+                            total = string.Format("{0:N2}" , total),
                         },
+                        
                     }
                 },
                 redirect_urls = new RedirectUrls
@@ -125,7 +129,7 @@ namespace BCG_Portal.Controllers
 
         public ActionResult Canceled(Guid id, string token, string payerId)
         {
-            return Content("Asshole.");
+            return View();
         }
 
         public ActionResult Capture(string authorizationId)

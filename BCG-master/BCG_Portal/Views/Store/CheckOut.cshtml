@@ -1,8 +1,54 @@
-﻿
+﻿@model BCG_Portal.Models.CheckoutViewModel
 @{
     ViewBag.Title = "CheckOut";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CheckOut</h2>
+<table class="table table-hover table-striped table-bordered" style="margin-top: 50px">
+    <thead class="text-uppercase">
+        <tr>
+            <td>
+                Product name:
+            </td>
+            <td>
+                Price per 100
+            </td>
+            <td>
+                Quantity
+            </td>
+        </tr>
+    </thead>
+    <tbody>
 
+        @foreach (var item in Model.Products)
+        {
+
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="3">
+                TOTAL: <span id="total">@Model.Total</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+@using (Html.BeginForm("CreatePayment", "PayPal", new { Total = Model.Total }, FormMethod.Post, new { role = "form" , @class = "text-center" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("Choose currency:", new { @class = "control-label col-md-2  col-md-offset-1" })
+        @Html.DropDownListFor(model => model.SelectedCurrency, Model.ListCurrencies, new { @class = "form-control col-md-2"})
+
+        <button type="submit" class="btn btn-primary col-md-4 col-md-offset-1">Pay with PayPal</button>
+
+    </div>
+
+}
