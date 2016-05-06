@@ -35,6 +35,7 @@ namespace BCG_Portal
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bussinessCardsStyle.min.css",
+                      "~/Content/custAuthenticateCss.css",
                        "~/Content/parallaxcss.min.css",
                        "~/Content/custPortalCss.min.css",
                        "~/Content/cuts-jquery-eupopup.min.css",

@@ -3,15 +3,17 @@
     ViewBag.Title = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
-
+<!-- START LOGIN FORM -->
+<div class="text-center" style="vertical-align:middle;">
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <br />
+    <br />
+    <div class="logo">Register</div>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-       <div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
@@ -41,6 +43,7 @@
         </div>
     </div>
 }
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

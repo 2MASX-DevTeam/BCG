@@ -278,12 +278,7 @@
     <Content Include="Content\bussinessCardsStyle.min.css">
       <DependentUpon>bussinessCardsStyle.css</DependentUpon>
     </Content>
-    <Content Include="Content\custAuthenticateCss.css">
-      <DependentUpon>custAuthenticateCss.less</DependentUpon>
-    </Content>
-    <Content Include="Content\custAuthenticateCss.min.css">
-      <DependentUpon>custAuthenticateCss.css</DependentUpon>
-    </Content>
+    <Content Include="Content\custAuthenticateCss.css" />
     <Content Include="Content\custCarouselCss.css">
       <DependentUpon>custCarouselCss.less</DependentUpon>
     </Content>
@@ -378,9 +373,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bussinesCardJs.js" />
     <Content Include="Scripts\custPortalScripts.js" />
-    <Content Include="Scripts\jquery-2.2.1.js" />
-    <Content Include="Scripts\jquery-2.2.1.min.js" />
-    <Content Include="Scripts\jquery-2.2.1.min.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
@@ -398,10 +390,6 @@
     <Content Include="Content\bussinessCardsStyle.less" />
     <Content Include="Content\bussinessCardsStyle.css.map">
       <DependentUpon>bussinessCardsStyle.css</DependentUpon>
-    </Content>
-    <Content Include="Content\custAuthenticateCss.less" />
-    <Content Include="Content\custAuthenticateCss.css.map">
-      <DependentUpon>custAuthenticateCss.css</DependentUpon>
     </Content>
     <EntityDeploy Include="Models\BCGEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -445,10 +433,13 @@
       <DependentUpon>custElastislideCarousel.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\BCG-Portal.pubxml" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-eu-cookie-law-popup.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
     <Content Include="Scripts\jquery.elastislide.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -513,6 +504,7 @@
     <Content Include="Views\PayPal\Error.cshtml" />
     <Content Include="Views\Store\CheckOut.cshtml" />
     <Content Include="Views\Shared\_UserCard.cshtml" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
