@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Confirm Email";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Confirm email.
+        <small>users</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>Users</li>
+        <li class="active">Confirm email</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">   Confirm success.  </h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <div class="box-body">
+                    <p>
+                        Thank you for confirming your email. Please @Html.ActionLink("Click here to Log in", "Index", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                    </p>
+                  
+                </div><!-- /.box-body -->
+                <div class="box-footer">
+                    <p class="text-info" id="time-span"></p>
+                </div>
+            </div><!-- /.box -->
+        </div>
+
+    </div>
+
+</section><!-- /.content -->

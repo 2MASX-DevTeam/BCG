@@ -1,0 +1,80 @@
+﻿@model BCG_Portal.Models.tblShopper
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/custAuthenticateCss.min.css" rel="stylesheet" />
+
+<!-- START LOGIN FORM -->
+<div class="text-center" style="vertical-align:middle;">
+
+    <br />
+    <br />
+    <div class="logo">Login</div>
+
+    <!-- START Html.BeginForm -->
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true, "Login Failed, check details");
+
+        @* Secure the error messages who will be shown to the user *@
+        if (ViewBag.ShowErrorDiv == true)
+        {
+            <div class="@ViewBag.DivClass" style="width:42%; margin:0 auto;">
+                <p>@ViewBag.ErrorMessage</p>
+            </div>
+        }
+        <br />
+
+    <!-- START:Main Form -->
+        <div class="login-form-1">
+            <div id="login-form" class="text-left">
+
+                <div class="main-login-form">
+                    <div class="login-group">
+
+                        @*<%-- Username --%>*@
+                        <div class="form-group">
+                            @Html.TextBoxFor(u => u.UserName, null, new
+                            {
+                                @class = "form-control",
+                                placeholder = "Username"
+                            })
+                        </div>
+
+                        @*<%-- Password --%>*@
+                        <div class="form-group">
+                            @Html.TextBoxFor(u => u.Password, null, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Password"
+                           })
+                        </div>
+
+                        @*<%-- Check Box --%>*@
+                        <div class="form-group login-group-checkbox">
+                            @*<asp:CheckBox ID="lg_remember" runat="server" Text="Remember" AutoPostBack="false"
+                                Font-Names="daliQ" />*@
+                        </div>
+
+                    </div>
+                    <input type="submit" value="GO" class="login-button" />
+                </div>
+
+                <br />
+                @*<%-- Etc Login Information --%>*@
+                <div class="etc-login-form text-center">
+                    <p>
+                        Forgot your password? @Html.ActionLink("Click here >>>>", "ForgottenPassword", "LoginRegister")
+                    </p>
+                    <p>
+                        New user? @Html.ActionLink("Create new account  >>>>", "Register", "LoginRegister")
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    <!-- END:Main Form -->
+    }
+    <!-- END Html.BeginForm -->
+</div>
+<!-- END LOGIN FORM -->

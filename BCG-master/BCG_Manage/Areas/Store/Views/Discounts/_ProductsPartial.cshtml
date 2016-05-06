@@ -1,0 +1,233 @@
+﻿@model PagedList.IPagedList<BCG_Manage.Areas.Store.Models.ProductsForDiscountsModel>
+@using PagedList;
+
+
+<div class="col-md-12" id="tblProductsInner" style="opacity: 0">
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Shoppers: </h3>
+
+        </div><!-- /.box-header -->
+
+        <div class="box-body table-responsive no-padding">
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.IdProductSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                ID:
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new {sortOrder = ViewBag.ProductNameSortParm, currentFilter = ViewBag.CurrentFilter})">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Product name:
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.DiscountAmountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Price:
+                            </a>
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.DiscountAmountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Discount:
+                            </a>
+
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.CompletedOrdersSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Completed orders:
+                            </a>
+
+                        </th>
+                        <th>
+                            <a href="@Url.Action("ViewAllDiscounts", new { sortOrder = ViewBag.PeriodDiscountSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                <i class="fa fa-sort-amount-desc"></i>
+                                Period Discount:
+                            </a>
+
+                        </th>
+
+                        <th>
+                            Added To Discount
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IdProduct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                <div class="price">
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </div>
+                            </td>
+                            <td>
+                                <div class="discount">
+                                    @Html.DisplayFor(modelItem => item.DiscountAmount) %
+                                </div>
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.OrdersCount)
+
+                            </td>
+
+                            <td>
+                                <div class="periodDiscount">
+                                    @Html.DisplayFor(modelitem => item.PeriodDiscount)
+                                </div>
+                            </td>
+
+                            <td>
+                                @GetCheckBoxes(item.IdProduct, item.IdDiscount, item.DiscountAmount)
+
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div><!-- /.box-body -->
+
+    </div><!-- /.box -->
+</div>
+
+@helper GetCheckBoxes(int id, int idDiscount, int discount)
+{
+      <!--TODO: add ICheckBox-->
+
+    using (Ajax.BeginForm("ChangeProductDiscount", "Discounts", new { id = id, disc = idDiscount, check = @GetValue(discount) },
+                                        new AjaxOptions
+                                        {
+                                            OnBegin = "OnAjaxRequestBeginPartial",
+                                            InsertionMode = InsertionMode.Replace,
+                                            OnComplete = "OnAjaxRequestComplete",
+                                            HttpMethod = "POST"
+                                        }, new { @class = "col-md-6", id = "changeDiscountForm" }))
+    {
+        @*<a href="#" class="columns small-box-footer" onclick="ChangeUserDiscount()">
+                More info <i class="fa fa-arrow-circle-right"></i>
+            </a>*@
+
+        <div class="form-group">
+            <label>
+                <input type="checkbox" class="flat-red icheck" id="check" checked="@GetValue(discount)" name="icheck" />
+
+
+            </label>
+
+
+
+        </div>
+}
+}
+@functions{
+    bool GetValue(int value)
+    {
+        if (value == 0)
+        {
+            return false;
+        }
+        return true;
+    }
+}
+<script>
+    var loader = "<i class='fa fa-refresh fa-spin pull-right' id='loadingstate'></i>";
+
+    $('input').on('ifChecked', function (event) {
+        event.preventDefault();
+        var value = $(this).val();
+        if (value === 'on') {
+            value = true;
+        }
+
+        var form = $(this).parents('form');
+
+        var stract = form.attr("action").slice(0, -5);
+  //      console.log(stract);
+
+        form.attr("action", stract + value);
+        $(form).find('label').append(loader);
+        $(form).submit();
+
+    });
+
+    $('input').on('ifUnchecked', function (event) {
+        event.preventDefault();
+        var value = $(this).val();
+        if (value === 'on') {
+            value = false;
+        }
+
+        var form = $(this).parents('form');
+
+        var stract = form.attr("action").slice(0, -4);
+    //    console.log(stract);
+
+        form.attr("action", stract + value);
+        $(form).find('label').append(loader);
+        $(form).submit();
+    });
+
+
+    function OnAjaxRequestBeginPartial() {
+        var div = $(this).parents('tr').find('.discount');
+
+        $(div).animate({
+            left: '100%',
+            opacity: 0
+        });
+    };
+
+    function OnAjaxRequestComplete(request, status) {
+        var divPrice = $(this).parents('tr').find('.price');
+        var divDisc = $(this).parents('tr').find('.discount');
+        var divPer = $(this).parents('tr').find('.periodDiscount');
+        divDisc.text(request.responseJSON[0] + " %");
+        divPer.text(request.responseJSON[1]);
+        divPrice.text(request.responseJSON[2]);
+       // console.log(request);
+
+        $(divDisc).animate({
+            opacity: 1
+        }, function () {
+            $(divDisc).show();
+            $("#loadingstate").remove();
+        });
+        $(divPer).animate({
+            opacity: 1
+        }, function () {
+            $(divPer).show();
+        });
+        $(divPrice).animate({
+            opacity: 1
+        }, function () {
+            $(divPrice).show();
+        });
+    };
+
+    $(document).ready(function () {
+        $('.icheck').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'icheckbox_square-blue'
+        });
+    });
+
+</script>

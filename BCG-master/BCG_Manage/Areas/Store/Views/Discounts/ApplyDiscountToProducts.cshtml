@@ -1,0 +1,106 @@
+﻿@model BCG_Manage.Areas.Store.Models.ApplyToUsersViewModel
+@{
+    ViewBag.Title = "ApplyDiscountToProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Apply Discount To Products.
+        <small>Store</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>Store</li>
+        <li class="active">Apply Discount To Products</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">   Discount  </h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+
+                <div class="box-body">
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(model => model.SelectedDiscount, Model.ListDiscounts, new { @class = "form-control select2 text-justify", id = "drpDiscounts" })
+
+                    </div>
+
+
+                </div><!-- /.box-body -->
+
+            </div><!-- /.box -->
+        </div>
+
+
+    </div>
+    <div class="row" id="tblProducts">
+
+    </div>
+    <script>
+        var str = "";
+        $(document).ready(function () {
+            str = @Model.SelectedDiscount;
+            $("#tblProducts").load("/Store/Discounts/ProductsForDIscount/"+ str+"", function () {
+                $("#tblProductsInner").fadeTo(500, 1);
+            });
+        });
+        $("#drpDiscounts").change(function(event) {
+            $("#tblProducts").fadeTo(500, 0);
+
+            $("select option:selected").each(function() {
+                str = $(this).val();
+            });
+           // console.log(str);
+            $("#tblProducts").stop(500).empty();
+            var link = "/Store/Discounts/ProductsForDIscount/" + str;
+           // console.log(link);
+            $("#tblProducts").load(link, function() {
+              //  console.log(link);
+               // $("#tblShopperInner").fadeTo(500, 1);
+                $("#tblProductsInner").fadeTo(200, 1);
+            });
+
+
+        });
+    </script>
+
+
+</section><!-- /.content -->
+@section Styles{
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/plugins/iCheck/all.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/plugins/select2/select2.min.css">
+
+}
+
+
+@section Scripts {
+    <!-- iCheck 1.0.1 -->
+    <script src="~/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/plugins/select2/select2.full.min.js"></script>
+
+    <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
+        });
+
+
+
+    </script>
+}

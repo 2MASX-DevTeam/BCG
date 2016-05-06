@@ -1,0 +1,145 @@
+﻿@model PagedList.IPagedList<BCG_DB.Entity.MultiLanguageEntity.tblResources>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Add new resource";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        View all resources.
+        <small>Multilanguage</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>MultiLanguage</li>
+        <li class="active">View all resources</li>
+    </ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Resources: </h3>
+
+                        <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                  </div>
+               
+                </div><!-- /.box-header -->
+
+                <div class="box-body table-responsive no-padding">
+
+                 <div class="col-md-4 pull-left">
+                     @Html.ActionLink("Add new resource", "AddNewResource", null, new { @class="btn btn-default" })
+                 </div>
+
+                    @using (Html.BeginForm("ViewAllResources", "MultiLanguage", FormMethod.Get,  new { @class = "input-group pull-right col-md-4" } ))
+                    {
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-sm pull-right", placeholder="Search" })
+
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                             </div>
+
+                    }
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a href="@Url.Action("ViewAllResources", new { sortOrder = ViewBag.IdResSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        ID Resource
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllResources", new { sortOrder = ViewBag.IdLangSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>  
+                                        Language
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllResources", new { sortOrder = ViewBag.ContextSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Context
+                                    </a>
+                          
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllResources", new { sortOrder = ViewBag.DateModifySortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Date of modify
+                                    </a>
+                           
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllResources", new { sortOrder = ViewBag.DateCreatedSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Date of creation
+                                    </a>
+                                  
+                                </th>
+                                <th>
+                                    Functions
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IdResource)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblLanguages.Language)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblContext.Context)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateChanged)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelITem => item.DateCreated)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Add translation", "AddTranslationResource", new { id = item.IdResource }, new { @class = "btn btn-info" })
+                                    @Html.ActionLink("Edit", "EditResource", new { id = item.IdResource, idLang = item.IdLanguage, idCont = item.IdContext }, new { @class = "btn btn-success" })
+                                    <span onclick="return confirm('Are you sure you want to delete resource: '+ '@item.IdResource'+'?')">
+                                        @Html.ActionLink("Delete", "DeleteResource", new { id = item.IdResource, idLang = item.IdLanguage, idCont = item.IdContext }, new { @class = "btn btn-danger" })
+                                        </span>
+
+</td>
+
+                            </tr>
+                          }
+                        </tbody>
+
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                  <span  class="pagination pagination-sm no-margin pull-right">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("ViewAllResources", new { page }))
+                    </span>
+                </div>
+            </div><!-- /.box -->
+        </div>
+    </div>
+
+
+</section><!-- /.content -->

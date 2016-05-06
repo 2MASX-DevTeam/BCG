@@ -1,0 +1,22 @@
+﻿<div class="col-md-12">
+    
+    <div id="container">
+
+        <fieldset>
+            <label id="addMode"><input type="radio" name="mode" class="flat-blue" checked/><i>add points</i></label>
+            <label id="selectMode"><input type="radio" name="mode" class="flat-blue"/>move points</label>
+            <label id="removeMode"><input type="radio" name="mode"" class="flat-blue"/>remove points</label><br/>
+            <label name="lockControl" id="lockControl"><input type="checkbox" checked class="flat-blue"/>lock adjacent control points</label>
+            <button id="clear" type="button" class="btn btn-warning">Clear all points</button><br/>
+        </fieldset>
+        <div class="col">
+            <canvas id="paintme" width="800" height="800"></canvas>
+        </div>
+        <div class="col">
+            <textarea id="putJS" name="VectorsCords" disabled></textarea>
+        </div>
+        <fieldset>
+            Image URL: <input type="text" id="imageSrc"/> <button id="addImgSrc">Set Canvas Background</button>
+        </fieldset>
+    </div>
+</div>

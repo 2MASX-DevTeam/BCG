@@ -1,0 +1,205 @@
+﻿@model PagedList.IPagedList<BCG_DB.Entity.MultiLanguageEntity.tblStaticResources>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "View all static resource";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        View all static resources.
+        <small>Multilanguage</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="~/Admin"><i class="fa  fa-home"></i> Home</a></li>
+        <li>MultiLanguage</li>
+        <li class="active">View all static resources.</li>
+    </ol>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+    <!-- Helper for info boxes after manipulating data -->
+    @ResultHelper.ResultFromTempData(TempData)
+
+
+    <!-- Default box -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Resources: </h3>
+
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                    </div>
+
+                </div><!-- /.box-header -->
+
+                <div class="box-body table-responsive no-padding">
+
+                    <div class="col-md-4 pull-left">
+                        @Html.ActionLink("Add new static text", "AddNewStaticText", null, new { @class = "btn btn-default" })
+                    </div>
+
+                    @using (Html.BeginForm("ViewAllStaticTexts", "MultiLanguage", FormMethod.Get, new { @class = "input-group pull-right col-md-4" }))
+                    {
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-sm pull-right", placeholder = "Search" })
+
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+
+                    }
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a href="@Url.Action("ViewAllStaticTexts", new { sortOrder = ViewBag.IdResSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        ID Static
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllStaticTexts", new { sortOrder = ViewBag.IdLangSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Language
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllStaticTexts", new { sortOrder = ViewBag.ContextSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Description
+                                    </a>
+
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllStaticTexts", new { sortOrder = ViewBag.DateModifySortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Date of modify
+                                    </a>
+
+                                </th>
+                                <th>
+                                    <a href="@Url.Action("ViewAllStaticTexts", new { sortOrder = ViewBag.DateCreatedSortParm, currentFilter = ViewBag.CurrentFilter })">
+                                        <i class="fa fa-sort-amount-desc"></i>
+                                        Date of creation
+                                    </a>
+
+                                </th>
+                                <th>
+                                    Functions
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IdStatic)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tblLanguages.Language)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateChanged)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelITem => item.DateCreated)
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-primary btnForModal"
+                                                data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"
+                                                data-idstatic="@item.IdStatic"
+                                                data-idlang="@item.IdLanguage"
+                                                data-idstatictext="@item.IdStaticText">
+                                            Details
+                                        </button>
+                                        @*   @Html.ActionLink("Details", "EditStaticText", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-success" })*@
+                                        @Html.ActionLink("Add translation", "AddTranslationStaticText", new { id = item.IdStatic }, new { @class = "btn btn-info" })
+
+
+                                        @Html.ActionLink("Edit", "EditStaticText", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-warning" })
+                                        <span onclick="return confirm('Are you sure you want to delete static resource: '+ '@item.IdStatic'+'?')">
+                                            @Html.ActionLink("Delete", "DeleteStaticText", new { id = item.IdStatic, idLang = item.IdLanguage, idCont = item.IdStaticText }, new { @class = "btn btn-danger" })
+                                        </span>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+                </div><!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <span class="pagination pagination-sm no-margin pull-right">
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                        @Html.PagedListPager(Model, page => Url.Action("ViewAllStaticTexts", new { page }))
+                    </span>
+                </div>
+            </div><!-- /.box -->
+        </div>
+    </div>
+
+
+</section><!-- /.content -->
+
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel"></h4>
+
+            </div>
+            <div class="modal-body" id="modal-body-ajax">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script>
+        var idStatic, idLang, idStaticText;
+
+        $(".btnForModal").click(function () {
+            idStaic = $(this).data("idstatic");
+            idLang = $(this).data("idlang");
+            idStaticText = $(this).data("idstatictext");
+
+            $.ajax({
+                url: '/MultiLanguage/GetStaticText',
+                type: 'POST',
+                dataType: 'json',
+                data: { IdStaic: idStaic, IdLang: idLang, IdStaticText: idStaticText },
+                success: function (data) {
+                    $("#gridSystemModalLabel").text(data.Description);
+                    $("#modal-body-ajax").html(data.StaticText);
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        });
+    </script>
+}

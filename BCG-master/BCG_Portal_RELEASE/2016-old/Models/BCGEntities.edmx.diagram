@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2baf5486272247bbbf3f0f42b42f41f7" Name="Diagram1">
+        <EntityTypeShape EntityType="Models.tblCompleteOrder" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblContext" Width="1.5" PointX="13.75" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblCurrency" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblCustomerReview" Width="1.5" PointX="11.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblDiscount" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblIPLoginAttempt" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblLanguage" Width="1.5" PointX="13.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblOrder" Width="1.5" PointX="13.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblOrderStatus" Width="1.5" PointX="11.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblProduct" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblProfilePicturesAdmin" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblProfilePicturesShopper" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblQuantity" Width="1.5" PointX="9" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblResource" Width="1.5" PointX="16" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblShopingCart" Width="1.5" PointX="11.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblShopperGroup" Width="1.5" PointX="3.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblShopper" Width="1.5" PointX="6" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblStaticResource" Width="1.5" PointX="19" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.tblStaticText" Width="1.5" PointX="16.75" PointY="12.125" IsExpanded="true" />
+        <AssociationConnector Association="Models.FK_tblOrder_tblOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblOrders_tblShoppers" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_dbo_tblResources_dbo_tblContext_IdContext" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblProducts_tblCurrencies" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblCustomerReviews_tblProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblCustomerReviews_tblShoppers" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblProducts_tblDiscounts" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblShoppers_tblDiscounts" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_dbo_tblResources_dbo_tblLanguages_IdLanguage" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_dbo_tblStaticResources_dbo_tblLanguages_IdLanguage" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblOrder_tblProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblOrder_tblQuantities" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblOrders_tblOrderStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblShopingCart_tblProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblProfilePictures_tblShoppers" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblShopingCart_tblQuantities" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblShopingCart_tblShoppers" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_tblShoppers_tblShopperGroups" ManuallyRouted="false" />
+        <AssociationConnector Association="Models.FK_dbo_tblStaticResources_dbo_tblStaticTexts_IdStaticText" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
