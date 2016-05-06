@@ -6,7 +6,24 @@ using System.Web.Mvc;
 
 namespace BCG_Portal.Models
 {
+    public class UserCard
+    {
+        public List<Product> Products { get; set; }
 
+        public string Total { get; set; }
+    }
+
+    public class Card
+    {
+        public int IdProduct { get; set; }
+
+        public int Quantity { get; set; }
+
+        public string ProductName { get; set; }
+
+        public string Prize { get; set; }
+
+    }
 
     public class ProductsViewModels
     {
@@ -15,10 +32,14 @@ namespace BCG_Portal.Models
         public string SelectedQuantity { get; set; }
 
         public SelectList ListQuantitys { get; set; }
+
+        public int IdProduct { get; set; }
     }
 
     public class Product
     {
+
+        public int IdProduct { get; set; }
         public string Name { get; set; }
 
         public string Price { get; set; }

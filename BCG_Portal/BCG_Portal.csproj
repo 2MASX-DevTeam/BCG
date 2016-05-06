@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaypalController.cs" />
     <Compile Include="Controllers\RegisterUserAdminPanelController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -510,6 +511,8 @@
     <Content Include="Views\PayPal\Success.cshtml" />
     <Content Include="Views\PayPal\Confirmed.cshtml" />
     <Content Include="Views\PayPal\Error.cshtml" />
+    <Content Include="Views\Store\CheckOut.cshtml" />
+    <Content Include="Views\Shared\_UserCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

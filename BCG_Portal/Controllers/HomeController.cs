@@ -53,6 +53,7 @@ namespace BCG_Portal.Controllers
             {
                     model.LstProducts.Add(new Product
                     {
+                        IdProduct = row.IdProduct,
                         Name = row.ProductName,
                         ImageUrl = row.ImageUrl,
                         Media = row.Media,

@@ -8,15 +8,17 @@ using Newtonsoft.Json.Linq;
 using BCG_Portal.Models;
 using PayPal.Api;
 using PayPal;
+using BCG_DB.Entity.Store;
 
 namespace BCG_Portal.Controllers
 {
     public class PayPalController : Controller
     {
+        private StoreModels db = new StoreModels();
         //
         // GET: /Payment/
 
-        public ActionResult CreatePayment(string description, decimal price, decimal tax = 0, decimal shipping = 0)
+        public ActionResult CreatePayment(string IdProduct, ProductsViewModels Model)
         {
             var viewData = new PayPalViewData();
             var guid = Guid.NewGuid().ToString();
@@ -35,15 +37,8 @@ namespace BCG_Portal.Controllers
                         amount = new Amount
                         {
                             currency = "USD",
-                            total = (price + tax + shipping).ToString(),
-                            details = new Details
-                            {
-                                subtotal = price.ToString(),
-                                tax = tax.ToString(),
-                                shipping = shipping.ToString()
-                            }
+                            total = ("1").ToString(),
                         },
-                        description = description
                     }
                 },
                 redirect_urls = new RedirectUrls
@@ -81,6 +76,27 @@ namespace BCG_Portal.Controllers
                 return View("Error", viewData);
             }
         }
+
+
+        private string PriceForProduct(int idProduct)
+        {
+            int id = idProduct;
+            var tbl = (from tblProduct in db.tblProducts
+                       join tblCurrency in db.tblCurrencies on tblProduct.IdCurrency equals tblCurrency.IdCurrency
+                       where tblProduct.IdProduct == id
+                       select new { Price = tblProduct.Price, CurrencyCode = tblCurrency.CurrencyCode, CurrencyValue = tblCurrency.CurrencyValue, IdDiscount = tblProduct.IdDiscount }).FirstOrDefault();
+
+            var price = Convert.ToDecimal(tbl.Price);
+            if (tbl.IdDiscount != null)
+            {
+                var discount = db.tblDiscounts.Find(tbl.IdDiscount).DiscountAmount;
+                price = price - price * discount / 100;
+            }
+            var result = String.Format("{0} {1}", price, tbl.CurrencyCode);
+            return result;
+        }
+
+
 
         public ActionResult Confirmed(Guid id, string token, string payerId)
         {

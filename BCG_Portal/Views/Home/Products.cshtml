@@ -13,6 +13,21 @@
         /*margin:10px !important;*/
         display: none;
     }
+    .basket{
+        position: fixed;
+        right: -270px;
+        top: 50%;
+        width: 350px;
+        padding: 10px;
+        box-shadow: 0 0 5px black;
+        transition: 0.5s linear;
+    }
+    .basket span:first-child{
+        font-size: 3.5em;
+    }
+    .basket:hover{
+        right: 0;
+    }
 </style>
 <!--============================== Start Products Content ================================-->
 <section id="content">
@@ -29,6 +44,7 @@
                     {
                         <li>
                             <img src=@product.ImageUrl alt="..." />
+
                         </li>
 
                     }
@@ -37,20 +53,45 @@
             </div>
         </div>
 
-        @* Start Bussines card area *@
         <div class="col-md-6">
             <div id="showCards" class="flip">
-   
+
                 @foreach (var product in Model.LstProducts)
                 {
-                        <div class="card">
-                            <div class="row">
-                                @Html.Raw(product.Media)
-                            </div>
-                            <div class="row price">
-                                @product.Price
-                            </div>
+                    <div class="card">
+                        <div class="row">
+                            @Html.Raw(product.Media)
                         </div>
+                        <div class="row price" style="margin-top: 330px; text-align: center">
+                            Price per 100 -     @product.Price
+                        </div>
+
+                        <div id="paypalSubmit" class="text-center" style="margin-top: 50px">
+
+                            @using (Ajax.BeginForm("AddToCard", "Store", null, new AjaxOptions
+                            {
+                                UpdateTargetId = "smallboxesresult",
+                                OnBegin = "OnAjaxRequestBegin",
+                                InsertionMode = InsertionMode.Replace,
+                                OnComplete = "OnAjaxRequestComplete",
+                                HttpMethod = "POST"
+                            }, new { role = "form", IdProduct = product.IdProduct }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="row form-group">
+                                    @Html.Label("Quantity:", new { @class = "col-md-4" })
+                                    @Html.DropDownListFor(model => model.SelectedQuantity, Model.ListQuantitys, new { @class = "form-control col-md-8" })
+
+                                </div>
+                                <div class="row" style="margin-top: 15px">
+                                    <button type="submit" class="btn btn-primary">Pay with PayPal</button>
+
+                                </div>
+
+                            }
+                        </div>
+                    </div>
                 }
 
 
@@ -71,22 +112,7 @@
 
                 </div>
 
-                <div id="paypalSubmit" class="text-center" style="margin-top: 50px">
-                    <form action="paypal/createpayment" method="post">
-                        <div class="row form-group">
-                            @Html.Label("Quantity:", new { @class = "col-md-4" })
-                            @Html.DropDownListFor(model => model.SelectedQuantity, Model.ListQuantitys, new { @class = "form-control col-md-8" })
 
-                        </div>
-
-                        <div class="row" style="margin-top: 15px">
-                            <button type="submit" class="btn btn-primary">Pay with PayPal</button>
-
-                        </div>
-                    </form>
-
-
-                </div>
 
             </div>
             @* End Bussines card area *@
@@ -101,6 +127,15 @@
 
     </div>
     <!--============================== End Products Content ================================-->
+
+    <div class="basket">
+        <span class="glyphicon glyphicon-shopping-cart col-md-2"></span>
+        <span class="col-md-10">
+            asdaadsasdasdasdluhdsk;
+            ladfshlkjshlfjashkljfhakdfhaidfjha
+            s;dkjfh;askjdfh;aksdjfhas;jkdfha;kjsh
+        </span>
+    </div>
 
     <script>
         //$(document).mousemove(function (e) {
@@ -130,5 +165,7 @@
             $(".bobi").show();
         };
     </script>
+
+
 
 </section> 
