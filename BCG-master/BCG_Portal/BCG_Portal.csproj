@@ -397,7 +397,6 @@
     <Content Include="Views\LoginRegister\Index.cshtml" />
     <Content Include="Views\LoginRegister\Login.cshtml" />
     <Content Include="Views\LoginRegister\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginRegisterErrors.cshtml" />
     <Content Include="Views\RegisterUserAdminPanel\Index.cshtml" />
     <Content Include="Views\Home\TermsOfUseBG.cshtml" />
     <Content Include="Views\Home\CoockieDeclarationBG.cshtml" />
