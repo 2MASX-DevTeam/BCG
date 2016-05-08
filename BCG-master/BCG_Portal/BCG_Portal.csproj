@@ -179,7 +179,6 @@
     <Compile Include="Controllers\LoginRegisterController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaypalController.cs" />
-    <Compile Include="Controllers\RegisterUserAdminPanelController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

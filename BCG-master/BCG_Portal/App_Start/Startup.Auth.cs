@@ -57,7 +57,7 @@ namespace BCG_Portal
             //    clientSecret: "");
 
             app.UseTwitterAuthentication( new TwitterAuthenticationOptions
-               {
+            {
                 ConsumerKey = ConfigurationManager.AppSettings.Get("TwitterConsumerKey"),
                 ConsumerSecret = ConfigurationManager.AppSettings.Get("TwitterConsumerSecret")
             });
