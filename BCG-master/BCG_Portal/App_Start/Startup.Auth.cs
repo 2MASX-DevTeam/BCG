@@ -53,19 +53,19 @@ namespace BCG_Portal
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "1",
+               consumerSecret: "1");
 
             app.UseFacebookAuthentication(
                appId: "1",
                appSecret: "1");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1",
+                ClientSecret = "1"
+            });
         }
     }
 }

@@ -1,7 +1,17 @@
 ﻿@model BCG_Portal.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Use another service to log in.</h4>
+<style>
+    .logo {
+    font-family: Papyrus;
+    padding: 15px 0;
+    font-size: 2em;
+}
+</style>
+
+<br />
+<br />
+<div class="logo">Use another service to log in.</div>
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();

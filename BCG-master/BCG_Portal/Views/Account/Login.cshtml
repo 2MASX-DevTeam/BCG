@@ -5,8 +5,8 @@
 }
 
 <!-- START LOGIN FORM -->
-<div class="text-center" style="vertical-align:middle;">
-
+<div class="row text-center" style="vertical-align:middle;">
+    <div class="col-md-8">
     <!-- START Html.BeginForm -->
     @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
@@ -60,7 +60,7 @@
         <!-- END: Main Form -->
     } 
     <!-- END Html.BeginForm -->
-
+  
     <br />
     @*<%-- Etc Login Information --%>*@
     <div class="etc-login-form text-center">
@@ -71,7 +71,7 @@
             New user? @Html.ActionLink("Create new account  >>>>", "Register")
         </p>
     </div>
-
+     </div>
     <div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })

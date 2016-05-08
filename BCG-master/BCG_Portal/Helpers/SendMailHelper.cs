@@ -77,10 +77,10 @@ namespace BCG_Portal.Helpers
             client.Host = "smtp.gmail.com";
             client.EnableSsl = true; //Gmail works on Server Secured Layer
 
-            string app = $"{appName} Registration request";
+            string app = string.Format("{0} Registration request", appName);
             mail.To.Add(message.Destination.ToString());
             mail.From = new MailAddress(emailFrom, app, System.Text.Encoding.UTF8);
-            mail.Subject = $"In answer of your request to register in {appName} APP ...";
+            mail.Subject = string.Format("In answer of your request to register in {0} APP ...", appName);
             mail.SubjectEncoding = System.Text.Encoding.UTF8;
             mail.Body = message.Body.ToString();
             mail.BodyEncoding = System.Text.Encoding.UTF8;
