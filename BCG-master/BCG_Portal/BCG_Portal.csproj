@@ -172,6 +172,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\EmailTemplates\EmailTemplatesAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -337,6 +338,7 @@
     <Content Include="Content\custElastislideCarousel.css.map">
       <DependentUpon>custElastislideCarousel.css</DependentUpon>
     </Content>
+    <Content Include="Areas\EmailTemplates\Views\web.config" />
     <None Include="Properties\PublishProfiles\BCG-Portal.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
@@ -415,6 +417,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\EmailTemplates\Controllers\" />
+    <Folder Include="Areas\EmailTemplates\Models\" />
+    <Folder Include="Areas\EmailTemplates\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
