@@ -13,6 +13,7 @@ namespace BCG_Portal.Controllers
     {
         private StoreModels db = new StoreModels();
 
+        //[RequireHttps]
         public ActionResult Index()
         {
             return View();

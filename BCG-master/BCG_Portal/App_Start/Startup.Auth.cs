@@ -8,6 +8,9 @@ using Owin;
 using BCG_Portal.Models;
 using Microsoft.Owin.Security.DataProtection;
 using BCG_Portal.Data;
+using System.Configuration;
+using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.Twitter;
 
 namespace BCG_Portal
 {
@@ -37,7 +40,7 @@ namespace BCG_Portal
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -53,18 +56,22 @@ namespace BCG_Portal
             //    clientId: "",
             //    clientSecret: "");
 
-            app.UseTwitterAuthentication(
-               consumerKey: "1",
-               consumerSecret: "1");
+            app.UseTwitterAuthentication( new TwitterAuthenticationOptions
+               {
+                ConsumerKey = ConfigurationManager.AppSettings.Get("TwitterConsumerKey"),
+                ConsumerSecret = ConfigurationManager.AppSettings.Get("TwitterConsumerSecret")
+            });
 
-            app.UseFacebookAuthentication(
-               appId: "1",
-               appSecret: "1");
+            app.UseFacebookAuthentication(new FacebookAuthenticationOptions
+            {
+                AppId = ConfigurationManager.AppSettings.Get("FacebookAppId"),
+                AppSecret = ConfigurationManager.AppSettings.Get("FacebookAppSecret")
+            });
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "1",
-                ClientSecret = "1"
+                ClientId = ConfigurationManager.AppSettings.Get("GoogleClientId"),
+                ClientSecret = ConfigurationManager.AppSettings.Get("GoogleClientSecret")
             });
         }
     }

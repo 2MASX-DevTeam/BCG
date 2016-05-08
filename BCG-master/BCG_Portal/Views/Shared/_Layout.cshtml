@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Language" content="bg">
     <meta name="author" content="BiSi-ViT">
     <meta name="Email" content="office@bcvit.bg" />
-    <meta name="COPYRIGHT" content="Copyright 2016 - @DateTime.Now BiSi-ViT Софтуерна компания, България, Пловдив" />
+    <meta name="COPYRIGHT" content="Copyright 2016 BiSi-ViT Софтуерна компания, България, Пловдив" />
     <meta name="Distribution" content="Global" />
     <meta name="Rating" content="General" />
     <meta name="geo.country" content="BG" />
@@ -26,18 +26,31 @@
     <!--==============================for Facebook=================================-->
     <meta property="og:url" content="www.bc-vit.bg" />
     <meta property="og:title" content="Направете своя собствена визитка онлайн." />
-    <meta property="og:image" content="http://www.bc-vit.bg/images/logo/bcvitLogo.PNG" />
+    <meta property="og:image" content="https://www.bc-vit.bg/images/logo/bcvitLogo.PNG" />
     <meta property="og:description" content="Най-лесния начин да направите визитка и да я оформите според вашите предпочитания." />
      <!--==============================for Twitter=================================-->
     <meta name="twitter:title" content="Направете своя собствена визитка онлайн." />
     <meta name="twitter:description" content="Най-лесния начин да направите визитка и да я оформите според вашите предпочитания." />
-    <meta name="twitter:image" content="http://www.bc-vit.bg/images/logo/bcvitLogo.PNG" />
+    <meta name="twitter:image" content="https://www.bc-vit.bg/images/logo/bcvitLogo.PNG" />
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
+    <style>
+  
+      #bcvitlogo1{
+         width:80%;
+     }
+      .navbar-brand{
+          width:70% !important;
+          height:100% !important;
+      }
+         .navbar-header{
+          width:10% !important;
+      }
+    </style>
     <!--==============================header=================================-->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container daliQ">
@@ -47,7 +60,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand daliQ" href="~/">WWW.BC-VIT.BG</a>
+                @*<a class="navbar-brand daliQ" href="~/">
+                    <div id="bcvitlogo">
+                        <img id="bcvitlogo1" src="~/images/logo/bcvitLogo.png" alt="Alternate Text" />
+                    </div>
+                </a>*@
+              
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -92,7 +110,7 @@
                     @Html.ActionLink("Правила за ползване на сайта", "TermsOfUseBG", "Home")
                     |
                 </div>
-              
+
                 <div class="col-md-6 col-xs-6" style="text-align:left;">
                     |
                     @Html.ActionLink("Използване на бисквитки", "CoockieDeclarationBG", "Home")
@@ -105,7 +123,7 @@
     </div>
     <!--==============================end shared body content=================================-->
     <!--==============================coockie declaration=================================-->
-    
+
     <div class="eupopup eupopup-bottom"></div>
     <!--==============================end coockie declaration=================================-->
     @Scripts.Render("~/bundles/jquery")

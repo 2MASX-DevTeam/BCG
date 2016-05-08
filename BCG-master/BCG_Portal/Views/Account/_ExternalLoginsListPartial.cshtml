@@ -28,8 +28,46 @@
             @Html.AntiForgeryToken()
             <div id="socialLoginList">
                 <p>
-                    @foreach (AuthenticationDescription p in loginProviders) {
-                        <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        if (@p.AuthenticationType.ToString() == "Facebook")
+                        {
+                            @*<button name="button"   value="ActionTwo">
+                                <img src="~/images/logo/facebook-logo-crop.png" width="48" height="48" />
+                            </button>*@
+             
+                                <input type="image" 
+                                   id="@p.AuthenticationType"
+                                   src="~/images/logo/fblogin.png" 
+                                   width="80%;" name="provider" 
+                                   value="@p.AuthenticationType" 
+                                   title="Log in using your @p.Caption account" />
+                
+                        }
+                        if (@p.AuthenticationType.ToString() == "Google")
+                        {
+                            @*<button name="button"   value="ActionTwo">
+                                    <img src="~/images/logo/facebook-logo-crop.png" width="48" height="48" />
+                                </button>*@
+                            <input type="image"
+                                   id="@p.AuthenticationType"
+                                   src="~/images/logo/Google.png"
+                                   width="88" height="88" name="provider"
+                                   value="@p.AuthenticationType"
+                                   title="Log in using your @p.Caption account" />
+                        }
+                        if (@p.AuthenticationType.ToString() == "Twitter")
+                        {
+                            @*<button name="button"   value="ActionTwo">
+                                    <img src="~/images/logo/facebook-logo-crop.png" width="48" height="48" />
+                                </button>*@
+                            <input type="image"
+                                   id="@p.AuthenticationType"
+                                   src="~/images/logo/Twitter.png"
+                                   width="80%" height="88" name="provider"
+                                   value="@p.AuthenticationType"
+                                   title="Log in using your @p.Caption account" />
+                        }
                     }
                 </p>
             </div>

@@ -271,6 +271,13 @@
     <Content Include="images\loading.gif" />
     <Content Include="images\loading_dark.gif" />
     <Content Include="images\logo\bcvitLogo.PNG" />
+    <Content Include="images\logo\cchin.ico" />
+    <Content Include="images\logo\facebook-logo-crop.png" />
+    <Content Include="images\logo\fblogin.png" />
+    <Content Include="images\logo\Google.png" />
+    <Content Include="images\logo\transp.gif" />
+    <Content Include="images\logo\Twitter.png" />
+    <Content Include="images\logo\TwitterSign.png" />
     <Content Include="images\movingstars\background.png" />
     <Content Include="images\movingstars\foreground.png" />
     <Content Include="images\movingstars\midground.png" />
@@ -451,11 +458,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1191</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:3667/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
