@@ -29,7 +29,8 @@ namespace BCG_Portal
                       "~/Scripts/jquery-ui-1.11.4.min.js",
                       "~/Scripts/jquery.elastislide.js",
                       "~/Scripts/jquerypp.custom.js",
-                      "~/Scripts/modernizr.custom.17475.js"));
+                      "~/Scripts/modernizr.custom.17475.js",
+                      "~/Scripts/custQ.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
@@ -38,7 +39,7 @@ namespace BCG_Portal
                       "~/Content/custAuthenticateCss.css",
                        "~/Content/parallaxcss.min.css",
                        "~/Content/custPortalCss.css",
-                       "~/Content/cuts-jquery-eupopup.min.css",
+                       "~/Content/cuts-jquery-eupopup.css",
                        "~/Content/custCarouselCss.min.css",
                        "~/Content/custCarouselDemo.min.css",
                        "~/Content/custElastislideCarousel.min.css"));

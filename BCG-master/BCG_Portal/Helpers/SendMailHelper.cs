@@ -79,7 +79,8 @@ namespace BCG_Portal.Helpers
 
             string app = string.Format("{0} Registration request", appName);
             mail.To.Add(message.Destination.ToString());
-            mail.From = new MailAddress(emailFrom, app, System.Text.Encoding.UTF8);
+            //mail.From = new MailAddress(emailFrom, app, System.Text.Encoding.UTF8);
+            mail.From = new MailAddress(emailFrom);
             mail.Subject = string.Format("In answer of your request to register in {0} APP ...", appName);
             mail.SubjectEncoding = System.Text.Encoding.UTF8;
             mail.Body = message.Body.ToString();

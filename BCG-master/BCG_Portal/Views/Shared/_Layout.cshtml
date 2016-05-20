@@ -37,21 +37,8 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
-<body>
-    <style>
-  
-      #bcvitlogo1{
-         width:80%;
-     }
-      .navbar-brand{
-          width:70% !important;
-          height:100% !important;
-      }
-         .navbar-header{
-          width:10% !important;
-      }
-    </style>
-    <!--==============================header=================================-->
+<body> 
+    <!--============================== Navigation Bar Fixed 2 Top =================================-->
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container daliQ">
             <div class="navbar-header">
@@ -76,9 +63,9 @@
             </div>
         </div>
     </div>
-    <!--==============================end header=================================-->
-    @*<div style="height: 50px;"></div>*@
-    <!--==============================shared body content=================================-->
+    <!--============================== End Navigation Bar Fixed 2 Top =================================-->
+
+    <!--============================== Shared Body Content =================================-->
     <div class="container body-content">
         <!--==============================individual view content=================================-->
         @RenderBody()
@@ -119,14 +106,13 @@
         </footer>
         <!--==============================end footer=================================-->
     </div>
-    <!--==============================end shared body content=================================-->
-    <!--==============================coockie declaration=================================-->
-
+    <!--============================== End Shared Body Content =================================-->
+    <!--============================== Coockie Declaration=================================-->
+    <!-- Use jquery-eu-cookie-law-popup.js & cuts-jquery-eupopup.css to create your own banners -->
     <div class="eupopup eupopup-bottom"></div>
-    <!--==============================end coockie declaration=================================-->
+    <!--==============================  End Coockie Declaration=================================-->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

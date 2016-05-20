@@ -240,6 +240,7 @@
     <Content Include="Content\parallaxcss.min.css">
       <DependentUpon>parallaxcss.css</DependentUpon>
     </Content>
+    <Content Include="Content\custstuff.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -343,8 +344,10 @@
       <DependentUpon>custElastislideCarousel.css</DependentUpon>
     </Content>
     <Content Include="Areas\EmailTemplates\Views\web.config" />
+    <Content Include="Content\custstuff2.less" />
     <None Include="Properties\PublishProfiles\BCG-Portal.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\custQ.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
     <Content Include="Scripts\jquery-eu-cookie-law-popup.js" />

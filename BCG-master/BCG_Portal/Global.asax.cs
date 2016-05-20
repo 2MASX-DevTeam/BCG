@@ -73,7 +73,7 @@ namespace BCG_Portal
                     mail.Subject = "Exception occured!";
                     mail.Body = ex.ToString();
 
-                    SmtpServer.Send(mail);
+                   // SmtpServer.Send(mail);
                 }
 
             }

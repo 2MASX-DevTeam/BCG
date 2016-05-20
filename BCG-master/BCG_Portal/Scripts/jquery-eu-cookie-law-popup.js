@@ -253,11 +253,14 @@
         if ($(".eupopup").length > 0) {
             $(document).euCookieLawPopup().init({
                 'info': 'YOU_CAN_ADD_MORE_SETTINGS_HERE',
-
+                /* Your own language */
                 'popupTitle': 'Този сайт използва "бисквитки". ',
                 'popupText': 'Използваме ги, за да ви предоставим най-добрата функционалност на сайта. Ако продължите да използвате сайта, ние приемаме, че сте съгласни с условията за използване на "бисквитки".'
+                /* Standart text in English */
                 //   'popupTitle': 'This website is using cookies. ',
-                //    'popupText': 'We use them to give you the best experience. If you continue using our website, we\'ll assume that you are happy to receive all cookies on this website.'
+
+
+                //   'popupText': 'We use them to give you the best experience. If you continue using our website, we\'ll assume that you are happy to receive all cookies on this website.'
             });
         }
     });

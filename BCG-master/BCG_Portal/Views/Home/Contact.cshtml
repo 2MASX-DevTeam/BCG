@@ -67,7 +67,7 @@
                         @Html.ValidationMessageFor(model => model.Message)<br />
 
                         <div class="g-recaptcha" data-sitekey=@ConfigurationManager.AppSettings["ReCaptchaPublicKey"]></div>
-                        <a href="#" class="button" onclick="document.getElementById('form').submit()">Изпрати</a>
+                        @*<a href="#" class="button" onclick="document.getElementById('form').submit()">Изпрати</a>*@
 
                         @*<input type="submit" class="button-bg" value="Send" />*@
                     }
