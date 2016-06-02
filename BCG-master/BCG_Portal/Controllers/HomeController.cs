@@ -18,6 +18,11 @@ namespace BCG_Portal.Controllers
         {
             return View();
         }
+        [RequireHttps]
+        public ActionResult IndexBG()
+        {
+            return View();
+        }
 
         public ActionResult About()
         {
@@ -26,7 +31,22 @@ namespace BCG_Portal.Controllers
             return View();
         }
 
+        public ActionResult AboutEn()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+
         public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public ActionResult ContactEn()
         {
             ViewBag.Message = "Your contact page.";
 
@@ -95,7 +115,10 @@ namespace BCG_Portal.Controllers
             return View();
         }
 
-        
+        public ActionResult ProductsFake()
+        {
+            return View();
+        }
 
     }
 }

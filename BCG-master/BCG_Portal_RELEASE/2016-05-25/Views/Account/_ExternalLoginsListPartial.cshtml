@@ -1,0 +1,76 @@
+﻿@model BCG_Portal.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<style>
+    .logo {
+    font-family: Papyrus;
+    padding: 15px 0;
+    font-size: 2em;
+}
+</style>
+
+<br />
+<br />
+<div class="logo">Use another service to log in.</div>
+<hr />
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() == 0) {
+        <div>
+            <p>
+                There are no external authentication services configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
+                for details on setting up this ASP.NET application to support logging in via external services.
+            </p>
+        </div>
+    }
+    else {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl })) {
+            @Html.AntiForgeryToken()
+            <div id="socialLoginList">
+                <p>
+                    @foreach (AuthenticationDescription p in loginProviders)
+                    {
+                        if (@p.AuthenticationType.ToString() == "Facebook")
+                        {
+                            @*<button name="button"   value="ActionTwo">
+                                <img src="~/images/logo/facebook-logo-crop.png" width="48" height="48" />
+                            </button>*@
+             
+                                <input type="image" 
+                                   id="@p.AuthenticationType"
+                                   src="~/images/logo/fblogin.png" 
+                                   width="80%;" name="provider" 
+                                   value="@p.AuthenticationType" 
+                                   title="Log in using your @p.Caption account" />
+                
+                        }
+                        if (@p.AuthenticationType.ToString() == "Google")
+                        {
+                            @*<button name="button"   value="ActionTwo">
+                                    <img src="~/images/logo/facebook-logo-crop.png" width="48" height="48" />
+                                </button>*@
+                            <input type="image"
+                                   id="@p.AuthenticationType"
+                                   src="~/images/logo/Google.png"
+                                   width="88" height="88" name="provider"
+                                   value="@p.AuthenticationType"
+                                   title="Log in using your @p.Caption account" />
+                        }
+                        if (@p.AuthenticationType.ToString() == "Twitter")
+                        {
+                            @*<button name="button"   value="ActionTwo">
+                                    <img src="~/images/logo/facebook-logo-crop.png" width="48" height="48" />
+                                </button>*@
+                            <input type="image"
+                                   id="@p.AuthenticationType"
+                                   src="~/images/logo/Twitter.png"
+                                   width="80%" height="88" name="provider"
+                                   value="@p.AuthenticationType"
+                                   title="Log in using your @p.Caption account" />
+                        }
+                    }
+                </p>
+            </div>
+        }
+    }
+}

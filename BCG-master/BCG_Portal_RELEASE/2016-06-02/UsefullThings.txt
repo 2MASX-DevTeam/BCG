@@ -1,0 +1,38 @@
+﻿  /*$('#dragThis').draggable(
+     {
+         drag: function(){
+             var offset = $(this).offset();
+             var xPos = offset.left;
+             var yPos = offset.top;
+             $('#posX').text('x: ' + xPos);
+             $('#posY').text('y: ' + yPos);
+             if(xPos>=40){
+ console.log("i want to stop >=20.");
+ $('#dragThis').draggable("disable");
+ return;
+ }
+             if(xPos<=40){
+ console.log("i want to stop >=20.");
+ $('#dragThis').draggable("enable");
+ return;
+ }
+             $( ".selector" ).draggable( "enable" );
+ 
+         }
+     });*/
+        //$('#dragThis').css('top','20px');
+        //$('#dragThis').css('left','20px');
+        $('#dragThis').draggable(
+            {
+                containment: "parent",
+                drag: function (event, ui) {
+                    var offset = $(this).offset();
+                    var xPos = offset.left;
+                    var yPos = offset.top;
+                    $('#posX').text('x: ' + xPos);
+                    $('#posY').text('y: ' + yPos);
+                    // if(ui.position.top>21) { $('#dragThis').draggable("disable");
+                    //  }
+                    //if(ui.position.left>40) { ui.position.left = 0; }
+                }
+            });

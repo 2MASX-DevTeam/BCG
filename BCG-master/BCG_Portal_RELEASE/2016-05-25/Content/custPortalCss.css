@@ -1,0 +1,243 @@
+﻿/*********** MAIN STUFFS ***************/
+@font-face {
+    font-family: 'BulgariaModernaV3';
+    src: url('../fonts/myfonts/BulgariaModernaV3.otf') format('truetype');
+}
+@font-face {
+    font-family: 'BernardoModaContrast';
+    src: url('../fonts/myfonts/Avdira_R.otf') format('truetype');
+}
+@font-face {
+    font-family: 'RuslanDisplay';
+    src: url('../fonts/myfonts/RuslanDisplay.ttf') format('truetype');
+}
+
+.in{  
+    background: -moz-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(0,255,255,1)), color-stop(7%, rgba(0,255,255,1)), color-stop(19%, rgba(17,13,255,1)), color-stop(45%, rgba(0,255,255,1)), color-stop(60%, rgba(0,113,255,1)), color-stop(72%, rgba(0,0,255,1)), color-stop(81%, rgba(0,255,255,1)), color-stop(94%, rgba(0,0,255,1)), color-stop(100%, rgba(0,0,255,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#00ffff',GradientType=1 ); /* ie6-9 */
+}
+
+.BernardoModaContrast {
+    font-family: BernardoModaContrast !important;
+    font-size: 1.2em;
+}
+.BulgariaModernaV3 {
+    font-family: BulgariaModernaV3 !important;
+    font-size: 2.5em;
+}
+
+.daliQ {
+    /*font-family: BulgariaModernaV3 !important;*/
+    font-family: BernardoModaContrast !important;
+    font-size: 2em;
+    border-left: 1px solid gold;
+}
+
+.navbar-inverse {
+    height: 130px;
+    background: -moz-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(0,255,255,1)), color-stop(7%, rgba(0,255,255,1)), color-stop(19%, rgba(17,13,255,1)), color-stop(45%, rgba(0,255,255,1)), color-stop(60%, rgba(0,113,255,1)), color-stop(72%, rgba(0,0,255,1)), color-stop(81%, rgba(0,255,255,1)), color-stop(94%, rgba(0,0,255,1)), color-stop(100%, rgba(0,0,255,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* ie10+ */
+    background: linear-gradient(45deg, rgba(0,255,255,1) 0%, rgba(0,255,255,1) 7%, rgba(17,13,255,1) 19%, rgba(0,255,255,1) 45%, rgba(0,113,255,1) 60%, rgba(0,0,255,1) 72%, rgba(0,255,255,1) 81%, rgba(0,0,255,1) 94%, rgba(0,0,255,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000ff', endColorstr='#00ffff',GradientType=1 ); /* ie6-9 */
+}
+
+
+
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
+    color: rgba(255, 255, 255, 1.00);
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: gold;
+}
+
+.BernardoModaContrast .navbar-nav > li > a {
+    color: #ffffff;
+    color: rgba(255, 255, 255, 1.00);
+}
+
+#content {
+    margin: 60px 0 0 0;
+    
+}
+.container {
+    margin-top: 30px;
+}
+
+/*********** END MAIN STUFFS ***************/
+
+
+/*********** ROTATING EARTH ***************/
+#earth {
+    margin-left: 3em;
+    position: absolute;
+    width: 460px;
+    height: 410px;
+    background: url("../images/EARTHATLASES/atlas.jpg") 0 0 repeat;
+    border-radius: 50%;
+    background-size: 800px;
+    -moz-animation: rotate 6s linear infinite;
+    -o-animation: rotate 6s linear infinite;
+    -webkit-animation: rotate 6s linear infinite;
+    animation: rotate 6s linear infinite;
+    -moz-transition: transform 300ms linear;
+    -o-transition: transform 300ms linear;
+    -webkit-transition: transform 300ms linear;
+    transition: transform 300ms linear;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    box-shadow: inset 20px 0 60px 6px rgba(0, 0, 0, 1);
+    color: #000;
+    z-index: 200;
+}
+
+    #earth:after {
+        content: "";
+        position: absolute;
+        z-index: 400;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: -80px 15px 80px 10px rgba(0,0,0,.9) inset;
+    }
+
+    #earth:before {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0.2;
+        background: radial-gradient(circle at 100px 100px, #fff, #000);
+    }
+
+@-moz-keyframes rotate {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 800px 0;
+    }
+}
+
+@-webkit-keyframes rotate {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 800px 0;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 800px 0;
+    }
+}
+/*********** END ROTATING EARTH ***************/
+
+/************* ANIMATED TEXT *******************************************************/
+.example1 {
+    height: 50px;
+    top: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+    .example1 h1 {
+        font-family: BulgariaModernaV3 !important;
+        font-size: 3em;
+        color: #ffffff;
+        z-index: 400;
+        position: absolute;
+        width: 220%;
+        height: 100%;
+        margin: 0;
+        line-height: 60px;
+        text-align: center;
+        /* Starting position */
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        transform: translateX(100%);
+        /* Apply animation to this element */
+        -moz-animation: example1 15s linear infinite;
+        -webkit-animation: example1 15s linear infinite;
+        -o-animation: example1 15s linear infinite;
+        animation: example1 15s linear infinite;
+    }
+/* Move it (define the animation) */
+@-moz-keyframes example1 {
+    0% {
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+
+    100% {
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
+@-webkit-keyframes example1 {
+    0% {
+        -webkit-transform: translateX(100%);
+        -moz-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+
+    100% {
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes example1 {
+    0% {
+        -moz-transform: translateX(100%); /* Firefox bug fix */
+        -webkit-transform: translateX(100%); /* Firefox bug fix */
+        -ms-transform: translateX(100%);
+        -o-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+
+    100% {
+        -moz-transform: translateX(-100%); /* Firefox bug fix */
+        -webkit-transform: translateX(-100%); /* Firefox bug fix */
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+/************* END ANIMATED TEXT *******************************************************/

@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head prefix="og: http://ogp.me/ns#">
+    <title>BC-VIT | @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Бизнес Софтуер - Продукти | Визитки | Услуги | Визитки | програмни продукти | софтуер Пловдив, разработване на софтуер | интернет магазин | софтуерни решения | e-commerce | ecommerce | електронна търговия | онлайн визитки" />
+
+    <!--==============================for Google=================================-->
+    <meta name="description" content="Бизнес Софтуер - Продукти | Услуги | Визитки | Консултантска дейност | програмни продукти | софтуер Пловдив, разработване на софтуер | интернет магазин | софтуерни решения | e-commerce | ecommerce | електронна търговия | онлайн визитки" />
+    <meta name="keywords" content="бизнес софтуер, визитки, визитки онлайн, софтуерна компания, програмни продукти, софтуер Пловдив, разработване на софтуер, интернет магазин, софтуерни решения, e-commerce, ecommerce, електронна търговия,  онлайн визитки" />
+    <meta http-equiv="Content-Language" content="bg">
+    <meta name="author" content="BiSi-ViT">
+    <meta name="Email" content="office@bcvit.bg" />
+    <meta name="COPYRIGHT" content="Copyright 2016 BiSi-ViT Софтуерна компания, България, Пловдив" />
+    <meta name="Distribution" content="Global" />
+    <meta name="Rating" content="General" />
+    <meta name="geo.country" content="BG" />
+    <meta name="icbm" content="Internet" />
+    <meta name="dc.language" content="bg" />
+    <meta name="geo.position" content="46;20" />
+    <meta name="geo.region" content="BG-06" />
+    <meta content="index, follow" name="robots" />
+    <link href="~/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+    <!--==============================for Facebook=================================-->
+    <meta property="og:url" content="www.bc-vit.bg" />
+    <meta property="og:title" content="Направете своя собствена визитка онлайн." />
+    <meta property="og:image" content="https://www.bc-vit.bg/images/logo/bcvitLogo.PNG" />
+    <meta property="og:description" content="Най-лесния начин да направите визитка и да я оформите според вашите предпочитания." />
+    <!--==============================for Twitter=================================-->
+    <meta name="twitter:title" content="Направете своя собствена визитка онлайн." />
+    <meta name="twitter:description" content="Най-лесния начин да направите визитка и да я оформите според вашите предпочитания." />
+    <meta name="twitter:image" content="https://www.bc-vit.bg/images/logo/bcvitLogo.PNG" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+        <!--============================== Navigation Bar Fixed 2 Top =================================-->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @*<a class="navbar-brand" href="~/"> BC-VIT</a>*@
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav nav-tabs-justified">
+                        <li style="text-indent:4em;">&nbsp;</li>
+
+                        <li class="daliQ">
+                            <a href='@Url.Action("IndexBG", "Home")'>
+                                <i class="fa fa-home" aria-hidden="true"></i>
+                                НАЧАЛО
+                            </a>
+                        </li>
+                        <li class="daliQ">
+                            <a href='@Url.Action("About", "Home")'>
+                                @*<i class="fa fa-question-circle-o" aria-hidden="true"></i>*@
+                               ЗА НАС
+                            </a>
+                        </li>
+                        <li class="daliQ">
+                            <a href='@Url.Action("ProductsFake", "Home")'>
+                                <i class="fa fa-cog fa-spin fa-fw"></i>
+                                ПРОДУКТИ
+                            </a>
+                        </li>
+                        <li class="daliQ">
+                            <a href='@Url.Action("Contact", "Home")'>
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                КОНТАКТИ
+                            </a>
+                        </li>
+                        <li style="text-indent:1em;">&nbsp;</li>
+                        @*<%-- Custom stuffs --%>*@
+                        <li class="dropdown daliQ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">
+                                <i class="fa fa-language" aria-hidden="true"></i>
+                                &nbsp;
+                                Български &nbsp;<span class="caret"></span>
+                                <img src='@Url.Content("~/images/flags/bg.png")' />
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li role="separator" class="divider"></li>
+                                <li class="daliQ">
+                                    <a href='#'>
+                                        English  
+                                        <img src='@Url.Content("~/images/flags/eng_flag.png")' />
+                                    </a>
+                                </li>
+                                @*<li role="separator" class="divider"></li>
+                <li class="daliQ">
+                    <a href='@Url.Action("IndexBG", "Home")'>
+                        България
+                        <img src='@Url.Content("~/images/flags/bg.png")' />
+                    </a>
+                </li>*@
+                                <li role="separator" class="divider"></li>
+                                <li class="daliQ">
+                                    <a href="#">
+                                        中國
+                                        <img src='@Url.Content("~/images/flags/flag-china.png")' />
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                            </ul>
+                        </li>
+                        @*<%-- End Custom stuffs --%>*@
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+        <!--============================== End Navigation Bar Fixed 2 Top =================================-->
+     
+            
+
+
+        <!--============================== Shared Body Content =================================-->
+
+<div class="container body-content">
+    <!--==============================individual view content=================================-->
+    @RenderBody()
+    <!--==============================end individual view content=================================-->
+    <hr/>
+    <div class="clearfix"></div>
+</div>
+<!--============================== End Shared Body Content =================================-->
+    <!--==============================footer=================================-->
+    <footer id="myFooter" style="font-size:1.2em">
+        <div class="row" style="color: white; padding: 10px; font-family: AvdiraR">
+            <div class="col-md-4">
+                За Нас
+                <hr />
+                <p>
+                    www.bc-vit.bg е специализиран сайт за изработка на дигитални визитки.
+                    Имате възможност да изберете някои от нашите готови темплейти или
+                    да си създадете визитка според вашите лични предпочитания.
+                </p>
+            </div>
+            <div class="col-md-4 daliQ" style="text-align: center;">
+                <br/>
+                <br/>
+                <div class="soc-icons">
+                    <div>
+                        <a href="#"><img src="/images/twitter.jpg" alt="Twitter" title=" Twitter"></a>
+                        <a href="#"><img src="/images/facebook.jpg" alt="Facebook" title="Facebook"></a>
+                        <a href="#"><img src="/images/google.jpg" alt="Google" title="Google"></a>
+                    </div>
+                </div>
+                <!--==============================terms of use and coockie declaration=================================-->
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-6 col-xs-6">
+                        @Html.ActionLink("Правила за ползване на сайта", "TermsOfUseBG", "Home")
+                    </div>
+
+                    <div class="col-md-6 col-xs-6">
+                        @Html.ActionLink("Използване на бисквитки", "CoockieDeclarationBG", "Home")
+                    </div>
+                </div>
+                <!--==============================end terms of use and coockie declaration=================================-->
+                <h3 class="">
+                    <span>@*Copyright*@ &copy; @DateTime.Now.Year </span>
+                    @*<a href="https://www.bc-vit.bg" style="text-decoration:none !important;">www.bc-vit.bg</a>*@
+                    @Html.ActionLink("www.bc-vit.bg", "Index", "Home")
+                </h3>
+            </div>
+            <div class="col-md-4 daliQ">
+                Контакти
+                <hr />
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                Електронна поща:
+                            </td>
+                            <td>
+                                <input type="text" value=""/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Съобщение:
+                            </td>
+                            <td>
+                                <input type="text" value=""/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align: right;">
+                                <button style="color:blue">Изпрати!</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                 
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--==============================end footer=================================-->
+
+    <!--============================== Coockie Declaration=================================-->
+    <!-- Use jquery-eu-cookie-law-popup.js & cuts-jquery-eupopup.css to create your own banners -->
+    <div class="eupopup eupopup-bottom"></div>
+    <!--============================== End Coockie Declaration=================================-->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

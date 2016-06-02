@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Confirm Email";
+}
+<script src="~/Scripts/jquery-2.2.3.min.js"></script>
+<style>
+    .joFather{
+        width:80%;
+        margin:0 auto;
+        text-align:center;
+    }
+    .jo{
+        font-size:5em;
+        color:blueviolet;
+    }
+    #time-span{
+        color:#ff4500 ;
+        font-weight:900;
+    }
+
+    h3{
+        font-family: Papyrus, fantasy;
+    }
+</style>
+
+
+
+<div style="height:50%"></div>
+<div class="joFather  text-center">
+    <span class="jo">&#10004;</span>
+    <h3 class=" alert alert-success">
+        Your request for registration was completed successfully.
+        <br />
+        On your email you'll be provided with confirmation link.
+        <br />
+        Use it to confirm your identity and to be able to log into the application!
+    </h3>
+    <br />
+    <div id="redirect">
+        <h3>You will be redirected to the Home page after:  <span id="time-span"></span> seconds.</h3>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var counter = 20;
+        var interval = setInterval(function () {
+            counter--;
+            console.log(counter);
+            // Display 'counter' wherever you want to display it.
+            $("#time-span").html("" + counter);
+            if (counter == 0) {
+                window.location.href = "../Home";
+            }
+        }, 1000);
+    });
+</script>
+

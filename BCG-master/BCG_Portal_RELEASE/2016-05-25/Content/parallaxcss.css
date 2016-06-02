@@ -1,0 +1,168 @@
+﻿/*= MOVING STARS DEMO
+--------------------------------------------------------*/
+/* 
+    Starry Night DEMO
+    chriscoyier@gmail.com
+    http://chriscoyier.net
+*/
+@-webkit-keyframes STAR-MOVE {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -5000px;
+    top: -200px;
+  }
+}
+@-moz-keyframes STAR-MOVE {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -5000px;
+    top: -200px;
+  }
+}
+@keyframes STAR-MOVE {
+  from {
+    left: 0;
+    top: 0;
+  }
+  to {
+    left: -5000px;
+    top: -200px;
+  }
+}
+#background {
+  background: black url(../images/movingstars/background.png) repeat 5% 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  -webkit-animation-name: STAR-MOVE;
+  -webkit-animation-duration: 200s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+#midground {
+  background: url(../images/movingstars/midground.png) repeat 20% 20%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  -webkit-animation-name: STAR-MOVE;
+  -webkit-animation-duration: 250s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+#foreground {
+  background: url(../images/movingstars/foreground.png) repeat 35% 35%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 300;
+  -webkit-animation-name: STAR-MOVE;
+  -moz-animation-name: STAR-MOVE;
+  -o-animation-name: STAR-MOVE;
+  animation-name: STAR-MOVE;
+  -webkit-animation-duration: 200s;
+  -moz-animation-duration: 200s;
+  -o-animation-duration: 200s;
+  animation-duration: 200s;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -o-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+/*=> END  MOVING STARS DEMO
+--------------------------------------------------------*/
+/****************************************************************************************************************/
+/*
+Theme Name: Simple Parallax Website
+Description: Simple Parallax Scrolling Effect
+Author: Samuel Dalusung
+*/
+/*= SLIDES STYLING
+--------------------------------------------------------*/
+#slide1 {
+  width: 100%;
+  height: 700px;
+  background: -moz-linear-gradient(45deg, #00ffff 0%, #00ffff 7%, #110dff 19%, #00ffff 45%, #0071ff 60%, #0000ff 72%, #00ffff 81%, #0000ff 94%, #0000ff 100%);
+  /* ff3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, #00ffff), color-stop(7%, #00ffff), color-stop(19%, #110dff), color-stop(45%, #00ffff), color-stop(60%, #0071ff), color-stop(72%, #0000ff), color-stop(81%, #00ffff), color-stop(94%, #0000ff), color-stop(100%, #0000ff));
+  /* safari4+,chrome */
+  background: -webkit-linear-gradient(45deg, #00ffff 0%, #00ffff 7%, #110dff 19%, #00ffff 45%, #0071ff 60%, #0000ff 72%, #00ffff 81%, #0000ff 94%, #0000ff 100%);
+  /* safari5.1+,chrome10+ */
+  background: -o-linear-gradient(45deg, #00ffff 0%, #00ffff 7%, #110dff 19%, #00ffff 45%, #0071ff 60%, #0000ff 72%, #00ffff 81%, #0000ff 94%, #0000ff 100%);
+  /* opera 11.10+ */
+  background: -ms-linear-gradient(45deg, #00ffff 0%, #00ffff 7%, #110dff 19%, #00ffff 45%, #0071ff 60%, #0000ff 72%, #00ffff 81%, #0000ff 94%, #0000ff 100%);
+  /* ie10+ */
+  background: linear-gradient(45deg, #00ffff 0%, #00ffff 7%, #110dff 19%, #00ffff 45%, #0071ff 60%, #0000ff 72%, #00ffff 81%, #0000ff 94%, #0000ff 100%);
+  /* w3c */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0000ff', endColorstr='#00ffff', GradientType=1);
+  /* ie6-9 */
+}
+#slide2 {
+  background-color: #f00;
+  color: #333333;
+  height: 300px;
+  padding: 200px 0 260px 0;
+  margin: 0 auto;
+  background-size: cover;
+}
+#slide3 {
+  background: url('/images/vizitka_moq/Veso1.jpg') 50% 70px no-repeat fixed;
+  color: #fff;
+  height: 700px;
+  padding: 350px 0 0 0;
+  background-size: contain;
+}
+#slide4 {
+  height: 900px;
+  padding: 250px 0 0 0;
+  background: url(/images/logo/transp.gif) 50% 170px no-repeat fixed;
+}
+#slide4 .whatIs {
+  background: rgba(16, 36, 36, 0.9);
+  color: wheat;
+}
+#slide4 .customers {
+  background: rgba(16, 36, 36, 0.9);
+  border: 1px dotted black;
+  color: wheat;
+  padding: 20px;
+}
+#slide5 {
+  background: url(/images/vizitka_moq/Veso2.jpg) 50% 130px no-repeat fixed;
+  height: 800px;
+  margin: 0 auto;
+  padding: 350px 0 0 0;
+  color: #fff;
+  background-size: contain;
+}
+/*= FOOTER 
+--------------------------------------------------------*/
+#copyright {
+  color: #fff;
+  font-family: "Wellfleet";
+  font-size: 14px;
+  margin-top: 100px;
+  text-align: center;
+}
+#copyright a {
+  text-decoration: none;
+  color: #fff;
+}
+/*# sourceMappingURL=parallaxcss.css.map */

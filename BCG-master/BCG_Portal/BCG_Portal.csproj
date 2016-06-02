@@ -207,6 +207,12 @@
     <Content Include="Content\bussinessCardsStyle.min.css">
       <DependentUpon>bussinessCardsStyle.css</DependentUpon>
     </Content>
+    <Content Include="Content\cust-jquery-eupopup.css">
+      <DependentUpon>cust-jquery-eupopup.less</DependentUpon>
+    </Content>
+    <Content Include="Content\cust-jquery-eupopup.min.css">
+      <DependentUpon>cust-jquery-eupopup.css</DependentUpon>
+    </Content>
     <Content Include="Content\custAuthenticateCss.css" />
     <Content Include="Content\custCarouselCss.css">
       <DependentUpon>custCarouselCss.less</DependentUpon>
@@ -227,11 +233,11 @@
       <DependentUpon>custElastislideCarousel.css</DependentUpon>
     </Content>
     <Content Include="Content\custPortalCss.css" />
-    <Content Include="Content\cuts-jquery-eupopup.css">
-      <DependentUpon>cuts-jquery-eupopup.less</DependentUpon>
+    <Content Include="Content\jquery-eupopup.css">
+      <DependentUpon>jquery-eupopup.less</DependentUpon>
     </Content>
-    <Content Include="Content\cuts-jquery-eupopup.min.css">
-      <DependentUpon>cuts-jquery-eupopup.css</DependentUpon>
+    <Content Include="Content\jquery-eupopup.min.css">
+      <DependentUpon>jquery-eupopup.css</DependentUpon>
     </Content>
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\parallaxcss.css">
@@ -242,6 +248,10 @@
     </Content>
     <Content Include="Content\custstuff.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\font-awesome-4.6.3\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome-4.6.3\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\font-awesome-4.6.3\HELP-US-OUT.txt" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -258,6 +268,7 @@
     <Content Include="images\busCards\xfiles-back.jpeg" />
     <Content Include="images\bussnessCardSmall.png" />
     <Content Include="images\deluxSmall.png" />
+    <Content Include="images\dropwall.jpg" />
     <Content Include="images\EARTHATLASES\atlas.jpg" />
     <Content Include="images\EARTHATLASES\eart.jpg" />
     <Content Include="images\EARTHATLASES\earth.jpg" />
@@ -265,6 +276,11 @@
     <Content Include="images\EARTHATLASES\earth123.jpg" />
     <Content Include="images\EARTHATLASES\earth2.png" />
     <Content Include="images\facebook.jpg" />
+    <Content Include="images\flags\bg.png" />
+    <Content Include="images\flags\flag-china.png" />
+    <Content Include="images\flags\flags-china.ico" />
+    <Content Include="images\flags\us.png" />
+    <Content Include="images\flags\eng_flag.png" />
     <Content Include="images\google.jpg" />
     <Content Include="images\intuneBigCopy.png" />
     <Content Include="images\loading.gif" />
@@ -284,9 +300,11 @@
     <Content Include="images\nav.png" />
     <Content Include="images\paralaximages\3d.jpg" />
     <Content Include="images\paralaximages\bob.png" />
+    <Content Include="images\paralaximages\boy.png" />
     <Content Include="images\paralaximages\christmas-tree.png" />
     <Content Include="images\paralaximages\divider.png" />
     <Content Include="images\paralaximages\dr-seuss.png" />
+    <Content Include="images\paralaximages\girl.png" />
     <Content Include="images\paralaximages\header-bg.png" />
     <Content Include="images\paralaximages\norman.png" />
     <Content Include="images\paralaximages\photo1.jpg" />
@@ -299,6 +317,7 @@
     <Content Include="images\shop-cart.png" />
     <Content Include="images\sixsenseSmall.png" />
     <Content Include="images\twitter.jpg" />
+    <Content Include="images\underconstruction.jpg" />
     <Content Include="images\vizitka_moq\Veso1.jpg" />
     <Content Include="images\vizitka_moq\Veso2.jpg" />
     <Content Include="Scripts\bootstrap.js" />
@@ -313,15 +332,9 @@
     <Content Include="Content\parallaxcss.css.map">
       <DependentUpon>parallaxcss.css</DependentUpon>
     </Content>
-    <Content Include="fonts\daliQ.ttf" />
-    <Content Include="fonts\TravelingTypewriter.ttf" />
     <Content Include="Content\bussinessCardsStyle.less" />
     <Content Include="Content\bussinessCardsStyle.css.map">
       <DependentUpon>bussinessCardsStyle.css</DependentUpon>
-    </Content>
-    <Content Include="Content\cuts-jquery-eupopup.less" />
-    <Content Include="Content\cuts-jquery-eupopup.css.map">
-      <DependentUpon>cuts-jquery-eupopup.css</DependentUpon>
     </Content>
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
@@ -345,6 +358,51 @@
     </Content>
     <Content Include="Areas\EmailTemplates\Views\web.config" />
     <Content Include="Content\custstuff2.less" />
+    <Content Include="Content\cust-jquery-eupopup.less" />
+    <Content Include="Content\cust-jquery-eupopup.css.map">
+      <DependentUpon>cust-jquery-eupopup.css</DependentUpon>
+    </Content>
+    <Content Include="fonts\myfonts\Avdira_R.otf" />
+    <Content Include="fonts\myfonts\BernardoModaContrast.ttf" />
+    <Content Include="fonts\myfonts\RuslanDisplay.ttf" />
+    <Content Include="fonts\myfonts\BulgariaModernaV3.otf" />
+    <Content Include="Content\jquery-eupopup.less" />
+    <Content Include="Content\jquery-eupopup.css.map">
+      <DependentUpon>jquery-eupopup.css</DependentUpon>
+    </Content>
+    <Content Include="fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\font-awesome-4.6.3\fonts\FontAwesome.otf" />
+    <Content Include="fonts\font-awesome-4.6.3\less\animated.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\bordered-pulled.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\core.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\fixed-width.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\font-awesome.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\icons.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\larger.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\list.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\mixins.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\path.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\rotated-flipped.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\screen-reader.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\stacked.less" />
+    <Content Include="fonts\font-awesome-4.6.3\less\variables.less" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\font-awesome.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_animated.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_bordered-pulled.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_core.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_fixed-width.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_icons.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_larger.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_list.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_mixins.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_path.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_rotated-flipped.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_screen-reader.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_stacked.scss" />
+    <Content Include="fonts\font-awesome-4.6.3\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\BCG-Portal.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\custQ.js" />
@@ -421,6 +479,15 @@
     <Content Include="Scripts\jquery-2.2.3.min.map" />
     <Content Include="Views\PayPal\Canceled.cshtml" />
     <Content Include="Views\Home\ConfirmEmail.cshtml" />
+    <Content Include="Views\Home\IndexBG.cshtml" />
+    <Content Include="Views\Shared\_LayoutBG.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialEn.cshtml" />
+    <Content Include="Views\Home\ContactEn.cshtml" />
+    <Content Include="Views\Home\AboutEn.cshtml" />
+    <Content Include="Views\Home\ProductsFake.cshtml" />
+    <Content Include="Views\Account\RegisterBG.cshtml" />
+    <Content Include="Views\Account\LoginBG.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartialBG.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

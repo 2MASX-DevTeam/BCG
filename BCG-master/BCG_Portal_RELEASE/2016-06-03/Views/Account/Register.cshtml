@@ -1,0 +1,75 @@
+﻿@model BCG_Portal.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- START LOGIN FORM -->
+<div class="text-center" style="vertical-align:middle;">
+    <!-- START: Html.BeginForm -->
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <br />
+        <br />
+        <div class="logo AvdirR">Register</div>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <!-- START: Main Form -->
+        <div class="login-form-1">
+
+            <!-- START: register-form -->
+            <div id="register-form" class="text-left AvdirR">
+
+                <div class="main-login-form">
+
+                    <div class="login-group">
+
+                        @*<%-- Username --%>*@
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username" })
+                        </div>
+                        @*<%-- Email --%>*@
+                        <div class="form-group">
+                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                        </div>
+                        @*<%-- Password --%>*@
+                        <div class="form-group">
+                           @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                        </div>
+                        @*<%-- Confirm Password --%>*@
+                        <div class="form-group">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
+                        </div>
+                     
+                        <input type="submit" value="GO" class="login-button" style="font-size: 1em" />
+                      
+                    </div>
+
+                </div>
+              
+            </div>
+            <!-- END: register-form -->
+
+            </div>
+        <!-- END: Main Form -->
+    }
+    <!-- END: Html.BeginForm -->
+
+
+    <br />
+    <div class="etc-login-form text-center AvdirR">
+        <p>
+            Already have an account?
+            @Html.ActionLink("Login", "Login", "Account")
+        </p>
+    </div>
+
+
+</div>
+<!-- END LOGIN FORM -->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,72 @@
+﻿@model BCG_Portal.Models.tblShopper
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/custAuthenticateCss.min.css" rel="stylesheet" />
+
+<div class="daliQ text-center">
+    <h2>
+        Hello to bc-vit.
+        <br />
+        This is your admin panel from where you can manage your activities.
+    </h2>
+    <br />
+    <hr />
+    <h3>
+        Before you start... we need you to confirm your registration by typing in the fields
+        below your email and the <b>code</b> wich was sended tou your email
+    </h3>
+
+    <h3>Confirm registration</h3>
+</div>
+    <!-- START LOGIN FORM -->
+    <div class="text-center" style="vertical-align:middle;">
+        <!-- START Html.BeginForm -->
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true, "Login Failed, check details");
+
+            @* Secure the error messages who will be shown to the user *@
+            if (ViewBag.ShowErrorDiv == true)
+            {
+                <div class="@ViewBag.DivClass" style="width:42%; margin:0 auto;">
+                    <p>@ViewBag.ErrorMessage</p>
+                </div>
+            }
+            <br />
+
+            <!-- START:Main Form -->
+            <div class="login-form-1">
+                <div id="login-form" class="text-left">
+
+                    <div class="main-login-form">
+                        <div class="login-group">
+
+                            @*<%-- Email --%>*@
+                            <div class="form-group">
+                                @Html.TextBoxFor(u => u.Email, null, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Email"
+                           })
+                            </div>
+
+                            @*<%-- Confirmation Token --%>*@
+                            <div class="form-group">
+                                @Html.TextBoxFor(u => u.Password, null, new
+                           {
+                               @class = "form-control",
+                               placeholder = "Confirmation token code"
+                           })
+                            </div>
+                        </div>
+                        <input type="submit" value="GO" class="login-button" />
+                    </div>
+                </div>
+            </div>
+            <!-- END:Main Form -->
+        }
+        <!-- END Html.BeginForm -->
+    </div>
+    <!-- END LOGIN FORM -->
+

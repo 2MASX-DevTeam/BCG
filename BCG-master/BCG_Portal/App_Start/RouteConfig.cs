@@ -13,8 +13,20 @@ namespace BCG_Portal
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
             routes.MapRoute(
-                name: "Default",
+                 name: "DefaultBG",
+                 url: "{controller}/{action}/{id}",
+                 defaults: new
+                 {
+                     controller = "Home",
+                     action = "IndexBG",
+                     id = UrlParameter.Optional
+                 }
+             );
+
+            routes.MapRoute(
+                name: "DefaultEN",
                 url: "{controller}/{action}/{id}",
                 defaults: new
                 {
@@ -23,6 +35,20 @@ namespace BCG_Portal
                     id = UrlParameter.Optional
                 }
             );
+
+            routes.MapRoute(
+           name: "Default",
+           url: "{controller}/{action}/{id}",
+           defaults: new
+           {
+               controller = "Home",
+               action = "Indexs",
+               id = UrlParameter.Optional
+           }
+       );
+
+
+
         }
     }
 }

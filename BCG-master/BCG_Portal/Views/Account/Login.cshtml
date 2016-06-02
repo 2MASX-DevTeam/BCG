@@ -2,6 +2,7 @@
 @model LoginViewModel
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- START LOGIN FORM -->
@@ -13,14 +14,14 @@
         @Html.AntiForgeryToken()
         <br />
         <br />
-        <div class="logo">Log in</div>
+        <div class="logo AvdirR">Log in</div>
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
 
         <!-- START: Main Form -->
         <div class="login-form-1">
             <!-- START: login-form -->
-            <div id="register-form" class="text-left">
+            <div id="register-form" class="text-left AvdirR">
 
                 <div class="main-login-form">
                     <div class="login-group">
@@ -51,7 +52,7 @@
                         @Html.ActionLink("Forgot your password?", "ForgotPassword")
                     </p>*@
                     </div>
-                    <input type="submit" value="GO" class="login-button" />
+                    <input type="submit" value="GO" class="login-button" style="font-size: 1em" />
                 </div>
 
             </div>
@@ -63,12 +64,12 @@
   
     <br />
     @*<%-- Etc Login Information --%>*@
-    <div class="etc-login-form text-center">
+    <div class="etc-login-form text-center AvdirR">
         <p>
-            Forgot your password? @Html.ActionLink("Click here >>>>", "ForgotPassword")
+            Forgot your password? @Html.ActionLink("Click here", "ForgotPassword")
         </p>
         <p>
-            New user? @Html.ActionLink("Create new account  >>>>", "Register")
+            New user? @Html.ActionLink("Create new account", "Register")
         </p>
     </div>
      </div>

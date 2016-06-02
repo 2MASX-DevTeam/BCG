@@ -22,27 +22,31 @@ namespace BCG_Portal
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
+                       "~/Scripts/jquery-ui-1.11.4.min.js",
+                      "~/Scripts/jquery-eu-cookie-law-popup.js",
                       "~/Scripts/bussinesCardJs.js",
                       "~/Scripts/parallaxjs.js",
                       "~/Scripts/custPortalScripts.js",
-                      "~/Scripts/jquery-eu-cookie-law-popup.js",
-                      "~/Scripts/jquery-ui-1.11.4.min.js",
                       "~/Scripts/jquery.elastislide.js",
                       "~/Scripts/jquerypp.custom.js",
                       "~/Scripts/modernizr.custom.17475.js",
-                      "~/Scripts/custQ.js"));
+                      "~/Scripts/custQ.js"
+                   ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/custPortalCss.css",
+                      "~/Content/custstuff.css",
                       "~/Content/bussinessCardsStyle.min.css",
                       "~/Content/custAuthenticateCss.css",
-                       "~/Content/parallaxcss.min.css",
-                       "~/Content/custPortalCss.css",
-                       "~/Content/cuts-jquery-eupopup.css",
+                       "~/Content/parallaxcss.css",
+                       "~/Content/jquery-eupopup.min.css",
                        "~/Content/custCarouselCss.min.css",
                        "~/Content/custCarouselDemo.min.css",
-                       "~/Content/custElastislideCarousel.min.css"));
+                       "~/Content/custElastislideCarousel.min.css",
+                       "~/fonts/font-awesome-4.6.3/css/font-awesome.min.css"
+                       ));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@model BCG_Portal.Models.RegisterViewModel
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- START LOGIN FORM -->
@@ -11,15 +12,15 @@
         @Html.AntiForgeryToken()
         <br />
         <br />
-        <div class="logo">Register</div>
+        <div class="logo AvdirR">Register</div>
         <hr />
-        @Html.ValidationSummary("Q", new { @class = "text-danger" })
+        @Html.ValidationSummary("", new { @class = "text-danger" })
 
         <!-- START: Main Form -->
         <div class="login-form-1">
 
             <!-- START: register-form -->
-            <div id="register-form" class="text-left">
+            <div id="register-form" class="text-left AvdirR">
 
                 <div class="main-login-form">
 
@@ -42,7 +43,7 @@
                         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm password" })
                         </div>
                      
-                        <input type="submit" value="GO" class="login-button" />
+                        <input type="submit" value="GO" class="login-button" style="font-size: 1em" />
                       
                     </div>
 
@@ -58,10 +59,10 @@
 
 
     <br />
-    <div class="etc-login-form text-center">
+    <div class="etc-login-form text-center AvdirR">
         <p>
             Already have an account?
-            @Html.ActionLink("Login here >>>>", "Login", "Account")
+            @Html.ActionLink("Login", "Login", "Account")
         </p>
     </div>
 
